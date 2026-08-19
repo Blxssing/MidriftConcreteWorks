@@ -5,27 +5,21 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Design system definition.
- *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
- *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ * MIDRIFT CONCRETE SOLUTIONS — industrial design system.
+ * Change --accent-raw below to re-brand the whole site's accent colour.
  */
 
 @theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --radius-2xl: calc(var(--radius) + 8px);
-  --radius-3xl: calc(var(--radius) + 12px);
-  --radius-4xl: calc(var(--radius) + 16px);
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-4xl: 0px;
+  --font-display: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -45,12 +39,12 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-ring-offset-background: var(--background);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
+  --color-ink: var(--ink);
+  --color-ink-foreground: var(--ink-foreground);
+  --color-concrete: var(--concrete);
+  --color-concrete-dark: var(--concrete-dark);
+  --color-hairline: var(--hairline);
+  --color-hairline-invert: var(--hairline-invert);
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -62,74 +56,64 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --radius: 0px;
+
+  /* === MIDRIFT ACCENT — edit these two lines to re-brand === */
+  --accent-raw: oklch(0.68 0.185 52);
+  --accent-raw-foreground: oklch(0.16 0.01 60);
+
+  --background: oklch(0.976 0.002 60);
+  --foreground: oklch(0.19 0.008 60);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
+  --card-foreground: oklch(0.19 0.008 60);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  --popover-foreground: oklch(0.19 0.008 60);
+
+  --ink: oklch(0.185 0.007 60);
+  --ink-foreground: oklch(0.965 0.002 60);
+  --concrete: oklch(0.9 0.003 60);
+  --concrete-dark: oklch(0.26 0.006 60);
+
+  --primary: var(--accent-raw);
+  --primary-foreground: var(--accent-raw-foreground);
+  --secondary: oklch(0.93 0.003 60);
+  --secondary-foreground: oklch(0.22 0.008 60);
+  --muted: oklch(0.94 0.003 60);
+  --muted-foreground: oklch(0.47 0.006 60);
+  --accent: var(--accent-raw);
+  --accent-foreground: var(--accent-raw-foreground);
   --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.88 0.003 60);
+  --hairline: oklch(0.86 0.004 60);
+  --hairline-invert: oklch(1 0 0 / 14%);
+  --input: oklch(0.86 0.004 60);
+  --ring: var(--accent-raw);
+  --sidebar: oklch(0.976 0.002 60);
+  --sidebar-foreground: oklch(0.19 0.008 60);
+  --sidebar-primary: var(--accent-raw);
+  --sidebar-primary-foreground: var(--accent-raw-foreground);
+  --sidebar-accent: oklch(0.93 0.003 60);
+  --sidebar-accent-foreground: oklch(0.22 0.008 60);
+  --sidebar-border: oklch(0.88 0.003 60);
+  --sidebar-ring: var(--accent-raw);
 }
 
 .dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
-  --popover: oklch(0.208 0.042 265.755);
-  --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.279 0.041 260.031);
-  --accent-foreground: oklch(0.984 0.003 247.858);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
+  --background: oklch(0.17 0.006 60);
+  --foreground: oklch(0.96 0.002 60);
+  --card: oklch(0.22 0.006 60);
+  --card-foreground: oklch(0.96 0.002 60);
+  --popover: oklch(0.22 0.006 60);
+  --popover-foreground: oklch(0.96 0.002 60);
+  --concrete: oklch(0.3 0.005 60);
+  --secondary: oklch(0.27 0.006 60);
+  --secondary-foreground: oklch(0.96 0.002 60);
+  --muted: oklch(0.27 0.006 60);
+  --muted-foreground: oklch(0.72 0.005 60);
+  --border: oklch(1 0 0 / 12%);
+  --hairline: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 16%);
 }
 
 @layer base {
@@ -137,8 +121,71 @@
     border-color: var(--color-border);
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
   }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background: var(--accent-raw);
+    color: var(--accent-raw-foreground);
+  }
+}
+
+/* Section eyebrow: small technical label */
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+@utility rule-accent {
+  &::before {
+    content: "";
+    display: block;
+    width: 2.5rem;
+    height: 3px;
+    background: var(--accent-raw);
+    margin-bottom: 1.25rem;
+  }
+}
+
+@utility display-1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  font-size: clamp(2.5rem, 7vw, 5.5rem);
+  text-transform: uppercase;
+}
+
+@utility display-2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-size: clamp(1.9rem, 4.2vw, 3.25rem);
+  text-transform: uppercase;
+}
+
+@utility grid-lines {
+  background-image: linear-gradient(to right, var(--hairline-invert) 1px, transparent 1px);
+  background-size: 25% 100%;
 }
