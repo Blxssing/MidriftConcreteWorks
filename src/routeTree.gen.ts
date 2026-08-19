@@ -10,33 +10,180 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as BulkWholesaleRouteImport } from './routes/bulk-wholesale'
+import { Route as DeliveryRouteImport } from './routes/delivery'
+import { Route as QualityRouteImport } from './routes/quality'
+import { Route as ProductsIndexRouteImport } from './routes/products.index'
+import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
+import { Route as ProjectsSlugRouteImport } from './routes/projects.$slug'
+import { Route as SolutionsIndexRouteImport } from './routes/solutions.index'
+import { Route as SolutionsSlugRouteImport } from './routes/solutions.$slug'
+import { Route as ProductsCategoryIndexRouteImport } from './routes/products.$category.index'
+import { Route as ProductsCategoryProductRouteImport } from './routes/products.$category.$product'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BulkWholesaleRoute = BulkWholesaleRouteImport.update({
+  id: '/bulk-wholesale',
+  path: '/bulk-wholesale',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeliveryRoute = DeliveryRouteImport.update({
+  id: '/delivery',
+  path: '/delivery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QualityRoute = QualityRouteImport.update({
+  id: '/quality',
+  path: '/quality',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsIndexRoute = ProductsIndexRouteImport.update({
+  id: '/products/',
+  path: '/products/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
+  id: '/projects/',
+  path: '/projects/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsSlugRoute = ProjectsSlugRouteImport.update({
+  id: '/projects/$slug',
+  path: '/projects/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SolutionsIndexRoute = SolutionsIndexRouteImport.update({
+  id: '/solutions/',
+  path: '/solutions/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SolutionsSlugRoute = SolutionsSlugRouteImport.update({
+  id: '/solutions/$slug',
+  path: '/solutions/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsCategoryIndexRoute = ProductsCategoryIndexRouteImport.update({
+  id: '/products/$category/',
+  path: '/products/$category/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsCategoryProductRoute = ProductsCategoryProductRouteImport.update({
+  id: '/products/$category/$product',
+  path: '/products/$category/$product',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/bulk-wholesale': typeof BulkWholesaleRoute
+  '/delivery': typeof DeliveryRoute
+  '/quality': typeof QualityRoute
+  '/projects/$slug': typeof ProjectsSlugRoute
+  '/solutions/$slug': typeof SolutionsSlugRoute
+  '/products/': typeof ProductsIndexRoute
+  '/projects/': typeof ProjectsIndexRoute
+  '/solutions/': typeof SolutionsIndexRoute
+  '/products/$category/$product': typeof ProductsCategoryProductRoute
+  '/products/$category/': typeof ProductsCategoryIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/bulk-wholesale': typeof BulkWholesaleRoute
+  '/delivery': typeof DeliveryRoute
+  '/quality': typeof QualityRoute
+  '/projects/$slug': typeof ProjectsSlugRoute
+  '/solutions/$slug': typeof SolutionsSlugRoute
+  '/products': typeof ProductsIndexRoute
+  '/projects': typeof ProjectsIndexRoute
+  '/solutions': typeof SolutionsIndexRoute
+  '/products/$category/$product': typeof ProductsCategoryProductRoute
+  '/products/$category': typeof ProductsCategoryIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/bulk-wholesale': typeof BulkWholesaleRoute
+  '/delivery': typeof DeliveryRoute
+  '/quality': typeof QualityRoute
+  '/projects/$slug': typeof ProjectsSlugRoute
+  '/solutions/$slug': typeof SolutionsSlugRoute
+  '/products/': typeof ProductsIndexRoute
+  '/projects/': typeof ProjectsIndexRoute
+  '/solutions/': typeof SolutionsIndexRoute
+  '/products/$category/$product': typeof ProductsCategoryProductRoute
+  '/products/$category/': typeof ProductsCategoryIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/bulk-wholesale'
+    | '/delivery'
+    | '/quality'
+    | '/projects/$slug'
+    | '/solutions/$slug'
+    | '/products/'
+    | '/projects/'
+    | '/solutions/'
+    | '/products/$category/$product'
+    | '/products/$category/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/bulk-wholesale'
+    | '/delivery'
+    | '/quality'
+    | '/projects/$slug'
+    | '/solutions/$slug'
+    | '/products'
+    | '/projects'
+    | '/solutions'
+    | '/products/$category/$product'
+    | '/products/$category'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/bulk-wholesale'
+    | '/delivery'
+    | '/quality'
+    | '/projects/$slug'
+    | '/solutions/$slug'
+    | '/products/'
+    | '/projects/'
+    | '/solutions/'
+    | '/products/$category/$product'
+    | '/products/$category/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  BulkWholesaleRoute: typeof BulkWholesaleRoute
+  DeliveryRoute: typeof DeliveryRoute
+  QualityRoute: typeof QualityRoute
+  ProjectsSlugRoute: typeof ProjectsSlugRoute
+  SolutionsSlugRoute: typeof SolutionsSlugRoute
+  ProductsIndexRoute: typeof ProductsIndexRoute
+  ProjectsIndexRoute: typeof ProjectsIndexRoute
+  SolutionsIndexRoute: typeof SolutionsIndexRoute
+  ProductsCategoryProductRoute: typeof ProductsCategoryProductRoute
+  ProductsCategoryIndexRoute: typeof ProductsCategoryIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +195,99 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bulk-wholesale': {
+      id: '/bulk-wholesale'
+      path: '/bulk-wholesale'
+      fullPath: '/bulk-wholesale'
+      preLoaderRoute: typeof BulkWholesaleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/delivery': {
+      id: '/delivery'
+      path: '/delivery'
+      fullPath: '/delivery'
+      preLoaderRoute: typeof DeliveryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/quality': {
+      id: '/quality'
+      path: '/quality'
+      fullPath: '/quality'
+      preLoaderRoute: typeof QualityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/': {
+      id: '/products/'
+      path: '/products'
+      fullPath: '/products/'
+      preLoaderRoute: typeof ProductsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/': {
+      id: '/projects/'
+      path: '/projects'
+      fullPath: '/projects/'
+      preLoaderRoute: typeof ProjectsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/$slug': {
+      id: '/projects/$slug'
+      path: '/projects/$slug'
+      fullPath: '/projects/$slug'
+      preLoaderRoute: typeof ProjectsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/solutions/': {
+      id: '/solutions/'
+      path: '/solutions'
+      fullPath: '/solutions/'
+      preLoaderRoute: typeof SolutionsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/solutions/$slug': {
+      id: '/solutions/$slug'
+      path: '/solutions/$slug'
+      fullPath: '/solutions/$slug'
+      preLoaderRoute: typeof SolutionsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/$category/': {
+      id: '/products/$category/'
+      path: '/products/$category'
+      fullPath: '/products/$category/'
+      preLoaderRoute: typeof ProductsCategoryIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/$category/$product': {
+      id: '/products/$category/$product'
+      path: '/products/$category/$product'
+      fullPath: '/products/$category/$product'
+      preLoaderRoute: typeof ProductsCategoryProductRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  BulkWholesaleRoute: BulkWholesaleRoute,
+  DeliveryRoute: DeliveryRoute,
+  QualityRoute: QualityRoute,
+  ProjectsSlugRoute: ProjectsSlugRoute,
+  SolutionsSlugRoute: SolutionsSlugRoute,
+  ProductsIndexRoute: ProductsIndexRoute,
+  ProjectsIndexRoute: ProjectsIndexRoute,
+  SolutionsIndexRoute: SolutionsIndexRoute,
+  ProductsCategoryProductRoute: ProductsCategoryProductRoute,
+  ProductsCategoryIndexRoute: ProductsCategoryIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
