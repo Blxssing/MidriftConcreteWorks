@@ -1,24 +1,258 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import heroImg from "@/assets/hero-yard.jpg";
+import manufacturingImg from "@/assets/manufacturing.jpg";
+import logisticsImg from "@/assets/logistics.jpg";
+import { categories } from "@/data/products";
+import { solutions } from "@/data/solutions";
+import { projects } from "@/data/projects";
+import {
+  CTABand,
+  Container,
+  QuoteCTA,
+  Section,
+  SectionHead,
+  WhatsAppCTA,
+} from "@/components/site/primitives";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "Midrift Concrete Solutions Ltd | Precast Concrete Manufacturer, Kenya" },
+      {
+        name: "description",
+        content:
+          "Quality precast concrete built for strength. Cabro paving, concrete blocks, ventilation blocks, road kerbs and custom precast manufacturing with bulk supply and site delivery.",
+      },
+      { property: "og:title", content: "Midrift Concrete Solutions Ltd | Precast Concrete Manufacturer" },
+      {
+        property: "og:description",
+        content:
+          "Precast concrete manufacturing and project supply in Kenya — paving, blocks, ventilation blocks, road and infrastructure products.",
+      },
+    ],
+  }),
+  component: Home,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+const capabilities = [
+  { code: "01", title: "Manufacturing", body: "Controlled mixing, moulding and compaction for consistent, repeatable units." },
+  { code: "02", title: "Product range", body: "Paving, blocks, ventilation blocks and civil precast in one supply source." },
+  { code: "03", title: "Technical support", body: "Guidance on product selection, quantities and application from our team." },
+  { code: "04", title: "Project supply", body: "Dedicated production runs scheduled against construction programmes." },
+  { code: "05", title: "Custom solutions", body: "Bespoke moulds and units manufactured to drawing and specification." },
+  { code: "06", title: "Logistics", body: "Loading, trucking and scheduled delivery direct to your site." },
+];
+
+function Home() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <>
+      <section className="relative isolate bg-ink text-ink-foreground">
+        <img
+          src={heroImg}
+          alt="Pallets of precast concrete paving blocks in the Midrift production yard"
+          width={1920}
+          height={1088}
+          className="absolute inset-0 -z-10 size-full object-cover opacity-40"
+        />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink via-ink/70 to-transparent" />
+        <Container className="flex min-h-[80vh] flex-col justify-end py-24 md:min-h-[88vh] md:py-32">
+          <p className="eyebrow text-accent">Precast concrete manufacturer · Kenya</p>
+          <h1 className="mt-6 max-w-5xl display-1">
+            Quality precast concrete.
+            <br />
+            Built for strength.
+            <br />
+            <span className="text-accent">Designed for performance.</span>
+          </h1>
+          <p className="mt-8 max-w-xl text-base leading-relaxed text-ink-foreground/75 md:text-lg">
+            Midrift Concrete Solutions manufactures and supplies paving, blocks, ventilation blocks and civil precast
+            products for builders, contractors, developers, distributors and infrastructure projects.
+          </p>
+          <div className="mt-10 flex flex-wrap gap-3">
+            <QuoteCTA />
+            <WhatsAppCTA dark />
+          </div>
+        </Container>
+      </section>
+
+      {/* Product categories — asymmetric editorial grid */}
+      <Section>
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <SectionHead
+            eyebrow="Product range"
+            title="Five product families. One manufacturer."
+            lead="Every unit is produced in our own yard, so quality, quantity and delivery stay under one roof."
+          />
+          <Link
+            to="/products"
+            className="text-[12px] font-bold uppercase tracking-[0.12em] text-accent hover:underline"
+          >
+            View all products →
+          </Link>
+        </div>
+
+        <div className="mt-14 grid gap-px bg-hairline md:grid-cols-6">
+          {categories.map((c, i) => (
+            <Link
+              key={c.slug}
+              to="/products/$category"
+              params={{ category: c.slug }}
+              className={`group relative flex min-h-[320px] flex-col justify-end overflow-hidden bg-background p-7 transition-colors hover:bg-ink hover:text-ink-foreground ${
+                i < 2 ? "md:col-span-3" : "md:col-span-2"
+              }`}
+            >
+              <img
+                src={c.image}
+                alt={c.name}
+                loading="lazy"
+                className="absolute inset-0 size-full object-cover opacity-25 transition-opacity duration-300 group-hover:opacity-40"
+              />
+              <div className="relative">
+                <span className="font-mono text-xs text-accent">{c.code}</span>
+                <h3 className="mt-3 font-display text-2xl font-bold uppercase leading-tight tracking-tight">
+                  {c.name}
+                </h3>
+                <p className="mt-3 max-w-sm text-sm text-muted-foreground group-hover:text-ink-foreground/70">
+                  {c.intro}
+                </p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </Section>
+
+      {/* Capability strip */}
+      <Section dark>
+        <SectionHead
+          eyebrow="What Midrift does"
+          title="Products, manufacturing and supply — end to end."
+          className="[&_p:last-child]:text-ink-foreground/70"
+        />
+        <div className="mt-14 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+          {capabilities.map((c) => (
+            <div key={c.code} className="border-t border-hairline-invert pt-6">
+              <span className="font-mono text-xs text-accent">{c.code}</span>
+              <h3 className="mt-3 font-display text-lg font-bold uppercase tracking-tight">{c.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-ink-foreground/65">{c.body}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* Manufacturing split */}
+      <section className="grid lg:grid-cols-2">
+        <img
+          src={manufacturingImg}
+          alt="Precast concrete production inside the Midrift factory"
+          loading="lazy"
+          className="h-full min-h-[360px] w-full object-cover"
+        />
+        <div className="flex items-center bg-concrete px-5 py-20 md:px-16 md:py-24">
+          <div className="max-w-lg">
+            <p className="eyebrow">Quality & manufacturing</p>
+            <h2 className="mt-4 display-2">Strength is a process, not a claim.</h2>
+            <p className="mt-6 leading-relaxed text-muted-foreground">
+              From raw material selection through mixing, moulding, compaction and curing, every stage is controlled so
+              the units arriving on your site behave the same way, batch after batch.
+            </p>
+            <Link
+              to="/quality"
+              className="mt-8 inline-block text-[12px] font-bold uppercase tracking-[0.12em] text-accent hover:underline"
+            >
+              See our manufacturing process →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Who we serve */}
+      <Section>
+        <SectionHead
+          eyebrow="Who we serve"
+          title="Built for the people who build."
+          lead="From a single driveway to a national infrastructure programme, the supply approach adapts to the buyer."
+        />
+        <div className="mt-12 divide-y divide-hairline border-y border-hairline">
+          {solutions.map((s) => (
+            <Link
+              key={s.slug}
+              to="/solutions/$slug"
+              params={{ slug: s.slug }}
+              className="group flex flex-wrap items-baseline gap-x-8 gap-y-2 py-6 transition-colors hover:text-accent"
+            >
+              <span className="font-mono text-xs text-muted-foreground">{s.code}</span>
+              <h3 className="font-display text-xl font-bold uppercase tracking-tight md:text-2xl">{s.name}</h3>
+              <span className="ml-auto hidden max-w-md text-sm text-muted-foreground lg:block">{s.headline}</span>
+              <span className="transition-transform group-hover:translate-x-1">→</span>
+            </Link>
+          ))}
+        </div>
+      </Section>
+
+      {/* Projects */}
+      <Section className="bg-concrete">
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <SectionHead eyebrow="Projects" title="Supplied, delivered, in service." />
+          <Link to="/projects" className="text-[12px] font-bold uppercase tracking-[0.12em] text-accent hover:underline">
+            All projects →
+          </Link>
+        </div>
+        <div className="mt-12 grid gap-8 md:grid-cols-3">
+          {projects.slice(0, 3).map((p) => (
+            <Link key={p.slug} to="/projects/$slug" params={{ slug: p.slug }} className="group">
+              <div className="overflow-hidden bg-background">
+                <img
+                  src={p.image}
+                  alt={p.name}
+                  loading="lazy"
+                  className="aspect-4/3 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <p className="eyebrow mt-5">{p.location}</p>
+              <h3 className="mt-2 font-display text-lg font-bold uppercase tracking-tight group-hover:text-accent">
+                {p.name}
+              </h3>
+              <p className="mt-2 text-sm text-muted-foreground">{p.application}</p>
+            </Link>
+          ))}
+        </div>
+      </Section>
+
+      {/* Bulk + delivery */}
+      <section className="grid lg:grid-cols-2">
+        <div className="flex items-center bg-ink px-5 py-20 text-ink-foreground md:px-16 md:py-24">
+          <div className="max-w-lg">
+            <p className="eyebrow text-accent">Bulk & wholesale</p>
+            <h2 className="mt-4 display-2">Volume supply for trade buyers.</h2>
+            <p className="mt-6 leading-relaxed text-ink-foreground/70">
+              Contractors, developers, hardware stores and distributors work with us on bulk pricing, scheduled
+              production and repeat resupply.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-6">
+              <Link
+                to="/bulk-wholesale"
+                className="text-[12px] font-bold uppercase tracking-[0.12em] text-accent hover:underline"
+              >
+                Bulk & wholesale →
+              </Link>
+              <Link
+                to="/delivery"
+                className="text-[12px] font-bold uppercase tracking-[0.12em] text-ink-foreground/70 hover:text-accent"
+              >
+                Delivery & logistics →
+              </Link>
+            </div>
+          </div>
+        </div>
+        <img
+          src={logisticsImg}
+          alt="Truck loaded with pallets of concrete blocks leaving the yard"
+          loading="lazy"
+          className="h-full min-h-[360px] w-full object-cover"
+        />
+      </section>
+
+      <CTABand />
+    </>
   );
 }
