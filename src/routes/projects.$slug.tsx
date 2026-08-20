@@ -72,7 +72,7 @@ function ProjectPage() {
           <div className="mt-8 grid gap-8 md:grid-cols-3">
             {others.map((o) => (
               <Link key={o.slug} to="/projects/$slug" params={{ slug: o.slug }} className="group">
-                <img src={o.image} alt={o.name} loading="lazy" className="aspect-4/3 w-full object-cover" />
+                <img src={o.image} alt={o.name} loading="lazy" className="aspect-4/3 w-full rounded-2xl object-cover" />
                 <h3 className="mt-4 font-display text-base font-bold uppercase tracking-tight group-hover:text-accent">
                   {o.name}
                 </h3>

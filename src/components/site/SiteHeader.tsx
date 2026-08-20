@@ -45,7 +45,7 @@ export function SiteHeader() {
           </a>
           <Link
             to="/contact"
-            className="bg-accent px-5 py-3 text-[12px] font-bold uppercase tracking-[0.12em] text-accent-foreground transition-opacity hover:opacity-90"
+            className="rounded-full bg-accent px-5 py-3 text-[12px] font-bold uppercase tracking-[0.12em] text-accent-foreground transition-opacity hover:opacity-90"
           >
             Request a Quote
           </Link>
@@ -77,7 +77,7 @@ export function SiteHeader() {
               <Link
                 to="/contact"
                 onClick={() => setOpen(false)}
-                className="bg-accent px-5 py-4 text-center text-[12px] font-bold uppercase tracking-[0.12em] text-accent-foreground"
+                className="rounded-full bg-accent px-5 py-4 text-center text-[12px] font-bold uppercase tracking-[0.12em] text-accent-foreground"
               >
                 Request a Quote
               </Link>
@@ -85,7 +85,7 @@ export function SiteHeader() {
                 href={whatsappLink()}
                 target="_blank"
                 rel="noreferrer"
-                className="border border-foreground px-5 py-4 text-center text-[12px] font-bold uppercase tracking-[0.12em]"
+                className="rounded-full border border-foreground px-5 py-4 text-center text-[12px] font-bold uppercase tracking-[0.12em]"
               >
                 WhatsApp Sales
               </a>

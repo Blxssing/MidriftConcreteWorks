@@ -10,13 +10,13 @@
  */
 
 @theme inline {
-  --radius-sm: 0px;
-  --radius-md: 0px;
-  --radius-lg: 0px;
-  --radius-xl: 0px;
-  --radius-2xl: 0px;
-  --radius-3xl: 0px;
-  --radius-4xl: 0px;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.75rem;
+  --radius-3xl: 2.25rem;
+  --radius-4xl: 2.75rem;
   --font-display: "Archivo", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
@@ -56,7 +56,7 @@
 }
 
 :root {
-  --radius: 0px;
+  --radius: 1rem;
 
   /* === MIDRIFT ACCENT — edit these two lines to re-brand === */
   --accent-raw: oklch(0.68 0.185 52);
@@ -127,6 +127,11 @@
 
   body {
     background-color: var(--color-background);
+    background-image:
+      radial-gradient(60rem 40rem at 12% -10%, color-mix(in oklab, var(--accent-raw) 12%, transparent), transparent 70%),
+      radial-gradient(50rem 35rem at 95% 0%, color-mix(in oklab, var(--ink) 10%, transparent), transparent 65%),
+      linear-gradient(180deg, color-mix(in oklab, var(--concrete) 45%, var(--background)), var(--background) 45%);
+    background-attachment: fixed;
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
@@ -188,4 +193,13 @@
 @utility grid-lines {
   background-image: linear-gradient(to right, var(--hairline-invert) 1px, transparent 1px);
   background-size: 25% 100%;
+}
+
+@utility btn-pill {
+  border-radius: 9999px;
+}
+
+@utility soft-card {
+  border-radius: var(--radius-2xl);
+  box-shadow: 0 18px 45px -30px color-mix(in oklab, var(--ink) 60%, transparent);
 }

@@ -53,7 +53,7 @@ function CategoryPage() {
                 src={p.image}
                 alt={p.name}
                 loading="lazy"
-                className="aspect-4/3 w-full object-cover"
+                className="aspect-4/3 w-full rounded-2xl object-cover"
               />
               <h2 className="mt-6 font-display text-lg font-bold uppercase tracking-tight group-hover:text-accent">
                 {p.name}

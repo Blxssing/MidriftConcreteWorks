@@ -131,7 +131,7 @@ Notes: ${form.notes}`;
 
       <button
         type="submit"
-        className="mt-8 w-full bg-accent px-7 py-4 text-[12px] font-bold uppercase tracking-[0.12em] text-accent-foreground transition-opacity hover:opacity-90 sm:w-auto"
+        className="mt-8 w-full rounded-full bg-accent px-8 py-4 text-[12px] font-bold uppercase tracking-[0.12em] text-accent-foreground transition-opacity hover:opacity-90 sm:w-auto"
       >
         Send quote request
       </button>

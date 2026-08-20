@@ -62,7 +62,7 @@ function ProductPage() {
                 href={whatsappLink(waMessage)}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 border border-foreground px-7 py-4 text-[12px] font-bold uppercase tracking-[0.12em] transition-colors hover:bg-foreground hover:text-background"
+                className="inline-flex items-center gap-2 border border-foreground px-8 py-4 text-[12px] font-bold uppercase tracking-[0.12em] transition-colors hover:bg-foreground hover:text-background rounded-full"
               >
                 <MessageCircle className="size-4" /> WhatsApp Sales
               </a>
@@ -152,7 +152,7 @@ function ProductPage() {
                 params={{ category: category.slug, product: r.slug }}
                 className="group bg-background p-6 transition-colors hover:bg-concrete"
               >
-                <img src={r.image} alt={r.name} loading="lazy" className="aspect-4/3 w-full object-cover" />
+                <img src={r.image} alt={r.name} loading="lazy" className="aspect-4/3 w-full rounded-2xl object-cover" />
                 <h3 className="mt-5 font-display text-base font-bold uppercase tracking-tight group-hover:text-accent">
                   {r.name}
                 </h3>

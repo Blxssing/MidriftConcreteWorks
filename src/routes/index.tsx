@@ -145,7 +145,7 @@ function Home() {
           src={manufacturingImg}
           alt="Precast concrete production inside the Midrift factory"
           loading="lazy"
-          className="h-full min-h-[360px] w-full object-cover"
+          className="h-full min-h-[360px] w-full rounded-2xl object-cover"
         />
         <div className="flex items-center bg-concrete px-5 py-20 md:px-16 md:py-24">
           <div className="max-w-lg">
@@ -205,7 +205,7 @@ function Home() {
                   src={p.image}
                   alt={p.name}
                   loading="lazy"
-                  className="aspect-4/3 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="aspect-4/3 w-full rounded-2xl object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
               <p className="eyebrow mt-5">{p.location}</p>
@@ -248,7 +248,7 @@ function Home() {
           src={logisticsImg}
           alt="Truck loaded with pallets of concrete blocks leaving the yard"
           loading="lazy"
-          className="h-full min-h-[360px] w-full object-cover"
+          className="h-full min-h-[360px] w-full rounded-2xl object-cover"
         />
       </section>
 
