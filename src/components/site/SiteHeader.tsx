@@ -10,7 +10,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 border-b border-hairline bg-background/95 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between gap-6 px-5 md:h-20 md:px-10">
         <Link to="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
-          <span className="flex h-8 w-8 items-center justify-center bg-accent font-display text-sm font-extrabold text-accent-foreground">
+          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-accent font-display text-sm font-extrabold text-accent-foreground">
             M
           </span>
           <span className="leading-none">
@@ -45,7 +45,7 @@ export function SiteHeader() {
           </a>
           <Link
             to="/contact"
-            className="bg-accent px-5 py-3 text-[12px] font-bold uppercase tracking-[0.12em] text-accent-foreground transition-opacity hover:opacity-90"
+            className="rounded-full bg-accent px-5 py-3 text-[12px] font-bold uppercase tracking-[0.12em] text-accent-foreground transition-opacity hover:opacity-90"
           >
             Request a Quote
           </Link>
@@ -77,7 +77,7 @@ export function SiteHeader() {
               <Link
                 to="/contact"
                 onClick={() => setOpen(false)}
-                className="bg-accent px-5 py-4 text-center text-[12px] font-bold uppercase tracking-[0.12em] text-accent-foreground"
+                className="rounded-full bg-accent px-5 py-4 text-center text-[12px] font-bold uppercase tracking-[0.12em] text-accent-foreground"
               >
                 Request a Quote
               </Link>
@@ -85,7 +85,7 @@ export function SiteHeader() {
                 href={whatsappLink()}
                 target="_blank"
                 rel="noreferrer"
-                className="border border-foreground px-5 py-4 text-center text-[12px] font-bold uppercase tracking-[0.12em]"
+                className="rounded-full border border-foreground px-5 py-4 text-center text-[12px] font-bold uppercase tracking-[0.12em]"
               >
                 WhatsApp Sales
               </a>

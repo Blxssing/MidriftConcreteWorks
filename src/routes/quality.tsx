@@ -86,7 +86,7 @@ function QualityPage() {
           src={blocksImg}
           alt="Finished concrete blocks stacked in the yard"
           loading="lazy"
-          className="h-full min-h-[360px] w-full object-cover"
+          className="h-full min-h-[360px] w-full rounded-2xl object-cover"
         />
       </section>
 

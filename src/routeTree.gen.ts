@@ -12,8 +12,10 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as BulkWholesaleRouteImport } from './routes/bulk-wholesale'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as DeliveryRouteImport } from './routes/delivery'
 import { Route as QualityRouteImport } from './routes/quality'
+import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as ProductsIndexRouteImport } from './routes/products.index'
 import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
 import { Route as ProjectsSlugRouteImport } from './routes/projects.$slug'
@@ -37,6 +39,11 @@ const BulkWholesaleRoute = BulkWholesaleRouteImport.update({
   path: '/bulk-wholesale',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DeliveryRoute = DeliveryRouteImport.update({
   id: '/delivery',
   path: '/delivery',
@@ -45,6 +52,11 @@ const DeliveryRoute = DeliveryRouteImport.update({
 const QualityRoute = QualityRouteImport.update({
   id: '/quality',
   path: '/quality',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResourcesRoute = ResourcesRouteImport.update({
+  id: '/resources',
+  path: '/resources',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProductsIndexRoute = ProductsIndexRouteImport.update({
@@ -87,8 +99,10 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/bulk-wholesale': typeof BulkWholesaleRoute
+  '/contact': typeof ContactRoute
   '/delivery': typeof DeliveryRoute
   '/quality': typeof QualityRoute
+  '/resources': typeof ResourcesRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/products/': typeof ProductsIndexRoute
@@ -101,8 +115,10 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/bulk-wholesale': typeof BulkWholesaleRoute
+  '/contact': typeof ContactRoute
   '/delivery': typeof DeliveryRoute
   '/quality': typeof QualityRoute
+  '/resources': typeof ResourcesRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/products': typeof ProductsIndexRoute
@@ -116,8 +132,10 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/bulk-wholesale': typeof BulkWholesaleRoute
+  '/contact': typeof ContactRoute
   '/delivery': typeof DeliveryRoute
   '/quality': typeof QualityRoute
+  '/resources': typeof ResourcesRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/products/': typeof ProductsIndexRoute
@@ -132,8 +150,10 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/bulk-wholesale'
+    | '/contact'
     | '/delivery'
     | '/quality'
+    | '/resources'
     | '/projects/$slug'
     | '/solutions/$slug'
     | '/products/'
@@ -146,8 +166,10 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/bulk-wholesale'
+    | '/contact'
     | '/delivery'
     | '/quality'
+    | '/resources'
     | '/projects/$slug'
     | '/solutions/$slug'
     | '/products'
@@ -160,8 +182,10 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/bulk-wholesale'
+    | '/contact'
     | '/delivery'
     | '/quality'
+    | '/resources'
     | '/projects/$slug'
     | '/solutions/$slug'
     | '/products/'
@@ -175,8 +199,10 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   BulkWholesaleRoute: typeof BulkWholesaleRoute
+  ContactRoute: typeof ContactRoute
   DeliveryRoute: typeof DeliveryRoute
   QualityRoute: typeof QualityRoute
+  ResourcesRoute: typeof ResourcesRoute
   ProjectsSlugRoute: typeof ProjectsSlugRoute
   SolutionsSlugRoute: typeof SolutionsSlugRoute
   ProductsIndexRoute: typeof ProductsIndexRoute
@@ -209,6 +235,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BulkWholesaleRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/delivery': {
       id: '/delivery'
       path: '/delivery'
@@ -221,6 +254,13 @@ declare module '@tanstack/react-router' {
       path: '/quality'
       fullPath: '/quality'
       preLoaderRoute: typeof QualityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resources': {
+      id: '/resources'
+      path: '/resources'
+      fullPath: '/resources'
+      preLoaderRoute: typeof ResourcesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/products/': {
@@ -279,8 +319,10 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   BulkWholesaleRoute: BulkWholesaleRoute,
+  ContactRoute: ContactRoute,
   DeliveryRoute: DeliveryRoute,
   QualityRoute: QualityRoute,
+  ResourcesRoute: ResourcesRoute,
   ProjectsSlugRoute: ProjectsSlugRoute,
   SolutionsSlugRoute: SolutionsSlugRoute,
   ProductsIndexRoute: ProductsIndexRoute,

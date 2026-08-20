@@ -13,7 +13,7 @@ const projectTypes = [
 ];
 
 const field =
-  "w-full border border-input bg-background px-4 py-3 text-sm outline-none transition-colors focus:border-accent";
+  "w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none transition-colors focus:border-accent";
 const labelCls = "mb-2 block text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground";
 
 export function QuoteForm({ defaultProduct }: { defaultProduct?: string }) {
@@ -58,7 +58,7 @@ Notes: ${form.notes}`;
   }
 
   return (
-    <form onSubmit={onSubmit} className="bg-card p-6 md:p-10">
+    <form onSubmit={onSubmit} className="soft-card border border-hairline bg-card p-6 md:p-10">
       <p className="eyebrow">Request a quote</p>
       <h2 className="mt-3 font-display text-2xl font-bold uppercase tracking-tight">Tell us what you need</h2>
       <p className="mt-3 text-sm text-muted-foreground">
@@ -131,7 +131,7 @@ Notes: ${form.notes}`;
 
       <button
         type="submit"
-        className="mt-8 w-full bg-accent px-7 py-4 text-[12px] font-bold uppercase tracking-[0.12em] text-accent-foreground transition-opacity hover:opacity-90 sm:w-auto"
+        className="mt-8 w-full rounded-full bg-accent px-8 py-4 text-[12px] font-bold uppercase tracking-[0.12em] text-accent-foreground transition-opacity hover:opacity-90 sm:w-auto"
       >
         Send quote request
       </button>
