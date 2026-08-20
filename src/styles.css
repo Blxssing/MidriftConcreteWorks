@@ -59,20 +59,24 @@
   --radius: 1rem;
 
   /* === MIDRIFT ACCENT — edit these two lines to re-brand === */
-  --accent-raw: oklch(0.68 0.185 52);
-  --accent-raw-foreground: oklch(0.16 0.01 60);
+  --accent-raw: oklch(0.72 0.215 45);
+  --accent-raw-foreground: oklch(0.16 0.02 45);
+  --accent-glow: oklch(0.8 0.18 78);
+  --electric: oklch(0.62 0.19 235);
+  --gradient-accent: linear-gradient(120deg, var(--accent-raw), var(--accent-glow));
 
-  --background: oklch(0.976 0.002 60);
-  --foreground: oklch(0.19 0.008 60);
+  --background: oklch(0.978 0.006 70);
+  --foreground: oklch(0.19 0.012 60);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.19 0.008 60);
+  --card-foreground: oklch(0.19 0.012 60);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.19 0.008 60);
+  --popover-foreground: oklch(0.19 0.012 60);
 
-  --ink: oklch(0.185 0.007 60);
-  --ink-foreground: oklch(0.965 0.002 60);
-  --concrete: oklch(0.9 0.003 60);
-  --concrete-dark: oklch(0.26 0.006 60);
+  --ink: oklch(0.19 0.022 265);
+  --ink-foreground: oklch(0.97 0.004 70);
+  --concrete: oklch(0.91 0.014 70);
+  --concrete-dark: oklch(0.27 0.02 265);
+
 
   --primary: var(--accent-raw);
   --primary-foreground: var(--accent-raw-foreground);
