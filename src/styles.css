@@ -132,9 +132,11 @@
   body {
     background-color: var(--color-background);
     background-image:
-      radial-gradient(60rem 40rem at 12% -10%, color-mix(in oklab, var(--accent-raw) 12%, transparent), transparent 70%),
-      radial-gradient(50rem 35rem at 95% 0%, color-mix(in oklab, var(--ink) 10%, transparent), transparent 65%),
+      radial-gradient(60rem 40rem at 12% -10%, color-mix(in oklab, var(--accent-raw) 20%, transparent), transparent 70%),
+      radial-gradient(45rem 32rem at 92% 4%, color-mix(in oklab, var(--electric) 16%, transparent), transparent 68%),
+      radial-gradient(40rem 30rem at 50% 110%, color-mix(in oklab, var(--accent-glow) 14%, transparent), transparent 70%),
       linear-gradient(180deg, color-mix(in oklab, var(--concrete) 45%, var(--background)), var(--background) 45%);
+
     background-attachment: fixed;
     color: var(--color-foreground);
     font-family: var(--font-sans);
