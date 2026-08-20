@@ -97,7 +97,7 @@ function Home() {
               key={c.slug}
               to="/products/$category"
               params={{ category: c.slug }}
-              className={`group relative flex min-h-[320px] flex-col justify-end overflow-hidden bg-background p-7 transition-colors hover:bg-ink hover:text-ink-foreground ${
+              className={`group relative flex min-h-[320px] flex-col justify-end overflow-hidden rounded-2xl bg-background p-7 transition-all duration-500 ease-out hover:-translate-y-1.5 hover:bg-ink hover:text-ink-foreground hover:shadow-[0_28px_60px_-32px_color-mix(in_oklab,var(--ink)_75%,transparent)] ${
                 i < 2 ? "md:col-span-3" : "md:col-span-2"
               }`}
             >
@@ -105,7 +105,7 @@ function Home() {
                 src={c.image}
                 alt={c.name}
                 loading="lazy"
-                className="absolute inset-0 size-full object-cover opacity-25 transition-opacity duration-300 group-hover:opacity-40"
+                className="absolute inset-0 size-full object-cover opacity-25 transition-all duration-700 ease-out group-hover:scale-105 group-hover:opacity-45"
               />
               <div className="relative">
                 <span className="font-mono text-xs text-accent">{c.code}</span>
@@ -130,7 +130,10 @@ function Home() {
         />
         <div className="mt-14 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
           {capabilities.map((c) => (
-            <div key={c.code} className="border-t border-hairline-invert pt-6">
+            <div
+              key={c.code}
+              className="group border-t border-hairline-invert pt-6 transition-all duration-500 ease-out hover:-translate-y-1 hover:border-accent"
+            >
               <span className="font-mono text-xs text-accent">{c.code}</span>
               <h3 className="mt-3 font-display text-lg font-bold uppercase tracking-tight">{c.title}</h3>
               <p className="mt-3 text-sm leading-relaxed text-ink-foreground/65">{c.body}</p>
@@ -178,7 +181,7 @@ function Home() {
               key={s.slug}
               to="/solutions/$slug"
               params={{ slug: s.slug }}
-              className="group flex flex-wrap items-baseline gap-x-8 gap-y-2 py-6 transition-colors hover:text-accent"
+              className="group flex flex-wrap items-baseline gap-x-8 gap-y-2 py-6 transition-all duration-300 ease-out hover:translate-x-1 hover:text-accent"
             >
               <span className="font-mono text-xs text-muted-foreground">{s.code}</span>
               <h3 className="font-display text-xl font-bold uppercase tracking-tight md:text-2xl">{s.name}</h3>

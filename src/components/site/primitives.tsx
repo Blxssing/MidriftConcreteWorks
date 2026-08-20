@@ -97,7 +97,7 @@ export function QuoteCTA({ label = "Request a Quote" }: { label?: string }) {
   return (
     <Link
       to="/contact"
-      className="inline-flex items-center justify-center bg-accent px-8 py-4 text-[12px] font-bold uppercase tracking-[0.12em] text-accent-foreground transition-opacity hover:opacity-90 rounded-full"
+      className="inline-flex items-center justify-center rounded-full bg-accent px-8 py-4 text-[12px] font-bold uppercase tracking-[0.12em] text-accent-foreground transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_16px_32px_-16px_color-mix(in_oklab,var(--accent-raw)_85%,transparent)] hover:brightness-110"
     >
       {label}
     </Link>
@@ -111,7 +111,7 @@ export function WhatsAppCTA({ message, dark }: { message?: string; dark?: boolea
       target="_blank"
       rel="noreferrer"
       className={cn(
-        "inline-flex items-center justify-center gap-2 border px-8 py-4 text-[12px] font-bold uppercase tracking-[0.12em] transition-colors",
+        "inline-flex items-center justify-center gap-2 rounded-full border px-8 py-4 text-[12px] font-bold uppercase tracking-[0.12em] transition-all duration-300 ease-out hover:-translate-y-0.5",
         dark
           ? "border-hairline-invert text-ink-foreground hover:bg-ink-foreground/10"
           : "border-foreground text-foreground hover:bg-foreground hover:text-background",
@@ -150,7 +150,10 @@ export function Gallery({ images, alt }: { images: string[]; alt: string }) {
   return (
     <div className="grid gap-3 sm:grid-cols-2">
       {images.map((src, i) => (
-        <figure key={src + i} className={cn("overflow-hidden rounded-2xl bg-concrete", i === 0 && "sm:col-span-2")}>
+        <figure
+          key={src + i}
+          className={cn("media-zoom hover-lift rounded-2xl bg-concrete", i === 0 && "sm:col-span-2")}
+        >
           <img
             src={src}
             alt={`${alt} — image ${i + 1}`}

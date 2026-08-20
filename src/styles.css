@@ -34,6 +34,8 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-accent-glow: var(--accent-glow);
+  --color-electric: var(--electric);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
@@ -59,20 +61,24 @@
   --radius: 1rem;
 
   /* === MIDRIFT ACCENT — edit these two lines to re-brand === */
-  --accent-raw: oklch(0.68 0.185 52);
-  --accent-raw-foreground: oklch(0.16 0.01 60);
+  --accent-raw: oklch(0.72 0.215 45);
+  --accent-raw-foreground: oklch(0.16 0.02 45);
+  --accent-glow: oklch(0.8 0.18 78);
+  --electric: oklch(0.62 0.19 235);
+  --gradient-accent: linear-gradient(120deg, var(--accent-raw), var(--accent-glow));
 
-  --background: oklch(0.976 0.002 60);
-  --foreground: oklch(0.19 0.008 60);
+  --background: oklch(0.978 0.006 70);
+  --foreground: oklch(0.19 0.012 60);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.19 0.008 60);
+  --card-foreground: oklch(0.19 0.012 60);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.19 0.008 60);
+  --popover-foreground: oklch(0.19 0.012 60);
 
-  --ink: oklch(0.185 0.007 60);
-  --ink-foreground: oklch(0.965 0.002 60);
-  --concrete: oklch(0.9 0.003 60);
-  --concrete-dark: oklch(0.26 0.006 60);
+  --ink: oklch(0.19 0.022 265);
+  --ink-foreground: oklch(0.97 0.004 70);
+  --concrete: oklch(0.91 0.014 70);
+  --concrete-dark: oklch(0.27 0.02 265);
+
 
   --primary: var(--accent-raw);
   --primary-foreground: var(--accent-raw-foreground);
@@ -128,9 +134,11 @@
   body {
     background-color: var(--color-background);
     background-image:
-      radial-gradient(60rem 40rem at 12% -10%, color-mix(in oklab, var(--accent-raw) 12%, transparent), transparent 70%),
-      radial-gradient(50rem 35rem at 95% 0%, color-mix(in oklab, var(--ink) 10%, transparent), transparent 65%),
+      radial-gradient(60rem 40rem at 12% -10%, color-mix(in oklab, var(--accent-raw) 20%, transparent), transparent 70%),
+      radial-gradient(45rem 32rem at 92% 4%, color-mix(in oklab, var(--electric) 16%, transparent), transparent 68%),
+      radial-gradient(40rem 30rem at 50% 110%, color-mix(in oklab, var(--accent-glow) 14%, transparent), transparent 70%),
       linear-gradient(180deg, color-mix(in oklab, var(--concrete) 45%, var(--background)), var(--background) 45%);
+
     background-attachment: fixed;
     color: var(--color-foreground);
     font-family: var(--font-sans);
@@ -202,4 +210,32 @@
 @utility soft-card {
   border-radius: var(--radius-2xl);
   box-shadow: 0 18px 45px -30px color-mix(in oklab, var(--ink) 60%, transparent);
+}
+
+@utility hover-lift {
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.3s ease;
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 26px 50px -28px color-mix(in oklab, var(--ink) 70%, transparent);
+  }
+}
+
+@utility media-zoom {
+  overflow: hidden;
+  & img {
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  &:hover img {
+    transform: scale(1.05);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
