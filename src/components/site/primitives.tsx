@@ -150,7 +150,7 @@ export function Gallery({ images, alt }: { images: string[]; alt: string }) {
   return (
     <div className="grid gap-3 sm:grid-cols-2">
       {images.map((src, i) => (
-        <figure key={src + i} className={cn("overflow-hidden bg-concrete", i === 0 && "sm:col-span-2")}>
+        <figure key={src + i} className={cn("overflow-hidden rounded-2xl bg-concrete", i === 0 && "sm:col-span-2")}>
           <img
             src={src}
             alt={`${alt} — image ${i + 1}`}
