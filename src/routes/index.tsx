@@ -50,34 +50,54 @@ const capabilities = [
 function Home() {
   return (
     <>
-      <section className="relative isolate bg-ink text-ink-foreground">
+      <section className="relative isolate overflow-hidden bg-ink text-ink-foreground">
         <img
           src={heroImg}
           alt="Pallets of precast concrete paving blocks in the Midrift production yard"
           width={1920}
           height={1088}
-          className="absolute inset-0 -z-10 size-full object-cover opacity-40"
+          className="absolute inset-0 -z-10 size-full scale-105 object-cover opacity-40 [animation:none] md:animate-[marquee-x_0s]"
         />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink via-ink/70 to-transparent" />
-        <Container className="flex min-h-[80vh] flex-col justify-end py-24 md:min-h-[88vh] md:py-32">
-          <p className="eyebrow text-accent">Precast concrete manufacturer · Kenya</p>
-          <h1 className="mt-6 max-w-5xl display-1">
-            Quality precast concrete.
-            <br />
-            Built for strength.
-            <br />
-            <span className="text-accent">Designed for performance.</span>
-          </h1>
-          <p className="mt-8 max-w-xl text-base leading-relaxed text-ink-foreground/75 md:text-lg">
-            Midrift Concrete Solutions manufactures and supplies paving, blocks, ventilation blocks and civil precast
-            products for builders, contractors, developers, distributors and infrastructure projects.
-          </p>
-          <div className="mt-10 flex flex-wrap gap-3">
-            <QuoteCTA />
-            <WhatsAppCTA dark />
-          </div>
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink via-ink/75 to-ink/25" />
+        <Container className="flex min-h-[86vh] flex-col justify-end py-24 md:py-32">
+          <Reveal>
+            <p className="eyebrow text-accent">Precast concrete manufacturer · Kenya</p>
+          </Reveal>
+          <KineticText
+            as="h1"
+            text="Quality precast concrete, built for strength."
+            className="mt-7 max-w-5xl display-1"
+          />
+          <KineticText
+            as="p"
+            text="Designed for performance."
+            delay={320}
+            className="max-w-5xl display-1 text-accent"
+          />
+          <Reveal delay={520}>
+            <p className="mt-8 max-w-xl text-base leading-relaxed text-ink-foreground/75 md:text-lg">
+              Midrift Concrete Solutions manufactures and supplies paving, blocks, ventilation blocks and civil precast
+              products for builders, contractors, developers, distributors and infrastructure projects.
+            </p>
+            <div className="mt-10 flex flex-wrap gap-3">
+              <QuoteCTA />
+              <WhatsAppCTA dark />
+            </div>
+          </Reveal>
         </Container>
       </section>
+
+      <TextMarquee
+        items={[
+          "Cabro paving",
+          "Concrete blocks",
+          "Ventilation blocks",
+          "Kerbs & channels",
+          "Culverts",
+          "Custom precast",
+        ]}
+        className="bg-concrete"
+      />
 
       {/* Product categories — asymmetric editorial grid */}
       <Section>
@@ -95,35 +115,44 @@ function Home() {
           </Link>
         </div>
 
-        <div className="mt-14 grid gap-px bg-hairline md:grid-cols-6">
+        <div className="mt-14 grid gap-4 md:grid-cols-6">
           {categories.map((c, i) => (
-            <Link
-              key={c.slug}
-              to="/products/$category"
-              params={{ category: c.slug }}
-              className={`group relative flex min-h-[320px] flex-col justify-end overflow-hidden rounded-2xl bg-background p-7 transition-all duration-500 ease-out hover:-translate-y-1.5 hover:bg-ink hover:text-ink-foreground hover:shadow-[0_28px_60px_-32px_color-mix(in_oklab,var(--ink)_75%,transparent)] ${
-                i < 2 ? "md:col-span-3" : "md:col-span-2"
-              }`}
-            >
-              <img
-                src={c.image}
-                alt={c.name}
-                loading="lazy"
-                className="absolute inset-0 size-full object-cover opacity-25 transition-all duration-700 ease-out group-hover:scale-105 group-hover:opacity-45"
-              />
-              <div className="relative">
-                <span className="font-mono text-xs text-accent">{c.code}</span>
-                <h3 className="mt-3 font-display text-2xl font-bold uppercase leading-tight tracking-tight">
-                  {c.name}
-                </h3>
-                <p className="mt-3 max-w-sm text-sm text-muted-foreground group-hover:text-ink-foreground/70">
-                  {c.intro}
-                </p>
-              </div>
-            </Link>
+            <Reveal key={c.slug} delay={i * 90} className={i < 2 ? "md:col-span-3" : "md:col-span-2"}>
+              <Link
+                to="/products/$category"
+                params={{ category: c.slug }}
+                className="hover-lift group relative flex h-full min-h-[340px] flex-col justify-end overflow-hidden rounded-3xl bg-ink p-8 text-ink-foreground"
+              >
+                <img
+                  src={c.image}
+                  alt={c.name}
+                  loading="lazy"
+                  className="absolute inset-0 size-full object-cover opacity-45 transition-all duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105 group-hover:opacity-30"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent" />
+                <div className="relative">
+                  <span className="font-mono text-xs text-accent">{c.code}</span>
+                  <h3 className="mt-3 font-display text-2xl leading-tight tracking-tight">{c.name}</h3>
+                  <p className="mt-3 max-w-sm text-sm text-ink-foreground/70">{c.intro}</p>
+                  <span className="mt-5 inline-block text-[12px] font-semibold uppercase tracking-[0.12em] text-accent transition-transform duration-500 group-hover:translate-x-1">
+                    Explore range →
+                  </span>
+                </div>
+              </Link>
+            </Reveal>
           ))}
         </div>
       </Section>
+
+      <ImageMarquee
+        images={[
+          { src: heroImg, alt: "Precast paving stacked in the Midrift yard" },
+          { src: manufacturingImg, alt: "Concrete production line" },
+          { src: logisticsImg, alt: "Loaded delivery truck leaving the yard" },
+          ...categories.slice(0, 3).map((c) => ({ src: c.image, alt: c.name })),
+        ]}
+      />
+
 
       {/* Capability strip */}
       <Section dark>
