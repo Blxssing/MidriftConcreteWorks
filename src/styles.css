@@ -187,26 +187,50 @@
 
 @utility display-1 {
   font-family: var(--font-display);
-  font-weight: 800;
-  line-height: 0.95;
+  font-weight: 500;
+  line-height: 1.02;
   letter-spacing: -0.035em;
-  font-size: clamp(2.5rem, 7vw, 5.5rem);
-  text-transform: uppercase;
+  font-size: clamp(2.5rem, 6.4vw, 5.25rem);
 }
 
 @utility display-2 {
   font-family: var(--font-display);
-  font-weight: 700;
-  line-height: 1;
+  font-weight: 500;
+  line-height: 1.06;
   letter-spacing: -0.03em;
-  font-size: clamp(1.9rem, 4.2vw, 3.25rem);
-  text-transform: uppercase;
+  font-size: clamp(1.85rem, 4vw, 3.1rem);
 }
 
 @utility grid-lines {
   background-image: linear-gradient(to right, var(--hairline-invert) 1px, transparent 1px);
   background-size: 25% 100%;
 }
+
+/* Infinite horizontal marquee */
+@keyframes marquee-x {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@utility marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-x 38s linear infinite;
+}
+
+@utility marquee-fast {
+  animation-duration: 22s;
+}
+
+@utility line-mask {
+  overflow: hidden;
+  display: block;
+}
+
 
 @utility btn-pill {
   border-radius: 9999px;
