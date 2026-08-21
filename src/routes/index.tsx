@@ -176,15 +176,17 @@ function Home() {
       </Section>
 
       {/* Manufacturing split */}
-      <section className="grid lg:grid-cols-2">
-        <img
-          src={manufacturingImg}
-          alt="Precast concrete production inside the Midrift factory"
-          loading="lazy"
-          className="h-full min-h-[360px] w-full rounded-2xl object-cover"
-        />
-        <div className="flex items-center bg-concrete px-5 py-20 md:px-16 md:py-24">
-          <div className="max-w-lg">
+      <section className="grid gap-4 px-4 py-4 lg:grid-cols-2">
+        <figure className="media-zoom rounded-3xl">
+          <img
+            src={manufacturingImg}
+            alt="Precast concrete production inside the Midrift factory"
+            loading="lazy"
+            className="h-full min-h-[380px] w-full rounded-3xl object-cover"
+          />
+        </figure>
+        <div className="flex items-center rounded-3xl bg-concrete px-6 py-20 md:px-14 md:py-24">
+          <Reveal className="max-w-lg">
             <p className="eyebrow">Quality & manufacturing</p>
             <h2 className="mt-4 display-2">Strength is a process, not a claim.</h2>
             <p className="mt-6 leading-relaxed text-muted-foreground">
@@ -197,7 +199,7 @@ function Home() {
             >
               See our manufacturing process →
             </Link>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -209,21 +211,23 @@ function Home() {
           lead="From a single driveway to a national infrastructure programme, the supply approach adapts to the buyer."
         />
         <div className="mt-12 divide-y divide-hairline border-y border-hairline">
-          {solutions.map((s) => (
-            <Link
-              key={s.slug}
-              to="/solutions/$slug"
-              params={{ slug: s.slug }}
-              className="group flex flex-wrap items-baseline gap-x-8 gap-y-2 py-6 transition-all duration-300 ease-out hover:translate-x-1 hover:text-accent"
-            >
-              <span className="font-mono text-xs text-muted-foreground">{s.code}</span>
-              <h3 className="font-display text-xl font-bold uppercase tracking-tight md:text-2xl">{s.name}</h3>
-              <span className="ml-auto hidden max-w-md text-sm text-muted-foreground lg:block">{s.headline}</span>
-              <span className="transition-transform group-hover:translate-x-1">→</span>
-            </Link>
+          {solutions.map((s, i) => (
+            <Reveal key={s.slug} delay={i * 60}>
+              <Link
+                to="/solutions/$slug"
+                params={{ slug: s.slug }}
+                className="group flex flex-wrap items-baseline gap-x-8 gap-y-2 py-6 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:translate-x-2 hover:text-accent"
+              >
+                <span className="font-mono text-xs text-muted-foreground">{s.code}</span>
+                <h3 className="font-display text-2xl tracking-tight md:text-3xl">{s.name}</h3>
+                <span className="ml-auto hidden max-w-md text-sm text-muted-foreground lg:block">{s.headline}</span>
+                <span className="transition-transform duration-500 group-hover:translate-x-1">→</span>
+              </Link>
+            </Reveal>
           ))}
         </div>
       </Section>
+
 
       {/* Projects */}
       <Section className="bg-concrete">
