@@ -5,6 +5,9 @@ import logisticsImg from "@/assets/logistics.jpg";
 import { categories } from "@/data/products";
 import { solutions } from "@/data/solutions";
 import { projects } from "@/data/projects";
+import { Reveal } from "@/components/site/Reveal";
+import { KineticText } from "@/components/site/KineticText";
+import { ImageMarquee, TextMarquee } from "@/components/site/Marquee";
 import {
   CTABand,
   Container,
@@ -13,6 +16,7 @@ import {
   SectionHead,
   WhatsAppCTA,
 } from "@/components/site/primitives";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
