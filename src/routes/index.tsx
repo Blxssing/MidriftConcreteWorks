@@ -162,17 +162,17 @@ function Home() {
           className="[&_p:last-child]:text-ink-foreground/70"
         />
         <div className="mt-14 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-          {capabilities.map((c) => (
-            <div
-              key={c.code}
-              className="group border-t border-hairline-invert pt-6 transition-all duration-500 ease-out hover:-translate-y-1 hover:border-accent"
-            >
-              <span className="font-mono text-xs text-accent">{c.code}</span>
-              <h3 className="mt-3 font-display text-lg font-bold uppercase tracking-tight">{c.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-ink-foreground/65">{c.body}</p>
-            </div>
+          {capabilities.map((c, i) => (
+            <Reveal key={c.code} delay={i * 80}>
+              <div className="group border-t border-hairline-invert pt-6 transition-all duration-500 ease-out hover:-translate-y-1 hover:border-accent">
+                <span className="font-mono text-xs text-accent">{c.code}</span>
+                <h3 className="mt-3 font-display text-xl tracking-tight">{c.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-ink-foreground/65">{c.body}</p>
+              </div>
+            </Reveal>
           ))}
         </div>
+
       </Section>
 
       {/* Manufacturing split */}
