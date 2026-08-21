@@ -23,7 +23,7 @@ export function whatsappLink(message = "Hello Midrift, I would like a quote for 
 
 export const mainNav = [
   { label: "Products", to: "/products" },
-  { label: "Solutions", to: "/solutions" },
+  { label: "Who We Serve", to: "/solutions" },
   { label: "Projects", to: "/projects" },
   { label: "Quality", to: "/quality" },
   { label: "About", to: "/about" },
