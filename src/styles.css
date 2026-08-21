@@ -17,9 +17,10 @@
   --radius-2xl: 1.75rem;
   --radius-3xl: 2.25rem;
   --radius-4xl: 2.75rem;
-  --font-display: "Archivo", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -60,50 +61,51 @@
 :root {
   --radius: 1rem;
 
-  /* === MIDRIFT ACCENT — edit these two lines to re-brand === */
-  --accent-raw: oklch(0.72 0.215 45);
-  --accent-raw-foreground: oklch(0.16 0.02 45);
-  --accent-glow: oklch(0.8 0.18 78);
-  --electric: oklch(0.62 0.19 235);
+  /* === MIDRIFT ACCENT — edit these lines to re-brand === */
+  --accent-raw: oklch(0.78 0.125 78);
+  --accent-raw-foreground: oklch(0.2 0.03 220);
+  --accent-glow: oklch(0.86 0.09 92);
+  --electric: oklch(0.55 0.06 200);
   --gradient-accent: linear-gradient(120deg, var(--accent-raw), var(--accent-glow));
 
-  --background: oklch(0.978 0.006 70);
-  --foreground: oklch(0.19 0.012 60);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.19 0.012 60);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.19 0.012 60);
+  --background: oklch(0.965 0.012 165);
+  --foreground: oklch(0.22 0.031 220);
+  --card: oklch(0.99 0.006 165);
+  --card-foreground: oklch(0.22 0.031 220);
+  --popover: oklch(0.99 0.006 165);
+  --popover-foreground: oklch(0.22 0.031 220);
 
-  --ink: oklch(0.19 0.022 265);
-  --ink-foreground: oklch(0.97 0.004 70);
-  --concrete: oklch(0.91 0.014 70);
-  --concrete-dark: oklch(0.27 0.02 265);
+  --ink: oklch(0.21 0.032 220);
+  --ink-foreground: oklch(0.96 0.012 165);
+  --concrete: oklch(0.925 0.016 168);
+  --concrete-dark: oklch(0.3 0.03 215);
 
 
-  --primary: var(--accent-raw);
-  --primary-foreground: var(--accent-raw-foreground);
-  --secondary: oklch(0.93 0.003 60);
-  --secondary-foreground: oklch(0.22 0.008 60);
-  --muted: oklch(0.94 0.003 60);
-  --muted-foreground: oklch(0.47 0.006 60);
+  --primary: oklch(0.21 0.032 220);
+  --primary-foreground: oklch(0.96 0.012 165);
+  --secondary: oklch(0.93 0.013 168);
+  --secondary-foreground: oklch(0.24 0.03 220);
+  --muted: oklch(0.93 0.013 168);
+  --muted-foreground: oklch(0.48 0.018 210);
   --accent: var(--accent-raw);
   --accent-foreground: var(--accent-raw-foreground);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.88 0.003 60);
-  --hairline: oklch(0.86 0.004 60);
-  --hairline-invert: oklch(1 0 0 / 14%);
-  --input: oklch(0.86 0.004 60);
+  --border: oklch(0.87 0.012 180);
+  --hairline: oklch(0.86 0.013 180);
+  --hairline-invert: oklch(1 0 0 / 12%);
+  --input: oklch(0.86 0.013 180);
   --ring: var(--accent-raw);
-  --sidebar: oklch(0.976 0.002 60);
-  --sidebar-foreground: oklch(0.19 0.008 60);
+  --sidebar: oklch(0.965 0.012 165);
+  --sidebar-foreground: oklch(0.22 0.031 220);
   --sidebar-primary: var(--accent-raw);
   --sidebar-primary-foreground: var(--accent-raw-foreground);
-  --sidebar-accent: oklch(0.93 0.003 60);
-  --sidebar-accent-foreground: oklch(0.22 0.008 60);
-  --sidebar-border: oklch(0.88 0.003 60);
+  --sidebar-accent: oklch(0.93 0.013 168);
+  --sidebar-accent-foreground: oklch(0.24 0.03 220);
+  --sidebar-border: oklch(0.87 0.012 180);
   --sidebar-ring: var(--accent-raw);
 }
+
 
 .dark {
   --background: oklch(0.17 0.006 60);
@@ -134,11 +136,13 @@
   body {
     background-color: var(--color-background);
     background-image:
-      radial-gradient(60rem 40rem at 12% -10%, color-mix(in oklab, var(--accent-raw) 20%, transparent), transparent 70%),
-      radial-gradient(45rem 32rem at 92% 4%, color-mix(in oklab, var(--electric) 16%, transparent), transparent 68%),
-      radial-gradient(40rem 30rem at 50% 110%, color-mix(in oklab, var(--accent-glow) 14%, transparent), transparent 70%),
-      linear-gradient(180deg, color-mix(in oklab, var(--concrete) 45%, var(--background)), var(--background) 45%);
-
+      linear-gradient(to right, color-mix(in oklab, var(--foreground) 5%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in oklab, var(--foreground) 5%, transparent) 1px, transparent 1px),
+      radial-gradient(55rem 38rem at 85% -8%, color-mix(in oklab, var(--accent-raw) 10%, transparent), transparent 70%);
+    background-size:
+      7.5rem 7.5rem,
+      7.5rem 7.5rem,
+      auto;
     background-attachment: fixed;
     color: var(--color-foreground);
     font-family: var(--font-sans);
@@ -150,9 +154,10 @@
   h3,
   h4 {
     font-family: var(--font-display);
-    font-weight: 700;
-    letter-spacing: -0.02em;
+    font-weight: 600;
+    letter-spacing: -0.025em;
   }
+
 
   ::selection {
     background: var(--accent-raw);
@@ -182,26 +187,50 @@
 
 @utility display-1 {
   font-family: var(--font-display);
-  font-weight: 800;
-  line-height: 0.95;
+  font-weight: 500;
+  line-height: 1.02;
   letter-spacing: -0.035em;
-  font-size: clamp(2.5rem, 7vw, 5.5rem);
-  text-transform: uppercase;
+  font-size: clamp(2.5rem, 6.4vw, 5.25rem);
 }
 
 @utility display-2 {
   font-family: var(--font-display);
-  font-weight: 700;
-  line-height: 1;
+  font-weight: 500;
+  line-height: 1.06;
   letter-spacing: -0.03em;
-  font-size: clamp(1.9rem, 4.2vw, 3.25rem);
-  text-transform: uppercase;
+  font-size: clamp(1.85rem, 4vw, 3.1rem);
 }
 
 @utility grid-lines {
   background-image: linear-gradient(to right, var(--hairline-invert) 1px, transparent 1px);
   background-size: 25% 100%;
 }
+
+/* Infinite horizontal marquee */
+@keyframes marquee-x {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@utility marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-x 38s linear infinite;
+}
+
+@utility marquee-fast {
+  animation-duration: 22s;
+}
+
+@utility line-mask {
+  overflow: hidden;
+  display: block;
+}
+
 
 @utility btn-pill {
   border-radius: 9999px;
