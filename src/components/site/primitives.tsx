@@ -59,8 +59,8 @@ export function PageHero({
   eyebrow: string;
   title: string;
   lead?: string;
-  image?: string;
-  imageAlt?: string;
+  image?: string | undefined;
+  imageAlt?: string | undefined;
 }) {
   return (
     <section className="relative overflow-hidden bg-ink text-ink-foreground">

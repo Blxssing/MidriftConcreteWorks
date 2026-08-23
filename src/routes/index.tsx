@@ -104,7 +104,7 @@ function Home() {
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHead
             eyebrow="Product range"
-            title="Five product families. One manufacturer."
+            title="Seven product families. One manufacturer."
             lead="Every unit is produced in our own yard, so quality, quantity and delivery stay under one roof."
           />
           <Link
@@ -123,12 +123,14 @@ function Home() {
                 params={{ category: c.slug }}
                 className="hover-lift group relative flex h-full min-h-[340px] flex-col justify-end overflow-hidden rounded-3xl bg-ink p-8 text-ink-foreground"
               >
-                <img
-                  src={c.image}
-                  alt={c.name}
-                  loading="lazy"
-                  className="absolute inset-0 size-full object-cover opacity-45 transition-all duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105 group-hover:opacity-30"
-                />
+                {c.image && (
+                  <img
+                    src={c.image}
+                    alt={c.name}
+                    loading="lazy"
+                    className="absolute inset-0 size-full object-cover opacity-45 transition-all duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105 group-hover:opacity-30"
+                  />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent" />
                 <div className="relative">
                   <span className="font-mono text-xs text-accent">{c.code}</span>
@@ -149,7 +151,7 @@ function Home() {
           { src: heroImg, alt: "Precast paving stacked in the Midrift yard" },
           { src: manufacturingImg, alt: "Concrete production line" },
           { src: logisticsImg, alt: "Loaded delivery truck leaving the yard" },
-          ...categories.slice(0, 3).map((c) => ({ src: c.image, alt: c.name })),
+          ...categories.filter((c) => !!c.image).slice(0, 3).map((c) => ({ src: c.image as string, alt: c.name })),
         ]}
       />
 
