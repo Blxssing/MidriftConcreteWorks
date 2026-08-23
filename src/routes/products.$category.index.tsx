@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { categories, getCategory } from "@/data/products";
-import { CTABand, PageHero, Section } from "@/components/site/primitives";
+import { CTABand, PageHero, PhotoSlots, Section } from "@/components/site/primitives";
 
 export const Route = createFileRoute("/products/$category/")({
   loader: ({ params }) => {
@@ -12,7 +12,7 @@ export const Route = createFileRoute("/products/$category/")({
     if (!loaderData) {
       return { meta: [{ title: "Product category not found | Midrift" }, { name: "robots", content: "noindex" }] };
     }
-    const title = `${loaderData.name} | Midrift Concrete Solutions`;
+    const title = `${loaderData.name} | Midrift Concrete Works`;
     return {
       meta: [
         { title },
@@ -41,6 +41,16 @@ function CategoryPage() {
       />
 
       <Section>
+        <PhotoSlots slots={category.photoSlots} title={`${category.name} — photos`} />
+      </Section>
+
+      <Section className="pt-0">
+        {category.products.length === 0 && (
+          <p className="max-w-2xl text-muted-foreground">
+            Sizes and variants for {category.name.toLowerCase()} are quoted to project specification. Send us your
+            requirement and our team will confirm options, quantities and delivery.
+          </p>
+        )}
         <div className="grid gap-px bg-hairline sm:grid-cols-2 lg:grid-cols-3">
           {category.products.map((p) => (
             <Link

@@ -13,7 +13,7 @@ export const Route = createFileRoute("/solutions/$slug")({
     if (!loaderData) {
       return { meta: [{ title: "Solution not found | Midrift" }, { name: "robots", content: "noindex" }] };
     }
-    const title = `${loaderData.name} | Midrift Concrete Solutions`;
+    const title = `${loaderData.name} | Midrift Concrete Works`;
     return {
       meta: [
         { title },

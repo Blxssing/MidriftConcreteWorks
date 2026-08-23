@@ -14,7 +14,7 @@ export const Route = createFileRoute("/products/$category/$product")({
     if (!loaderData) {
       return { meta: [{ title: "Product not found | Midrift" }, { name: "robots", content: "noindex" }] };
     }
-    const title = `${loaderData.name} | Midrift Concrete Solutions`;
+    const title = `${loaderData.name} | Midrift Concrete Works`;
     return {
       meta: [
         { title },

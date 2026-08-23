@@ -6,16 +6,16 @@ import projectYard from "@/assets/project-yard.jpg";
 export const Route = createFileRoute("/projects/")({
   head: () => ({
     meta: [
-      { title: "Projects | Midrift Concrete Solutions" },
+      { title: "Projects | Midrift Concrete Works" },
       {
         name: "description",
         content:
           "Precast concrete supplied to commercial, residential, institutional and infrastructure projects across Kenya.",
       },
-      { property: "og:title", content: "Projects | Midrift Concrete Solutions" },
+      { property: "og:title", content: "Projects | Midrift Concrete Works" },
       {
         property: "og:description",
-        content: "Case studies of paving, block and civil precast supply by Midrift Concrete Solutions.",
+        content: "Case studies of paving, block and civil precast supply by Midrift Concrete Works.",
       },
     ],
   }),

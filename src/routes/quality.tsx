@@ -6,13 +6,13 @@ import blocksImg from "@/assets/blocks.jpg";
 export const Route = createFileRoute("/quality")({
   head: () => ({
     meta: [
-      { title: "Quality & Manufacturing | Midrift Concrete Solutions" },
+      { title: "Quality & Manufacturing | Midrift Concrete Works" },
       {
         name: "description",
         content:
           "How Midrift manufactures precast concrete: raw materials, mixing, moulding, compaction, curing, quality control, storage and dispatch.",
       },
-      { property: "og:title", content: "Quality & Manufacturing | Midrift Concrete Solutions" },
+      { property: "og:title", content: "Quality & Manufacturing | Midrift Concrete Works" },
       {
         property: "og:description",
         content: "An eight-stage production process built for consistent, repeatable precast concrete units.",

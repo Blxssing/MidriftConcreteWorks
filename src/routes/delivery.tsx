@@ -6,13 +6,13 @@ import { site } from "@/data/site";
 export const Route = createFileRoute("/delivery")({
   head: () => ({
     meta: [
-      { title: "Delivery & Logistics | Midrift Concrete Solutions" },
+      { title: "Delivery & Logistics | Midrift Concrete Works" },
       {
         name: "description",
         content:
           "Project-site delivery, bulk deliveries, trucking, loading and delivery scheduling for precast concrete orders.",
       },
-      { property: "og:title", content: "Delivery & Logistics | Midrift Concrete Solutions" },
+      { property: "og:title", content: "Delivery & Logistics | Midrift Concrete Works" },
       {
         property: "og:description",
         content: "How Midrift loads, trucks and schedules precast concrete deliveries to site.",

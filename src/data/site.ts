@@ -1,5 +1,5 @@
 export const site = {
-  name: "Midrift Concrete Solutions Ltd",
+  name: "Midrift Concrete Works Ltd",
   shortName: "Midrift",
   tagline: "Quality precast concrete. Built for strength. Designed for performance.",
   phone: "+254 700 000 000",

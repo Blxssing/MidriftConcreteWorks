@@ -59,8 +59,8 @@ export function PageHero({
   eyebrow: string;
   title: string;
   lead?: string;
-  image?: string;
-  imageAlt?: string;
+  image?: string | undefined;
+  imageAlt?: string | undefined;
 }) {
   return (
     <section className="relative overflow-hidden bg-ink text-ink-foreground">
@@ -176,5 +176,36 @@ export function SpecTable({ rows }: { rows: { label: string; value: string }[] }
         </div>
       ))}
     </dl>
+  );
+}
+
+export function PhotoSlots({
+  slots,
+  title = "Product photography",
+}: {
+  slots: { label: string; note: string; cta: { label: string; message: string } }[];
+  title?: string;
+}) {
+  if (!slots?.length) return null;
+  return (
+    <div>
+      <p className="eyebrow">{title}</p>
+      <div className="mt-8 grid gap-6 sm:grid-cols-2">
+        {slots.map((s) => (
+          <figure
+            key={s.label}
+            className="hover-lift flex flex-col overflow-hidden rounded-3xl border border-dashed border-hairline bg-concrete"
+          >
+            <div className="flex aspect-4/3 w-full flex-col items-center justify-center gap-2 px-6 text-center">
+              <span className="font-display text-lg tracking-tight">{s.label}</span>
+              <span className="max-w-xs text-sm text-muted-foreground">{s.note}</span>
+            </div>
+            <figcaption className="flex flex-wrap items-center gap-3 border-t border-hairline bg-background px-6 py-5">
+              <QuoteCTA label={s.cta.label} />
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
   );
 }
