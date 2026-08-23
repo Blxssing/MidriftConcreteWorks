@@ -6,7 +6,7 @@ import cabroImg from "@/assets/cabro.jpg";
 export const Route = createFileRoute("/products/")({
   head: () => ({
     meta: [
-      { title: "Precast Concrete Products | Midrift Concrete Solutions" },
+      { title: "Precast Concrete Products | Midrift Concrete Works" },
       {
         name: "description",
         content:

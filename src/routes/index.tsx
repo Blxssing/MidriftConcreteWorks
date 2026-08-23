@@ -21,13 +21,13 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Midrift Concrete Solutions Ltd | Precast Concrete Manufacturer, Kenya" },
+      { title: "Midrift Concrete Works Ltd | Precast Concrete Manufacturer, Kenya" },
       {
         name: "description",
         content:
           "Quality precast concrete built for strength. Cabro paving, concrete blocks, ventilation blocks, road kerbs and custom precast manufacturing with bulk supply and site delivery.",
       },
-      { property: "og:title", content: "Midrift Concrete Solutions Ltd | Precast Concrete Manufacturer" },
+      { property: "og:title", content: "Midrift Concrete Works Ltd | Precast Concrete Manufacturer" },
       {
         property: "og:description",
         content:
@@ -76,7 +76,7 @@ function Home() {
           />
           <Reveal delay={520}>
             <p className="mt-8 max-w-xl text-base leading-relaxed text-ink-foreground/75 md:text-lg">
-              Midrift Concrete Solutions manufactures and supplies paving, blocks, ventilation blocks and civil precast
+              Midrift Concrete Works manufactures and supplies paving, blocks, ventilation blocks and civil precast
               products for builders, contractors, developers, distributors and infrastructure projects.
             </p>
             <div className="mt-10 flex flex-wrap gap-3">

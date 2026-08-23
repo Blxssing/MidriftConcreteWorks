@@ -78,13 +78,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Midrift Concrete Solutions Ltd | Precast Concrete Kenya" },
+      { title: "Midrift Concrete Works Ltd | Precast Concrete Kenya" },
       {
         name: "description",
         content:
           "Kenyan manufacturer of precast concrete: cabro paving, concrete blocks, ventilation blocks, kerbs and custom precast solutions.",
       },
-      { name: "author", content: "Midrift Concrete Solutions Ltd" },
+      { name: "author", content: "Midrift Concrete Works Ltd" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

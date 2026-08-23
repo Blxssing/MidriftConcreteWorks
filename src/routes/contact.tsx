@@ -8,13 +8,13 @@ import yard from "@/assets/project-yard.jpg";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact & Quotes | Midrift Concrete Solutions" },
+      { title: "Contact & Quotes | Midrift Concrete Works" },
       {
         name: "description",
         content:
           "Request a written quotation for precast concrete products. Call, email or WhatsApp the Midrift sales team in Nakuru, Kenya.",
       },
-      { property: "og:title", content: "Contact & Quotes | Midrift Concrete Solutions" },
+      { property: "og:title", content: "Contact & Quotes | Midrift Concrete Works" },
       {
         property: "og:description",
         content: "Send your product, quantity and delivery location for a written quotation.",
