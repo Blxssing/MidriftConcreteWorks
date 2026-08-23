@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { categories, getCategory } from "@/data/products";
-import { CTABand, PageHero, Section } from "@/components/site/primitives";
+import { CTABand, PageHero, PhotoSlots, Section } from "@/components/site/primitives";
 
 export const Route = createFileRoute("/products/$category/")({
   loader: ({ params }) => {
@@ -41,6 +41,10 @@ function CategoryPage() {
       />
 
       <Section>
+        <PhotoSlots slots={category.photoSlots} title={`${category.name} — photos`} />
+      </Section>
+
+      <Section className="pt-0">
         <div className="grid gap-px bg-hairline sm:grid-cols-2 lg:grid-cols-3">
           {category.products.map((p) => (
             <Link
