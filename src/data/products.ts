@@ -27,9 +27,29 @@ export type Category = {
   code: string;
   intro: string;
   description: string;
-  image: string;
+  image?: string;
+  photoSlots: PhotoSlot[];
   products: Product[];
 };
+
+export type PhotoSlot = {
+  label: string;
+  note: string;
+  cta: { label: string; message: string };
+};
+
+const photoSlots = (name: string): PhotoSlot[] => [
+  {
+    label: `${name} — photo 1`,
+    note: "Image space reserved. Add your own product photo here.",
+    cta: { label: "Request a quote", message: `Hello Midrift, I would like a quote for ${name}.` },
+  },
+  {
+    label: `${name} — photo 2`,
+    note: "Image space reserved. Add your own site or application photo here.",
+    cta: { label: "Talk to sales", message: `Hello Midrift, I would like to discuss ${name} for my project.` },
+  },
+];
 
 const spec = (labels: string[]) => labels.map((label) => ({ label, value: TBC }));
 
@@ -79,13 +99,24 @@ const blockSpecs = ["Nominal size", "Compressive strength", "Weight per unit", "
 
 export const categories: Category[] = [
   {
+    slug: "t-beam",
+    name: "T-Beam",
+    code: "01",
+    intro: "Precast T-beams for suspended slabs and floor systems.",
+    description:
+      "Midrift manufactures precast T-beams used in suspended floor and roof systems. Beams are produced under controlled casting and curing so sections stay straight, consistent and ready for fast installation on site.",
+    photoSlots: photoSlots("T-Beam"),
+    products: [],
+  },
+  {
     slug: "cabro-paving",
     name: "Cabro & Paving",
-    code: "01",
+    code: "02",
     intro: "Interlocking paving engineered for traffic, drainage and long service life.",
     description:
       "Midrift manufactures interlocking cabro and paving units for driveways, parking yards, walkways, estates, industrial hardstands and commercial developments. Every batch is produced under controlled mixing and compaction for consistent dimension and strength.",
     image: cabroImg,
+    photoSlots: photoSlots("Cabro & Paving"),
     products: [
       p("cabro-paving", "interlocking-cabro", "Interlocking Cabro", "The standard workhorse paver for driveways, yards and estate roads.", "Our core interlocking cabro is produced for dimensional consistency so blocks lock tightly, distribute load evenly and resist rutting under repeated traffic.", cabroImg, ["Driveways", "Parking yards", "Estate roads", "Walkways"], ["Standard grey", "Coloured", "Heavy-duty"], ["Multiple thicknesses available"], paveSpecs),
       p("cabro-paving", "zigzag-paver", "Zigzag Paver", "High-interlock profile for areas carrying constant vehicle movement.", "The zigzag profile produces a tight mechanical interlock across the paved field, making it a preferred choice for loading yards, petrol stations and access roads.", cabroImg, ["Loading yards", "Petrol stations", "Access roads"], ["Standard grey", "Coloured"], ["Multiple thicknesses available"], paveSpecs),
@@ -100,11 +131,12 @@ export const categories: Category[] = [
   {
     slug: "concrete-blocks",
     name: "Concrete Blocks",
-    code: "02",
+    code: "03",
     intro: "Masonry units produced to consistent dimension for faster, cleaner walling.",
     description:
       "Our concrete block range covers structural, infill and partition walling for residential, commercial and institutional buildings. Consistent dimensions reduce mortar wastage and speed up masonry on site.",
     image: blocksImg,
+    photoSlots: photoSlots("Concrete Blocks"),
     products: [
       p("concrete-blocks", "hollow-blocks", "Hollow Blocks", "Lighter walling units with cores for services and reduced dead load.", "Hollow blocks reduce wall dead load and allow services and reinforcement to be routed through the cores.", blocksImg, ["External walling", "Internal walling", "Boundary walls"], ["Standard", "Reinforced core"], ["Multiple nominal sizes"], blockSpecs),
       p("concrete-blocks", "solid-blocks", "Solid Blocks", "Dense units where mass, strength and acoustics matter.", "Solid blocks provide higher mass for load-bearing walls, retaining structures and acoustic separation.", blocksImg, ["Load-bearing walls", "Retaining structures", "Boundary walls"], ["Standard", "High-density"], ["Multiple nominal sizes"], blockSpecs),
@@ -114,13 +146,24 @@ export const categories: Category[] = [
     ],
   },
   {
+    slug: "paving-slabs",
+    name: "Paving Slabs",
+    code: "04",
+    intro: "Large-format slabs for walkways, terraces and pedestrian areas.",
+    description:
+      "Paving slabs give a broad, flat finished surface for walkways, terraces, courtyards and pedestrian areas, produced to consistent thickness for level laying.",
+    photoSlots: photoSlots("Paving Slabs"),
+    products: [],
+  },
+  {
     slug: "ventilation-blocks",
     name: "Ventilation Blocks",
-    code: "03",
+    code: "05",
     intro: "Airflow, light and privacy in a single architectural masonry unit.",
     description:
       "Ventilation blocks — also called breeze or screen blocks — deliver passive airflow and daylight while maintaining privacy and security. Midrift produces a range of patterns and can develop custom moulds for architectural projects.",
     image: ventImg,
+    photoSlots: photoSlots("Ventilation Blocks"),
     products: [
       p("ventilation-blocks", "geometric-vent-block", "Geometric Vent Block", "Repeating geometric aperture for facades and screens.", "A clean geometric aperture that reads well across large screen walls and delivers consistent shadow patterns through the day.", ventImg, ["Facade screens", "Stairwells", "Car park ventilation"], ["Standard grey", "Painted", "Coloured"], ["Multiple sizes"], blockSpecs),
       p("ventilation-blocks", "cross-vent-block", "Cross Vent Block", "Classic cross pattern for boundary and service walls.", "A traditional pattern used widely for service yards, drying areas and boundary walls where airflow is required.", ventImg, ["Boundary walls", "Service yards", "Drying areas"], ["Standard grey", "Painted"], ["Multiple sizes"], blockSpecs),
@@ -131,11 +174,12 @@ export const categories: Category[] = [
   {
     slug: "road-infrastructure",
     name: "Road & Infrastructure",
-    code: "04",
+    code: "06",
     intro: "Kerbs, channels, culverts and barriers for roads and civil works.",
     description:
       "Midrift supplies precast units for road construction, drainage and civil infrastructure — produced in volume and scheduled to match construction programmes.",
     image: infraImg,
+    photoSlots: photoSlots("Road & Infrastructure"),
     products: [
       p("road-infrastructure", "road-kerbs", "Road Kerbs", "Edge restraint and channel definition for roads and yards.", "Road kerbs define carriageway edges, restrain paving and direct surface water into the drainage line.", infraImg, ["Roads & highways", "Parking yards", "Estate roads"], ["Half-battered", "Splayed", "Bull-nosed"], ["Multiple profiles"], paveSpecs),
       p("road-infrastructure", "drainage-channels", "Drainage Channels", "Precast channels for controlled surface water flow.", "Precast drainage channels move surface water away from carriageways and hardstands quickly and predictably.", infraImg, ["Roads", "Industrial yards", "Estates"], ["Open channel", "Covered channel"], ["Multiple sizes"], paveSpecs),
@@ -148,11 +192,12 @@ export const categories: Category[] = [
   {
     slug: "custom-precast",
     name: "Custom Precast Solutions",
-    code: "05",
+    code: "07",
     intro: "Project-based manufacturing, custom moulds and bulk production runs.",
     description:
       "When a project needs a unit that does not exist in a standard catalogue, Midrift develops the mould, agrees the specification and runs dedicated production to your programme.",
     image: manufacturingImg,
+    photoSlots: photoSlots("Custom Precast Solutions"),
     products: [
       p("custom-precast", "custom-manufacturing", "Custom Precast Manufacturing", "Units produced to your drawings and specification.", "We work from your drawings to produce precast units that match the specification, tolerance and finish your project requires.", manufacturingImg, ["Specialist civil works", "Architectural precast", "Industrial components"], ["To drawing"], ["To project specification"], paveSpecs),
       p("custom-precast", "bulk-production", "Bulk Production Runs", "Dedicated capacity for high-volume requirements.", "Large orders are planned as scheduled production runs so quantities arrive in line with your construction programme.", manufacturingImg, ["Large developments", "Infrastructure programmes", "Distributor stock"], ["Scheduled batches"], ["To order"], paveSpecs),
