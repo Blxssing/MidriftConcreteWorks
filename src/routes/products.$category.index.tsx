@@ -45,6 +45,12 @@ function CategoryPage() {
       </Section>
 
       <Section className="pt-0">
+        {category.products.length === 0 && (
+          <p className="max-w-2xl text-muted-foreground">
+            Sizes and variants for {category.name.toLowerCase()} are quoted to project specification. Send us your
+            requirement and our team will confirm options, quantities and delivery.
+          </p>
+        )}
         <div className="grid gap-px bg-hairline sm:grid-cols-2 lg:grid-cols-3">
           {category.products.map((p) => (
             <Link
