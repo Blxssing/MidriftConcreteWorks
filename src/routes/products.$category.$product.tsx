@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { getCategory, getProduct, relatedProducts } from "@/data/products";
 import { site, whatsappLink } from "@/data/site";
-import { Container, Gallery, Section, SpecTable, QuoteCTA } from "@/components/site/primitives";
+import { Container, Gallery, PhotoSlots, Section, SpecTable, QuoteCTA } from "@/components/site/primitives";
 import { MessageCircle } from "lucide-react";
 
 export const Route = createFileRoute("/products/$category/$product")({
@@ -71,7 +71,13 @@ function ProductPage() {
               Or call <a href={site.phoneHref} className="font-semibold text-accent">{site.phone}</a>
             </p>
           </div>
-          <Gallery images={product.gallery} alt={product.name} />
+          <div>
+            {product.gallery.length > 0 ? (
+              <Gallery images={product.gallery} alt={product.name} />
+            ) : (
+              <PhotoSlots slots={product.photoSlots} title={`${product.name} — photos`} />
+            )}
+          </div>
         </div>
       </Section>
 
@@ -152,7 +158,11 @@ function ProductPage() {
                 params={{ category: category.slug, product: r.slug }}
                 className="group bg-background p-6 transition-colors hover:bg-concrete"
               >
-                <img src={r.image} alt={r.name} loading="lazy" className="aspect-4/3 w-full rounded-2xl object-cover" />
+                {r.image ? (
+                  <img src={r.image} alt={r.name} loading="lazy" className="aspect-4/3 w-full rounded-2xl object-cover" />
+                ) : (
+                  <div className="flex aspect-4/3 w-full items-center justify-center rounded-2xl border border-dashed border-hairline bg-concrete text-xs text-muted-foreground">Photo space reserved</div>
+                )}
                 <h3 className="mt-5 font-display text-base font-bold uppercase tracking-tight group-hover:text-accent">
                   {r.name}
                 </h3>

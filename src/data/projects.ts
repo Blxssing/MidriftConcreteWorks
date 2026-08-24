@@ -31,8 +31,8 @@ export const projects: Project[] = [
     image: projectYard,
     gallery: [projectYard, cabroImg],
     productsSupplied: [
-      { label: "Interlocking cabro", category: "cabro-paving" },
-      { label: "Road kerbs", category: "road-infrastructure" },
+      { label: "Interlocking cabro", category: "cabro" },
+      { label: "Road kerbs", category: "road-concrete" },
     ],
     completion: "Completion details to be confirmed",
   },
@@ -48,8 +48,8 @@ export const projects: Project[] = [
     image: cabroImg,
     gallery: [cabroImg, projectYard],
     productsSupplied: [
-      { label: "Uni-pavers", category: "cabro-paving" },
-      { label: "Decorative paving", category: "cabro-paving" },
+      { label: "Uni-pavers", category: "cabro" },
+      { label: "Decorative paving", category: "cabro" },
     ],
     completion: "Completion details to be confirmed",
   },
@@ -82,8 +82,8 @@ export const projects: Project[] = [
     image: infraImg,
     gallery: [infraImg],
     productsSupplied: [
-      { label: "Road kerbs", category: "road-infrastructure" },
-      { label: "Drainage channels", category: "road-infrastructure" },
+      { label: "Road kerbs", category: "road-concrete" },
+      { label: "Drainage channels", category: "road-concrete" },
     ],
     completion: "Completion details to be confirmed",
   },
