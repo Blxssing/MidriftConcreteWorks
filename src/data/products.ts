@@ -1,9 +1,3 @@
-import cabroImg from "@/assets/cabro.jpg";
-import blocksImg from "@/assets/blocks.jpg";
-import ventImg from "@/assets/vent.jpg";
-import infraImg from "@/assets/infrastructure.jpg";
-import manufacturingImg from "@/assets/manufacturing.jpg";
-
 export const TBC = "Specification to be confirmed";
 
 export type Product = {
@@ -12,8 +6,9 @@ export type Product = {
   category: string;
   summary: string;
   description: string;
-  image: string;
+  image?: string;
   gallery: string[];
+  photoSlots: PhotoSlot[];
   applications: string[];
   variants: string[];
   sizes: string[];
@@ -38,18 +33,15 @@ export type PhotoSlot = {
   cta: { label: string; message: string };
 };
 
-const photoSlots = (name: string): PhotoSlot[] => [
-  {
-    label: `${name} — photo 1`,
-    note: "Image space reserved. Add your own product photo here.",
-    cta: { label: "Request a quote", message: `Hello Midrift, I would like a quote for ${name}.` },
-  },
-  {
-    label: `${name} — photo 2`,
-    note: "Image space reserved. Add your own site or application photo here.",
-    cta: { label: "Talk to sales", message: `Hello Midrift, I would like to discuss ${name} for my project.` },
-  },
-];
+const photoSlots = (name: string, count = 2): PhotoSlot[] =>
+  Array.from({ length: count }, (_, i) => ({
+    label: `${name} — photo ${i + 1}`,
+    note: "Image space reserved. Add your own photo here.",
+    cta:
+      i % 2 === 0
+        ? { label: "Request a quote", message: `Hello Midrift, I would like a quote for ${name}.` }
+        : { label: "Talk to sales", message: `Hello Midrift, I would like to discuss ${name} for my project.` },
+  }));
 
 const spec = (labels: string[]) => labels.map((label) => ({ label, value: TBC }));
 
@@ -68,13 +60,16 @@ const baseFaqs = (name: string) => [
   },
 ];
 
+const paveSpecs = ["Thickness", "Compressive strength", "Coverage per m²", "Colour options", "Surface finish"];
+const blockSpecs = ["Nominal size", "Compressive strength", "Weight per unit", "Units per m²", "Finish"];
+const civilSpecs = ["Nominal size", "Class / rating", "Weight per unit", "Reinforcement", "Finish"];
+
 const p = (
   category: string,
   slug: string,
   name: string,
   summary: string,
   description: string,
-  image: string,
   applications: string[],
   variants: string[],
   sizes: string[],
@@ -85,8 +80,8 @@ const p = (
   category,
   summary,
   description,
-  image,
-  gallery: [image],
+  gallery: [],
+  photoSlots: photoSlots(name),
   applications,
   variants,
   sizes,
@@ -94,8 +89,21 @@ const p = (
   faqs: baseFaqs(name),
 });
 
-const paveSpecs = ["Thickness", "Compressive strength", "Coverage per m²", "Colour options", "Surface finish"];
-const blockSpecs = ["Nominal size", "Compressive strength", "Weight per unit", "Units per m²", "Finish"];
+const paver = (slug: string, name: string, summary: string, description: string) =>
+  p(
+    "cabro",
+    slug,
+    name,
+    summary,
+    description,
+    ["Driveways", "Parking yards", "Estate roads", "Walkways"],
+    ["Standard grey", "Coloured"],
+    ["Multiple thicknesses available"],
+    paveSpecs,
+  );
+
+const block = (slug: string, name: string, summary: string, description: string, apps: string[]) =>
+  p("concrete-blocks", slug, name, summary, description, apps, ["Standard", "To project specification"], ["Multiple sizes available"], blockSpecs);
 
 export const categories: Category[] = [
   {
@@ -105,44 +113,54 @@ export const categories: Category[] = [
     intro: "Precast T-beams for suspended slabs and floor systems.",
     description:
       "Midrift manufactures precast T-beams used in suspended floor and roof systems. Beams are produced under controlled casting and curing so sections stay straight, consistent and ready for fast installation on site.",
-    photoSlots: photoSlots("T-Beam"),
+    photoSlots: photoSlots("T-Beam", 4),
     products: [],
   },
   {
-    slug: "cabro-paving",
-    name: "Cabro & Paving",
+    slug: "cabro",
+    name: "Cabro",
     code: "02",
-    intro: "Interlocking paving engineered for traffic, drainage and long service life.",
+    intro: "Interlocking cabro engineered for traffic, drainage and long service life.",
     description:
-      "Midrift manufactures interlocking cabro and paving units for driveways, parking yards, walkways, estates, industrial hardstands and commercial developments. Every batch is produced under controlled mixing and compaction for consistent dimension and strength.",
-    image: cabroImg,
-    photoSlots: photoSlots("Cabro & Paving"),
+      "Midrift manufactures interlocking cabro for driveways, parking yards, walkways, estates, industrial hardstands and commercial developments. Every batch is produced under controlled mixing and compaction for consistent dimension and strength.",
+    photoSlots: photoSlots("Cabro"),
     products: [
-      p("cabro-paving", "interlocking-cabro", "Interlocking Cabro", "The standard workhorse paver for driveways, yards and estate roads.", "Our core interlocking cabro is produced for dimensional consistency so blocks lock tightly, distribute load evenly and resist rutting under repeated traffic.", cabroImg, ["Driveways", "Parking yards", "Estate roads", "Walkways"], ["Standard grey", "Coloured", "Heavy-duty"], ["Multiple thicknesses available"], paveSpecs),
-      p("cabro-paving", "zigzag-paver", "Zigzag Paver", "High-interlock profile for areas carrying constant vehicle movement.", "The zigzag profile produces a tight mechanical interlock across the paved field, making it a preferred choice for loading yards, petrol stations and access roads.", cabroImg, ["Loading yards", "Petrol stations", "Access roads"], ["Standard grey", "Coloured"], ["Multiple thicknesses available"], paveSpecs),
-      p("cabro-paving", "i-shape-paver", "I-Shape Paver", "Dense interlocking pattern for heavy and industrial traffic.", "I-shape units bind laterally in both directions, giving strong resistance to horizontal movement in industrial and logistics environments.", cabroImg, ["Industrial hardstands", "Container yards", "Bus bays"], ["Standard grey", "Coloured"], ["Multiple thicknesses available"], paveSpecs),
-      p("cabro-paving", "uni-paver", "Uni-Paver", "A clean, uniform profile with a refined finished appearance.", "Uni-pavers combine structural interlock with a tidy, repeatable visual rhythm — suited to commercial frontages and premium residential works.", cabroImg, ["Commercial frontages", "Residential driveways", "Courtyards"], ["Standard grey", "Coloured"], ["Multiple thicknesses available"], paveSpecs),
-      p("cabro-paving", "square-rectangular-pavers", "Square & Rectangular Pavers", "Simple geometry for patios, pathways and landscaped areas.", "Square and rectangular units allow straightforward laying patterns and clean edges for landscaped and pedestrian areas.", cabroImg, ["Patios", "Pathways", "Landscaping", "Pool surrounds"], ["Square", "Rectangular", "Coloured"], ["Multiple sizes available"], paveSpecs),
-      p("cabro-paving", "decorative-paving", "Decorative Paving", "Pattern and colour options for architectural landscaping.", "Decorative paving lets architects and landscapers set out colour banding, borders and feature areas without compromising structural performance.", cabroImg, ["Hotels & resorts", "Estates", "Public realm", "Feature borders"], ["Colour blends", "Textured finish", "Feature borders"], ["Custom sizes on request"], paveSpecs),
-      p("cabro-paving", "heavy-duty-paving", "Heavy-Duty Paving", "Thicker units for ports, depots and heavy axle loads.", "Heavy-duty paving is produced at increased thickness and compaction for locations subject to heavy axle loads and continuous plant movement.", cabroImg, ["Depots", "Ports & logistics", "Industrial parks", "Weighbridges"], ["Heavy-duty grey", "Heavy-duty coloured"], ["Increased thickness options"], paveSpecs),
-      p("cabro-paving", "custom-paving-designs", "Custom Paving Designs", "Bespoke shapes, colours and moulds for specific projects.", "Where a project requires a paving unit that is not in our standard range, we develop the mould and run production to the agreed specification.", cabroImg, ["Signature developments", "Branded spaces", "Special profiles"], ["Custom mould", "Custom colour"], ["To project specification"], paveSpecs),
+      paver("cabro-meera-heera", "Cabro Meera and Heera", "Popular decorative interlock profiles for driveways and estates.", "Meera and Heera profiles combine a strong mechanical interlock with a decorative surface pattern, suited to driveways, estate roads and commercial frontages."),
+      paver("arrow-paver", "Arrow Paver", "Directional arrow profile with tight lateral interlock.", "The arrow profile locks firmly in both directions, making it a dependable choice for areas carrying constant vehicle movement."),
+      paver("smooth-cabro-coloured", "Smooth Cabro Coloured", "Smooth-faced coloured units for a refined finished surface.", "Smooth coloured cabro gives a clean, even face for premium driveways, courtyards and commercial entrances."),
+      paver("dubro-cabro", "Dubro Cabro", "Robust profile for yards and access roads.", "Dubro cabro is produced for load distribution and dimensional consistency across large paved fields."),
+      paver("venus-cabro", "Venus Cabro", "Distinct decorative profile for landscaped and public areas.", "Venus cabro carries a recognisable face pattern while retaining full interlocking performance."),
+      paver("thara-cabro", "Thara Cabro", "Patterned interlock for estates and walkways.", "Thara cabro suits estate roads, walkways and landscaped areas where pattern and durability both matter."),
+      paver("splender", "Splender", "Feature paver for architectural and premium landscaping.", "Splender units are used where the paved surface forms part of the architectural finish."),
+      paver("hexagon-cabro", "Hexagon Cabro", "Six-sided units for stable, uniform paved fields.", "The hexagonal geometry spreads load evenly and produces a clean repeating rhythm across large areas."),
+      paver("flower-cabro", "Flower Cabro", "Decorative floral pattern for landscaped surfaces.", "Flower cabro is used for feature paving, courtyards and garden paths where appearance leads the specification."),
+      paver("uni-large", "Uni Large", "Large-format uni profile for fast laying over wide areas.", "Uni large covers ground quickly while maintaining reliable interlock for vehicle traffic."),
+      paver("uni-small", "Uni Small", "Compact uni profile for detailed and pedestrian areas.", "Uni small allows tighter curves, borders and detail work in pedestrian and landscaped spaces."),
+      paver("quad-cabro", "Quad Cabro", "Four-part modular profile for varied laying patterns.", "Quad cabro lets you set out multiple laying patterns from a single unit type."),
+      paver("normal-cabro-blocks", "Normal Cabro Blocks", "The standard workhorse paver for everyday paving works.", "Our standard cabro block is the general-purpose unit for driveways, yards and estate roads."),
+      paver("custom-paving-designs", "Custom Paving Designs", "Bespoke shapes, colours and moulds for specific projects.", "Where a project requires a paving unit that is not in our standard range, we develop the mould and run production to the agreed specification."),
     ],
   },
   {
     slug: "concrete-blocks",
     name: "Concrete Blocks",
     code: "03",
-    intro: "Masonry units produced to consistent dimension for faster, cleaner walling.",
+    intro: "Masonry and precast units produced to consistent dimension for faster, cleaner building.",
     description:
-      "Our concrete block range covers structural, infill and partition walling for residential, commercial and institutional buildings. Consistent dimensions reduce mortar wastage and speed up masonry on site.",
-    image: blocksImg,
+      "Our concrete block range covers structural, infill and partition walling plus supporting precast items for residential, commercial and institutional buildings. Consistent dimensions reduce mortar wastage and speed up work on site.",
     photoSlots: photoSlots("Concrete Blocks"),
     products: [
-      p("concrete-blocks", "hollow-blocks", "Hollow Blocks", "Lighter walling units with cores for services and reduced dead load.", "Hollow blocks reduce wall dead load and allow services and reinforcement to be routed through the cores.", blocksImg, ["External walling", "Internal walling", "Boundary walls"], ["Standard", "Reinforced core"], ["Multiple nominal sizes"], blockSpecs),
-      p("concrete-blocks", "solid-blocks", "Solid Blocks", "Dense units where mass, strength and acoustics matter.", "Solid blocks provide higher mass for load-bearing walls, retaining structures and acoustic separation.", blocksImg, ["Load-bearing walls", "Retaining structures", "Boundary walls"], ["Standard", "High-density"], ["Multiple nominal sizes"], blockSpecs),
-      p("concrete-blocks", "partition-blocks", "Partition Blocks", "Slim units for fast internal subdivision.", "Partition blocks give a lighter, thinner section for internal subdivision, reducing structural load and speeding up fit-out.", blocksImg, ["Internal partitions", "Office fit-out", "Institutional buildings"], ["Standard"], ["Multiple thicknesses"], blockSpecs),
-      p("concrete-blocks", "structural-blocks", "Structural Blocks", "Engineered walling units for load-bearing applications.", "Structural blocks are produced for projects where the walling contributes to load transfer, with strength targets agreed at order stage.", blocksImg, ["Load-bearing walls", "Multi-storey walling", "Industrial buildings"], ["Standard", "To engineer's specification"], ["To project specification"], blockSpecs),
-      p("concrete-blocks", "decorative-blocks", "Decorative Blocks", "Face-quality units for exposed masonry.", "Decorative blocks are produced with a controlled face finish for walls that remain exposed in the finished building.", blocksImg, ["Feature walls", "Boundary walls", "Facades"], ["Textured", "Split-face", "Coloured"], ["Multiple sizes"], blockSpecs),
+      block("hollow-blocks", "Hollow Blocks", "Lighter walling units with cores for services and reduced dead load.", "Hollow blocks reduce wall dead load and allow services and reinforcement to be routed through the cores.", ["External walling", "Internal walling", "Boundary walls"]),
+      block("hollow-pot-blocks", "Hollow Pot Blocks", "Infill units for suspended hollow-pot slabs.", "Hollow pot blocks act as lightweight infill between ribs in suspended slab construction, reducing concrete volume and slab weight.", ["Suspended slabs", "Floor systems", "Roof slabs"]),
+      block("solid-blocks", "Solid Blocks", "Dense units where mass, strength and acoustics matter.", "Solid blocks provide higher mass for load-bearing walls, retaining structures and acoustic separation.", ["Load-bearing walls", "Retaining structures", "Boundary walls"]),
+      block("ballostad-1-5ft", "Ballostad 1.5ft", "Precast balustrade units at 1.5ft height.", "Ballostad units are cast for balcony, terrace and staircase edging at a 1.5ft height.", ["Balconies", "Terraces", "Staircases"]),
+      block("ballostad-2ft", "Ballostad 2ft", "Precast balustrade units at 2ft height.", "A 2ft balustrade height for terraces, walkways and perimeter edging.", ["Terraces", "Walkways", "Perimeter edging"]),
+      block("ballostad-3ft", "Ballostad 3ft", "Precast balustrade units at 3ft height.", "A taller 3ft balustrade for elevated terraces, roof edges and boundary features.", ["Roof edges", "Elevated terraces", "Boundary features"]),
+      block("concrete-posts", "Concrete Posts", "Durable posts for fencing and perimeter works.", "Concrete posts provide a long-life alternative to timber for fence lines, perimeter security and agricultural use.", ["Fence lines", "Perimeter security", "Farms & estates"]),
+      block("concrete-tiles", "Concrete Tiles", "Cast tiles for floors, terraces and external areas.", "Concrete tiles give a hard-wearing finished surface for terraces, corridors and external circulation areas.", ["Terraces", "Corridors", "External floors"]),
+      block("filler-blocks", "Filler Blocks", "Lightweight infill for slab and rib systems.", "Filler blocks occupy the void between slab ribs, reducing dead load and concrete consumption.", ["Suspended slabs", "Rib-and-block floors"]),
+      block("interlocking-blocks", "Interlocking Blocks", "Dry-stack walling units for faster construction.", "Interlocking blocks key into each other, reducing mortar use and speeding up walling.", ["Walling", "Boundary walls", "Fast-build projects"]),
+      block("kplc-hater", "KPLC Hater", "Precast units supplied for utility installations.", "Produced to the sizes required for utility and power installation works.", ["Utility works", "Power installations", "Infrastructure sites"]),
     ],
   },
   {
@@ -152,7 +170,7 @@ export const categories: Category[] = [
     intro: "Large-format slabs for walkways, terraces and pedestrian areas.",
     description:
       "Paving slabs give a broad, flat finished surface for walkways, terraces, courtyards and pedestrian areas, produced to consistent thickness for level laying.",
-    photoSlots: photoSlots("Paving Slabs"),
+    photoSlots: photoSlots("Paving Slabs", 3),
     products: [],
   },
   {
@@ -161,49 +179,56 @@ export const categories: Category[] = [
     code: "05",
     intro: "Airflow, light and privacy in a single architectural masonry unit.",
     description:
-      "Ventilation blocks — also called breeze or screen blocks — deliver passive airflow and daylight while maintaining privacy and security. Midrift produces a range of patterns and can develop custom moulds for architectural projects.",
-    image: ventImg,
+      "Ventilation blocks deliver passive airflow and daylight while maintaining privacy and security. Midrift produces a range of patterns and can develop custom moulds for architectural projects.",
     photoSlots: photoSlots("Ventilation Blocks"),
     products: [
-      p("ventilation-blocks", "geometric-vent-block", "Geometric Vent Block", "Repeating geometric aperture for facades and screens.", "A clean geometric aperture that reads well across large screen walls and delivers consistent shadow patterns through the day.", ventImg, ["Facade screens", "Stairwells", "Car park ventilation"], ["Standard grey", "Painted", "Coloured"], ["Multiple sizes"], blockSpecs),
-      p("ventilation-blocks", "cross-vent-block", "Cross Vent Block", "Classic cross pattern for boundary and service walls.", "A traditional pattern used widely for service yards, drying areas and boundary walls where airflow is required.", ventImg, ["Boundary walls", "Service yards", "Drying areas"], ["Standard grey", "Painted"], ["Multiple sizes"], blockSpecs),
-      p("ventilation-blocks", "circular-vent-block", "Circular Vent Block", "Softer aperture for residential and hospitality projects.", "Circular apertures diffuse light more softly, suiting hospitality, residential and interior screen applications.", ventImg, ["Residential", "Hotels & resorts", "Interior screens"], ["Standard grey", "Painted", "Coloured"], ["Multiple sizes"], blockSpecs),
-      p("ventilation-blocks", "custom-vent-designs", "Custom Vent Designs", "Architect-specified patterns produced from bespoke moulds.", "For architectural projects we develop custom vent block moulds so the screen becomes part of the building's identity.", ventImg, ["Signature facades", "Public buildings", "Architectural screens"], ["Custom mould", "Custom finish"], ["To project specification"], blockSpecs),
+      p("ventilation-blocks", "smooth-ventilation", "Smooth Ventilation", "Clean-faced vent units for tidy exposed screens.", "A smooth face finish for screens that stay exposed in the finished building.", ["Facade screens", "Stairwells", "Boundary walls"], ["Standard grey", "Painted"], ["Multiple sizes"], blockSpecs),
+      p("ventilation-blocks", "grill-ventilation", "Grill Ventilation", "Grill-pattern apertures for strong airflow.", "The grill pattern maximises open area for service yards, car parks and drying areas.", ["Car park ventilation", "Service yards", "Drying areas"], ["Standard grey", "Painted"], ["Multiple sizes"], blockSpecs),
+      p("ventilation-blocks", "netted-ventilation", "Netted Ventilation", "Fine mesh-style aperture for privacy with airflow.", "A finer aperture that keeps privacy high while still moving air through the wall.", ["Residential", "Hotels & resorts", "Interior screens"], ["Standard grey", "Painted", "Coloured"], ["Multiple sizes"], blockSpecs),
+      p("ventilation-blocks", "louvers", "Louvers", "Angled precast louvers for directed airflow and shading.", "Louver units direct airflow and cut direct sun while screening the opening.", ["Facades", "Plant rooms", "Car parks"], ["Standard grey", "Painted"], ["Multiple sizes"], blockSpecs),
+      p("ventilation-blocks", "custom-ventilation-designs", "Custom Ventilation Designs", "Architect-specified patterns produced from bespoke moulds.", "For architectural projects we develop custom vent block moulds so the screen becomes part of the building's identity.", ["Signature facades", "Public buildings", "Architectural screens"], ["Custom mould", "Custom finish"], ["To project specification"], blockSpecs),
     ],
   },
   {
-    slug: "road-infrastructure",
-    name: "Road & Infrastructure",
+    slug: "road-concrete",
+    name: "Road Concrete Works",
     code: "06",
-    intro: "Kerbs, channels, culverts and barriers for roads and civil works.",
+    intro: "Culverts, drains and road markers for civil and highway works.",
     description:
-      "Midrift supplies precast units for road construction, drainage and civil infrastructure — produced in volume and scheduled to match construction programmes.",
-    image: infraImg,
-    photoSlots: photoSlots("Road & Infrastructure"),
+      "Midrift supplies precast units for road construction and drainage — produced in volume and scheduled to match construction programmes.",
+    photoSlots: photoSlots("Road Concrete Works"),
     products: [
-      p("road-infrastructure", "road-kerbs", "Road Kerbs", "Edge restraint and channel definition for roads and yards.", "Road kerbs define carriageway edges, restrain paving and direct surface water into the drainage line.", infraImg, ["Roads & highways", "Parking yards", "Estate roads"], ["Half-battered", "Splayed", "Bull-nosed"], ["Multiple profiles"], paveSpecs),
-      p("road-infrastructure", "drainage-channels", "Drainage Channels", "Precast channels for controlled surface water flow.", "Precast drainage channels move surface water away from carriageways and hardstands quickly and predictably.", infraImg, ["Roads", "Industrial yards", "Estates"], ["Open channel", "Covered channel"], ["Multiple sizes"], paveSpecs),
-      p("road-infrastructure", "culverts", "Culverts", "Cross-drainage units for roads and access works.", "Culvert units carry water beneath roads and accesses, supplied to the sizes required by the civil design.", infraImg, ["Road crossings", "Access roads", "Site drainage"], ["Box", "Circular"], ["To project specification"], paveSpecs),
-      p("road-infrastructure", "concrete-channels", "Concrete Channels", "Lined channels for stormwater management.", "Channel units line stormwater routes to reduce erosion and maintain flow capacity.", infraImg, ["Stormwater routes", "Industrial sites", "Institutions"], ["Standard", "Reinforced"], ["Multiple sizes"], paveSpecs),
-      p("road-infrastructure", "road-barriers", "Road Barriers", "Precast barriers for traffic separation and site protection.", "Barriers separate traffic, protect works zones and control vehicle movement on industrial sites.", infraImg, ["Highways", "Works zones", "Industrial sites"], ["Standard", "Reflective marking"], ["To project specification"], paveSpecs),
-      p("road-infrastructure", "infrastructure-accessories", "Infrastructure Accessories", "Supporting precast units for civil works packages.", "We supply supporting precast items required to complete civil packages, produced alongside your main order.", infraImg, ["Civil works", "Utilities", "Public works"], ["To project specification"], ["To project specification"], paveSpecs),
+      p("road-concrete", "culverts", "Culverts", "Cross-drainage units for access and civil works.", "Culvert units carry water beneath roads and accesses, supplied to the sizes required by the civil design.", ["Site drainage", "Access roads", "Water crossings"], ["Box", "Circular"], ["To project specification"], civilSpecs),
+      p("road-concrete", "road-culverts", "Road Culverts", "Heavier culvert units for carriageway crossings.", "Road culverts are produced for the loading conditions found beneath carriageways and highway shoulders.", ["Highways", "Carriageway crossings", "Estate roads"], ["Box", "Circular", "Reinforced"], ["To project specification"], civilSpecs),
+      p("road-concrete", "shallow-drain", "Shallow Drain", "Shallow precast drains for controlled surface water flow.", "Shallow drains move surface water away from carriageways, yards and walkways quickly and predictably.", ["Roads", "Industrial yards", "Estates"], ["Open channel", "Covered channel"], ["Multiple sizes"], civilSpecs),
+      p("road-concrete", "kenha-boundary-markers", "Kenha Boundary Makers", "Precast boundary markers for road reserve demarcation.", "Boundary markers demarcate road reserves and public works boundaries in line with authority requirements.", ["Road reserves", "Public works", "Highway boundaries"], ["Standard", "To authority specification"], ["To project specification"], civilSpecs),
+    ],
+  },
+  {
+    slug: "building-infrastructure",
+    name: "Building and Infrastructure",
+    code: "07",
+    intro: "Precast building components for finishing and structural works.",
+    description:
+      "Precast components that finish and support buildings — waffles, sinks, copings and seals — produced to consistent dimension for straightforward installation.",
+    photoSlots: photoSlots("Building and Infrastructure"),
+    products: [
+      p("building-infrastructure", "waffles", "Waffles", "Waffle units for ribbed slab construction.", "Waffle moulding units form ribbed slabs that reduce concrete volume while keeping structural depth.", ["Suspended slabs", "Commercial floors", "Institutional buildings"], ["Standard", "To engineer's specification"], ["To project specification"], civilSpecs),
+      p("building-infrastructure", "double-sink", "Doble Sink", "Precast double sink units for utility areas.", "Cast double sinks for kitchens, laundries, institutions and service areas where durability is essential.", ["Institutions", "Laundries", "Service areas"], ["Standard"], ["Multiple sizes"], civilSpecs),
+      p("building-infrastructure", "wall-coping", "Wall Coping", "Capping units that protect wall tops from water.", "Wall coping sheds water off the top of boundary and parapet walls, extending the life of the masonry below.", ["Boundary walls", "Parapets", "Perimeter walls"], ["Standard", "Coloured"], ["Multiple sizes"], civilSpecs),
+      p("building-infrastructure", "window-seals", "Window Seals", "Precast sills that throw water clear of the wall face.", "Window seals give a clean finished sill line and direct rainwater away from the wall below the opening.", ["Residential", "Commercial buildings", "Institutions"], ["Standard", "Coloured"], ["Multiple sizes"], civilSpecs),
+      p("building-infrastructure", "pillar-coping", "Pillar Coping", "Decorative and protective caps for gate and fence pillars.", "Pillar coping finishes gate and fence pillars while protecting the top surface from water ingress.", ["Gate pillars", "Fence pillars", "Estates"], ["Standard", "Decorative"], ["Multiple sizes"], civilSpecs),
     ],
   },
   {
     slug: "custom-precast",
     name: "Custom Precast Solutions",
-    code: "07",
+    code: "08",
     intro: "Project-based manufacturing, custom moulds and bulk production runs.",
     description:
       "When a project needs a unit that does not exist in a standard catalogue, Midrift develops the mould, agrees the specification and runs dedicated production to your programme.",
-    image: manufacturingImg,
     photoSlots: photoSlots("Custom Precast Solutions"),
-    products: [
-      p("custom-precast", "custom-manufacturing", "Custom Precast Manufacturing", "Units produced to your drawings and specification.", "We work from your drawings to produce precast units that match the specification, tolerance and finish your project requires.", manufacturingImg, ["Specialist civil works", "Architectural precast", "Industrial components"], ["To drawing"], ["To project specification"], paveSpecs),
-      p("custom-precast", "bulk-production", "Bulk Production Runs", "Dedicated capacity for high-volume requirements.", "Large orders are planned as scheduled production runs so quantities arrive in line with your construction programme.", manufacturingImg, ["Large developments", "Infrastructure programmes", "Distributor stock"], ["Scheduled batches"], ["To order"], paveSpecs),
-      p("custom-precast", "contractor-supply", "Contractor Supply Packages", "Consolidated supply across multiple product lines.", "Contractors can consolidate paving, blocks, kerbs and drainage into one supply agreement with coordinated deliveries.", manufacturingImg, ["Main contractors", "Subcontractors", "Civil packages"], ["Multi-product package"], ["To order"], paveSpecs),
-      p("custom-precast", "mould-development", "Custom Mould & Design Development", "New mould development for signature products.", "Our team develops new moulds where a project or distributor requires a distinct product profile.", manufacturingImg, ["Architectural projects", "Product development", "Branded ranges"], ["New mould"], ["To project specification"], paveSpecs),
-    ],
+    products: [],
   },
 ];
 
