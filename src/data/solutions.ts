@@ -29,9 +29,9 @@ export const solutions: Solution[] = [
       "Direct technical contact for substitutions and queries",
     ],
     products: [
-      { label: "Interlocking cabro & heavy-duty paving", category: "cabro-paving" },
+      { label: "Interlocking cabro & heavy-duty paving", category: "cabro" },
       { label: "Hollow, solid and structural blocks", category: "concrete-blocks" },
-      { label: "Kerbs, channels and culverts", category: "road-infrastructure" },
+      { label: "Kerbs, channels and culverts", category: "road-concrete" },
     ],
     services: ["Bulk pricing", "Scheduled deliveries", "Custom production runs"],
     cta: "Request contractor pricing",
@@ -54,7 +54,7 @@ export const solutions: Solution[] = [
       "Support on external works detailing",
     ],
     products: [
-      { label: "Uni-pavers and decorative paving", category: "cabro-paving" },
+      { label: "Uni-pavers and decorative paving", category: "cabro" },
       { label: "Decorative and partition blocks", category: "concrete-blocks" },
       { label: "Ventilation block screens", category: "ventilation-blocks" },
     ],
@@ -79,7 +79,7 @@ export const solutions: Solution[] = [
       "Support on new lines and seasonal demand",
     ],
     products: [
-      { label: "Interlocking cabro (fast-moving)", category: "cabro-paving" },
+      { label: "Interlocking cabro (fast-moving)", category: "cabro" },
       { label: "Hollow and solid blocks", category: "concrete-blocks" },
       { label: "Ventilation blocks", category: "ventilation-blocks" },
     ],
@@ -104,9 +104,9 @@ export const solutions: Solution[] = [
       "Documented order and dispatch records",
     ],
     products: [
-      { label: "Road kerbs and barriers", category: "road-infrastructure" },
-      { label: "Drainage channels and culverts", category: "road-infrastructure" },
-      { label: "Heavy-duty paving", category: "cabro-paving" },
+      { label: "Road kerbs and barriers", category: "road-concrete" },
+      { label: "Drainage channels and culverts", category: "road-concrete" },
+      { label: "Heavy-duty paving", category: "cabro" },
     ],
     services: ["Programme supply", "Tender support", "Multi-site logistics"],
     cta: "Request infrastructure supply information",
@@ -129,7 +129,7 @@ export const solutions: Solution[] = [
       "Direct technical contact during design stages",
     ],
     products: [
-      { label: "Decorative paving", category: "cabro-paving" },
+      { label: "Decorative paving", category: "cabro" },
       { label: "Custom ventilation block designs", category: "ventilation-blocks" },
       { label: "Custom precast elements", category: "custom-precast" },
     ],
@@ -154,7 +154,7 @@ export const solutions: Solution[] = [
       "Advice on laying, edging and drainage considerations",
     ],
     products: [
-      { label: "Driveway cabro and pavers", category: "cabro-paving" },
+      { label: "Driveway cabro and pavers", category: "cabro" },
       { label: "Hollow and solid blocks", category: "concrete-blocks" },
       { label: "Ventilation blocks", category: "ventilation-blocks" },
     ],
