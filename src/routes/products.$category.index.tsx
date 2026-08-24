@@ -59,12 +59,18 @@ function CategoryPage() {
               params={{ category: slug, product: p.slug }}
               className="group flex flex-col bg-background p-6 transition-colors hover:bg-concrete"
             >
-              <img
-                src={p.image}
-                alt={p.name}
-                loading="lazy"
-                className="aspect-4/3 w-full rounded-2xl object-cover"
-              />
+              {p.image ? (
+                <img
+                  src={p.image}
+                  alt={p.name}
+                  loading="lazy"
+                  className="aspect-4/3 w-full rounded-2xl object-cover"
+                />
+              ) : (
+                <div className="flex aspect-4/3 w-full items-center justify-center rounded-2xl border border-dashed border-hairline bg-concrete px-4 text-center text-xs text-muted-foreground">
+                  Photo space reserved
+                </div>
+              )}
               <h2 className="mt-6 font-display text-lg font-bold uppercase tracking-tight group-hover:text-accent">
                 {p.name}
               </h2>
