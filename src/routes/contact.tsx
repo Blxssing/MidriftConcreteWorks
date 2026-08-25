@@ -86,6 +86,21 @@ function ContactPage() {
                 );
               })}
             </ul>
+
+            <p className="eyebrow mt-10">Follow Midrift</p>
+            <div className="mt-4 flex flex-wrap gap-3">
+              {site.socials.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-full border border-hairline px-5 py-3 text-[12px] font-bold uppercase tracking-[0.12em] transition-colors hover:border-accent hover:text-accent"
+                >
+                  {s.label}
+                </a>
+              ))}
+            </div>
           </div>
 
           <QuoteForm />
