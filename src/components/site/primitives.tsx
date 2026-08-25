@@ -79,6 +79,7 @@ export function PageHero({
         <div className="mt-9 flex flex-wrap gap-3">
           <QuoteCTA />
           <WhatsAppCTA dark />
+          <EmailCTA dark />
         </div>
       </Container>
     </section>
