@@ -1,8 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
-import { MessageCircle } from "lucide-react";
+import { MessageCircle, Mail, Phone } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { whatsappLink } from "@/data/site";
+import { whatsappLink, emailLink, site } from "@/data/site";
 
 export function Container({ children, className }: { children: ReactNode; className?: string }) {
   return <div className={cn("mx-auto w-full max-w-[1400px] px-5 md:px-10", className)}>{children}</div>;
@@ -122,6 +122,40 @@ export function WhatsAppCTA({ message, dark }: { message?: string; dark?: boolea
       )}
     >
       <MessageCircle className="size-4" /> WhatsApp Sales
+    </a>
+  );
+}
+
+/** Opens the device mail app with a pre-filled quotation request. */
+export function EmailCTA({ subject, dark }: { subject?: string; dark?: boolean }) {
+  return (
+    <a
+      href={subject ? emailLink(subject) : emailLink()}
+      className={cn(
+        "inline-flex items-center justify-center gap-2 rounded-full border px-8 py-4 text-[12px] font-bold uppercase tracking-[0.12em] transition-all duration-300 ease-out hover:-translate-y-0.5",
+        dark
+          ? "border-hairline-invert text-ink-foreground hover:bg-ink-foreground/10"
+          : "border-hairline text-foreground hover:border-accent hover:text-accent",
+      )}
+    >
+      <Mail className="size-4" /> Email Sales
+    </a>
+  );
+}
+
+/** Opens the phone dialler directly. */
+export function CallCTA({ dark }: { dark?: boolean }) {
+  return (
+    <a
+      href={site.phoneHref}
+      className={cn(
+        "inline-flex items-center justify-center gap-2 rounded-full border px-8 py-4 text-[12px] font-bold uppercase tracking-[0.12em] transition-all duration-300 ease-out hover:-translate-y-0.5",
+        dark
+          ? "border-hairline-invert text-ink-foreground hover:bg-ink-foreground/10"
+          : "border-hairline text-foreground hover:border-accent hover:text-accent",
+      )}
+    >
+      <Phone className="size-4" /> {site.phone}
     </a>
   );
 }
