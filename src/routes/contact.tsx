@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { MessageCircle, Phone, Mail, MapPin, Clock, BookOpen } from "lucide-react";
-import { site, whatsappLink } from "@/data/site";
+import { site, whatsappLink, emailLink } from "@/data/site";
+import { SocialIcons } from "@/components/site/SocialIcons";
 import { PageHero, Section } from "@/components/site/primitives";
 import { QuoteForm } from "@/components/site/QuoteForm";
 import yard from "@/assets/project-yard.jpg";
@@ -36,7 +37,7 @@ const details = [
     value: "Browse the full product catalogue",
     href: site.whatsappCatalog,
   },
-  { icon: Mail, label: "Email", value: site.email, href: `mailto:${site.email}` },
+  { icon: Mail, label: "Email", value: site.email, href: emailLink() },
   { icon: MapPin, label: "Location", value: site.location },
   { icon: Clock, label: "Hours", value: site.hours },
 ];
@@ -88,19 +89,7 @@ function ContactPage() {
             </ul>
 
             <p className="eyebrow mt-10">Follow Midrift</p>
-            <div className="mt-4 flex flex-wrap gap-3">
-              {site.socials.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="rounded-full border border-hairline px-5 py-3 text-[12px] font-bold uppercase tracking-[0.12em] transition-colors hover:border-accent hover:text-accent"
-                >
-                  {s.label}
-                </a>
-              ))}
-            </div>
+            <SocialIcons className="mt-4" />
           </div>
 
           <QuoteForm />

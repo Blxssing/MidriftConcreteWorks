@@ -1,5 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import { site, whatsappLink } from "@/data/site";
+import { site, whatsappLink, emailLink } from "@/data/site";
+import { Wordmark } from "@/components/site/Wordmark";
+import { SocialIcons } from "@/components/site/SocialIcons";
 import { categories } from "@/data/products";
 import { solutions } from "@/data/solutions";
 
@@ -19,11 +21,7 @@ export function SiteFooter() {
       <div className="mx-auto max-w-[1400px] px-5 py-16 md:px-10 md:py-24">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div>
-            <p className="font-display text-2xl font-extrabold uppercase leading-none tracking-tight">
-              Midrift
-              <span className="block text-accent">Concrete</span>
-              Works Ltd
-            </p>
+            <Wordmark size="lg" stacked />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-ink-foreground/60">{site.tagline}</p>
           </div>
 
@@ -84,7 +82,7 @@ export function SiteFooter() {
             <a href={site.phoneAltHref} className="block text-lg font-semibold hover:text-accent">
               {site.phoneAlt}
             </a>
-            <a href={`mailto:${site.email}`} className="block text-sm text-ink-foreground/70 hover:text-accent">
+            <a href={emailLink()} className="block text-sm text-ink-foreground/70 hover:text-accent">
               {site.email}
             </a>
             <a
@@ -111,17 +109,7 @@ export function SiteFooter() {
           </div>
           <div>
             <p className="eyebrow text-ink-foreground/50">Follow</p>
-            <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2">
-              {site.socials.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  className="text-sm text-ink-foreground/70 transition-colors hover:text-accent"
-                >
-                  {s.label}
-                </a>
-              ))}
-            </div>
+            <SocialIcons className="mt-3" invert />
           </div>
         </div>
 
