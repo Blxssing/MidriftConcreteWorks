@@ -13,6 +13,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
+import { ContactDock } from "@/components/site/ContactDock";
 import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
@@ -132,7 +133,9 @@ function RootComponent() {
           <Outlet />
         </main>
         <SiteFooter />
+        <div className="h-24 print:hidden" aria-hidden />
       </div>
+      <ContactDock />
       <Toaster position="top-right" />
     </QueryClientProvider>
   );

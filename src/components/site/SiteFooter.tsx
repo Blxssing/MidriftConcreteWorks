@@ -1,5 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import { site, whatsappLink } from "@/data/site";
+import { site, whatsappLink, emailLink } from "@/data/site";
+import { Wordmark } from "@/components/site/Wordmark";
+import { SocialIcons } from "@/components/site/SocialIcons";
 import { categories } from "@/data/products";
 import { solutions } from "@/data/solutions";
 
