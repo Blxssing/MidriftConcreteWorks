@@ -178,6 +178,7 @@ export function CTABand({
         <div className="flex flex-wrap gap-3">
           <QuoteCTA />
           <WhatsAppCTA />
+          <CallCTA />
         </div>
       </Container>
     </section>
