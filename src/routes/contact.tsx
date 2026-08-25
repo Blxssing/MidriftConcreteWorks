@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { MessageCircle, Phone, Mail, MapPin, Clock } from "lucide-react";
+import { MessageCircle, Phone, Mail, MapPin, Clock, BookOpen } from "lucide-react";
 import { site, whatsappLink } from "@/data/site";
 import { PageHero, Section } from "@/components/site/primitives";
 import { QuoteForm } from "@/components/site/QuoteForm";
@@ -28,8 +28,15 @@ export const Route = createFileRoute("/contact")({
 
 const details = [
   { icon: Phone, label: "Phone", value: site.phone, href: site.phoneHref },
+  { icon: Phone, label: "Phone (alt)", value: site.phoneAlt, href: site.phoneAltHref },
+  { icon: MessageCircle, label: "WhatsApp", value: `${site.phoneAlt} — chat with sales`, href: whatsappLink() },
+  {
+    icon: BookOpen,
+    label: "WhatsApp Catalogue",
+    value: "Browse the full product catalogue",
+    href: site.whatsappCatalog,
+  },
   { icon: Mail, label: "Email", value: site.email, href: `mailto:${site.email}` },
-  { icon: MessageCircle, label: "WhatsApp", value: "Chat with sales", href: whatsappLink() },
   { icon: MapPin, label: "Location", value: site.location },
   { icon: Clock, label: "Hours", value: site.hours },
 ];
@@ -79,6 +86,21 @@ function ContactPage() {
                 );
               })}
             </ul>
+
+            <p className="eyebrow mt-10">Follow Midrift</p>
+            <div className="mt-4 flex flex-wrap gap-3">
+              {site.socials.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-full border border-hairline px-5 py-3 text-[12px] font-bold uppercase tracking-[0.12em] transition-colors hover:border-accent hover:text-accent"
+                >
+                  {s.label}
+                </a>
+              ))}
+            </div>
           </div>
 
           <QuoteForm />
