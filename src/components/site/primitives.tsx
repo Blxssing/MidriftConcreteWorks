@@ -156,14 +156,20 @@ export function Gallery({ images, alt }: { images: string[]; alt: string }) {
       {images.map((src, i) => (
         <figure
           key={src + i}
-          className={cn("media-zoom hover-lift rounded-2xl bg-concrete", i === 0 && "sm:col-span-2")}
+          className={cn("hover-lift overflow-hidden rounded-2xl bg-concrete", i === 0 && "sm:col-span-2")}
         >
-          <img
-            src={src}
-            alt={`${alt} — image ${i + 1}`}
-            loading="lazy"
-            className={cn("w-full rounded-2xl object-cover", i === 0 ? "aspect-16/9" : "aspect-4/3")}
-          />
+          <div className="media-zoom">
+            <img
+              src={src}
+              alt={`${alt} — image ${i + 1}`}
+              loading="lazy"
+              className={cn("w-full object-cover", i === 0 ? "aspect-16/9" : "aspect-4/3")}
+            />
+          </div>
+          <figcaption className="flex flex-wrap items-center gap-3 border-t border-hairline bg-background px-5 py-4">
+            <QuoteCTA label="Request a Quote" />
+            <WhatsAppCTA message={`Hello Midrift, I'm interested in ${alt}.`} />
+          </figcaption>
         </figure>
       ))}
     </div>
