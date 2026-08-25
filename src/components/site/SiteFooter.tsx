@@ -81,6 +81,9 @@ export function SiteFooter() {
             <a href={site.phoneHref} className="mt-3 block text-lg font-semibold hover:text-accent">
               {site.phone}
             </a>
+            <a href={site.phoneAltHref} className="block text-lg font-semibold hover:text-accent">
+              {site.phoneAlt}
+            </a>
             <a href={`mailto:${site.email}`} className="block text-sm text-ink-foreground/70 hover:text-accent">
               {site.email}
             </a>
@@ -91,6 +94,14 @@ export function SiteFooter() {
               className="mt-3 inline-block text-sm font-semibold text-accent"
             >
               WhatsApp Sales →
+            </a>
+            <a
+              href={site.whatsappCatalog}
+              target="_blank"
+              rel="noreferrer"
+              className="block text-sm font-semibold text-accent"
+            >
+              WhatsApp Catalogue →
             </a>
           </div>
           <div>
