@@ -28,8 +28,15 @@ export const Route = createFileRoute("/contact")({
 
 const details = [
   { icon: Phone, label: "Phone", value: site.phone, href: site.phoneHref },
+  { icon: Phone, label: "Phone (alt)", value: site.phoneAlt, href: site.phoneAltHref },
+  { icon: MessageCircle, label: "WhatsApp", value: `${site.phoneAlt} — chat with sales`, href: whatsappLink() },
+  {
+    icon: BookOpen,
+    label: "WhatsApp Catalogue",
+    value: "Browse the full product catalogue",
+    href: site.whatsappCatalog,
+  },
   { icon: Mail, label: "Email", value: site.email, href: `mailto:${site.email}` },
-  { icon: MessageCircle, label: "WhatsApp", value: "Chat with sales", href: whatsappLink() },
   { icon: MapPin, label: "Location", value: site.location },
   { icon: Clock, label: "Hours", value: site.hours },
 ];
