@@ -22,7 +22,7 @@ export function SiteFooter() {
             <p className="font-display text-2xl font-extrabold uppercase leading-none tracking-tight">
               Midrift
               <span className="block text-accent">Concrete</span>
-              Solutions Ltd
+              Works Ltd
             </p>
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-ink-foreground/60">{site.tagline}</p>
           </div>
