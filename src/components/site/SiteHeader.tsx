@@ -17,7 +17,7 @@ export function SiteHeader() {
             <span className="block font-display text-sm font-extrabold uppercase tracking-tight md:text-base">
               Midrift
             </span>
-            <span className="eyebrow block text-[9px]">Concrete Solutions</span>
+            <span className="eyebrow block text-[9px]">Concrete Works</span>
           </span>
         </Link>
 
