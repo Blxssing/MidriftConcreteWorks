@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { MessageCircle, Phone, Mail, MapPin, Clock, BookOpen } from "lucide-react";
-import { site, whatsappLink } from "@/data/site";
+import { site, whatsappLink, emailLink } from "@/data/site";
+import { SocialIcons } from "@/components/site/SocialIcons";
 import { PageHero, Section } from "@/components/site/primitives";
 import { QuoteForm } from "@/components/site/QuoteForm";
 import yard from "@/assets/project-yard.jpg";
