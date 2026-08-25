@@ -76,6 +76,10 @@ export function PageHero({
         <p className="eyebrow text-accent">{eyebrow}</p>
         <h1 className="mt-5 max-w-4xl display-1">{title}</h1>
         {lead && <p className="mt-7 max-w-2xl text-base leading-relaxed text-ink-foreground/70 md:text-lg">{lead}</p>}
+        <div className="mt-9 flex flex-wrap gap-3">
+          <QuoteCTA />
+          <WhatsAppCTA dark />
+        </div>
       </Container>
     </section>
   );
