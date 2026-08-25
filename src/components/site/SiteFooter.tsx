@@ -21,11 +21,7 @@ export function SiteFooter() {
       <div className="mx-auto max-w-[1400px] px-5 py-16 md:px-10 md:py-24">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div>
-            <p className="font-display text-2xl font-extrabold uppercase leading-none tracking-tight">
-              Midrift
-              <span className="block text-accent">Concrete</span>
-              Works Ltd
-            </p>
+            <Wordmark size="lg" stacked />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-ink-foreground/60">{site.tagline}</p>
           </div>
 
