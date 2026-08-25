@@ -82,7 +82,7 @@ export function SiteFooter() {
             <a href={site.phoneAltHref} className="block text-lg font-semibold hover:text-accent">
               {site.phoneAlt}
             </a>
-            <a href={`mailto:${site.email}`} className="block text-sm text-ink-foreground/70 hover:text-accent">
+            <a href={emailLink()} className="block text-sm text-ink-foreground/70 hover:text-accent">
               {site.email}
             </a>
             <a
@@ -109,17 +109,7 @@ export function SiteFooter() {
           </div>
           <div>
             <p className="eyebrow text-ink-foreground/50">Follow</p>
-            <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2">
-              {site.socials.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  className="text-sm text-ink-foreground/70 transition-colors hover:text-accent"
-                >
-                  {s.label}
-                </a>
-              ))}
-            </div>
+            <SocialIcons className="mt-3" invert />
           </div>
         </div>
 
