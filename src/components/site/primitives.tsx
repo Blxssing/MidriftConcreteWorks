@@ -205,6 +205,7 @@ export function Gallery({ images, alt }: { images: string[]; alt: string }) {
           <figcaption className="flex flex-wrap items-center gap-3 border-t border-hairline bg-background px-5 py-4">
             <QuoteCTA label="Request a Quote" />
             <WhatsAppCTA message={`Hello Midrift, I'm interested in ${alt}.`} />
+            <EmailCTA subject={`Quotation request — ${alt}`} />
           </figcaption>
         </figure>
       ))}
