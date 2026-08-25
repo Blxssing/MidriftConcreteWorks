@@ -37,7 +37,7 @@ const details = [
     value: "Browse the full product catalogue",
     href: site.whatsappCatalog,
   },
-  { icon: Mail, label: "Email", value: site.email, href: `mailto:${site.email}` },
+  { icon: Mail, label: "Email", value: site.email, href: emailLink() },
   { icon: MapPin, label: "Location", value: site.location },
   { icon: Clock, label: "Hours", value: site.hours },
 ];
