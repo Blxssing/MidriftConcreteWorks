@@ -86,7 +86,7 @@
   --secondary: oklch(0.93 0.013 168);
   --secondary-foreground: oklch(0.24 0.03 220);
   --muted: oklch(0.93 0.013 168);
-  --muted-foreground: oklch(0.48 0.018 210);
+  --muted-foreground: oklch(0.42 0.02 215);
   --accent: var(--accent-raw);
   --accent-foreground: var(--accent-raw-foreground);
   --destructive: oklch(0.577 0.245 27.325);
@@ -173,7 +173,7 @@
   font-size: 0.6875rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--muted-foreground);
+  color: color-mix(in oklab, currentColor 72%, transparent);
 }
 
 @utility rule-accent {

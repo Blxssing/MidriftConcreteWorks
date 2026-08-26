@@ -33,6 +33,7 @@ export function ContactDock() {
         })}
         <Link
           to="/contact"
+          aria-label="Get a quote"
           className="flex items-center gap-2 rounded-[16px] bg-accent px-4 py-2.5 text-[12px] font-bold tracking-tight text-accent-foreground transition-transform duration-300 ease-out active:scale-95"
         >
           <FileText className="size-[18px]" />

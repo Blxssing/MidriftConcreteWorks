@@ -26,7 +26,7 @@ export function SiteFooter() {
           </div>
 
           <div>
-            <p className="eyebrow text-ink-foreground/50">Products</p>
+            <p className="eyebrow text-ink-foreground/70">Products</p>
             <ul className="mt-5 space-y-3">
               {categories.map((c) => (
                 <li key={c.slug}>
@@ -43,7 +43,7 @@ export function SiteFooter() {
           </div>
 
           <div>
-            <p className="eyebrow text-ink-foreground/50">Who we serve</p>
+            <p className="eyebrow text-ink-foreground/70">Who we serve</p>
             <ul className="mt-5 space-y-3">
               {solutions.map((s) => (
                 <li key={s.slug}>
@@ -60,7 +60,7 @@ export function SiteFooter() {
           </div>
 
           <div>
-            <p className="eyebrow text-ink-foreground/50">Company</p>
+            <p className="eyebrow text-ink-foreground/70">Company</p>
             <ul className="mt-5 space-y-3">
               {company.map((c) => (
                 <li key={c.to}>
@@ -75,21 +75,21 @@ export function SiteFooter() {
 
         <div className="mt-16 grid gap-8 border-t border-hairline-invert pt-10 md:grid-cols-3">
           <div>
-            <p className="eyebrow text-ink-foreground/50">Sales</p>
+            <p className="eyebrow text-ink-foreground/70">Sales</p>
             <a href={site.phoneHref} className="mt-3 block text-lg font-semibold hover:text-accent">
               {site.phone}
             </a>
             <a href={site.phoneAltHref} className="block text-lg font-semibold hover:text-accent">
               {site.phoneAlt}
             </a>
-            <a href={emailLink()} className="block text-sm text-ink-foreground/70 hover:text-accent">
+            <a href={emailLink()} className="block py-2 text-sm text-ink-foreground/70 hover:text-accent">
               {site.email}
             </a>
             <a
               href={whatsappLink()}
               target="_blank"
               rel="noreferrer"
-              className="mt-3 inline-block text-sm font-semibold text-accent"
+              className="mt-3 inline-block py-2 text-sm font-semibold text-accent"
             >
               WhatsApp Sales →
             </a>
@@ -97,23 +97,23 @@ export function SiteFooter() {
               href={site.whatsappCatalog}
               target="_blank"
               rel="noreferrer"
-              className="block text-sm font-semibold text-accent"
+              className="block py-2 text-sm font-semibold text-accent"
             >
               WhatsApp Catalogue →
             </a>
           </div>
           <div>
-            <p className="eyebrow text-ink-foreground/50">Yard & office</p>
+            <p className="eyebrow text-ink-foreground/70">Yard & office</p>
             <p className="mt-3 text-sm text-ink-foreground/70">{site.location}</p>
             <p className="text-sm text-ink-foreground/70">{site.hours}</p>
           </div>
           <div>
-            <p className="eyebrow text-ink-foreground/50">Follow</p>
+            <p className="eyebrow text-ink-foreground/70">Follow</p>
             <SocialIcons className="mt-3" invert />
           </div>
         </div>
 
-        <p className="mt-12 text-xs text-ink-foreground/40">
+        <p className="mt-12 text-xs text-ink-foreground/70">
           © {new Date().getFullYear()} {site.name}. All rights reserved.
         </p>
       </div>
