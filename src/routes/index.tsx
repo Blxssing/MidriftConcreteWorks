@@ -57,6 +57,8 @@ function Home() {
           alt="Pallets of precast concrete paving blocks in the Midrift production yard"
           width={1920}
           height={1088}
+          fetchPriority="high"
+          decoding="async"
           className="absolute inset-0 -z-10 size-full scale-105 object-cover opacity-40 [animation:none] md:animate-[marquee-x_0s]"
         />
         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink via-ink/75 to-ink/25" />
@@ -140,6 +142,7 @@ function Home() {
                     src={c.image}
                     alt={c.name}
                     loading="lazy"
+            decoding="async"
                     className="absolute inset-0 size-full object-cover opacity-45 transition-all duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105 group-hover:opacity-30"
                   />
                 )}
@@ -196,6 +199,7 @@ function Home() {
             src={manufacturingImg}
             alt="Precast concrete production inside the Midrift factory"
             loading="lazy"
+            decoding="async"
             className="h-full min-h-[380px] w-full rounded-3xl object-cover"
           />
         </figure>
@@ -259,6 +263,7 @@ function Home() {
                   src={p.image}
                   alt={p.name}
                   loading="lazy"
+            decoding="async"
                   className="aspect-4/3 w-full rounded-2xl object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
@@ -302,6 +307,7 @@ function Home() {
           src={logisticsImg}
           alt="Truck loaded with pallets of concrete blocks leaving the yard"
           loading="lazy"
+            decoding="async"
           className="h-full min-h-[360px] w-full rounded-2xl object-cover"
         />
       </section>

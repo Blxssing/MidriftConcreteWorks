@@ -69,6 +69,7 @@ export function PageHero({
           src={image}
           alt={imageAlt ?? title}
           loading="lazy"
+            decoding="async"
           className="absolute inset-0 size-full object-cover opacity-25"
         />
       )}
@@ -199,6 +200,7 @@ export function Gallery({ images, alt }: { images: string[]; alt: string }) {
               src={src}
               alt={`${alt} — image ${i + 1}`}
               loading="lazy"
+            decoding="async"
               className={cn("w-full object-cover", i === 0 ? "aspect-16/9" : "aspect-4/3")}
             />
           </div>

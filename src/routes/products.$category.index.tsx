@@ -64,6 +64,7 @@ function CategoryPage() {
                   src={p.image}
                   alt={p.name}
                   loading="lazy"
+            decoding="async"
                   className="aspect-4/3 w-full rounded-2xl object-cover"
                 />
               ) : (

@@ -159,7 +159,8 @@ function ProductPage() {
                 className="group bg-background p-6 transition-colors hover:bg-concrete"
               >
                 {r.image ? (
-                  <img src={r.image} alt={r.name} loading="lazy" className="aspect-4/3 w-full rounded-2xl object-cover" />
+                  <img src={r.image} alt={r.name} loading="lazy"
+            decoding="async" className="aspect-4/3 w-full rounded-2xl object-cover" />
                 ) : (
                   <div className="flex aspect-4/3 w-full items-center justify-center rounded-2xl border border-dashed border-hairline bg-concrete text-xs text-muted-foreground">Photo space reserved</div>
                 )}

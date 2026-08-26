@@ -37,6 +37,7 @@ export function ImageMarquee({ images }: { images: { src: string; alt: string }[
               src={img.src}
               alt={img.alt}
               loading="lazy"
+            decoding="async"
               className="aspect-4/3 w-full rounded-3xl object-cover"
             />
           </figure>
