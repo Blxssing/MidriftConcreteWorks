@@ -232,7 +232,7 @@ function Home() {
 
 
       {/* Projects */}
-      <Section className="bg-concrete">
+      <Section id="projects" className="scroll-mt-28 bg-concrete">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHead eyebrow="Projects" title="Supplied, delivered, in service." />
           <Link to="/projects" className="text-[12px] font-bold uppercase tracking-[0.12em] text-accent hover:underline">
