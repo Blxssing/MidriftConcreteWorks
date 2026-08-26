@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import heroImg from "@/assets/hero-yard.jpg";
+import heroImgSm from "@/assets/hero-yard-sm.jpg";
 import manufacturingImg from "@/assets/manufacturing.jpg";
 import logisticsImg from "@/assets/logistics.jpg";
 import { categories } from "@/data/products";
@@ -54,9 +55,11 @@ function Home() {
       <section className="relative isolate overflow-hidden bg-ink text-ink-foreground">
         <img
           src={heroImg}
+          srcSet={`${heroImgSm} 900w, ${heroImg} 1400w`}
+          sizes="100vw"
           alt="Pallets of precast concrete paving blocks in the Midrift production yard"
-          width={1920}
-          height={1088}
+          width={1400}
+          height={792}
           fetchPriority="high"
           decoding="async"
           className="absolute inset-0 -z-10 size-full scale-105 object-cover opacity-40 [animation:none] md:animate-[marquee-x_0s]"
