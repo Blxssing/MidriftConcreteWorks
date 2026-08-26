@@ -9,7 +9,7 @@ export const site = {
   whatsapp: "254745240050",
   whatsappAlt: "254791502707",
   whatsappCatalog: "https://wa.me/c/254745240050",
-  email: "sales@midriftconcrete.co.ke",
+  email: "midmerchants@gmail.com",
   location: "Nakuru, Kenya",
   hours: "Mon – Sat, 7:30am – 6:00pm",
   socials: [
