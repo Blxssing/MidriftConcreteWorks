@@ -178,7 +178,7 @@ function Home() {
       </Section>
 
       {/* Manufacturing split */}
-      <section className="grid gap-4 px-4 py-4 lg:grid-cols-2">
+      <section id="quality" className="grid scroll-mt-28 gap-4 px-4 py-4 lg:grid-cols-2">
         <figure className="media-zoom rounded-3xl">
           <img
             src={manufacturingImg}
