@@ -157,7 +157,7 @@ function Home() {
 
 
       {/* Capability strip */}
-      <Section dark>
+      <Section id="capabilities" dark className="scroll-mt-28">
         <SectionHead
           eyebrow="What Midrift does"
           title="Products, manufacturing and supply — end to end."
