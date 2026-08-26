@@ -6,6 +6,7 @@ import { categories } from "@/data/products";
 import { solutions } from "@/data/solutions";
 import { projects } from "@/data/projects";
 import { Reveal } from "@/components/site/Reveal";
+import { SectionNav } from "@/components/site/SectionNav";
 import { KineticText } from "@/components/site/KineticText";
 import { ImageMarquee, TextMarquee } from "@/components/site/Marquee";
 import {
