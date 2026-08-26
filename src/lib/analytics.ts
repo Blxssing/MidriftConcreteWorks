@@ -81,13 +81,23 @@ export function initAnalytics() {
   if (phKey) {
     const region = (import.meta.env["VITE_LOVABLE_CONNECTOR_POSTHOG_REGION"] as string) || "eu";
     const host = region === "us" ? "https://us.i.posthog.com" : "https://eu.i.posthog.com";
-    import("posthog-js")
-      .then((m) => {
-        m.default.init(phKey, { api_host: host, capture_pageview: false });
-        window.posthog = m.default;
-      })
-      .catch(() => undefined);
+    let distinctId = localStorage.getItem("midrift:did");
+    if (!distinctId) {
+      distinctId = crypto.randomUUID();
+      localStorage.setItem("midrift:did", distinctId);
+    }
+    window.posthog = {
+      capture: (event, props) => {
+        void fetch(`${host}/i/v0/e/`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          keepalive: true,
+          body: JSON.stringify({ api_key: phKey, event, distinct_id: distinctId, properties: props ?? {} }),
+        }).catch(() => undefined);
+      },
+    };
   }
+
 
   document.addEventListener(
     "click",
