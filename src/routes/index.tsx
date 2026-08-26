@@ -87,6 +87,17 @@ function Home() {
         </Container>
       </section>
 
+      <SectionNav
+        items={[
+          { id: "products", label: "Products" },
+          { id: "capabilities", label: "What we do" },
+          { id: "quality", label: "Quality" },
+          { id: "serve", label: "Who we serve" },
+          { id: "projects", label: "Projects" },
+          { id: "bulk", label: "Bulk & delivery" },
+        ]}
+      />
+
       <TextMarquee
         items={[
           "Cabro paving",
