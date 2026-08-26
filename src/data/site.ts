@@ -28,12 +28,46 @@ export function whatsappLink(message = "Hello Midrift, I would like a quote for 
   return `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(message)}`;
 }
 
+const defaultEmailBody = `Hello Midrift Concrete Works,
+
+I would like a written quotation for the following:
+
+Product:
+Quantity:
+Delivery location:
+Required by:
+Project type:
+
+My contact details:
+Name:
+Phone:
+
+Thank you.`;
+
 /** Pre-filled mailto for sales enquiries (opens the device mail app). */
-export function emailLink(
-  subject = "Quotation request — Midrift Concrete Works",
-  body = "Hello Midrift,\n\nProduct:\nQuantity:\nDelivery location:\nRequired date:\n\nThank you.",
-) {
+export function emailLink(subject = "Quotation request — Midrift Concrete Works", body = defaultEmailBody) {
   return `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+/** Pre-filled mailto tailored to a specific product or category. */
+export function productEmailLink(product: string) {
+  return emailLink(
+    `Quotation request — ${product}`,
+    `Hello Midrift Concrete Works,
+
+I would like a written quotation for ${product}.
+
+Quantity:
+Delivery location:
+Required by:
+Project type:
+
+My contact details:
+Name:
+Phone:
+
+Thank you.`,
+  );
 }
 
 export const mainNav = [
