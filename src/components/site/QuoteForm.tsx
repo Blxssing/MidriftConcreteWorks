@@ -4,6 +4,7 @@ import { z } from "zod";
 import { MessageCircle, Mail, Phone } from "lucide-react";
 import { categories } from "@/data/products";
 import { site, whatsappLink, emailLink } from "@/data/site";
+import { track } from "@/lib/analytics";
 
 const projectTypes = [
   "Residential / home build",
@@ -111,6 +112,15 @@ Notes: ${form.notes || "—"}`;
     e.preventDefault();
     if (!validate()) return;
     setSent(true);
+    track("quote_submit", {
+      category: form.category,
+      product: form.product,
+      quantity: form.quantity || "unspecified",
+      unit: form.unit,
+      project_type: form.projectType || "unspecified",
+      location: form.location || "unspecified",
+      has_email: !!form.email,
+    });
     toast.success("Quote request ready — choose how you'd like to send it.");
     window.open(whatsappLink(message), "_blank", "noopener");
   }

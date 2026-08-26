@@ -15,6 +15,7 @@ import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { ContactDock } from "@/components/site/ContactDock";
 import { Toaster } from "@/components/ui/sonner";
+import { initAnalytics, trackPageView } from "@/lib/analytics";
 
 function NotFoundComponent() {
   return (
@@ -124,6 +125,15 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const routerInstance = useRouter();
+
+  useEffect(() => {
+    initAnalytics();
+    trackPageView(window.location.pathname);
+    return routerInstance.subscribe("onResolved", ({ toLocation }) => {
+      trackPageView(toLocation.pathname);
+    });
+  }, [routerInstance]);
 
   return (
     <QueryClientProvider client={queryClient}>
