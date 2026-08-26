@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Menu, X, Phone, MessageCircle, Mail } from "lucide-react";
 import { useState } from "react";
 import { mainNav, site, whatsappLink, emailLink } from "@/data/site";
-import { Wordmark, WordmarkBadge } from "@/components/site/Wordmark";
+import { Wordmark } from "@/components/site/Wordmark";
 import { SocialIcons } from "@/components/site/SocialIcons";
 
 export function SiteHeader() {
