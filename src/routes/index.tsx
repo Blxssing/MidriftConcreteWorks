@@ -123,7 +123,7 @@ function Home() {
           />
           <Link
             to="/products"
-            className="text-[12px] font-bold uppercase tracking-[0.12em] text-accent hover:underline"
+            className="text-[12px] font-bold uppercase tracking-[0.12em] underline-offset-4 hover:underline"
           >
             View all products →
           </Link>
@@ -251,7 +251,7 @@ function Home() {
       <Section id="projects" className="scroll-mt-28 bg-concrete">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHead eyebrow="Projects" title="Supplied, delivered, in service." />
-          <Link to="/projects" className="text-[12px] font-bold uppercase tracking-[0.12em] text-accent hover:underline">
+          <Link to="/projects" className="text-[12px] font-bold uppercase tracking-[0.12em] underline-offset-4 hover:underline">
             All projects →
           </Link>
         </div>
@@ -290,7 +290,7 @@ function Home() {
             <div className="mt-8 flex flex-wrap gap-6">
               <Link
                 to="/bulk-wholesale"
-                className="text-[12px] font-bold uppercase tracking-[0.12em] text-accent hover:underline"
+                className="text-[12px] font-bold uppercase tracking-[0.12em] underline-offset-4 hover:underline"
               >
                 Bulk & wholesale →
               </Link>
