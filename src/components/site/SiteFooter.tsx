@@ -89,7 +89,7 @@ export function SiteFooter() {
               href={whatsappLink()}
               target="_blank"
               rel="noreferrer"
-              className="mt-3 inline-block text-sm font-semibold text-accent"
+              className="mt-3 inline-block py-2 text-sm font-semibold text-accent"
             >
               WhatsApp Sales →
             </a>
