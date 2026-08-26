@@ -143,7 +143,9 @@
       7.5rem 7.5rem,
       7.5rem 7.5rem,
       auto;
-    background-attachment: fixed;
+    /* `fixed` forces expensive repaints while scrolling on mobile. */
+    background-attachment: scroll;
+    scroll-padding-top: 6rem;
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
@@ -250,17 +252,12 @@
 /* Constant, elegant typesetting for the company name */
 @utility wordmark {
   font-family: var(--font-display);
-  font-weight: 500;
-  letter-spacing: -0.02em;
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: 0.005em;
   line-height: 1.05;
-  & .wordmark-primary {
-    font-weight: 600;
-  }
-  & .wordmark-secondary {
-    font-weight: 400;
-    font-style: italic;
-    color: color-mix(in oklab, var(--foreground) 68%, transparent);
-  }
+  text-wrap: balance;
+  font-variant-ligatures: common-ligatures;
 }
 
 @utility soft-card {

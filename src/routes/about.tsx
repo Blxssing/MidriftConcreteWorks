@@ -63,6 +63,7 @@ function AboutPage() {
             src={manufacturingImg}
             alt="Inside the Midrift production facility"
             loading="lazy"
+            decoding="async"
             className="aspect-4/3 w-full rounded-2xl object-cover"
           />
         </div>

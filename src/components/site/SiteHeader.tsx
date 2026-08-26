@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Menu, X, Phone, MessageCircle, Mail } from "lucide-react";
 import { useState } from "react";
 import { mainNav, site, whatsappLink, emailLink } from "@/data/site";
-import { Wordmark, WordmarkBadge } from "@/components/site/Wordmark";
+import { Wordmark } from "@/components/site/Wordmark";
 import { SocialIcons } from "@/components/site/SocialIcons";
 
 export function SiteHeader() {
@@ -11,9 +11,8 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-hairline bg-background/80 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between gap-8 px-5 md:h-20 md:px-10">
-        <Link to="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
-          <WordmarkBadge />
-          <Wordmark size="sm" stacked className="hidden sm:block" />
+        <Link to="/" className="flex items-center" onClick={() => setOpen(false)} aria-label="Midrift Concrete Works — home">
+          <Wordmark size="sm" />
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex">

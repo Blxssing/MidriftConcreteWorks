@@ -6,6 +6,7 @@ import { categories } from "@/data/products";
 import { solutions } from "@/data/solutions";
 import { projects } from "@/data/projects";
 import { Reveal } from "@/components/site/Reveal";
+import { SectionNav } from "@/components/site/SectionNav";
 import { KineticText } from "@/components/site/KineticText";
 import { ImageMarquee, TextMarquee } from "@/components/site/Marquee";
 import {
@@ -56,6 +57,8 @@ function Home() {
           alt="Pallets of precast concrete paving blocks in the Midrift production yard"
           width={1920}
           height={1088}
+          fetchPriority="high"
+          decoding="async"
           className="absolute inset-0 -z-10 size-full scale-105 object-cover opacity-40 [animation:none] md:animate-[marquee-x_0s]"
         />
         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink via-ink/75 to-ink/25" />
@@ -87,6 +90,17 @@ function Home() {
         </Container>
       </section>
 
+      <SectionNav
+        items={[
+          { id: "products", label: "Products" },
+          { id: "capabilities", label: "What we do" },
+          { id: "quality", label: "Quality" },
+          { id: "serve", label: "Who we serve" },
+          { id: "projects", label: "Projects" },
+          { id: "bulk", label: "Bulk & delivery" },
+        ]}
+      />
+
       <TextMarquee
         items={[
           "Cabro paving",
@@ -100,7 +114,7 @@ function Home() {
       />
 
       {/* Product categories — asymmetric editorial grid */}
-      <Section>
+      <Section id="products" className="scroll-mt-28">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHead
             eyebrow="Product range"
@@ -128,6 +142,7 @@ function Home() {
                     src={c.image}
                     alt={c.name}
                     loading="lazy"
+            decoding="async"
                     className="absolute inset-0 size-full object-cover opacity-45 transition-all duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105 group-hover:opacity-30"
                   />
                 )}
@@ -157,7 +172,7 @@ function Home() {
 
 
       {/* Capability strip */}
-      <Section dark>
+      <Section id="capabilities" dark className="scroll-mt-28">
         <SectionHead
           eyebrow="What Midrift does"
           title="Products, manufacturing and supply — end to end."
@@ -178,12 +193,13 @@ function Home() {
       </Section>
 
       {/* Manufacturing split */}
-      <section className="grid gap-4 px-4 py-4 lg:grid-cols-2">
+      <section id="quality" className="grid scroll-mt-28 gap-4 px-4 py-4 lg:grid-cols-2">
         <figure className="media-zoom rounded-3xl">
           <img
             src={manufacturingImg}
             alt="Precast concrete production inside the Midrift factory"
             loading="lazy"
+            decoding="async"
             className="h-full min-h-[380px] w-full rounded-3xl object-cover"
           />
         </figure>
@@ -206,7 +222,7 @@ function Home() {
       </section>
 
       {/* Who we serve */}
-      <Section>
+      <Section id="serve" className="scroll-mt-28">
         <SectionHead
           eyebrow="Who we serve"
           title="Built for the people who build."
@@ -232,7 +248,7 @@ function Home() {
 
 
       {/* Projects */}
-      <Section className="bg-concrete">
+      <Section id="projects" className="scroll-mt-28 bg-concrete">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHead eyebrow="Projects" title="Supplied, delivered, in service." />
           <Link to="/projects" className="text-[12px] font-bold uppercase tracking-[0.12em] text-accent hover:underline">
@@ -247,6 +263,7 @@ function Home() {
                   src={p.image}
                   alt={p.name}
                   loading="lazy"
+            decoding="async"
                   className="aspect-4/3 w-full rounded-2xl object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
@@ -261,7 +278,7 @@ function Home() {
       </Section>
 
       {/* Bulk + delivery */}
-      <section className="grid lg:grid-cols-2">
+      <section id="bulk" className="grid scroll-mt-28 lg:grid-cols-2">
         <div className="flex items-center bg-ink px-5 py-20 text-ink-foreground md:px-16 md:py-24">
           <div className="max-w-lg">
             <p className="eyebrow text-accent">Bulk & wholesale</p>
@@ -290,6 +307,7 @@ function Home() {
           src={logisticsImg}
           alt="Truck loaded with pallets of concrete blocks leaving the yard"
           loading="lazy"
+            decoding="async"
           className="h-full min-h-[360px] w-full rounded-2xl object-cover"
         />
       </section>

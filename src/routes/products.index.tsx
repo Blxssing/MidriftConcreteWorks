@@ -52,6 +52,7 @@ function ProductsIndex() {
                   src={c.image}
                   alt={c.name}
                   loading="lazy"
+            decoding="async"
                   className="mt-10 aspect-16/9 w-full rounded-2xl object-cover"
                 />
               ) : (
