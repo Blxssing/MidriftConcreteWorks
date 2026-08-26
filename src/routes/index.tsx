@@ -100,7 +100,7 @@ function Home() {
       />
 
       {/* Product categories — asymmetric editorial grid */}
-      <Section>
+      <Section id="products" className="scroll-mt-28">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHead
             eyebrow="Product range"
