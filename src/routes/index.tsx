@@ -261,7 +261,7 @@ function Home() {
       </Section>
 
       {/* Bulk + delivery */}
-      <section className="grid lg:grid-cols-2">
+      <section id="bulk" className="grid scroll-mt-28 lg:grid-cols-2">
         <div className="flex items-center bg-ink px-5 py-20 text-ink-foreground md:px-16 md:py-24">
           <div className="max-w-lg">
             <p className="eyebrow text-accent">Bulk & wholesale</p>
