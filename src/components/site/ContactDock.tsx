@@ -15,7 +15,7 @@ const actions = [
 export function ContactDock() {
   return (
     <div className="pointer-events-none fixed inset-x-0 bottom-4 z-40 flex justify-center px-4 print:hidden">
-      <div className="ios-glass pointer-events-auto flex items-center gap-1 rounded-[22px] p-1.5">
+      <div data-cta-zone="floating-dock" className="ios-glass pointer-events-auto flex items-center gap-1 rounded-[22px] p-1.5">
         {actions.map((a) => {
           const Icon = a.icon;
           return (

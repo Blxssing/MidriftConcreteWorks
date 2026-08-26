@@ -129,7 +129,7 @@ Notes: ${form.notes || "—"}`;
     errors[k] ? <p className="mt-1.5 text-xs font-medium text-destructive">{errors[k]}</p> : null;
 
   return (
-    <form onSubmit={onSubmit} noValidate className="soft-card border border-hairline bg-card p-6 md:p-10">
+    <form onSubmit={onSubmit} noValidate data-cta-zone="quote-form" className="soft-card border border-hairline bg-card p-6 md:p-10">
       <p className="eyebrow">Request a quote</p>
       <h2 className="mt-3 font-display text-2xl tracking-tight">Tell us what you need</h2>
       <p className="mt-3 text-sm text-muted-foreground">
