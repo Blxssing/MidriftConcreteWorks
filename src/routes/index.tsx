@@ -206,7 +206,7 @@ function Home() {
       </section>
 
       {/* Who we serve */}
-      <Section>
+      <Section id="serve" className="scroll-mt-28">
         <SectionHead
           eyebrow="Who we serve"
           title="Built for the people who build."
