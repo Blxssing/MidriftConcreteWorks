@@ -1,3 +1,8 @@
+import tbeam1 from "@/assets/tbeam-1.jpg.asset.json";
+import tbeam2 from "@/assets/tbeam-2.jpg.asset.json";
+import tbeam3 from "@/assets/tbeam-3.jpg.asset.json";
+import tbeam4 from "@/assets/tbeam-4.jpg.asset.json";
+
 export const TBC = "Specification to be confirmed";
 
 export type Product = {
