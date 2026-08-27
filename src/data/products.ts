@@ -122,7 +122,7 @@ export const categories: Category[] = [
     image: tbeam1.url,
     photoSlots: photoSlots("T-Beam", 4).map((s, i) => ({
       ...s,
-      image: [tbeam1.url, tbeam2.url, tbeam3.url, tbeam4.url][i],
+      image: [tbeam1.url, tbeam2.url, tbeam3.url, tbeam4.url][i] as string,
       note: "Precast T-beams from the Midrift yard.",
     })),
     products: [],
