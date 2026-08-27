@@ -94,9 +94,10 @@ function ProductsIndex() {
               <Link
                 to="/products/$category"
                 params={{ category: c.slug }}
-                className="mt-8 inline-block text-[12px] font-bold uppercase tracking-[0.12em] text-accent hover:underline"
+                className="ios-cta mt-8 flex w-full items-center justify-center gap-3 rounded-[26px] bg-accent px-8 py-6 text-center text-[17px] font-bold tracking-tight text-accent-foreground sm:w-auto sm:px-12"
               >
-                Open {c.name} →
+                <MousePointerClick className="size-6" />
+                Click here to explore {c.name}
               </Link>
               {c.image ? (
                 <img
