@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { MapPin, Star } from "lucide-react";
 import { site, whatsappLink, emailLink } from "@/data/site";
 import { Wordmark } from "@/components/site/Wordmark";
 import { SocialIcons } from "@/components/site/SocialIcons";
