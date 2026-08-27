@@ -1,3 +1,9 @@
+import cabroVenus from "@/assets/cabro-venus.jpg.asset.json";
+import cabroDubro from "@/assets/cabro-dubro.jpg.asset.json";
+import cabroArrow from "@/assets/cabro-arrow.jpg.asset.json";
+import cabroThara from "@/assets/cabro-thara.jpg.asset.json";
+import cabroFlower from "@/assets/cabro-flower.jpg.asset.json";
+import cabroUni from "@/assets/cabro-uni.jpg.asset.json";
 import tbeam1 from "@/assets/tbeam-1.jpg.asset.json";
 import tbeam2 from "@/assets/tbeam-2.jpg.asset.json";
 import tbeam3 from "@/assets/tbeam-3.jpg.asset.json";
@@ -143,18 +149,23 @@ export const categories: Category[] = [
     intro: "Interlocking cabro engineered for traffic, drainage and long service life.",
     description:
       "Midrift manufactures interlocking cabro for driveways, parking yards, walkways, estates, industrial hardstands and commercial developments. Every batch is produced under controlled mixing and compaction for consistent dimension and strength.",
-    photoSlots: photoSlots("Cabro"),
+    image: cabroVenus.url,
+    photoSlots: photoSlots("Cabro").map((s, i) => ({
+      ...s,
+      image: [cabroArrow.url, cabroUni.url][i] as string,
+      note: "Cabro laid by Midrift on site.",
+    })),
     products: [
       paver("cabro-meera-heera", "Cabro Meera and Heera", "Popular decorative interlock profiles for driveways and estates.", "Meera and Heera profiles combine a strong mechanical interlock with a decorative surface pattern, suited to driveways, estate roads and commercial frontages."),
-      paver("arrow-paver", "Arrow Paver", "Directional arrow profile with tight lateral interlock.", "The arrow profile locks firmly in both directions, making it a dependable choice for areas carrying constant vehicle movement."),
+      paver("arrow-paver", "Arrow Paver", "Directional arrow profile with tight lateral interlock.", "The arrow profile locks firmly in both directions, making it a dependable choice for areas carrying constant vehicle movement.", cabroArrow.url),
       paver("smooth-cabro-coloured", "Smooth Cabro Coloured", "Smooth-faced coloured units for a refined finished surface.", "Smooth coloured cabro gives a clean, even face for premium driveways, courtyards and commercial entrances."),
-      paver("dubro-cabro", "Dubro Cabro", "Robust profile for yards and access roads.", "Dubro cabro is produced for load distribution and dimensional consistency across large paved fields."),
-      paver("venus-cabro", "Venus Cabro", "Distinct decorative profile for landscaped and public areas.", "Venus cabro carries a recognisable face pattern while retaining full interlocking performance."),
-      paver("thara-cabro", "Thara Cabro", "Patterned interlock for estates and walkways.", "Thara cabro suits estate roads, walkways and landscaped areas where pattern and durability both matter."),
+      paver("dubro-cabro", "Dubro Cabro", "Robust profile for yards and access roads.", "Dubro cabro is produced for load distribution and dimensional consistency across large paved fields.", cabroDubro.url),
+      paver("venus-cabro", "Venus Cabro", "Distinct decorative profile for landscaped and public areas.", "Venus cabro carries a recognisable face pattern while retaining full interlocking performance.", cabroVenus.url),
+      paver("thara-cabro", "Thara Cabro", "Patterned interlock for estates and walkways.", "Thara cabro suits estate roads, walkways and landscaped areas where pattern and durability both matter.", cabroThara.url),
       paver("splender", "Splender", "Feature paver for architectural and premium landscaping.", "Splender units are used where the paved surface forms part of the architectural finish."),
       paver("hexagon-cabro", "Hexagon Cabro", "Six-sided units for stable, uniform paved fields.", "The hexagonal geometry spreads load evenly and produces a clean repeating rhythm across large areas."),
-      paver("flower-cabro", "Flower Cabro", "Decorative floral pattern for landscaped surfaces.", "Flower cabro is used for feature paving, courtyards and garden paths where appearance leads the specification."),
-      paver("uni-large", "Uni Large", "Large-format uni profile for fast laying over wide areas.", "Uni large covers ground quickly while maintaining reliable interlock for vehicle traffic."),
+      paver("flower-cabro", "Flower Cabro", "Decorative floral pattern for landscaped surfaces.", "Flower cabro is used for feature paving, courtyards and garden paths where appearance leads the specification.", cabroFlower.url),
+      paver("uni-large", "Uni Large", "Large-format uni profile for fast laying over wide areas.", "Uni large covers ground quickly while maintaining reliable interlock for vehicle traffic.", cabroUni.url),
       paver("uni-small", "Uni Small", "Compact uni profile for detailed and pedestrian areas.", "Uni small allows tighter curves, borders and detail work in pedestrian and landscaped spaces."),
       paver("quad-cabro", "Quad Cabro", "Four-part modular profile for varied laying patterns.", "Quad cabro lets you set out multiple laying patterns from a single unit type."),
       paver("normal-cabro-blocks", "Normal Cabro Blocks", "The standard workhorse paver for everyday paving works.", "Our standard cabro block is the general-purpose unit for driveways, yards and estate roads."),
