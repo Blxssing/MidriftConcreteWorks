@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { CTABand, PageHero, Section, SectionHead } from "@/components/site/primitives";
 import logisticsImg from "@/assets/logistics.jpg";
-import { site } from "@/data/site";
+import { site, whatsappLink, emailLink } from "@/data/site";
+import { Mail, MessageCircle, Music2, Phone } from "lucide-react";
 
 export const Route = createFileRoute("/delivery")({
   head: () => ({
@@ -87,7 +88,64 @@ function DeliveryPage() {
         </div>
       </Section>
 
+      <Section>
+        <SectionHead
+          eyebrow="Talk to logistics"
+          title="Fastest ways to book a delivery"
+          lead="Message, call or email our delivery desk directly — we confirm scheduling and transport cost the same day."
+        />
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <a
+            href={whatsappLink(
+              "Hello Midrift, I would like to arrange delivery. Product: , Quantity: , Delivery location: , Required date: ",
+            )}
+            target="_blank"
+            rel="noopener"
+            className="hover-lift flex items-center gap-3 rounded-2xl bg-[var(--wa)] p-5 text-[var(--wa-foreground)] shadow-lg"
+          >
+            <MessageCircle className="size-6 shrink-0" />
+            <span>
+              <span className="block text-base font-semibold">WhatsApp us</span>
+              <span className="block text-sm opacity-90">{site.phoneAlt}</span>
+            </span>
+          </a>
+          <a
+            href={site.phoneHref}
+            className="hover-lift flex items-center gap-3 rounded-2xl bg-ink p-5 text-ink-foreground shadow-lg"
+          >
+            <Phone className="size-6 shrink-0" />
+            <span>
+              <span className="block text-base font-semibold">Call delivery desk</span>
+              <span className="block text-sm opacity-80">{site.phone}</span>
+            </span>
+          </a>
+          <a
+            href={emailLink("Delivery booking — Midrift Concrete Works")}
+            className="hover-lift flex items-center gap-3 rounded-2xl border border-hairline bg-card p-5 shadow-sm"
+          >
+            <Mail className="size-6 shrink-0 text-accent" />
+            <span>
+              <span className="block text-base font-semibold">Email logistics</span>
+              <span className="block text-sm text-muted-foreground">{site.email}</span>
+            </span>
+          </a>
+          <a
+            href={site.socials[0].href}
+            target="_blank"
+            rel="noopener"
+            className="hover-lift flex items-center gap-3 rounded-2xl border border-hairline bg-card p-5 shadow-sm"
+          >
+            <Music2 className="size-6 shrink-0 text-accent" />
+            <span>
+              <span className="block text-base font-semibold">See deliveries on TikTok</span>
+              <span className="block text-sm text-muted-foreground">@midriftconcreteworks</span>
+            </span>
+          </a>
+        </div>
+      </Section>
+
       <CTABand title="Confirm delivery to your site." lead="Share your location and required date and we will confirm scheduling and cost." />
+
     </>
   );
 }
