@@ -5,11 +5,19 @@ import { site, whatsappLink, emailLink } from "@/data/site";
 const tiktok = site.socials.find((s) => s.icon === "tiktok");
 
 const actions = [
-  { label: "Call", icon: Phone, href: site.phoneHref, external: false },
-  { label: "WhatsApp", icon: MessageCircle, href: whatsappLink(), external: true },
-  { label: "Email", icon: Mail, href: emailLink(), external: false },
-  { label: "Map", icon: MapPin, href: site.mapsUrl, external: true },
-  ...(tiktok ? [{ label: "TikTok", icon: Music2, href: tiktok.href as string, external: true }] : []),
+  { label: "Call", title: "Call sales now", icon: Phone, href: site.phoneHref, external: false },
+  {
+    label: "WhatsApp",
+    title: "Talk to sales on WhatsApp",
+    icon: MessageCircle,
+    href: whatsappLink(),
+    external: true,
+  },
+  { label: "Email", title: "Email sales", icon: Mail, href: emailLink(), external: false },
+  { label: "Map", title: "Open our yard in Google Maps", icon: MapPin, href: site.mapsUrl, external: true },
+  ...(tiktok
+    ? [{ label: "TikTok", title: "Watch Midrift on TikTok", icon: Music2, href: tiktok.href as string, external: true }]
+    : []),
 ];
 
 /**
@@ -30,21 +38,21 @@ export function ContactDock() {
               key={a.label}
               href={a.href}
               {...(a.external ? { target: "_blank", rel: "noreferrer" } : {})}
-              aria-label={a.label}
-              title={a.label}
-              className="flex items-center gap-2 rounded-[18px] px-3 py-2.5 text-[13px] font-semibold tracking-tight transition-all duration-300 ease-out hover:bg-foreground/5 active:scale-95"
+              aria-label={a.title}
+              title={a.title}
+              className="flex min-h-11 min-w-11 items-center justify-center gap-2 rounded-[18px] px-3 py-2.5 text-[13px] font-semibold tracking-tight transition-all duration-300 ease-out hover:bg-foreground/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent active:scale-95"
             >
-              <Icon className="size-[19px] text-accent" />
+              <Icon className="size-[19px] text-accent" aria-hidden="true" />
               <span className="hidden md:inline">{a.label}</span>
             </a>
           );
         })}
         <Link
           to="/contact"
-          aria-label="Get a quote"
-          className="ios-cta flex items-center gap-2 rounded-[18px] bg-accent px-4 py-2.5 text-[13px] font-bold tracking-tight text-accent-foreground"
+          aria-label="Get a quote from Midrift sales"
+          className="ios-cta flex min-h-11 items-center gap-2 rounded-[18px] bg-accent px-4 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground text-[13px] font-bold tracking-tight text-accent-foreground"
         >
-          <FileText className="size-[19px]" />
+          <FileText className="size-[19px]" aria-hidden="true" />
           <span className="hidden sm:inline">Get a Quote</span>
         </Link>
       </div>
