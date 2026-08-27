@@ -121,8 +121,15 @@ Notes: ${form.notes || "—"}`;
       location: form.location || "unspecified",
       has_email: !!form.email,
     });
-    toast.success("Quote request ready — choose how you'd like to send it.");
+    toast.success("Quote request sent — here's what happens next.");
     window.open(whatsappLink(message), "_blank", "noopener");
+    void navigate({
+      to: "/thank-you",
+      search: {
+        product: form.product,
+        ...(form.quantity ? { quantity: `${form.quantity} ${form.unit}` } : {}),
+      },
+    });
   }
 
   const Err = ({ k }: { k: keyof FormValues }) =>
