@@ -15,6 +15,7 @@ import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { ContactDock } from "@/components/site/ContactDock";
 import { WhatsAppFab } from "@/components/site/WhatsAppFab";
+import { QuoteProvider } from "@/components/site/QuoteProvider";
 import { Toaster } from "@/components/ui/sonner";
 import { initAnalytics, trackPageView } from "@/lib/analytics";
 
