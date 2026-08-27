@@ -382,6 +382,36 @@
   animation: wordmark-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/* Slow elegant sheen sweeping across the company name */
+@keyframes wordmark-sheen {
+  0% { background-position: -140% 0; }
+  60%, 100% { background-position: 240% 0; }
+}
+
+@utility wordmark-sheen {
+  background-image: linear-gradient(
+    100deg,
+    currentColor 0%,
+    currentColor 38%,
+    color-mix(in oklab, var(--accent) 85%, currentColor) 50%,
+    currentColor 62%,
+    currentColor 100%
+  );
+  background-size: 220% 100%;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: wordmark-sheen 6.5s cubic-bezier(0.4, 0, 0.2, 1) 1.1s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wordmark-animate,
+  .wordmark-sheen {
+    animation: none;
+  }
+}
+
 /* ============================================================
    WhatsApp conversion styling — high contrast, unmissable
    ============================================================ */
