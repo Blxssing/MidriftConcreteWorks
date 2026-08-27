@@ -18,7 +18,9 @@
   --radius-3xl: 2.25rem;
   --radius-4xl: 2.75rem;
   --font-display: "Fraunces", ui-serif, Georgia, serif;
-  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  /* iOS 18 system typography — SF Pro on Apple devices, Outfit elsewhere. */
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Outfit", ui-sans-serif,
+    system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
   --color-background: var(--background);
