@@ -4,6 +4,7 @@ import { site, whatsappLink, emailLink } from "@/data/site";
 import { SocialIcons } from "@/components/site/SocialIcons";
 import { PageHero, Section } from "@/components/site/primitives";
 import { QuoteForm } from "@/components/site/QuoteForm";
+import { LocationMap } from "@/components/site/LocationMap";
 import yard from "@/assets/project-yard.jpg";
 
 export const Route = createFileRoute("/contact")({
