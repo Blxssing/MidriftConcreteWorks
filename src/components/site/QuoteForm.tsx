@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { useNavigate } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { z } from "zod";
 import { MessageCircle, Mail, Phone } from "lucide-react";
@@ -50,6 +51,7 @@ const fieldError = "border-destructive focus:border-destructive";
 const labelCls = "mb-2 block text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground";
 
 export function QuoteForm({ defaultProduct }: { defaultProduct?: string }) {
+  const navigate = useNavigate();
   const [sent, setSent] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
   const [form, setForm] = useState<FormValues>({
@@ -121,8 +123,15 @@ Notes: ${form.notes || "—"}`;
       location: form.location || "unspecified",
       has_email: !!form.email,
     });
-    toast.success("Quote request ready — choose how you'd like to send it.");
+    toast.success("Quote request sent — here's what happens next.");
     window.open(whatsappLink(message), "_blank", "noopener");
+    void navigate({
+      to: "/thank-you",
+      search: {
+        product: form.product,
+        ...(form.quantity ? { quantity: `${form.quantity} ${form.unit}` } : {}),
+      },
+    });
   }
 
   const Err = ({ k }: { k: keyof FormValues }) =>
