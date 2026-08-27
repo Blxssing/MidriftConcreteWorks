@@ -2,23 +2,70 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { categories, getCategory } from "@/data/products";
 import { CTABand, PageHero, PhotoSlots, Section } from "@/components/site/primitives";
 
+const SITE = "https://midrift-prime-solutions.lovable.app";
+
 export const Route = createFileRoute("/products/$category/")({
   loader: ({ params }) => {
     const category = getCategory(params.category);
     if (!category) throw notFound();
-    return { name: category.name, intro: category.intro };
+    return {
+      slug: category.slug,
+      name: category.name,
+      intro: category.intro,
+      description: category.description,
+      image: category.image,
+      products: category.products.map((p) => ({ slug: p.slug, name: p.name })),
+    };
   },
   head: ({ loaderData }) => {
     if (!loaderData) {
       return { meta: [{ title: "Product category not found | Midrift" }, { name: "robots", content: "noindex" }] };
     }
-    const title = `${loaderData.name} | Midrift Concrete Works`;
+    const title = `${loaderData.name} — Precast Concrete Kenya | Midrift Concrete Works`;
+    const description = `${loaderData.intro} Manufactured in Kenya by Midrift Concrete Works and quoted to your project specification.`;
+    const url = `${SITE}/products/${loaderData.slug}`;
     return {
       meta: [
         { title },
-        { name: "description", content: loaderData.intro },
+        { name: "description", content: description },
         { property: "og:title", content: title },
-        { property: "og:description", content: loaderData.intro },
+        { property: "og:description", content: description },
+        { property: "og:url", content: url },
+        { property: "og:type", content: "website" },
+        ...(loaderData.image
+          ? [
+              { property: "og:image", content: loaderData.image },
+              { name: "twitter:image", content: loaderData.image },
+            ]
+          : []),
+      ],
+      links: [{ rel: "canonical", href: url }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                  { "@type": "ListItem", position: 1, name: "Products", item: `${SITE}/products` },
+                  { "@type": "ListItem", position: 2, name: loaderData.name, item: url },
+                ],
+              },
+              {
+                "@type": "ItemList",
+                name: loaderData.name,
+                itemListElement: loaderData.products.map((p, i) => ({
+                  "@type": "ListItem",
+                  position: i + 1,
+                  name: p.name,
+                  url: `${url}/${p.slug}`,
+                })),
+              },
+            ],
+          }),
+        },
       ],
     };
   },
