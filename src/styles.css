@@ -381,3 +381,65 @@
 @utility wordmark-animate {
   animation: wordmark-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
+
+/* ============================================================
+   WhatsApp conversion styling — high contrast, unmissable
+   ============================================================ */
+
+:root {
+  --wa: oklch(0.72 0.19 148);
+  --wa-deep: oklch(0.6 0.17 152);
+  --wa-foreground: oklch(0.99 0 0);
+}
+
+@theme inline {
+  --color-whatsapp: var(--wa);
+  --color-whatsapp-deep: var(--wa-deep);
+  --color-whatsapp-foreground: var(--wa-foreground);
+}
+
+/* Solid, high-contrast WhatsApp button */
+@utility wa-btn {
+  background: linear-gradient(140deg, var(--wa), var(--wa-deep));
+  color: var(--wa-foreground);
+  border: 1px solid color-mix(in oklab, var(--wa-deep) 70%, transparent);
+  box-shadow: 0 16px 34px -18px color-mix(in oklab, var(--wa) 95%, transparent);
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.3s ease;
+  &:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.08) saturate(1.05);
+    box-shadow: 0 22px 44px -18px color-mix(in oklab, var(--wa) 95%, transparent);
+  }
+  &:active {
+    transform: scale(0.96);
+  }
+}
+
+/* Attention halo for the sticky WhatsApp button */
+@keyframes wa-halo {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--wa) 55%, transparent);
+  }
+  70% {
+    box-shadow: 0 0 0 16px color-mix(in oklab, var(--wa) 0%, transparent);
+  }
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--wa) 0%, transparent);
+  }
+}
+
+@utility wa-halo {
+  animation: wa-halo 2.6s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+/* Frosted callout used for WhatsApp banners */
+@utility wa-callout {
+  background: color-mix(in oklab, var(--wa) 14%, var(--card));
+  border: 1px solid color-mix(in oklab, var(--wa) 40%, transparent);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  box-shadow: 0 24px 50px -30px color-mix(in oklab, var(--wa) 70%, transparent);
+}
