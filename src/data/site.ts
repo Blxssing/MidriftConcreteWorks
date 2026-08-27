@@ -102,6 +102,7 @@ export const mainNav = [
   { label: "Catalogue", to: "/catalogue" },
   { label: "Services", to: "/services" },
   { label: "Bulk & Delivery", to: "/delivery" },
+  { label: "Bulk & Wholesale", to: "/bulk-wholesale" },
   { label: "Who We Serve", to: "/solutions" },
   { label: "Projects", to: "/projects" },
   { label: "Testimonials", to: "/testimonials" },
