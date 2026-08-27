@@ -13,7 +13,8 @@ export const site = {
   location: "Old Nairobi Road, Nakuru, Kenya",
   address: "Midrift Concrete Works, Old Nairobi Rd, Nakuru, Kenya",
   mapsUrl: "https://maps.app.goo.gl/QvdwAQEf79oM6LwZ9",
-  reviewsUrl: "https://search.google.com/local/reviews?placeid=&q=Midrift+Concrete+Works+Old+Nairobi+Rd+Nakuru",
+  reviewsUrl:
+    "https://www.google.com/maps/place/Midrift+Concrete+Works,+Old+Nairobi+Rd,+Nakuru/data=!4m6!3m5!1s0x1829939fa6abac9d:0xcc545138471d5578!9m1!1b1",
   hours: "Mon – Sat, 7:30am – 6:00pm",
   socials: [
     {
