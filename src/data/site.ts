@@ -17,7 +17,16 @@ export const site = {
     "https://www.google.com/maps?q=Midrift+Concrete+Works,+Old+Nairobi+Road,+Nakuru,+Kenya&output=embed",
   reviewsUrl:
     "https://www.google.com/maps/place/Midrift+Concrete+Works,+Old+Nairobi+Rd,+Nakuru/data=!4m6!3m5!1s0x1829939fa6abac9d:0xcc545138471d5578!9m1!1b1",
-  hours: "Mon – Sat, 7:30am – 6:00pm",
+  hours: "Mon – Fri, 7:30am – 5:00pm · Sat, 7:30am – 1:00pm · Sun closed",
+  hoursRows: [
+    { day: "Monday", time: "7:30 AM – 5:00 PM" },
+    { day: "Tuesday", time: "7:30 AM – 5:00 PM" },
+    { day: "Wednesday", time: "7:30 AM – 5:00 PM" },
+    { day: "Thursday", time: "7:30 AM – 5:00 PM" },
+    { day: "Friday", time: "7:30 AM – 5:00 PM" },
+    { day: "Saturday", time: "7:30 AM – 1:00 PM" },
+    { day: "Sunday", time: "Closed" },
+  ],
   socials: [
     {
       label: "TikTok",
