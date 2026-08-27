@@ -76,10 +76,12 @@ Thank you.`,
 
 export const mainNav = [
   { label: "Products", to: "/products" },
+  { label: "Services", to: "/services" },
+  { label: "Bulk & Delivery", to: "/delivery" },
   { label: "Who We Serve", to: "/solutions" },
   { label: "Projects", to: "/projects" },
+  { label: "Testimonials", to: "/testimonials" },
   { label: "Quality", to: "/quality" },
   { label: "About", to: "/about" },
-  { label: "Resources", to: "/resources" },
   { label: "Contact", to: "/contact" },
 ] as const;
