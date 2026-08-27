@@ -18,6 +18,16 @@ import tbeam1 from "@/assets/tbeam-1.jpg.asset.json";
 import tbeam2 from "@/assets/tbeam-2.jpg.asset.json";
 import tbeam3 from "@/assets/tbeam-3.jpg.asset.json";
 import tbeam4 from "@/assets/tbeam-4.jpg.asset.json";
+import slab1 from "@/assets/slab-1.jpg.asset.json";
+import slab2 from "@/assets/slab-2.jpg.asset.json";
+import slab3 from "@/assets/slab-3.jpg.asset.json";
+import fillerBlocksImg from "@/assets/filler-blocks.jpg.asset.json";
+import interlockingBlocksImg from "@/assets/interlocking-blocks.jpg.asset.json";
+import doubleSinkImg from "@/assets/double-sink.jpg.asset.json";
+import roadKerbsImg from "@/assets/road-kerbs.jpg.asset.json";
+import kenhaMarkersImg from "@/assets/kenha-markers.jpg.asset.json";
+import concreteTilesImg from "@/assets/concrete-tiles.jpg.asset.json";
+import concretePostsImg from "@/assets/concrete-posts.jpg.asset.json";
 
 export const TBC = "Specification to be confirmed";
 
@@ -215,11 +225,11 @@ export const categories: Category[] = [
       block("ballostad-1-5ft", "Ballostad 1.5ft", "Precast balustrade units at 1.5ft height.", "Ballostad units are cast for balcony, terrace and staircase edging at a 1.5ft height.", ["Balconies", "Terraces", "Staircases"], ballostad15.url),
       block("ballostad-2ft", "Ballostad 2ft", "Precast balustrade units at 2ft height.", "A 2ft balustrade height for terraces, walkways and perimeter edging.", ["Terraces", "Walkways", "Perimeter edging"], ballostad2.url),
       block("ballostad-3ft", "Ballostad 3ft", "Precast balustrade units at 3ft height.", "A taller 3ft balustrade for elevated terraces, roof edges and boundary features.", ["Roof edges", "Elevated terraces", "Boundary features"], ballostad3.url),
-      block("concrete-posts", "Concrete Posts", "Durable posts for fencing and perimeter works.", "Concrete posts provide a long-life alternative to timber for fence lines, perimeter security and agricultural use.", ["Fence lines", "Perimeter security", "Farms & estates"]),
-      block("concrete-tiles", "Concrete Tiles", "Cast tiles for floors, terraces and external areas.", "Concrete tiles give a hard-wearing finished surface for terraces, corridors and external circulation areas.", ["Terraces", "Corridors", "External floors"]),
-      block("filler-blocks", "Filler Blocks", "Lightweight infill for slab and rib systems.", "Filler blocks occupy the void between slab ribs, reducing dead load and concrete consumption.", ["Suspended slabs", "Rib-and-block floors"]),
-      block("interlocking-blocks", "Interlocking Blocks", "Dry-stack walling units for faster construction.", "Interlocking blocks key into each other, reducing mortar use and speeding up walling.", ["Walling", "Boundary walls", "Fast-build projects"]),
-      block("kplc-hater", "KPLC Hater", "Precast units supplied for utility installations.", "Produced to the sizes required for utility and power installation works.", ["Utility works", "Power installations", "Infrastructure sites"]),
+      block("concrete-posts", "Concrete Posts", "Durable posts for fencing and perimeter works.", "Concrete posts provide a long-life alternative to timber for fence lines, perimeter security and agricultural use.", ["Fence lines", "Perimeter security", "Farms & estates"], concretePostsImg.url),
+      block("concrete-tiles", "Concrete Tiles", "Cast tiles for floors, terraces and external areas.", "Concrete tiles give a hard-wearing finished surface for terraces, corridors and external circulation areas.", ["Terraces", "Corridors", "External floors"], concreteTilesImg.url),
+      block("filler-blocks", "Filler Blocks", "Lightweight infill for slab and rib systems.", "Filler blocks occupy the void between slab ribs, reducing dead load and concrete consumption.", ["Suspended slabs", "Rib-and-block floors"], fillerBlocksImg.url),
+      block("interlocking-blocks", "Interlocking Blocks", "Dry-stack walling units for faster construction.", "Interlocking blocks key into each other, reducing mortar use and speeding up walling.", ["Walling", "Boundary walls", "Fast-build projects"], interlockingBlocksImg.url),
+      block("kplc-hatari", "KPLC Hatari", "Precast units supplied for utility installations.", "Produced to the sizes required for utility and power installation works.", ["Utility works", "Power installations", "Infrastructure sites"]),
     ],
   },
   {
@@ -229,7 +239,12 @@ export const categories: Category[] = [
     intro: "Large-format slabs for walkways, terraces and pedestrian areas.",
     description:
       "Paving slabs give a broad, flat finished surface for walkways, terraces, courtyards and pedestrian areas, produced to consistent thickness for level laying.",
-    photoSlots: photoSlots("Paving Slabs", 3),
+    image: slab1.url,
+    photoSlots: photoSlots("Paving Slabs", 3).map((sl, i) => ({
+      ...sl,
+      image: [slab1.url, slab2.url, slab3.url][i] as string,
+      note: "Paving slabs laid by Midrift.",
+    })),
     products: [],
   },
   {
@@ -279,7 +294,8 @@ export const categories: Category[] = [
       },
       p("road-concrete", "road-culverts", "Road Culverts", "Heavier culvert units for carriageway crossings.", "Road culverts are produced for the loading conditions found beneath carriageways and highway shoulders.", ["Highways", "Carriageway crossings", "Estate roads"], ["Box", "Circular", "Reinforced"], ["To project specification"], civilSpecs),
       p("road-concrete", "shallow-drain", "Shallow Drain", "Shallow precast drains for controlled surface water flow.", "Shallow drains move surface water away from carriageways, yards and walkways quickly and predictably.", ["Roads", "Industrial yards", "Estates"], ["Open channel", "Covered channel"], ["Multiple sizes"], civilSpecs),
-      p("road-concrete", "kenha-boundary-markers", "Kenha Boundary Makers", "Precast boundary markers for road reserve demarcation.", "Boundary markers demarcate road reserves and public works boundaries in line with authority requirements.", ["Road reserves", "Public works", "Highway boundaries"], ["Standard", "To authority specification"], ["To project specification"], civilSpecs),
+      withImages(p("road-concrete", "road-kerbs", "Road Kerbs", "Precast kerbs for carriageway, parking and walkway edging.", "Road kerbs define carriageway, parking bay and walkway edges, containing the paved surface and directing surface water to drainage.", ["Carriageway edging", "Parking bays", "Walkways"], ["Standard", "Half-battered", "To authority specification"], ["Multiple sizes"], civilSpecs), [{ url: roadKerbsImg.url, note: "Precast road kerbs at the Midrift yard." }]),
+      withImages(p("road-concrete", "kenha-boundary-markers", "Kenha Boundary Makers", "Precast boundary markers for road reserve demarcation.", "Boundary markers demarcate road reserves and public works boundaries in line with authority requirements.", ["Road reserves", "Public works", "Highway boundaries"], ["Standard", "To authority specification"], ["To project specification"], civilSpecs), [{ url: kenhaMarkersImg.url, note: "KeNHA boundary markers cast at the Midrift yard." }]),
     ],
   },
   {
@@ -289,10 +305,15 @@ export const categories: Category[] = [
     intro: "Precast building components for finishing and structural works.",
     description:
       "Precast components that finish and support buildings — waffles, sinks, copings and seals — produced to consistent dimension for straightforward installation.",
-    photoSlots: photoSlots("Building and Infrastructure"),
+    image: doubleSinkImg.url,
+    photoSlots: photoSlots("Building and Infrastructure").map((sl, i) => ({
+      ...sl,
+      image: [doubleSinkImg.url, roadKerbsImg.url][i] as string,
+      note: "Precast building components from the Midrift yard.",
+    })),
     products: [
       p("building-infrastructure", "waffles", "Waffles", "Waffle units for ribbed slab construction.", "Waffle moulding units form ribbed slabs that reduce concrete volume while keeping structural depth.", ["Suspended slabs", "Commercial floors", "Institutional buildings"], ["Standard", "To engineer's specification"], ["To project specification"], civilSpecs),
-      p("building-infrastructure", "double-sink", "Doble Sink", "Precast double sink units for utility areas.", "Cast double sinks for kitchens, laundries, institutions and service areas where durability is essential.", ["Institutions", "Laundries", "Service areas"], ["Standard"], ["Multiple sizes"], civilSpecs),
+      withImages(p("building-infrastructure", "double-sink", "Doble Sink", "Precast double sink units for utility areas.", "Cast double sinks for kitchens, laundries, institutions and service areas where durability is essential.", ["Institutions", "Laundries", "Service areas"], ["Standard"], ["Multiple sizes"], civilSpecs), [{ url: doubleSinkImg.url, note: "Precast double sink units." }]),
       p("building-infrastructure", "wall-coping", "Wall Coping", "Capping units that protect wall tops from water.", "Wall coping sheds water off the top of boundary and parapet walls, extending the life of the masonry below.", ["Boundary walls", "Parapets", "Perimeter walls"], ["Standard", "Coloured"], ["Multiple sizes"], civilSpecs),
       p("building-infrastructure", "window-seals", "Window Seals", "Precast sills that throw water clear of the wall face.", "Window seals give a clean finished sill line and direct rainwater away from the wall below the opening.", ["Residential", "Commercial buildings", "Institutions"], ["Standard", "Coloured"], ["Multiple sizes"], civilSpecs),
       p("building-infrastructure", "pillar-coping", "Pillar Coping", "Decorative and protective caps for gate and fence pillars.", "Pillar coping finishes gate and fence pillars while protecting the top surface from water ingress.", ["Gate pillars", "Fence pillars", "Estates"], ["Standard", "Decorative"], ["Multiple sizes"], civilSpecs),
