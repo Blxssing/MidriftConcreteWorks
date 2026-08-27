@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { MessageCircle, Phone, ArrowRight, ShoppingBag } from "lucide-react";
 import { categories } from "@/data/products";
-import { site, whatsappLink, productEmailLink } from "@/data/site";
+import { site } from "@/data/site";
+import { useQuote } from "@/components/site/QuoteProvider";
 import { CTABand, PageHero, Section, SectionHead } from "@/components/site/primitives";
 import cabroImg from "@/assets/cabro.jpg";
 
@@ -95,16 +96,14 @@ function CataloguePage() {
                 <h3 className="mt-2 font-display text-xl tracking-tight">{c.name}</h3>
                 <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{c.description}</p>
                 <div className="mt-5 flex flex-col gap-2.5">
-                  <a
-                    href={whatsappLink(
-                      `Hello Midrift Concrete Works, I saw ${c.name} in your catalogue. Please send prices and availability.`,
-                    )}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="wa-btn flex items-center justify-center gap-2 rounded-full px-5 py-3.5 text-[13px] font-bold tracking-tight"
+                  <button
+                    type="button"
+                    onClick={() => openQuote({ product: c.name })}
+                    aria-label={`Get a quote on WhatsApp for ${c.name}`}
+                    className="wa-btn flex items-center justify-center gap-2 rounded-full px-5 py-3.5 text-[13px] font-bold tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                   >
                     <MessageCircle className="size-[18px] shrink-0" /> WhatsApp about {c.name}
-                  </a>
+                  </button>
                   <div className="flex gap-2">
                     <Link
                       to="/products/$category"
@@ -113,12 +112,14 @@ function CataloguePage() {
                     >
                       Details <ArrowRight className="size-4" />
                     </Link>
-                    <a
-                      href={productEmailLink(c.name)}
+                    <button
+                      type="button"
+                      onClick={() => openQuote({ product: c.name })}
+                      aria-label={`Email a quote request for ${c.name}`}
                       className="flex flex-1 items-center justify-center rounded-full border border-hairline px-4 py-3 text-[13px] font-semibold transition-colors hover:border-accent hover:text-accent"
                     >
                       Email quote
-                    </a>
+                    </button>
                   </div>
                 </div>
               </div>

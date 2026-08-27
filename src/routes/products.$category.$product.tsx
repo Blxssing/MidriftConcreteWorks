@@ -1,8 +1,15 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { getCategory, getProduct, relatedProducts } from "@/data/products";
-import { site, whatsappLink } from "@/data/site";
-import { Container, Gallery, PhotoSlots, Section, SpecTable, QuoteCTA } from "@/components/site/primitives";
-import { MessageCircle } from "lucide-react";
+import { site } from "@/data/site";
+import {
+  Container,
+  Gallery,
+  PhotoSlots,
+  Section,
+  SpecTable,
+  QuoteCTA,
+  WhatsAppCTA,
+} from "@/components/site/primitives";
 
 const SITE = "https://midrift-prime-solutions.lovable.app";
 
@@ -83,7 +90,6 @@ function ProductPage() {
   const product = getProduct(params.category, params.product)!;
   const category = getCategory(params.category)!;
   const related = relatedProducts(product);
-  const waMessage = `Hello Midrift, I would like a quote for ${product.name}.`;
 
   return (
     <>
