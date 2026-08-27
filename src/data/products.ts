@@ -202,7 +202,12 @@ export const categories: Category[] = [
     intro: "Masonry and precast units produced to consistent dimension for faster, cleaner building.",
     description:
       "Our concrete block range covers structural, infill and partition walling plus supporting precast items for residential, commercial and institutional buildings. Consistent dimensions reduce mortar wastage and speed up work on site.",
-    photoSlots: photoSlots("Concrete Blocks"),
+    image: ballostad15.url,
+    photoSlots: photoSlots("Concrete Blocks").map((sl, i) => ({
+      ...sl,
+      image: [ballostad15.url, ballostad2.url][i] as string,
+      note: "Precast units from the Midrift yard.",
+    })),
     products: [
       block("hollow-blocks", "Hollow Blocks", "Lighter walling units with cores for services and reduced dead load.", "Hollow blocks reduce wall dead load and allow services and reinforcement to be routed through the cores.", ["External walling", "Internal walling", "Boundary walls"]),
       block("hollow-pot-blocks", "Hollow Pot Blocks", "Infill units for suspended hollow-pot slabs.", "Hollow pot blocks act as lightweight infill between ribs in suspended slab construction, reducing concrete volume and slab weight.", ["Suspended slabs", "Floor systems", "Roof slabs"]),
@@ -250,7 +255,12 @@ export const categories: Category[] = [
     intro: "Culverts, drains and road markers for civil and highway works.",
     description:
       "Midrift supplies precast units for road construction and drainage — produced in volume and scheduled to match construction programmes.",
-    photoSlots: photoSlots("Road Concrete Works"),
+    image: culvert600.url,
+    photoSlots: photoSlots("Road Concrete Works").map((sl, i) => ({
+      ...sl,
+      image: [culvert600.url, culvert900.url][i] as string,
+      note: "Precast culverts from the Midrift yard.",
+    })),
     products: [
       {
         ...withImages(
