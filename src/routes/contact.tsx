@@ -94,6 +94,10 @@ function ContactPage() {
 
           <QuoteForm />
         </div>
+
+        <div className="mt-14">
+          <LocationMap />
+        </div>
       </Section>
     </>
   );
