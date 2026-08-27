@@ -119,12 +119,13 @@ export function WhatsAppCTA({ message, dark }: { message?: string; dark?: boolea
       target="_blank"
       rel="noreferrer"
       data-cta-zone="whatsapp"
+      aria-label="Get a quote on WhatsApp — opens a pre-filled WhatsApp chat with Midrift sales"
       className={cn(
-        "wa-btn inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-[12px] font-bold uppercase tracking-[0.12em]",
+        "wa-btn inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-8 py-4 text-[12px] font-bold uppercase tracking-[0.12em] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background",
         dark && "ring-1 ring-white/20",
       )}
     >
-      <MessageCircle className="size-4" /> WhatsApp Sales
+      <MessageCircle className="size-4" aria-hidden="true" /> Get a Quote on WhatsApp
     </a>
   );
 }
