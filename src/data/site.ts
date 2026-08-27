@@ -10,7 +10,10 @@ export const site = {
   whatsappAlt: "254791502707",
   whatsappCatalog: "https://wa.me/c/254745240050",
   email: "midmerchants@gmail.com",
-  location: "Nakuru, Kenya",
+  location: "Old Nairobi Road, Nakuru, Kenya",
+  address: "Midrift Concrete Works, Old Nairobi Rd, Nakuru, Kenya",
+  mapsUrl: "https://maps.app.goo.gl/QvdwAQEf79oM6LwZ9",
+  reviewsUrl: "https://search.google.com/local/reviews?placeid=&q=Midrift+Concrete+Works+Old+Nairobi+Rd+Nakuru",
   hours: "Mon – Sat, 7:30am – 6:00pm",
   socials: [
     {
