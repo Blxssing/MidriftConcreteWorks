@@ -147,6 +147,44 @@ export function EmailCTA({ subject, dark }: { subject?: string; dark?: boolean }
   );
 }
 
+/** Opens the yard location in the Google Maps app. */
+export function MapCTA({ dark }: { dark?: boolean }) {
+  return (
+    <a
+      href={site.mapsUrl}
+      target="_blank"
+      rel="noreferrer"
+      className={cn(
+        "inline-flex items-center justify-center gap-2 rounded-full border px-8 py-4 text-[12px] font-bold uppercase tracking-[0.12em] transition-all duration-300 ease-out hover:-translate-y-0.5 active:scale-95",
+        dark
+          ? "border-hairline-invert text-ink-foreground hover:bg-ink-foreground/10"
+          : "border-hairline text-foreground hover:border-accent hover:text-accent",
+      )}
+    >
+      <MapPin className="size-4" /> Google Map
+    </a>
+  );
+}
+
+/** Opens the Google Business reviews tab for the yard. */
+export function ReviewsCTA({ dark }: { dark?: boolean }) {
+  return (
+    <a
+      href={site.reviewsUrl}
+      target="_blank"
+      rel="noreferrer"
+      className={cn(
+        "inline-flex items-center justify-center gap-2 rounded-full border px-8 py-4 text-[12px] font-bold uppercase tracking-[0.12em] transition-all duration-300 ease-out hover:-translate-y-0.5 active:scale-95",
+        dark
+          ? "border-hairline-invert text-ink-foreground hover:bg-ink-foreground/10"
+          : "border-hairline text-foreground hover:border-accent hover:text-accent",
+      )}
+    >
+      <Star className="size-4" /> View Reviews
+    </a>
+  );
+}
+
 /** Opens the phone dialler directly. */
 export function CallCTA({ dark }: { dark?: boolean }) {
   return (
