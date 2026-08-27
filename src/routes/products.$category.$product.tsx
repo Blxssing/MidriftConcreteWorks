@@ -108,15 +108,8 @@ function ProductPage() {
             <p className="mt-5 leading-relaxed text-muted-foreground">{product.description}</p>
 
             <div className="mt-9 flex flex-wrap gap-3">
-              <QuoteCTA label="Request a quote" />
-              <a
-                href={whatsappLink(waMessage)}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 border border-foreground px-8 py-4 text-[12px] font-bold uppercase tracking-[0.12em] transition-colors hover:bg-foreground hover:text-background rounded-full"
-              >
-                <MessageCircle className="size-4" /> WhatsApp Sales
-              </a>
+              <QuoteCTA label="Request a quote" product={product.name} />
+              <WhatsAppCTA product={product.name} />
             </div>
             <p className="mt-4 text-sm text-muted-foreground">
               Or call <a href={site.phoneHref} className="font-semibold text-accent">{site.phone}</a>

@@ -7,6 +7,7 @@ import { Wordmark } from "@/components/site/Wordmark";
 import { SocialIcons } from "@/components/site/SocialIcons";
 
 export function SiteHeader() {
+  const { openQuote } = useQuote();
   const [open, setOpen] = useState(false);
 
   return (

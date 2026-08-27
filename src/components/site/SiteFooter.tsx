@@ -20,6 +20,7 @@ const company = [
 ];
 
 export function SiteFooter() {
+  const { openQuote } = useQuote();
   return (
     <footer className="bg-ink text-ink-foreground">
       <div className="mx-auto max-w-[1400px] px-5 py-16 md:px-10 md:py-24">
