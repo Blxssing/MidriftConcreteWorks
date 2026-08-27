@@ -4,23 +4,74 @@ import { site, whatsappLink } from "@/data/site";
 import { Container, Gallery, PhotoSlots, Section, SpecTable, QuoteCTA } from "@/components/site/primitives";
 import { MessageCircle } from "lucide-react";
 
+const SITE = "https://midrift-prime-solutions.lovable.app";
+
 export const Route = createFileRoute("/products/$category/$product")({
   loader: ({ params }) => {
     const product = getProduct(params.category, params.product);
     if (!product) throw notFound();
-    return { name: product.name, summary: product.summary };
+    const category = getCategory(params.category)!;
+    return {
+      name: product.name,
+      summary: product.summary,
+      description: product.description,
+      image: product.image ?? product.photoSlots.find((s) => s.image)?.image,
+      categoryName: category.name,
+      categorySlug: category.slug,
+      slug: product.slug,
+      faqs: product.faqs,
+    };
   },
   head: ({ loaderData }) => {
     if (!loaderData) {
       return { meta: [{ title: "Product not found | Midrift" }, { name: "robots", content: "noindex" }] };
     }
-    const title = `${loaderData.name} | Midrift Concrete Works`;
+    const title = `${loaderData.name} — ${loaderData.categoryName} | Midrift Concrete Works`;
+    const description = `${loaderData.summary} ${loaderData.name} manufactured in Kenya by Midrift Concrete Works — request a quote for sizes, variants and delivery.`;
+    const url = `${SITE}/products/${loaderData.categorySlug}/${loaderData.slug}`;
     return {
       meta: [
         { title },
-        { name: "description", content: loaderData.summary },
+        { name: "description", content: description },
         { property: "og:title", content: title },
-        { property: "og:description", content: loaderData.summary },
+        { property: "og:description", content: description },
+        { property: "og:url", content: url },
+        { property: "og:type", content: "product" },
+        ...(loaderData.image
+          ? [
+              { property: "og:image", content: loaderData.image },
+              { name: "twitter:image", content: loaderData.image },
+            ]
+          : []),
+      ],
+      links: [{ rel: "canonical", href: url }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "Product",
+                name: loaderData.name,
+                description: loaderData.description,
+                category: loaderData.categoryName,
+                url,
+                ...(loaderData.image ? { image: loaderData.image } : {}),
+                brand: { "@type": "Brand", name: "Midrift Concrete Works" },
+                manufacturer: { "@type": "Organization", name: "Midrift Concrete Works Ltd" },
+              },
+              {
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                  { "@type": "ListItem", position: 1, name: "Products", item: `${SITE}/products` },
+                  { "@type": "ListItem", position: 2, name: loaderData.categoryName, item: `${SITE}/products/${loaderData.categorySlug}` },
+                  { "@type": "ListItem", position: 3, name: loaderData.name, item: url },
+                ],
+              },
+            ],
+          }),
+        },
       ],
     };
   },
