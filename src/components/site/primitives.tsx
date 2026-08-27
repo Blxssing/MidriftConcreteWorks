@@ -232,7 +232,7 @@ export function PhotoSlots({
   slots,
   title = "Product photography",
 }: {
-  slots: { label: string; note: string; cta: { label: string; message: string } }[];
+  slots: { label: string; note: string; image?: string; cta: { label: string; message: string } }[];
   title?: string;
 }) {
   if (!slots?.length) return null;
