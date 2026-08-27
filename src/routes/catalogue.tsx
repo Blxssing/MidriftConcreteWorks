@@ -30,6 +30,7 @@ export const Route = createFileRoute("/catalogue")({
 });
 
 function CataloguePage() {
+  const { openQuote } = useQuote();
   return (
     <>
       <PageHero

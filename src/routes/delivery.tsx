@@ -34,6 +34,7 @@ const process = [
 ];
 
 function DeliveryPage() {
+  const { openQuote } = useQuote();
   return (
     <>
       <PageHero
