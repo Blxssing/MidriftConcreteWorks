@@ -243,12 +243,24 @@ export function PhotoSlots({
         {slots.map((s) => (
           <figure
             key={s.label}
-            className="hover-lift flex flex-col overflow-hidden rounded-3xl border border-dashed border-hairline bg-concrete"
+            className={`hover-lift flex flex-col overflow-hidden rounded-3xl border bg-concrete ${
+              s.image ? "border-hairline" : "border-dashed border-hairline"
+            }`}
           >
-            <div className="flex aspect-4/3 w-full flex-col items-center justify-center gap-2 px-6 text-center">
-              <span className="font-display text-lg tracking-tight">{s.label}</span>
-              <span className="max-w-xs text-sm text-muted-foreground">{s.note}</span>
-            </div>
+            {s.image ? (
+              <img
+                src={s.image}
+                alt={s.label}
+                loading="lazy"
+                decoding="async"
+                className="aspect-4/3 w-full object-cover"
+              />
+            ) : (
+              <div className="flex aspect-4/3 w-full flex-col items-center justify-center gap-2 px-6 text-center">
+                <span className="font-display text-lg tracking-tight">{s.label}</span>
+                <span className="max-w-xs text-sm text-muted-foreground">{s.note}</span>
+              </div>
+            )}
             <figcaption className="flex flex-wrap items-center gap-3 border-t border-hairline bg-background px-6 py-5">
               <QuoteCTA label={s.cta.label} />
               <WhatsAppCTA message={s.cta.message} />
