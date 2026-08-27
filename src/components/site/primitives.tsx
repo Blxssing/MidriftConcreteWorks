@@ -353,8 +353,8 @@ export function PhotoSlots({
               </div>
             )}
             <figcaption className="flex flex-wrap items-center gap-3 border-t border-hairline bg-background px-6 py-5">
-              <QuoteCTA label={s.cta.label} />
-              <WhatsAppCTA message={s.cta.message} />
+              <QuoteCTA label={s.cta.label} product={s.label} />
+              <WhatsAppCTA product={s.label} />
             </figcaption>
           </figure>
         ))}
