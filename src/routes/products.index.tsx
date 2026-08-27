@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { categories } from "@/data/products";
 import { CTABand, PageHero, Section } from "@/components/site/primitives";
+import { ProductFinder } from "@/components/site/ProductFinder";
 import cabroImg from "@/assets/cabro.jpg";
 
 export const Route = createFileRoute("/products/")({
