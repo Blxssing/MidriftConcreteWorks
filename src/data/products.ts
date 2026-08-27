@@ -123,8 +123,18 @@ const paver = (slug: string, name: string, summary: string, description: string,
   };
 };
 
-const block = (slug: string, name: string, summary: string, description: string, apps: string[]) =>
-  p("concrete-blocks", slug, name, summary, description, apps, ["Standard", "To project specification"], ["Multiple sizes available"], blockSpecs);
+const withImages = (product: Product, images: { url: string; note?: string }[]): Product => ({
+  ...product,
+  image: images[0]?.url ?? product.image,
+  photoSlots: product.photoSlots.map((s, i) =>
+    images[i] ? { ...s, image: images[i]!.url, note: images[i]!.note ?? `${product.name} produced at the Midrift yard.` } : s,
+  ),
+});
+
+const block = (slug: string, name: string, summary: string, description: string, apps: string[], image?: string) => {
+  const base = p("concrete-blocks", slug, name, summary, description, apps, ["Standard", "To project specification"], ["Multiple sizes available"], blockSpecs);
+  return image ? withImages(base, [{ url: image }]) : base;
+};
 
 export const categories: Category[] = [
   {
