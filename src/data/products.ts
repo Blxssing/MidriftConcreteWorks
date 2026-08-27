@@ -114,7 +114,12 @@ export const categories: Category[] = [
     intro: "Precast T-beams for suspended slabs and floor systems.",
     description:
       "Midrift manufactures precast T-beams used in suspended floor and roof systems. Beams are produced under controlled casting and curing so sections stay straight, consistent and ready for fast installation on site.",
-    photoSlots: photoSlots("T-Beam", 4),
+    image: tbeam1.url,
+    photoSlots: photoSlots("T-Beam", 4).map((s, i) => ({
+      ...s,
+      image: [tbeam1.url, tbeam2.url, tbeam3.url, tbeam4.url][i],
+      note: "Precast T-beams from the Midrift yard.",
+    })),
     products: [],
   },
   {
