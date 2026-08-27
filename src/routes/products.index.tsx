@@ -33,6 +33,10 @@ function ProductsIndex() {
         imageAlt="Interlocking cabro paving"
       />
 
+      <Section className="pb-0">
+        <ProductFinder />
+      </Section>
+
       {categories.map((c) => (
         <Section key={c.slug} className="border-b border-hairline">
           <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr]">
