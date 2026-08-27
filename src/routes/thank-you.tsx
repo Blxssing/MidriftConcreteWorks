@@ -3,7 +3,7 @@ import { CheckCircle2, MessageCircle, Mail, Phone, BookOpen, Clock } from "lucid
 import { site, whatsappLink, emailLink } from "@/data/site";
 import { Section, Container, CTABand } from "@/components/site/primitives";
 
-type Search = { product?: string; quantity?: string };
+type Search = { product?: string | undefined; quantity?: string | undefined };
 
 export const Route = createFileRoute("/thank-you")({
   validateSearch: (search: Record<string, unknown>): Search => ({
