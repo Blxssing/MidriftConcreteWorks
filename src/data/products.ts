@@ -95,8 +95,8 @@ const p = (
   faqs: baseFaqs(name),
 });
 
-const paver = (slug: string, name: string, summary: string, description: string) =>
-  p(
+const paver = (slug: string, name: string, summary: string, description: string, image?: string) => {
+  const base = p(
     "cabro",
     slug,
     name,
@@ -107,6 +107,15 @@ const paver = (slug: string, name: string, summary: string, description: string)
     ["Multiple thicknesses available"],
     paveSpecs,
   );
+  if (!image) return base;
+  return {
+    ...base,
+    image,
+    photoSlots: base.photoSlots.map((s, i) =>
+      i === 0 ? { ...s, image, note: `${name} laid on site.` } : s,
+    ),
+  };
+};
 
 const block = (slug: string, name: string, summary: string, description: string, apps: string[]) =>
   p("concrete-blocks", slug, name, summary, description, apps, ["Standard", "To project specification"], ["Multiple sizes available"], blockSpecs);
