@@ -118,15 +118,53 @@ export function WhatsAppCTA({ message, dark }: { message?: string; dark?: boolea
       href={whatsappLink(message)}
       target="_blank"
       rel="noreferrer"
+      data-cta-zone="whatsapp"
       className={cn(
-        "inline-flex items-center justify-center gap-2 rounded-full border px-8 py-4 text-[12px] font-bold uppercase tracking-[0.12em] transition-all duration-300 ease-out hover:-translate-y-0.5",
-        dark
-          ? "border-hairline-invert text-ink-foreground hover:bg-ink-foreground/10"
-          : "border-foreground text-foreground hover:bg-foreground hover:text-background",
+        "wa-btn inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-[12px] font-bold uppercase tracking-[0.12em]",
+        dark && "ring-1 ring-white/20",
       )}
     >
       <MessageCircle className="size-4" /> WhatsApp Sales
     </a>
+  );
+}
+
+/** Full-width, high-contrast WhatsApp callout for use inside page sections. */
+export function WhatsAppBanner({
+  title = "Get a price on WhatsApp in minutes",
+  lead = "Send the product, quantity and delivery town — our sales team replies with pricing and lead time.",
+  message,
+}: {
+  title?: string;
+  lead?: string;
+  message?: string;
+}) {
+  return (
+    <div className="wa-callout flex flex-col gap-6 rounded-[32px] p-7 md:flex-row md:items-center md:justify-between md:p-9">
+      <div className="max-w-xl">
+        <h3 className="font-display text-2xl tracking-tight">{title}</h3>
+        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{lead}</p>
+      </div>
+      <div className="flex flex-col gap-3 sm:flex-row">
+        <a
+          href={whatsappLink(message)}
+          target="_blank"
+          rel="noreferrer"
+          data-cta-zone="whatsapp-banner"
+          className="wa-btn flex items-center justify-center gap-2 rounded-full px-7 py-4 text-[14px] font-bold tracking-tight"
+        >
+          <MessageCircle className="size-5" /> Chat on WhatsApp
+        </a>
+        <a
+          href={site.whatsappCatalog}
+          target="_blank"
+          rel="noreferrer"
+          className="ios-glass flex items-center justify-center gap-2 rounded-full px-7 py-4 text-[14px] font-bold tracking-tight transition-transform duration-300 active:scale-95"
+        >
+          <MessageCircle className="size-5 text-accent" /> WhatsApp catalogue
+        </a>
+      </div>
+    </div>
   );
 }
 
