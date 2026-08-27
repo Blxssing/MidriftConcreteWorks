@@ -6,11 +6,13 @@ import { categories } from "@/data/products";
 import { solutions } from "@/data/solutions";
 
 const company = [
+  { label: "Services We Offer", to: "/services" },
+  { label: "Bulk & Wholesale", to: "/bulk-wholesale" },
+  { label: "Delivery & Logistics", to: "/delivery" },
+  { label: "Testimonials & Reviews", to: "/testimonials" },
   { label: "About Midrift", to: "/about" },
   { label: "Quality & Manufacturing", to: "/quality" },
   { label: "Projects", to: "/projects" },
-  { label: "Bulk & Wholesale", to: "/bulk-wholesale" },
-  { label: "Delivery & Logistics", to: "/delivery" },
   { label: "Resources", to: "/resources" },
   { label: "Contact", to: "/contact" },
 ];
