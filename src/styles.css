@@ -295,3 +295,89 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ============================================================
+   iOS 18 app theme — sheets, cards, buttons, legible text
+   ============================================================ */
+
+@layer base {
+  body {
+    font-size: 1.0625rem; /* iOS body size — larger, clearly legible */
+    line-height: 1.55;
+    letter-spacing: -0.011em;
+  }
+}
+
+/* Higher-contrast secondary text so copy stays visible on every page */
+:root {
+  --muted-foreground: oklch(0.36 0.022 215);
+}
+
+.dark {
+  --muted-foreground: oklch(0.82 0.005 60);
+}
+
+/* Springy iOS button press */
+@utility ios-cta {
+  box-shadow: 0 14px 30px -16px color-mix(in oklab, var(--accent-raw) 90%, transparent);
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.3s ease;
+  &:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.07);
+  }
+  &:active {
+    transform: scale(0.96);
+  }
+}
+
+/* iOS sheet slide-down for the mobile menu */
+@keyframes ios-sheet-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -12px, 0) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@utility ios-sheet {
+  animation: ios-sheet-in 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes ios-row-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -8px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@utility ios-row {
+  animation: ios-row-in 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Wordmark entrance — elegant fade + settle */
+@keyframes wordmark-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0);
+    letter-spacing: 0.06em;
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    letter-spacing: 0.005em;
+  }
+}
+
+@utility wordmark-animate {
+  animation: wordmark-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
