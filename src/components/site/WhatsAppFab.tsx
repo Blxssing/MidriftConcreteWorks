@@ -12,11 +12,11 @@ export function WhatsAppFab() {
       target="_blank"
       rel="noreferrer"
       data-cta-zone="whatsapp-fab"
-      aria-label="Chat with Midrift sales on WhatsApp"
-      className="wa-btn wa-halo fixed bottom-24 right-4 z-50 flex items-center gap-2.5 rounded-full px-4 py-3.5 text-[14px] font-bold tracking-tight print:hidden md:bottom-28 md:right-8 md:px-5"
+      aria-label="Talk to sales on WhatsApp — opens a pre-filled WhatsApp chat"
+      className="wa-btn wa-halo fixed bottom-24 right-4 z-50 flex min-h-12 min-w-12 items-center gap-2.5 rounded-full px-4 py-3.5 text-[14px] font-bold tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background print:hidden md:bottom-28 md:right-8 md:px-5"
     >
-      <MessageCircle className="size-6" />
-      <span className="hidden sm:inline">Chat on WhatsApp</span>
+      <MessageCircle className="size-6" aria-hidden="true" />
+      <span className="hidden sm:inline">Talk to Sales</span>
     </a>
   );
 }
