@@ -30,6 +30,7 @@ export type Category = {
 export type PhotoSlot = {
   label: string;
   note: string;
+  image?: string;
   cta: { label: string; message: string };
 };
 
