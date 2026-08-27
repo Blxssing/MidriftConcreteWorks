@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { categories } from "@/data/products";
 import { CTABand, PageHero, Section } from "@/components/site/primitives";
+import { ProductFinder } from "@/components/site/ProductFinder";
 import cabroImg from "@/assets/cabro.jpg";
 
 export const Route = createFileRoute("/products/")({
@@ -32,6 +33,10 @@ function ProductsIndex() {
         image={cabroImg}
         imageAlt="Interlocking cabro paving"
       />
+
+      <Section className="pb-0">
+        <ProductFinder />
+      </Section>
 
       {categories.map((c) => (
         <Section key={c.slug} className="border-b border-hairline">
