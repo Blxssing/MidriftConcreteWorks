@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { CTABand, PageHero, Section, SectionHead } from "@/components/site/primitives";
 import logisticsImg from "@/assets/logistics.jpg";
-import { site } from "@/data/site";
+import { site, whatsappLink, emailLink } from "@/data/site";
+import { Mail, MessageCircle, Music2, Phone } from "lucide-react";
 
 export const Route = createFileRoute("/delivery")({
   head: () => ({
