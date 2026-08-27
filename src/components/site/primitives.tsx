@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
-import { MessageCircle, Mail, Phone } from "lucide-react";
+import { MessageCircle, Mail, Phone, MapPin, Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { whatsappLink, emailLink, site } from "@/data/site";
 
