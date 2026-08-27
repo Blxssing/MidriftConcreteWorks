@@ -152,17 +152,19 @@ export function WhatsAppBanner({
           target="_blank"
           rel="noreferrer"
           data-cta-zone="whatsapp-banner"
-          className="wa-btn flex items-center justify-center gap-2 rounded-full px-7 py-4 text-[14px] font-bold tracking-tight"
+          aria-label="Talk to Midrift sales on WhatsApp — opens a pre-filled chat"
+          className="wa-btn flex min-h-11 items-center justify-center gap-2 rounded-full px-7 py-4 text-[14px] font-bold tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         >
-          <MessageCircle className="size-5" /> Chat on WhatsApp
+          <MessageCircle className="size-5" aria-hidden="true" /> Talk to Sales on WhatsApp
         </a>
         <a
           href={site.whatsappCatalog}
           target="_blank"
           rel="noreferrer"
-          className="ios-glass flex items-center justify-center gap-2 rounded-full px-7 py-4 text-[14px] font-bold tracking-tight transition-transform duration-300 active:scale-95"
+          aria-label="Browse the Midrift WhatsApp product catalogue"
+          className="ios-glass flex min-h-11 items-center justify-center gap-2 rounded-full px-7 py-4 text-[14px] font-bold tracking-tight transition-transform duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-95"
         >
-          <MessageCircle className="size-5 text-accent" /> WhatsApp catalogue
+          <MessageCircle className="size-5 text-accent" aria-hidden="true" /> WhatsApp catalogue
         </a>
       </div>
     </div>
@@ -174,14 +176,15 @@ export function EmailCTA({ subject, dark }: { subject?: string; dark?: boolean }
   return (
     <a
       href={subject ? emailLink(subject) : emailLink()}
+      aria-label="Email sales — opens a pre-filled email to the Midrift sales team"
       className={cn(
-        "inline-flex items-center justify-center gap-2 rounded-full border px-8 py-4 text-[12px] font-bold uppercase tracking-[0.12em] transition-all duration-300 ease-out hover:-translate-y-0.5",
+        "inline-flex min-h-11 items-center justify-center gap-2 rounded-full border px-8 py-4 text-[12px] font-bold uppercase tracking-[0.12em] transition-all duration-300 ease-out hover:-translate-y-0.5",
         dark
           ? "border-hairline-invert text-ink-foreground hover:bg-ink-foreground/10"
           : "border-hairline text-foreground hover:border-accent hover:text-accent",
       )}
     >
-      <Mail className="size-4" /> Email Sales
+      <Mail className="size-4" aria-hidden="true" /> Email Sales
     </a>
   );
 }
@@ -193,8 +196,9 @@ export function MapCTA({ dark }: { dark?: boolean }) {
       href={site.mapsUrl}
       target="_blank"
       rel="noreferrer"
+      aria-label="Open our yard location in Google Maps"
       className={cn(
-        "inline-flex items-center justify-center gap-2 rounded-full border px-8 py-4 text-[12px] font-bold uppercase tracking-[0.12em] transition-all duration-300 ease-out hover:-translate-y-0.5 active:scale-95",
+        "inline-flex min-h-11 items-center justify-center gap-2 rounded-full border px-8 py-4 text-[12px] font-bold uppercase tracking-[0.12em] transition-all duration-300 ease-out hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-95",
         dark
           ? "border-hairline-invert text-ink-foreground hover:bg-ink-foreground/10"
           : "border-hairline text-foreground hover:border-accent hover:text-accent",
