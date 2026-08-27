@@ -16,6 +16,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as DeliveryRouteImport } from './routes/delivery'
 import { Route as QualityRouteImport } from './routes/quality'
 import { Route as ResourcesRouteImport } from './routes/resources'
+import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as ProductsIndexRouteImport } from './routes/products.index'
@@ -59,6 +60,11 @@ const QualityRoute = QualityRouteImport.update({
 const ResourcesRoute = ResourcesRouteImport.update({
   id: '/resources',
   path: '/resources',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -115,6 +121,7 @@ export interface FileRoutesByFullPath {
   '/delivery': typeof DeliveryRoute
   '/quality': typeof QualityRoute
   '/resources': typeof ResourcesRoute
+  '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/thank-you': typeof ThankYouRoute
   '/projects/$slug': typeof ProjectsSlugRoute
@@ -133,6 +140,7 @@ export interface FileRoutesByTo {
   '/delivery': typeof DeliveryRoute
   '/quality': typeof QualityRoute
   '/resources': typeof ResourcesRoute
+  '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/thank-you': typeof ThankYouRoute
   '/projects/$slug': typeof ProjectsSlugRoute
@@ -152,6 +160,7 @@ export interface FileRoutesById {
   '/delivery': typeof DeliveryRoute
   '/quality': typeof QualityRoute
   '/resources': typeof ResourcesRoute
+  '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/thank-you': typeof ThankYouRoute
   '/projects/$slug': typeof ProjectsSlugRoute
@@ -172,6 +181,7 @@ export interface FileRouteTypes {
     | '/delivery'
     | '/quality'
     | '/resources'
+    | '/services'
     | '/sitemap.xml'
     | '/thank-you'
     | '/projects/$slug'
@@ -190,6 +200,7 @@ export interface FileRouteTypes {
     | '/delivery'
     | '/quality'
     | '/resources'
+    | '/services'
     | '/sitemap.xml'
     | '/thank-you'
     | '/projects/$slug'
@@ -208,6 +219,7 @@ export interface FileRouteTypes {
     | '/delivery'
     | '/quality'
     | '/resources'
+    | '/services'
     | '/sitemap.xml'
     | '/thank-you'
     | '/projects/$slug'
@@ -227,6 +239,7 @@ export interface RootRouteChildren {
   DeliveryRoute: typeof DeliveryRoute
   QualityRoute: typeof QualityRoute
   ResourcesRoute: typeof ResourcesRoute
+  ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   ThankYouRoute: typeof ThankYouRoute
   ProjectsSlugRoute: typeof ProjectsSlugRoute
@@ -287,6 +300,13 @@ declare module '@tanstack/react-router' {
       path: '/resources'
       fullPath: '/resources'
       preLoaderRoute: typeof ResourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sitemap.xml': {
@@ -363,6 +383,7 @@ const rootRouteChildren: RootRouteChildren = {
   DeliveryRoute: DeliveryRoute,
   QualityRoute: QualityRoute,
   ResourcesRoute: ResourcesRoute,
+  ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   ThankYouRoute: ThankYouRoute,
   ProjectsSlugRoute: ProjectsSlugRoute,
