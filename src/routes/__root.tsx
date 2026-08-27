@@ -15,6 +15,7 @@ import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { ContactDock } from "@/components/site/ContactDock";
 import { WhatsAppFab } from "@/components/site/WhatsAppFab";
+import { QuoteProvider } from "@/components/site/QuoteProvider";
 import { Toaster } from "@/components/ui/sonner";
 import { initAnalytics, trackPageView } from "@/lib/analytics";
 
@@ -138,18 +139,20 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="flex min-h-screen flex-col">
-        <SiteHeader />
-        <main className="flex-1">
-          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-          <Outlet />
-        </main>
-        <SiteFooter />
-        <div className="h-24 print:hidden" aria-hidden />
-      </div>
-      <ContactDock />
-      <WhatsAppFab />
-      <Toaster position="top-right" />
+      <QuoteProvider>
+        <div className="flex min-h-screen flex-col">
+          <SiteHeader />
+          <main className="flex-1">
+            {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+            <Outlet />
+          </main>
+          <SiteFooter />
+          <div className="h-24 print:hidden" aria-hidden />
+        </div>
+        <ContactDock />
+        <WhatsAppFab />
+        <Toaster position="top-right" />
+      </QuoteProvider>
     </QueryClientProvider>
   );
 }

@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { CTABand, PageHero, Section, SectionHead } from "@/components/site/primitives";
 import logisticsImg from "@/assets/logistics.jpg";
-import { site, whatsappLink, emailLink } from "@/data/site";
+import { site } from "@/data/site";
+import { useQuote } from "@/components/site/QuoteProvider";
 import { Mail, MessageCircle, Music2, Phone } from "lucide-react";
 
 export const Route = createFileRoute("/delivery")({
@@ -33,6 +34,7 @@ const process = [
 ];
 
 function DeliveryPage() {
+  const { openQuote } = useQuote();
   return (
     <>
       <PageHero
@@ -95,20 +97,18 @@ function DeliveryPage() {
           lead="Message, call or email our delivery desk directly — we confirm scheduling and transport cost the same day."
         />
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <a
-            href={whatsappLink(
-              "Hello Midrift, I would like to arrange delivery. Product: , Quantity: , Delivery location: , Required date: ",
-            )}
-            target="_blank"
-            rel="noopener"
-            className="hover-lift flex items-center gap-3 rounded-2xl bg-[var(--wa)] p-5 text-[var(--wa-foreground)] shadow-lg"
+          <button
+            type="button"
+            onClick={() => openQuote({})}
+            aria-label="WhatsApp us to arrange delivery — opens the quote request form"
+            className="hover-lift flex items-center gap-3 rounded-2xl bg-[var(--wa)] p-5 text-left text-[var(--wa-foreground)] shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
           >
             <MessageCircle className="size-6 shrink-0" />
             <span>
               <span className="block text-base font-semibold">WhatsApp us</span>
               <span className="block text-sm opacity-90">{site.phoneAlt}</span>
             </span>
-          </a>
+          </button>
           <a
             href={site.phoneHref}
             className="hover-lift flex items-center gap-3 rounded-2xl bg-ink p-5 text-ink-foreground shadow-lg"
@@ -119,16 +119,18 @@ function DeliveryPage() {
               <span className="block text-sm opacity-80">{site.phone}</span>
             </span>
           </a>
-          <a
-            href={emailLink("Delivery booking — Midrift Concrete Works")}
-            className="hover-lift flex items-center gap-3 rounded-2xl border border-hairline bg-card p-5 shadow-sm"
+          <button
+            type="button"
+            onClick={() => openQuote({})}
+            aria-label="Email logistics — opens the quote request form"
+            className="hover-lift flex items-center gap-3 rounded-2xl border border-hairline bg-card p-5 text-left shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
           >
             <Mail className="size-6 shrink-0 text-accent" />
             <span>
               <span className="block text-base font-semibold">Email logistics</span>
               <span className="block text-sm text-muted-foreground">{site.email}</span>
             </span>
-          </a>
+          </button>
           <a
             href={site.socials[0].href}
             target="_blank"

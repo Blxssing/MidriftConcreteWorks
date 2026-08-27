@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { MessageCircle, Mail, Phone, MapPin, Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { whatsappLink, emailLink, site } from "@/data/site";
+import { useQuote } from "./QuoteProvider";
 
 export function Container({ children, className }: { children: ReactNode; className?: string }) {
   return <div className={cn("mx-auto w-full max-w-[1400px] px-5 md:px-10", className)}>{children}</div>;
@@ -101,32 +102,35 @@ export function AccentLink({ to, children }: { to: string; children: ReactNode }
   );
 }
 
-export function QuoteCTA({ label = "Request a Quote" }: { label?: string }) {
+export function QuoteCTA({ label = "Request a Quote", product }: { label?: string; product?: string }) {
+  const { openQuote } = useQuote();
   return (
-    <Link
-      to="/contact"
-      className="inline-flex items-center justify-center rounded-full bg-accent px-8 py-4 text-[12px] font-bold uppercase tracking-[0.12em] text-accent-foreground transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_16px_32px_-16px_color-mix(in_oklab,var(--accent-raw)_85%,transparent)] hover:brightness-110"
+    <button
+      type="button"
+      onClick={() => openQuote({ ...(product ? { product } : {}) })}
+      aria-label={`${label} — opens the Midrift quote request form`}
+      className="inline-flex min-h-11 items-center justify-center rounded-full bg-accent px-8 py-4 text-[12px] font-bold uppercase tracking-[0.12em] text-accent-foreground transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_16px_32px_-16px_color-mix(in_oklab,var(--accent-raw)_85%,transparent)] hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
     >
       {label}
-    </Link>
+    </button>
   );
 }
 
-export function WhatsAppCTA({ message, dark }: { message?: string; dark?: boolean }) {
+export function WhatsAppCTA({ product, dark }: { product?: string; message?: string; dark?: boolean }) {
+  const { openQuote } = useQuote();
   return (
-    <a
-      href={whatsappLink(message)}
-      target="_blank"
-      rel="noreferrer"
+    <button
+      type="button"
+      onClick={() => openQuote({ ...(product ? { product } : {}) })}
       data-cta-zone="whatsapp"
-      aria-label="Get a quote on WhatsApp — opens a pre-filled WhatsApp chat with Midrift sales"
+      aria-label="Get a quote on WhatsApp — opens the quote form, then a pre-filled WhatsApp chat"
       className={cn(
         "wa-btn inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-8 py-4 text-[12px] font-bold uppercase tracking-[0.12em] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background",
         dark && "ring-1 ring-white/20",
       )}
     >
       <MessageCircle className="size-4" aria-hidden="true" /> Get a Quote on WhatsApp
-    </a>
+    </button>
   );
 }
 
@@ -140,6 +144,7 @@ export function WhatsAppBanner({
   lead?: string;
   message?: string;
 }) {
+  const { openQuote } = useQuote();
   return (
     <div className="wa-callout flex flex-col gap-6 rounded-[32px] p-7 md:flex-row md:items-center md:justify-between md:p-9">
       <div className="max-w-xl">
@@ -147,16 +152,15 @@ export function WhatsAppBanner({
         <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{lead}</p>
       </div>
       <div className="flex flex-col gap-3 sm:flex-row">
-        <a
-          href={whatsappLink(message)}
-          target="_blank"
-          rel="noreferrer"
+        <button
+          type="button"
+          onClick={() => openQuote({})}
           data-cta-zone="whatsapp-banner"
-          aria-label="Talk to Midrift sales on WhatsApp — opens a pre-filled chat"
+          aria-label="Talk to Midrift sales on WhatsApp — opens the quote form"
           className="wa-btn flex min-h-11 items-center justify-center gap-2 rounded-full px-7 py-4 text-[14px] font-bold tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         >
           <MessageCircle className="size-5" aria-hidden="true" /> Talk to Sales on WhatsApp
-        </a>
+        </button>
         <a
           href={site.whatsappCatalog}
           target="_blank"
@@ -171,12 +175,14 @@ export function WhatsAppBanner({
   );
 }
 
-/** Opens the device mail app with a pre-filled quotation request. */
-export function EmailCTA({ subject, dark }: { subject?: string; dark?: boolean }) {
+/** Starts the same quote workflow, finishing in a pre-filled email draft. */
+export function EmailCTA({ product, dark }: { product?: string; subject?: string; dark?: boolean }) {
+  const { openQuote } = useQuote();
   return (
-    <a
-      href={subject ? emailLink(subject) : emailLink()}
-      aria-label="Email sales — opens a pre-filled email to the Midrift sales team"
+    <button
+      type="button"
+      onClick={() => openQuote({ ...(product ? { product } : {}) })}
+      aria-label="Email sales — opens the quote form, then a pre-filled email to the Midrift sales team"
       className={cn(
         "inline-flex min-h-11 items-center justify-center gap-2 rounded-full border px-8 py-4 text-[12px] font-bold uppercase tracking-[0.12em] transition-all duration-300 ease-out hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background",
         dark
@@ -185,7 +191,7 @@ export function EmailCTA({ subject, dark }: { subject?: string; dark?: boolean }
       )}
     >
       <Mail className="size-4" aria-hidden="true" /> Email Sales
-    </a>
+    </button>
   );
 }
 
@@ -290,9 +296,9 @@ export function Gallery({ images, alt }: { images: string[]; alt: string }) {
             />
           </div>
           <figcaption className="flex flex-wrap items-center gap-3 border-t border-hairline bg-background px-5 py-4">
-            <QuoteCTA label="Request a Quote" />
-            <WhatsAppCTA message={`Hello Midrift, I'm interested in ${alt}.`} />
-            <EmailCTA subject={`Quotation request — ${alt}`} />
+            <QuoteCTA label="Request a Quote" product={alt} />
+            <WhatsAppCTA product={alt} />
+            <EmailCTA product={alt} />
           </figcaption>
         </figure>
       ))}
@@ -347,8 +353,8 @@ export function PhotoSlots({
               </div>
             )}
             <figcaption className="flex flex-wrap items-center gap-3 border-t border-hairline bg-background px-6 py-5">
-              <QuoteCTA label={s.cta.label} />
-              <WhatsAppCTA message={s.cta.message} />
+              <QuoteCTA label={s.cta.label} product={s.label} />
+              <WhatsAppCTA product={s.label} />
             </figcaption>
           </figure>
         ))}

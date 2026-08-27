@@ -1,8 +1,15 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { getCategory, getProduct, relatedProducts } from "@/data/products";
-import { site, whatsappLink } from "@/data/site";
-import { Container, Gallery, PhotoSlots, Section, SpecTable, QuoteCTA } from "@/components/site/primitives";
-import { MessageCircle } from "lucide-react";
+import { site } from "@/data/site";
+import {
+  Container,
+  Gallery,
+  PhotoSlots,
+  Section,
+  SpecTable,
+  QuoteCTA,
+  WhatsAppCTA,
+} from "@/components/site/primitives";
 
 const SITE = "https://midrift-prime-solutions.lovable.app";
 
@@ -83,7 +90,6 @@ function ProductPage() {
   const product = getProduct(params.category, params.product)!;
   const category = getCategory(params.category)!;
   const related = relatedProducts(product);
-  const waMessage = `Hello Midrift, I would like a quote for ${product.name}.`;
 
   return (
     <>
@@ -108,15 +114,8 @@ function ProductPage() {
             <p className="mt-5 leading-relaxed text-muted-foreground">{product.description}</p>
 
             <div className="mt-9 flex flex-wrap gap-3">
-              <QuoteCTA label="Request a quote" />
-              <a
-                href={whatsappLink(waMessage)}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 border border-foreground px-8 py-4 text-[12px] font-bold uppercase tracking-[0.12em] transition-colors hover:bg-foreground hover:text-background rounded-full"
-              >
-                <MessageCircle className="size-4" /> WhatsApp Sales
-              </a>
+              <QuoteCTA label="Request a quote" product={product.name} />
+              <WhatsAppCTA product={product.name} />
             </div>
             <p className="mt-4 text-sm text-muted-foreground">
               Or call <a href={site.phoneHref} className="font-semibold text-accent">{site.phone}</a>
