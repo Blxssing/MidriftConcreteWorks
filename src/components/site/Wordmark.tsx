@@ -17,14 +17,14 @@ export function Wordmark({
   className?: string;
 }) {
   const scale = {
-    sm: "text-[19px] md:text-[22px]",
-    md: "text-xl md:text-2xl",
-    lg: "text-3xl md:text-4xl",
-    xl: "text-4xl md:text-6xl",
+    sm: "text-[21px] md:text-[25px]",
+    md: "text-2xl md:text-[30px]",
+    lg: "text-4xl md:text-5xl",
+    xl: "text-5xl md:text-7xl lg:text-[5.5rem]",
   }[size];
 
   return (
-    <span className={cn("wordmark", scale, animate && "wordmark-animate", className)}>
+    <span className={cn("wordmark", scale, animate && "wordmark-animate", animate && "wordmark-sheen", className)}>
       Midrift{stacked ? <br /> : " "}Concrete Works
     </span>
   );
