@@ -32,22 +32,19 @@ const chip =
 const chipActive = "border-accent bg-accent text-accent-foreground hover:text-accent-foreground";
 
 export function ProductFinder() {
-  const navigate = useNavigate({ from: "/products" });
+  const navigate = useNavigate({ from: "/products/" });
   const search = useSearch({ from: "/products/" });
   const q = search.q ?? "";
   const family = search.family ?? "";
   const application = search.use ?? "";
 
   const update = (patch: { q?: string; family?: string; use?: string }) => {
-    void navigate({
-      search: (prev: Record<string, string | undefined>) => {
-        const next = { ...prev, ...patch };
-        for (const key of Object.keys(next)) if (!next[key]) delete next[key];
-        return next;
-      },
-      replace: true,
-      resetScroll: false,
-    });
+    const next: Record<string, string> = {};
+    const merged = { q, family, use: application, ...patch };
+    if (merged.q) next["q"] = merged.q;
+    if (merged.family) next["family"] = merged.family;
+    if (merged.use) next["use"] = merged.use;
+    void navigate({ search: next, replace: true, resetScroll: false });
   };
   const setQ = (v: string) => update({ q: v });
   const setFamily = (v: string) => update({ family: v });
