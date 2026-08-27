@@ -81,6 +81,8 @@ export function PageHero({
           <QuoteCTA />
           <WhatsAppCTA dark />
           <EmailCTA dark />
+          <MapCTA dark />
+          <ReviewsCTA dark />
         </div>
       </Container>
     </section>
