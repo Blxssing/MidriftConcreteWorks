@@ -1,3 +1,8 @@
+import tbeam1 from "@/assets/tbeam-1.jpg.asset.json";
+import tbeam2 from "@/assets/tbeam-2.jpg.asset.json";
+import tbeam3 from "@/assets/tbeam-3.jpg.asset.json";
+import tbeam4 from "@/assets/tbeam-4.jpg.asset.json";
+
 export const TBC = "Specification to be confirmed";
 
 export type Product = {
@@ -30,6 +35,7 @@ export type Category = {
 export type PhotoSlot = {
   label: string;
   note: string;
+  image?: string;
   cta: { label: string; message: string };
 };
 
@@ -113,7 +119,12 @@ export const categories: Category[] = [
     intro: "Precast T-beams for suspended slabs and floor systems.",
     description:
       "Midrift manufactures precast T-beams used in suspended floor and roof systems. Beams are produced under controlled casting and curing so sections stay straight, consistent and ready for fast installation on site.",
-    photoSlots: photoSlots("T-Beam", 4),
+    image: tbeam1.url,
+    photoSlots: photoSlots("T-Beam", 4).map((s, i) => ({
+      ...s,
+      image: [tbeam1.url, tbeam2.url, tbeam3.url, tbeam4.url][i] as string,
+      note: "Precast T-beams from the Midrift yard.",
+    })),
     products: [],
   },
   {
