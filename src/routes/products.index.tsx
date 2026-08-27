@@ -4,24 +4,70 @@ import { CTABand, PageHero, Section } from "@/components/site/primitives";
 import { ProductFinder } from "@/components/site/ProductFinder";
 import cabroImg from "@/assets/cabro.jpg";
 
+const SITE = "https://midrift-prime-solutions.lovable.app";
+
+type ProductSearch = { q?: string; family?: string; use?: string };
+
 export const Route = createFileRoute("/products/")({
-  head: () => ({
-    meta: [
-      { title: "Precast Concrete Products | Midrift Concrete Works" },
-      {
-        name: "description",
-        content:
-          "Cabro and paving, concrete blocks, ventilation blocks, road and infrastructure precast, and custom precast solutions manufactured in Kenya.",
-      },
-      { property: "og:title", content: "Precast Concrete Products | Midrift" },
-      {
-        property: "og:description",
-        content: "Explore Midrift's full precast concrete product range for builders, contractors and distributors.",
-      },
-    ],
-  }),
+  validateSearch: (search: Record<string, unknown>): ProductSearch => {
+    const str = (v: unknown) => (typeof v === "string" && v.trim() ? v.trim() : undefined);
+    const out: ProductSearch = {};
+    const q = str(search["q"]);
+    const family = str(search["family"]);
+    const use = str(search["use"]);
+    if (q) out.q = q;
+    if (family) out.family = family;
+    if (use) out.use = use;
+    return out;
+  },
+  head: ({ match }) => {
+    const search = (match?.search ?? {}) as ProductSearch;
+    const familyName = categories.find((c) => c.slug === search.family)?.name;
+    const parts = [familyName, search.use ? `for ${search.use.toLowerCase()}` : null].filter(Boolean);
+    const title = parts.length
+      ? `${parts.join(" ")} — Precast Concrete | Midrift Concrete Works`
+      : "Precast Concrete Products | Midrift Concrete Works";
+    const description = parts.length
+      ? `Browse Midrift Concrete Works ${(familyName ?? "precast concrete").toLowerCase()} ${
+          search.use ? `suited to ${search.use.toLowerCase()}` : ""
+        } — manufactured in Kenya and quoted to your project specification.`.replace(/\s+/g, " ").trim()
+      : "Cabro and paving, concrete blocks, ventilation blocks, road and infrastructure precast, and custom precast solutions manufactured in Kenya.";
+    const query = new URLSearchParams();
+    if (search.family) query.set("family", search.family);
+    if (search.use) query.set("use", search.use);
+    const canonical = `${SITE}/products${query.toString() ? `?${query.toString()}` : ""}`;
+
+    return {
+      meta: [
+        { title },
+        { name: "description", content: description },
+        { property: "og:title", content: title },
+        { property: "og:description", content: description },
+        { property: "og:url", content: canonical },
+        ...(search.q ? [{ name: "robots", content: "noindex,follow" }] : []),
+      ],
+      links: [{ rel: "canonical", href: canonical }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            name: title,
+            itemListElement: categories.map((c, i) => ({
+              "@type": "ListItem",
+              position: i + 1,
+              name: c.name,
+              url: `${SITE}/products/${c.slug}`,
+            })),
+          }),
+        },
+      ],
+    };
+  },
   component: ProductsIndex,
 });
+
 
 function ProductsIndex() {
   return (
