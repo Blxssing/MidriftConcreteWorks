@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as BulkWholesaleRouteImport } from './routes/bulk-wholesale'
+import { Route as CatalogueRouteImport } from './routes/catalogue'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as DeliveryRouteImport } from './routes/delivery'
 import { Route as QualityRouteImport } from './routes/quality'
@@ -41,6 +42,11 @@ const AboutRoute = AboutRouteImport.update({
 const BulkWholesaleRoute = BulkWholesaleRouteImport.update({
   id: '/bulk-wholesale',
   path: '/bulk-wholesale',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CatalogueRoute = CatalogueRouteImport.update({
+  id: '/catalogue',
+  path: '/catalogue',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -123,6 +129,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/bulk-wholesale': typeof BulkWholesaleRoute
+  '/catalogue': typeof CatalogueRoute
   '/contact': typeof ContactRoute
   '/delivery': typeof DeliveryRoute
   '/quality': typeof QualityRoute
@@ -143,6 +150,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/bulk-wholesale': typeof BulkWholesaleRoute
+  '/catalogue': typeof CatalogueRoute
   '/contact': typeof ContactRoute
   '/delivery': typeof DeliveryRoute
   '/quality': typeof QualityRoute
@@ -164,6 +172,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/bulk-wholesale': typeof BulkWholesaleRoute
+  '/catalogue': typeof CatalogueRoute
   '/contact': typeof ContactRoute
   '/delivery': typeof DeliveryRoute
   '/quality': typeof QualityRoute
@@ -186,6 +195,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/bulk-wholesale'
+    | '/catalogue'
     | '/contact'
     | '/delivery'
     | '/quality'
@@ -206,6 +216,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/bulk-wholesale'
+    | '/catalogue'
     | '/contact'
     | '/delivery'
     | '/quality'
@@ -226,6 +237,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/bulk-wholesale'
+    | '/catalogue'
     | '/contact'
     | '/delivery'
     | '/quality'
@@ -247,6 +259,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   BulkWholesaleRoute: typeof BulkWholesaleRoute
+  CatalogueRoute: typeof CatalogueRoute
   ContactRoute: typeof ContactRoute
   DeliveryRoute: typeof DeliveryRoute
   QualityRoute: typeof QualityRoute
@@ -285,6 +298,13 @@ declare module '@tanstack/react-router' {
       path: '/bulk-wholesale'
       fullPath: '/bulk-wholesale'
       preLoaderRoute: typeof BulkWholesaleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/catalogue': {
+      id: '/catalogue'
+      path: '/catalogue'
+      fullPath: '/catalogue'
+      preLoaderRoute: typeof CatalogueRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -399,6 +419,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   BulkWholesaleRoute: BulkWholesaleRoute,
+  CatalogueRoute: CatalogueRoute,
   ContactRoute: ContactRoute,
   DeliveryRoute: DeliveryRoute,
   QualityRoute: QualityRoute,

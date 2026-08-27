@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Truck, Factory, CheckCircle2 } from "lucide-react";
-import { CTABand, PageHero, Section, SectionHead } from "@/components/site/primitives";
+import { CTABand, PageHero, Section, SectionHead, WhatsAppBanner } from "@/components/site/primitives";
 import manufacturingImg from "@/assets/manufacturing.jpg";
 
 const SITE = "https://midrift-prime-solutions.lovable.app";
@@ -124,6 +124,10 @@ function ServicesPage() {
       })}
 
       <Section>
+        <WhatsAppBanner message="Hello Midrift Concrete Works, I would like ready-mix or precast service pricing." />
+      </Section>
+
+      <Section className="pt-0">
         <SectionHead
           eyebrow="How it runs"
           title="From brief to delivery"

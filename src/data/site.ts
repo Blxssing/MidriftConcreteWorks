@@ -76,6 +76,7 @@ Thank you.`,
 
 export const mainNav = [
   { label: "Products", to: "/products" },
+  { label: "Catalogue", to: "/catalogue" },
   { label: "Services", to: "/services" },
   { label: "Bulk & Delivery", to: "/delivery" },
   { label: "Who We Serve", to: "/solutions" },

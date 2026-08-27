@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { MousePointerClick } from "lucide-react";
 import { categories } from "@/data/products";
-import { CTABand, PageHero, Section } from "@/components/site/primitives";
+import { CTABand, PageHero, Section, WhatsAppBanner } from "@/components/site/primitives";
 import { ProductFinder } from "@/components/site/ProductFinder";
 import cabroImg from "@/assets/cabro.jpg";
 
@@ -82,6 +82,8 @@ function ProductsIndex() {
       />
 
       <Section className="pb-0">
+        <WhatsAppBanner message="Hello Midrift Concrete Works, I am browsing your product catalogue and would like prices." />
+        <div className="mt-10" />
         <ProductFinder />
       </Section>
 
