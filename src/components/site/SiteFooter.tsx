@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { MapPin, Star } from "lucide-react";
 import { site, whatsappLink, emailLink } from "@/data/site";
 import { Wordmark } from "@/components/site/Wordmark";
 import { SocialIcons } from "@/components/site/SocialIcons";
@@ -6,11 +7,13 @@ import { categories } from "@/data/products";
 import { solutions } from "@/data/solutions";
 
 const company = [
+  { label: "Services We Offer", to: "/services" },
+  { label: "Bulk & Wholesale", to: "/bulk-wholesale" },
+  { label: "Delivery & Logistics", to: "/delivery" },
+  { label: "Testimonials & Reviews", to: "/testimonials" },
   { label: "About Midrift", to: "/about" },
   { label: "Quality & Manufacturing", to: "/quality" },
   { label: "Projects", to: "/projects" },
-  { label: "Bulk & Wholesale", to: "/bulk-wholesale" },
-  { label: "Delivery & Logistics", to: "/delivery" },
   { label: "Resources", to: "/resources" },
   { label: "Contact", to: "/contact" },
 ];
@@ -104,8 +107,24 @@ export function SiteFooter() {
           </div>
           <div>
             <p className="eyebrow text-ink-foreground/70">Yard & office</p>
-            <p className="mt-3 text-sm text-ink-foreground/70">{site.location}</p>
-            <p className="text-sm text-ink-foreground/70">{site.hours}</p>
+            <p className="mt-3 text-sm text-ink-foreground/80">{site.address}</p>
+            <p className="text-sm text-ink-foreground/80">{site.hours}</p>
+            <a
+              href={site.mapsUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-4 inline-flex items-center gap-2 rounded-full border border-hairline-invert px-5 py-3 text-sm font-semibold transition-colors hover:border-accent hover:text-accent"
+            >
+              <MapPin className="size-4 text-accent" /> Google Map
+            </a>
+            <a
+              href={site.reviewsUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-2 flex w-fit items-center gap-2 rounded-full border border-hairline-invert px-5 py-3 text-sm font-semibold transition-colors hover:border-accent hover:text-accent"
+            >
+              <Star className="size-4 text-accent" /> View Reviews
+            </a>
           </div>
           <div>
             <p className="eyebrow text-ink-foreground/70">Follow</p>

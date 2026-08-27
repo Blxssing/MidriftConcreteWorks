@@ -10,7 +10,11 @@ export const site = {
   whatsappAlt: "254791502707",
   whatsappCatalog: "https://wa.me/c/254745240050",
   email: "midmerchants@gmail.com",
-  location: "Nakuru, Kenya",
+  location: "Old Nairobi Road, Nakuru, Kenya",
+  address: "Midrift Concrete Works, Old Nairobi Rd, Nakuru, Kenya",
+  mapsUrl: "https://maps.app.goo.gl/QvdwAQEf79oM6LwZ9",
+  reviewsUrl:
+    "https://www.google.com/maps/place/Midrift+Concrete+Works,+Old+Nairobi+Rd,+Nakuru/data=!4m6!3m5!1s0x1829939fa6abac9d:0xcc545138471d5578!9m1!1b1",
   hours: "Mon – Sat, 7:30am – 6:00pm",
   socials: [
     {
@@ -72,10 +76,12 @@ Thank you.`,
 
 export const mainNav = [
   { label: "Products", to: "/products" },
+  { label: "Services", to: "/services" },
+  { label: "Bulk & Delivery", to: "/delivery" },
   { label: "Who We Serve", to: "/solutions" },
   { label: "Projects", to: "/projects" },
+  { label: "Testimonials", to: "/testimonials" },
   { label: "Quality", to: "/quality" },
   { label: "About", to: "/about" },
-  { label: "Resources", to: "/resources" },
   { label: "Contact", to: "/contact" },
 ] as const;
