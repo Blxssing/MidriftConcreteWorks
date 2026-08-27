@@ -66,9 +66,14 @@ Phone:
 
 Thank you.`;
 
-/** Pre-filled mailto for sales enquiries (opens the device mail app). */
+/**
+ * Pre-filled mailto for sales enquiries. Subject and body are URL-encoded and
+ * line breaks are normalised to CRLF so drafts render correctly in Gmail,
+ * Apple Mail and Outlook.
+ */
 export function emailLink(subject = "Quotation request — Midrift Concrete Works", body = defaultEmailBody) {
-  return `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  const encodedBody = encodeURIComponent(body.replace(/\r?\n/g, "\r\n"));
+  return `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodedBody}`;
 }
 
 /** Pre-filled mailto tailored to a specific product or category. */
