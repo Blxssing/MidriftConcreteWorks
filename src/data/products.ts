@@ -252,7 +252,21 @@ export const categories: Category[] = [
       "Midrift supplies precast units for road construction and drainage — produced in volume and scheduled to match construction programmes.",
     photoSlots: photoSlots("Road Concrete Works"),
     products: [
-      p("road-concrete", "culverts", "Culverts", "Cross-drainage units for access and civil works.", "Culvert units carry water beneath roads and accesses, supplied to the sizes required by the civil design.", ["Site drainage", "Access roads", "Water crossings"], ["Box", "Circular"], ["To project specification"], civilSpecs),
+      {
+        ...withImages(
+          p("road-concrete", "culverts", "Culverts", "Cross-drainage units for access and civil works.", "Culvert units carry water beneath roads and accesses, supplied to the sizes required by the civil design. Standard diameters include 300mm, 600mm and 900mm.", ["Site drainage", "Access roads", "Water crossings"], ["300mm", "600mm", "900mm", "Box", "Circular"], ["300mm", "600mm", "900mm", "To project specification"], civilSpecs),
+          [
+            { url: culvert600.url, note: "600mm culverts" },
+            { url: culvert900.url, note: "900mm culverts" },
+            { url: culvert300.url, note: "300mm culverts" },
+          ],
+        ),
+        photoSlots: [
+          { label: "Culverts — 600mm", note: "600mm culverts", image: culvert600.url, cta: { label: "Request a quote", message: "Hello Midrift, I would like a quote for 600mm culverts." } },
+          { label: "Culverts — 900mm", note: "900mm culverts", image: culvert900.url, cta: { label: "Request a quote", message: "Hello Midrift, I would like a quote for 900mm culverts." } },
+          { label: "Culverts — 300mm", note: "300mm culverts", image: culvert300.url, cta: { label: "Request a quote", message: "Hello Midrift, I would like a quote for 300mm culverts." } },
+        ],
+      },
       p("road-concrete", "road-culverts", "Road Culverts", "Heavier culvert units for carriageway crossings.", "Road culverts are produced for the loading conditions found beneath carriageways and highway shoulders.", ["Highways", "Carriageway crossings", "Estate roads"], ["Box", "Circular", "Reinforced"], ["To project specification"], civilSpecs),
       p("road-concrete", "shallow-drain", "Shallow Drain", "Shallow precast drains for controlled surface water flow.", "Shallow drains move surface water away from carriageways, yards and walkways quickly and predictably.", ["Roads", "Industrial yards", "Estates"], ["Open channel", "Covered channel"], ["Multiple sizes"], civilSpecs),
       p("road-concrete", "kenha-boundary-markers", "Kenha Boundary Makers", "Precast boundary markers for road reserve demarcation.", "Boundary markers demarcate road reserves and public works boundaries in line with authority requirements.", ["Road reserves", "Public works", "Highway boundaries"], ["Standard", "To authority specification"], ["To project specification"], civilSpecs),
