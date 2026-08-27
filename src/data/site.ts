@@ -39,8 +39,15 @@ export const site = {
   ],
 } as const;
 
+/**
+ * Official WhatsApp click-to-chat link (https://wa.me/<international number>?text=...).
+ * The number is reduced to digits only (no +, spaces, brackets or dashes) and the
+ * message is fully URL-encoded, so the same link opens the WhatsApp app on Android
+ * and iPhone and WhatsApp Web on desktop. The draft is never sent automatically.
+ */
 export function whatsappLink(message = "Hello Midrift, I would like a quote for precast concrete products.") {
-  return `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(message)}`;
+  const number = site.whatsapp.replace(/\D/g, "");
+  return `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
 }
 
 const defaultEmailBody = `Hello Midrift Concrete Works,
