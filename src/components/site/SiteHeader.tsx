@@ -1,7 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { Menu, X, Phone, MessageCircle, Mail, MapPin, Star } from "lucide-react";
 import { useState } from "react";
-import { mainNav, site, whatsappLink, emailLink } from "@/data/site";
+import { mainNav, site } from "@/data/site";
+import { useQuote } from "./QuoteProvider";
 import { Wordmark } from "@/components/site/Wordmark";
 import { SocialIcons } from "@/components/site/SocialIcons";
 
@@ -38,16 +39,15 @@ export function SiteHeader() {
           >
             <Phone className="size-[18px]" />
           </a>
-          <a
-            href={whatsappLink()}
-            target="_blank"
-            rel="noreferrer"
-            aria-label="WhatsApp sales"
+          <button
+            type="button"
+            onClick={() => openQuote({})}
+            aria-label="WhatsApp sales — opens the quote request form"
             title="WhatsApp sales"
-            className="flex size-11 items-center justify-center rounded-2xl border border-hairline transition-all duration-300 hover:border-accent hover:text-accent active:scale-95"
+            className="flex size-11 items-center justify-center rounded-2xl border border-hairline transition-all duration-300 hover:border-accent hover:text-accent active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
           >
             <MessageCircle className="size-[18px]" />
-          </a>
+          </button>
           <a
             href={site.mapsUrl}
             target="_blank"
@@ -110,20 +110,22 @@ export function SiteHeader() {
                 >
                   <Phone className="size-5 text-accent" /> Call
                 </a>
-                <a
-                  href={whatsappLink()}
-                  target="_blank"
-                  rel="noreferrer"
+                <button
+                  type="button"
+                  onClick={() => openQuote({})}
+                  aria-label="WhatsApp sales — opens the quote request form"
                   className="ios-glass flex flex-col items-center gap-1 rounded-2xl py-3 text-[12px] font-semibold active:scale-95"
                 >
                   <MessageCircle className="size-5 text-accent" /> WhatsApp
-                </a>
-                <a
-                  href={emailLink()}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => openQuote({})}
+                  aria-label="Email sales — opens the quote request form"
                   className="ios-glass flex flex-col items-center gap-1 rounded-2xl py-3 text-[12px] font-semibold active:scale-95"
                 >
                   <Mail className="size-5 text-accent" /> Email
-                </a>
+                </button>
                 <a
                   href={site.mapsUrl}
                   target="_blank"

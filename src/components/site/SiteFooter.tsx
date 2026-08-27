@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { MapPin, Star } from "lucide-react";
-import { site, whatsappLink, emailLink } from "@/data/site";
+import { site } from "@/data/site";
+import { useQuote } from "./QuoteProvider";
 import { Wordmark } from "@/components/site/Wordmark";
 import { SocialIcons } from "@/components/site/SocialIcons";
 import { categories } from "@/data/products";
@@ -85,17 +86,22 @@ export function SiteFooter() {
             <a href={site.phoneAltHref} className="block text-lg font-semibold hover:text-accent">
               {site.phoneAlt}
             </a>
-            <a href={emailLink()} className="block py-2 text-sm text-ink-foreground/70 hover:text-accent">
+            <button
+              type="button"
+              onClick={() => openQuote({})}
+              aria-label="Email sales — opens the quote request form"
+              className="block py-2 text-sm text-ink-foreground/70 hover:text-accent"
+            >
               {site.email}
-            </a>
-            <a
-              href={whatsappLink()}
-              target="_blank"
-              rel="noreferrer"
+            </button>
+            <button
+              type="button"
+              onClick={() => openQuote({})}
+              aria-label="WhatsApp sales — opens the quote request form"
               className="mt-3 inline-block py-2 text-sm font-semibold text-accent"
             >
               WhatsApp Sales →
-            </a>
+            </button>
             <a
               href={site.whatsappCatalog}
               target="_blank"
