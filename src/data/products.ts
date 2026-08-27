@@ -4,6 +4,16 @@ import cabroArrow from "@/assets/cabro-arrow.jpg.asset.json";
 import cabroThara from "@/assets/cabro-thara.jpg.asset.json";
 import cabroFlower from "@/assets/cabro-flower.jpg.asset.json";
 import cabroUni from "@/assets/cabro-uni.jpg.asset.json";
+import cabroMeera from "@/assets/cabro-meera-heera.jpg.asset.json";
+import cabroSmooth from "@/assets/cabro-smooth-coloured.jpg.asset.json";
+import cabroNormal from "@/assets/cabro-normal.jpg.asset.json";
+import cabroCustom from "@/assets/cabro-custom.jpg.asset.json";
+import ballostad15 from "@/assets/ballostad-15.jpg.asset.json";
+import ballostad2 from "@/assets/ballostad-2.jpg.asset.json";
+import ballostad3 from "@/assets/ballostad-3.jpg.asset.json";
+import culvert600 from "@/assets/culvert-600.jpg.asset.json";
+import culvert900 from "@/assets/culvert-900.jpg.asset.json";
+import culvert300 from "@/assets/culvert-300.jpg.asset.json";
 import tbeam1 from "@/assets/tbeam-1.jpg.asset.json";
 import tbeam2 from "@/assets/tbeam-2.jpg.asset.json";
 import tbeam3 from "@/assets/tbeam-3.jpg.asset.json";
@@ -169,9 +179,9 @@ export const categories: Category[] = [
       note: "Cabro laid by Midrift on site.",
     })),
     products: [
-      paver("cabro-meera-heera", "Cabro Meera and Heera", "Popular decorative interlock profiles for driveways and estates.", "Meera and Heera profiles combine a strong mechanical interlock with a decorative surface pattern, suited to driveways, estate roads and commercial frontages."),
+      paver("cabro-meera-heera", "Cabro Meera and Heera", "Popular decorative interlock profiles for driveways and estates.", "Meera and Heera profiles combine a strong mechanical interlock with a decorative surface pattern, suited to driveways, estate roads and commercial frontages.", cabroMeera.url),
       paver("arrow-paver", "Arrow Paver", "Directional arrow profile with tight lateral interlock.", "The arrow profile locks firmly in both directions, making it a dependable choice for areas carrying constant vehicle movement.", cabroArrow.url),
-      paver("smooth-cabro-coloured", "Smooth Cabro Coloured", "Smooth-faced coloured units for a refined finished surface.", "Smooth coloured cabro gives a clean, even face for premium driveways, courtyards and commercial entrances."),
+      paver("smooth-cabro-coloured", "Smooth Cabro Coloured", "Smooth-faced coloured units for a refined finished surface.", "Smooth coloured cabro gives a clean, even face for premium driveways, courtyards and commercial entrances.", cabroSmooth.url),
       paver("dubro-cabro", "Dubro Cabro", "Robust profile for yards and access roads.", "Dubro cabro is produced for load distribution and dimensional consistency across large paved fields.", cabroDubro.url),
       paver("venus-cabro", "Venus Cabro", "Distinct decorative profile for landscaped and public areas.", "Venus cabro carries a recognisable face pattern while retaining full interlocking performance.", cabroVenus.url),
       paver("thara-cabro", "Thara Cabro", "Patterned interlock for estates and walkways.", "Thara cabro suits estate roads, walkways and landscaped areas where pattern and durability both matter.", cabroThara.url),
@@ -181,8 +191,8 @@ export const categories: Category[] = [
       paver("uni-large", "Uni Large", "Large-format uni profile for fast laying over wide areas.", "Uni large covers ground quickly while maintaining reliable interlock for vehicle traffic.", cabroUni.url),
       paver("uni-small", "Uni Small", "Compact uni profile for detailed and pedestrian areas.", "Uni small allows tighter curves, borders and detail work in pedestrian and landscaped spaces."),
       paver("quad-cabro", "Quad Cabro", "Four-part modular profile for varied laying patterns.", "Quad cabro lets you set out multiple laying patterns from a single unit type."),
-      paver("normal-cabro-blocks", "Normal Cabro Blocks", "The standard workhorse paver for everyday paving works.", "Our standard cabro block is the general-purpose unit for driveways, yards and estate roads."),
-      paver("custom-paving-designs", "Custom Paving Designs", "Bespoke shapes, colours and moulds for specific projects.", "Where a project requires a paving unit that is not in our standard range, we develop the mould and run production to the agreed specification."),
+      paver("normal-cabro-blocks", "Normal Cabro Blocks", "The standard workhorse paver for everyday paving works.", "Our standard cabro block is the general-purpose unit for driveways, yards and estate roads.", cabroNormal.url),
+      paver("custom-paving-designs", "Custom Paving Designs", "Bespoke shapes, colours and moulds for specific projects.", "Where a project requires a paving unit that is not in our standard range, we develop the mould and run production to the agreed specification.", cabroCustom.url),
     ],
   },
   {
@@ -197,9 +207,9 @@ export const categories: Category[] = [
       block("hollow-blocks", "Hollow Blocks", "Lighter walling units with cores for services and reduced dead load.", "Hollow blocks reduce wall dead load and allow services and reinforcement to be routed through the cores.", ["External walling", "Internal walling", "Boundary walls"]),
       block("hollow-pot-blocks", "Hollow Pot Blocks", "Infill units for suspended hollow-pot slabs.", "Hollow pot blocks act as lightweight infill between ribs in suspended slab construction, reducing concrete volume and slab weight.", ["Suspended slabs", "Floor systems", "Roof slabs"]),
       block("solid-blocks", "Solid Blocks", "Dense units where mass, strength and acoustics matter.", "Solid blocks provide higher mass for load-bearing walls, retaining structures and acoustic separation.", ["Load-bearing walls", "Retaining structures", "Boundary walls"]),
-      block("ballostad-1-5ft", "Ballostad 1.5ft", "Precast balustrade units at 1.5ft height.", "Ballostad units are cast for balcony, terrace and staircase edging at a 1.5ft height.", ["Balconies", "Terraces", "Staircases"]),
-      block("ballostad-2ft", "Ballostad 2ft", "Precast balustrade units at 2ft height.", "A 2ft balustrade height for terraces, walkways and perimeter edging.", ["Terraces", "Walkways", "Perimeter edging"]),
-      block("ballostad-3ft", "Ballostad 3ft", "Precast balustrade units at 3ft height.", "A taller 3ft balustrade for elevated terraces, roof edges and boundary features.", ["Roof edges", "Elevated terraces", "Boundary features"]),
+      block("ballostad-1-5ft", "Ballostad 1.5ft", "Precast balustrade units at 1.5ft height.", "Ballostad units are cast for balcony, terrace and staircase edging at a 1.5ft height.", ["Balconies", "Terraces", "Staircases"], ballostad15.url),
+      block("ballostad-2ft", "Ballostad 2ft", "Precast balustrade units at 2ft height.", "A 2ft balustrade height for terraces, walkways and perimeter edging.", ["Terraces", "Walkways", "Perimeter edging"], ballostad2.url),
+      block("ballostad-3ft", "Ballostad 3ft", "Precast balustrade units at 3ft height.", "A taller 3ft balustrade for elevated terraces, roof edges and boundary features.", ["Roof edges", "Elevated terraces", "Boundary features"], ballostad3.url),
       block("concrete-posts", "Concrete Posts", "Durable posts for fencing and perimeter works.", "Concrete posts provide a long-life alternative to timber for fence lines, perimeter security and agricultural use.", ["Fence lines", "Perimeter security", "Farms & estates"]),
       block("concrete-tiles", "Concrete Tiles", "Cast tiles for floors, terraces and external areas.", "Concrete tiles give a hard-wearing finished surface for terraces, corridors and external circulation areas.", ["Terraces", "Corridors", "External floors"]),
       block("filler-blocks", "Filler Blocks", "Lightweight infill for slab and rib systems.", "Filler blocks occupy the void between slab ribs, reducing dead load and concrete consumption.", ["Suspended slabs", "Rib-and-block floors"]),
