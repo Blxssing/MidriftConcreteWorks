@@ -220,6 +220,8 @@ export function CTABand({
           <QuoteCTA />
           <WhatsAppCTA />
           <CallCTA />
+          <MapCTA />
+          <ReviewsCTA />
         </div>
       </Container>
     </section>
