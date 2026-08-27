@@ -1,5 +1,5 @@
-import { useMemo, useState } from "react";
-import { Link } from "@tanstack/react-router";
+import { useMemo } from "react";
+import { Link, useNavigate, useSearch } from "@tanstack/react-router";
 import { Search, X } from "lucide-react";
 import { categories } from "@/data/products";
 
@@ -32,9 +32,26 @@ const chip =
 const chipActive = "border-accent bg-accent text-accent-foreground hover:text-accent-foreground";
 
 export function ProductFinder() {
-  const [q, setQ] = useState("");
-  const [family, setFamily] = useState("");
-  const [application, setApplication] = useState("");
+  const navigate = useNavigate({ from: "/products" });
+  const search = useSearch({ from: "/products/" });
+  const q = search.q ?? "";
+  const family = search.family ?? "";
+  const application = search.use ?? "";
+
+  const update = (patch: { q?: string; family?: string; use?: string }) => {
+    void navigate({
+      search: (prev: Record<string, string | undefined>) => {
+        const next = { ...prev, ...patch };
+        for (const key of Object.keys(next)) if (!next[key]) delete next[key];
+        return next;
+      },
+      replace: true,
+      resetScroll: false,
+    });
+  };
+  const setQ = (v: string) => update({ q: v });
+  const setFamily = (v: string) => update({ family: v });
+  const setApplication = (v: string) => update({ use: v });
 
   const results = useMemo(() => {
     const term = q.trim().toLowerCase();
