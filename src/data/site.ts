@@ -108,5 +108,6 @@ export const mainNav = [
   { label: "Testimonials", to: "/testimonials" },
   { label: "Quality", to: "/quality" },
   { label: "About", to: "/about" },
+  { label: "Our Team", to: "/team" },
   { label: "Contact", to: "/contact" },
 ] as const;

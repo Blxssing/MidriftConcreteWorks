@@ -4,6 +4,7 @@ import logisticsImg from "@/assets/logistics.jpg";
 import { site } from "@/data/site";
 import { useQuote } from "@/components/site/QuoteProvider";
 import { Mail, MessageCircle, Music2, Phone } from "lucide-react";
+import { DeliveryMap } from "@/components/site/DeliveryMap";
 
 export const Route = createFileRoute("/delivery")({
   head: () => ({
@@ -74,6 +75,17 @@ function DeliveryPage() {
               ))}
             </ul>
           </div>
+        </div>
+      </Section>
+
+      <Section className="pt-0">
+        <SectionHead
+          eyebrow="Service map"
+          title="Where we deliver, confirmed."
+          lead="The highlighted areas are confirmed delivery zones. Anywhere else, share your site location and we will confirm cost and lead time."
+        />
+        <div className="mt-10">
+          <DeliveryMap />
         </div>
       </Section>
 

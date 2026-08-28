@@ -195,7 +195,7 @@ export const categories: Category[] = [
       paver("dubro-cabro", "Dubro Cabro", "Robust profile for yards and access roads.", "Dubro cabro is produced for load distribution and dimensional consistency across large paved fields.", cabroDubro.url),
       paver("venus-cabro", "Venus Cabro", "Distinct decorative profile for landscaped and public areas.", "Venus cabro carries a recognisable face pattern while retaining full interlocking performance.", cabroVenus.url),
       paver("thara-cabro", "Thara Cabro", "Patterned interlock for estates and walkways.", "Thara cabro suits estate roads, walkways and landscaped areas where pattern and durability both matter.", cabroThara.url),
-      paver("splender", "Splender", "Feature paver for architectural and premium landscaping.", "Splender units are used where the paved surface forms part of the architectural finish."),
+      paver("cabro-spreader", "Cabro Spreader", "Feature paver for architectural and premium landscaping.", "Cabro Spreader units are used where the paved surface forms part of the architectural finish."),
       paver("hexagon-cabro", "Hexagon Cabro", "Six-sided units for stable, uniform paved fields.", "The hexagonal geometry spreads load evenly and produces a clean repeating rhythm across large areas."),
       paver("flower-cabro", "Flower Cabro", "Decorative floral pattern for landscaped surfaces.", "Flower cabro is used for feature paving, courtyards and garden paths where appearance leads the specification.", cabroFlower.url),
       paver("uni-large", "Uni Large", "Large-format uni profile for fast laying over wide areas.", "Uni large covers ground quickly while maintaining reliable interlock for vehicle traffic.", cabroUni.url),
