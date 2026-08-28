@@ -93,6 +93,45 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "@id": "https://midrift-prime-solutions.lovable.app/#business",
+          name: "Midrift Concrete Works Ltd",
+          url: "https://midrift-prime-solutions.lovable.app",
+          description:
+            "Kenyan manufacturer of precast concrete: cabro paving, concrete blocks, ventilation blocks, kerbs, culverts and custom precast solutions.",
+          telephone: "+254791502707",
+          email: "midmerchants@gmail.com",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "Old Nairobi Road",
+            addressLocality: "Nakuru",
+            addressCountry: "KE",
+          },
+          geo: { "@type": "GeoCoordinates", latitude: -0.3031, longitude: 36.08 },
+          hasMap: "https://maps.app.goo.gl/QvdwAQEf79oM6LwZ9",
+          areaServed: { "@type": "Place", name: "Nakuru, Kenya" },
+          openingHoursSpecification: [
+            {
+              "@type": "OpeningHoursSpecification",
+              dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+              opens: "07:30",
+              closes: "17:00",
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              dayOfWeek: ["Saturday"],
+              opens: "07:30",
+              closes: "13:00",
+            },
+          ],
+        }),
+      },
+    ],
     links: [
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
