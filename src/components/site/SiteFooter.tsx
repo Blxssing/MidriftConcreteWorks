@@ -7,14 +7,17 @@ import { SocialIcons } from "@/components/site/SocialIcons";
 import { categories } from "@/data/products";
 import { solutions } from "@/data/solutions";
 
+/** Ordered to match the main navigation so the site reads the same everywhere. */
 const company = [
   { label: "Services We Offer", to: "/services" },
-  { label: "Bulk & Wholesale", to: "/bulk-wholesale" },
+  { label: "Ready-Mix Concrete", to: "/ready-mix" },
   { label: "Delivery & Logistics", to: "/delivery" },
-  { label: "Testimonials & Reviews", to: "/testimonials" },
-  { label: "About Midrift", to: "/about" },
-  { label: "Quality & Manufacturing", to: "/quality" },
+  { label: "Bulk & Wholesale", to: "/bulk-wholesale" },
   { label: "Projects", to: "/projects" },
+  { label: "Testimonials & Reviews", to: "/testimonials" },
+  { label: "Quality & Manufacturing", to: "/quality" },
+  { label: "About Midrift", to: "/about" },
+  { label: "Our Team", to: "/team" },
   { label: "Resources", to: "/resources" },
   { label: "Contact", to: "/contact" },
 ];
