@@ -18,7 +18,7 @@ export function SiteHeader() {
         </Link>
 
 
-        <nav className="hidden items-center gap-1 xl:flex">
+        <nav className="hidden items-center gap-1 2xl:flex">
           {mainNav.map((item) => (
             <Link
               key={item.to}
@@ -72,14 +72,14 @@ export function SiteHeader() {
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className="flex size-11 items-center justify-center rounded-2xl border border-hairline transition-transform duration-300 active:scale-90 xl:hidden"
+          className="flex size-11 items-center justify-center rounded-2xl border border-hairline transition-transform duration-300 active:scale-90 2xl:hidden"
         >
           {open ? <X className="size-5" /> : <Menu className="size-5" />}
         </button>
       </div>
 
       {open && (
-        <div className="ios-sheet border-t border-hairline bg-background/92 backdrop-blur-2xl xl:hidden">
+        <div className="ios-sheet border-t border-hairline bg-background/92 backdrop-blur-2xl 2xl:hidden">
           <nav className="mx-auto flex max-w-[1400px] flex-col px-4 py-3">
             <div className="ios-glass overflow-hidden rounded-[26px]">
               {mainNav.map((item, i) => (
