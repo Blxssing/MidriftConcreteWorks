@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { MapPin, Star } from "lucide-react";
-import { site } from "@/data/site";
+import { site, whatsappLink } from "@/data/site";
 import { useQuote } from "./QuoteProvider";
 import { Wordmark } from "@/components/site/Wordmark";
 import { SocialIcons } from "@/components/site/SocialIcons";
@@ -81,12 +81,29 @@ export function SiteFooter() {
         <div className="mt-16 grid gap-8 border-t border-hairline-invert pt-10 md:grid-cols-3">
           <div>
             <p className="eyebrow text-ink-foreground/70">Sales</p>
-            <a href={site.phoneHref} className="mt-3 block text-lg font-semibold hover:text-accent">
-              {site.phone}
-            </a>
-            <a href={site.phoneAltHref} className="block text-lg font-semibold hover:text-accent">
-              {site.phoneAlt}
-            </a>
+            <p className="mt-3 flex flex-wrap items-baseline gap-2">
+              <span className="text-xs uppercase tracking-[0.12em] text-ink-foreground/60">Sales</span>
+              <a href={site.phoneHref} className="text-lg font-semibold hover:text-accent">
+                {site.phone}
+              </a>
+            </p>
+            <p className="mt-1 flex flex-wrap items-baseline gap-2">
+              <span className="text-xs uppercase tracking-[0.12em] text-ink-foreground/60">Sales (alt)</span>
+              <a href={site.phoneAltHref} className="text-lg font-semibold hover:text-accent">
+                {site.phoneAlt}
+              </a>
+            </p>
+            <p className="mt-1 flex flex-wrap items-baseline gap-2">
+              <span className="text-xs uppercase tracking-[0.12em] text-ink-foreground/60">WhatsApp</span>
+              <a
+                href={whatsappLink()}
+                target="_blank"
+                rel="noreferrer"
+                className="text-lg font-semibold hover:text-accent"
+              >
+                {site.whatsappDisplay}
+              </a>
+            </p>
             <button
               type="button"
               onClick={() => openQuote({})}
