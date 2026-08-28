@@ -121,7 +121,7 @@ function Home() {
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHead
             eyebrow="Product range"
-            title="Seven product families. One manufacturer."
+            title="Eight product families. One manufacturer."
             lead="Every unit is produced in our own yard, so quality, quantity and delivery stay under one roof."
           />
           <Link

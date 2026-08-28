@@ -6,8 +6,10 @@ export const site = {
   phoneHref: "tel:+254791502707",
   phoneAlt: "0745 240 050",
   phoneAltHref: "tel:+254745240050",
-  whatsapp: "254745240050",
-  whatsappAlt: "254791502707",
+  /** Central WhatsApp sales line — every quote handoff goes here. */
+  whatsapp: "254729321496",
+  whatsappDisplay: "0729 321 496",
+  whatsappAlt: "254745240050",
   whatsappCatalog: "https://wa.me/c/254745240050",
   email: "midmerchants@gmail.com",
   location: "Old Nairobi Road, Nakuru, Kenya",
@@ -31,7 +33,7 @@ export const site = {
     {
       label: "TikTok",
       icon: "tiktok",
-      href: "https://www.tiktok.com/@invisible4866?_r=1&_t=ZS-99Bp340Ms0j",
+      href: "https://vm.tiktok.com/ZS9BPAFdBFgDM-d8aRb/",
     },
     { label: "Instagram", icon: "instagram", href: "#" },
     { label: "Facebook", icon: "facebook", href: "#" },
