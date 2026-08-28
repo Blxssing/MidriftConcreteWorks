@@ -1,6 +1,6 @@
 import { Suspense, lazy, useEffect, useMemo, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { X, MessageCircle, Mail, MapPin, LocateFixed, Check, Loader2, Phone } from "lucide-react";
+import { X, MessageCircle, Mail, MapPin, LocateFixed, Check, Loader2, Phone, ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
 import { categories } from "@/data/products";
 import { site } from "@/data/site";
@@ -360,8 +360,9 @@ export function QuoteDialog({
               </div>
 
               <div className="sm:col-span-2">
-                <label className={labelCls} htmlFor="qd-notes">Tell us about your project</label>
-                <textarea id="qd-notes" rows={3} className={`${field} ${errors.notes ? errCls : ""}`} placeholder="Briefly tell us what you need, your project requirements, or any questions you have." value={form.notes} onChange={set("notes")} />
+                <label className={labelCls} htmlFor="qd-notes">Tell us about your project (optional)</label>
+                <textarea id="qd-notes" rows={3} className={`${field} ${errors.notes ? errCls : ""}`} placeholder="Optional — briefly tell us what you need, your project requirements, or any questions you have." value={form.notes} onChange={set("notes")} />
+
                 {errors.notes && <p className="mt-1.5 text-xs font-medium text-destructive">{errors.notes}</p>}
               </div>
 
