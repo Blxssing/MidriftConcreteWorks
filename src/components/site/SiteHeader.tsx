@@ -13,9 +13,10 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-hairline bg-background/75 backdrop-blur-2xl backdrop-saturate-150">
       <div className="mx-auto flex h-[68px] max-w-[1400px] items-center justify-between gap-6 px-5 md:h-24 md:px-10">
-        <Link to="/" className="flex items-center" onClick={() => setOpen(false)} aria-label="Midrift Concrete Works — home">
-          <Wordmark size="md" />
+        <Link to="/" className="flex shrink-0 items-center" onClick={() => setOpen(false)} aria-label="Midrift Concrete Works — home">
+          <Wordmark size="sm" className="whitespace-nowrap" />
         </Link>
+
 
         <nav className="hidden items-center gap-1 xl:flex">
           {mainNav.map((item) => (
