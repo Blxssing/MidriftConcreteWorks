@@ -178,14 +178,25 @@ export function QuoteDialog({
         data-cta-zone="quote-dialog"
         className="ios-glass relative w-full max-w-2xl rounded-t-[28px] bg-card p-6 shadow-2xl sm:rounded-[28px] md:p-9"
       >
-        <button
-          type="button"
-          onClick={onClose}
-          aria-label="Close the quote request form"
-          className="absolute right-4 top-4 flex size-11 items-center justify-center rounded-full border border-hairline transition-colors hover:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-        >
-          <X className="size-5" aria-hidden="true" />
-        </button>
+        <div className="mb-4 flex items-center justify-between gap-3">
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Return to the website"
+            className="inline-flex min-h-11 items-center gap-2 rounded-full border border-hairline px-4 py-2.5 text-[13px] font-semibold transition-colors hover:border-accent hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+          >
+            <ArrowLeft className="size-4" aria-hidden="true" /> Return
+          </button>
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Close the quote request form"
+            className="flex size-11 items-center justify-center rounded-full border border-hairline transition-colors hover:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+          >
+            <X className="size-5" aria-hidden="true" />
+          </button>
+        </div>
+
 
         {result ? (
           <div>
