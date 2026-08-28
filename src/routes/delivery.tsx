@@ -4,6 +4,7 @@ import logisticsImg from "@/assets/logistics.jpg";
 import { site } from "@/data/site";
 import { useQuote } from "@/components/site/QuoteProvider";
 import { Mail, MessageCircle, Music2, Phone } from "lucide-react";
+import { DeliveryMap } from "@/components/site/DeliveryMap";
 
 export const Route = createFileRoute("/delivery")({
   head: () => ({
