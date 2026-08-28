@@ -76,6 +76,18 @@ export const Route = createFileRoute("/products/$category/$product")({
                   { "@type": "ListItem", position: 3, name: loaderData.name, item: url },
                 ],
               },
+              ...(loaderData.faqs?.length
+                ? [
+                    {
+                      "@type": "FAQPage",
+                      mainEntity: loaderData.faqs.map((f: { q: string; a: string }) => ({
+                        "@type": "Question",
+                        name: f.q,
+                        acceptedAnswer: { "@type": "Answer", text: f.a },
+                      })),
+                    },
+                  ]
+                : []),
             ],
           }),
         },
