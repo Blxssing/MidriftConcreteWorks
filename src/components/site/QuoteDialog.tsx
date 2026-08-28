@@ -248,7 +248,7 @@ export function QuoteDialog({
                 onClick={onClose}
                 className="inline-flex min-h-11 items-center rounded-full px-5 py-3 text-[13px] font-semibold text-muted-foreground hover:text-foreground"
               >
-                Done
+                Return to website
               </button>
             </div>
           </div>
