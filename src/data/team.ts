@@ -32,13 +32,15 @@ export const teamGroups: { id: TeamDepartment; code: string; label: string; lead
 
 export const team: TeamMember[] = [
   {
+    name: "Joseph Wanjohi",
     position: "Director",
     department: "leadership",
     order: 1,
     active: true,
-    bio: "Provides strategic leadership and helps guide the overall direction, growth, governance, and performance of Midrift Concrete Solutions, keeping the company focused on quality, customer satisfaction, operational excellence, and sustainable growth.",
+    bio: "Provides strategic leadership and helps guide the overall direction, growth, governance, and performance of Midrift Concrete Works, keeping the company focused on quality, customer satisfaction, operational excellence, and sustainable growth.",
   },
   {
+    name: "Patrick",
     position: "Manager",
     department: "management",
     order: 2,
@@ -46,39 +48,36 @@ export const team: TeamMember[] = [
     bio: "Coordinates the company's day-to-day activities and works across the team to support efficient operations, effective communication, customer satisfaction, and the consistent execution of company objectives.",
   },
   {
-    position: "Operational Quality Control Officer",
+    name: "Mariam",
+    position: "Human Resources",
     department: "core",
     order: 3,
     active: true,
-    bio: "Supports the company's quality-control processes by monitoring operational activities and helping ensure that products and production processes meet the company's required standards and specifications.",
+    bio: "Supports the people and organizational side of Midrift Concrete Works by helping coordinate recruitment, employee support, workplace communication, staff development, and human-resource processes.",
   },
   {
-    position: "Human Resources",
-    department: "core",
-    order: 4,
-    active: true,
-    bio: "Supports the people and organizational side of Midrift Concrete Solutions by helping coordinate recruitment, employee support, workplace communication, staff development, and human-resource processes.",
-  },
-  {
+    name: "Jane",
     position: "Accountant",
     department: "core",
-    order: 5,
+    order: 4,
     active: true,
     bio: "Supports the company's financial operations through accounting, financial record management, reporting, invoicing, and financial administration.",
   },
   {
-    position: "Digital Marketing Team",
+    name: "Deliverknox",
+    position: "Digital Marketing",
+    department: "core",
+    order: 5,
+    active: true,
+    bio: "Helps connect Midrift Concrete Works with customers through digital channels, brand communication, content, social media, website management, and online customer engagement.",
+  },
+  {
+    name: "Nathan",
+    position: "Procurement & Operational Quality Officer",
     department: "core",
     order: 6,
     active: true,
-    bio: "Helps connect Midrift Concrete Solutions with customers through digital channels, brand communication, content, social media, website management, and online customer engagement.",
-  },
-  {
-    position: "Procurement Officer",
-    department: "core",
-    order: 7,
-    active: true,
-    bio: "Supports the company's procurement activities by coordinating the sourcing of materials, supplies, and other resources required to support efficient business and operational activities.",
+    bio: "Coordinates the sourcing of materials, supplies, and other resources the yard needs, and monitors operational activities so that products and production processes meet the company's required standards and specifications.",
   },
 ];
 
