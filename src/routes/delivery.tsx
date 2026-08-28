@@ -118,7 +118,7 @@ function DeliveryPage() {
             <MessageCircle className="size-6 shrink-0" />
             <span>
               <span className="block text-base font-semibold">WhatsApp us</span>
-              <span className="block text-sm opacity-90">{site.phoneAlt}</span>
+              <span className="block text-sm opacity-90">{site.whatsappDisplay}</span>
             </span>
           </button>
           <a

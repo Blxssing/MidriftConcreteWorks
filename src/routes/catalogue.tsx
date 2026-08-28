@@ -47,7 +47,7 @@ function CataloguePage() {
             <span className="font-mono text-xs text-whatsapp-deep">Official catalogue</span>
             <h2 className="mt-3 display-2">Open the WhatsApp Business catalogue</h2>
             <p className="mt-4 leading-relaxed text-muted-foreground">
-              Photos, sizes and current availability, maintained by our sales team on {site.phoneAlt}.
+              Photos, sizes and current availability, maintained by our sales team on WhatsApp {site.whatsappDisplay}.
             </p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row">

@@ -169,14 +169,14 @@ export function QuoteDialog({
   const waPrimary = form.preferredContact !== "email";
 
   return (
-    <div className="fixed inset-0 z-[70] flex items-end justify-center overflow-y-auto bg-foreground/40 p-0 backdrop-blur-sm sm:items-center sm:p-6 print:hidden">
+    <div className="fixed inset-0 z-[70] flex items-end justify-center bg-foreground/40 p-0 backdrop-blur-sm sm:items-center sm:p-6 print:hidden">
       <div
         ref={dialogRef}
         role="dialog"
         aria-modal="true"
         aria-labelledby="quote-dialog-title"
         data-cta-zone="quote-dialog"
-        className="ios-glass relative w-full max-w-2xl rounded-t-[28px] bg-card p-6 shadow-2xl sm:rounded-[28px] md:p-9"
+        className="ios-glass relative max-h-[92dvh] w-full max-w-2xl overflow-y-auto overscroll-contain rounded-t-[28px] bg-card p-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] shadow-2xl sm:max-h-[88dvh] sm:rounded-[28px] sm:p-6 md:p-9"
       >
         <div className="mb-4 flex items-center justify-between gap-3">
           <button
