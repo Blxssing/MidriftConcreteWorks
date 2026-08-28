@@ -77,6 +77,17 @@ function DeliveryPage() {
         </div>
       </Section>
 
+      <Section className="pt-0">
+        <SectionHead
+          eyebrow="Service map"
+          title="Where we deliver, confirmed."
+          lead="The highlighted areas are confirmed delivery zones. Anywhere else, share your site location and we will confirm cost and lead time."
+        />
+        <div className="mt-10">
+          <DeliveryMap />
+        </div>
+      </Section>
+
       <Section dark>
         <SectionHead eyebrow="Delivery process" title="Six steps, agreed in advance." />
         <div className="mt-14 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
