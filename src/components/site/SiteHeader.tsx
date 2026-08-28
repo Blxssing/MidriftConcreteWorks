@@ -79,7 +79,7 @@ export function SiteHeader() {
       </div>
 
       {open && (
-        <div className="ios-sheet border-t border-hairline bg-background/92 backdrop-blur-2xl 2xl:hidden">
+        <div className="ios-sheet max-h-[calc(100dvh-68px)] overflow-y-auto overscroll-contain border-t border-hairline bg-background/92 backdrop-blur-2xl md:max-h-[calc(100dvh-96px)] 2xl:hidden">
           <nav className="mx-auto flex max-w-[1400px] flex-col px-4 py-3">
             <div className="ios-glass overflow-hidden rounded-[26px]">
               {mainNav.map((item, i) => (
