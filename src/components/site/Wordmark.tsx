@@ -17,11 +17,12 @@ export function Wordmark({
   className?: string;
 }) {
   const scale = {
-    sm: "text-[21px] md:text-[25px]",
-    md: "text-2xl md:text-[30px]",
-    lg: "text-4xl md:text-5xl",
-    xl: "text-5xl md:text-7xl lg:text-[5.5rem]",
+    sm: "text-[22px] md:text-[26px]",
+    md: "text-[25px] sm:text-[28px] md:text-[32px]",
+    lg: "text-[38px] md:text-5xl",
+    xl: "text-[44px] sm:text-6xl md:text-7xl lg:text-[5.75rem]",
   }[size];
+
 
   return (
     <span className={cn("wordmark", scale, animate && "wordmark-animate", animate && "wordmark-sheen", className)}>

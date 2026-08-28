@@ -254,13 +254,16 @@
 /* Constant, elegant typesetting for the company name */
 @utility wordmark {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 700;
   font-style: normal;
-  letter-spacing: 0.005em;
-  line-height: 1.05;
+  letter-spacing: -0.005em;
+  line-height: 1.03;
+  color: var(--foreground);
   text-wrap: balance;
   font-variant-ligatures: common-ligatures;
+  text-shadow: 0 1px 0 color-mix(in oklab, #fff 35%, transparent);
 }
+
 
 @utility soft-card {
   border-radius: var(--radius-2xl);
