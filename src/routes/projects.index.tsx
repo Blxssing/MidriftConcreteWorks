@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { projects } from "@/data/projects";
 import { CTABand, PageHero, Section } from "@/components/site/primitives";
-import projectYard from "@/assets/project-yard.jpg";
+import heroAsset from "@/assets/project-IMG-20260828-WA0003.jpg.asset.json";
 
 export const Route = createFileRoute("/projects/")({
   head: () => ({
@@ -29,8 +29,8 @@ function ProjectsIndex() {
         eyebrow="Projects"
         title="Supply in the field"
         lead="A selection of works Midrift has supplied. Quantities and completion details are published only where the client has confirmed them."
-        image={projectYard}
-        imageAlt="Completed paved commercial yard"
+        image={heroAsset.url}
+        imageAlt="Completed cabro driveway at a residential home in Nakuru"
       />
 
       <Section>
