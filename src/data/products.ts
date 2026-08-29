@@ -43,6 +43,16 @@ import imgLouvers from "@/assets/louvers.jpg.asset.json";
 import imgCustomVent from "@/assets/customvent.jpg.asset.json";
 import imgSmoothVent from "@/assets/smoothvent.jpg.asset.json";
 import imgGrillVent from "@/assets/grillvent.jpg.asset.json";
+import imgNettedVent from "@/assets/netted-vent.jpg.asset.json";
+import imgVent1 from "@/assets/vent-1.jpg.asset.json";
+import imgVent2 from "@/assets/vent-2.jpg.asset.json";
+import imgRoadCulvert from "@/assets/road-culvert.jpg.asset.json";
+import imgShallowDrain from "@/assets/shallow-drain.jpg.asset.json";
+import imgWaffles from "@/assets/waffles.jpg.asset.json";
+import imgWallCoping from "@/assets/wall-coping.jpg.asset.json";
+import imgWindowSills from "@/assets/window-sills.jpg.asset.json";
+import imgPillarCoping from "@/assets/pillar-coping.jpg.asset.json";
+import imgDoubleSinks from "@/assets/double-sinks.jpg.asset.json";
 
 export const TBC = "Specification to be confirmed";
 
