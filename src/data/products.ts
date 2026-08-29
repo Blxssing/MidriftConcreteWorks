@@ -279,11 +279,16 @@ export const categories: Category[] = [
     intro: "Airflow, light and privacy in a single architectural masonry unit.",
     description:
       "Ventilation blocks deliver passive airflow and daylight while maintaining privacy and security. Midrift produces a range of patterns and can develop custom moulds for architectural projects.",
-    photoSlots: photoSlots("Ventilation Blocks"),
+    image: imgVent1.url,
+    photoSlots: photoSlots("Ventilation Blocks", 2).map((sl, i) => ({
+      ...sl,
+      image: [imgVent1.url, imgVent2.url][i] as string,
+      note: "Ventilation block screens installed on site.",
+    })),
     products: [
       withImages(p("ventilation-blocks", "smooth-ventilation", "Smooth Ventilation", "Clean-faced vent units for tidy exposed screens.", "A smooth face finish for screens that stay exposed in the finished building.", ["Facade screens", "Stairwells", "Boundary walls"], ["Standard grey", "Painted"], ["Multiple sizes"], blockSpecs), [{ url: imgSmoothVent.url }]),
       withImages(p("ventilation-blocks", "grill-ventilation", "Grill Ventilation", "Grill-pattern apertures for strong airflow.", "The grill pattern maximises open area for service yards, car parks and drying areas.", ["Car park ventilation", "Service yards", "Drying areas"], ["Standard grey", "Painted"], ["Multiple sizes"], blockSpecs), [{ url: imgGrillVent.url }]),
-      p("ventilation-blocks", "netted-ventilation", "Netted Ventilation", "Fine mesh-style aperture for privacy with airflow.", "A finer aperture that keeps privacy high while still moving air through the wall.", ["Residential", "Hotels & resorts", "Interior screens"], ["Standard grey", "Painted", "Coloured"], ["Multiple sizes"], blockSpecs),
+      withImages(p("ventilation-blocks", "netted-ventilation", "Netted Ventilation", "Fine mesh-style aperture for privacy with airflow.", "A finer aperture that keeps privacy high while still moving air through the wall.", ["Residential", "Hotels & resorts", "Interior screens"], ["Standard grey", "Painted", "Coloured"], ["Multiple sizes"], blockSpecs), [{ url: imgNettedVent.url, note: "Netted ventilation screen wall." }]),
       withImages(p("ventilation-blocks", "louvers", "Louvers", "Angled precast louvers for directed airflow and shading.", "Louver units direct airflow and cut direct sun while screening the opening.", ["Facades", "Plant rooms", "Car parks"], ["Standard grey", "Painted"], ["Multiple sizes"], blockSpecs), [{ url: imgLouvers.url }]),
       withImages(p("ventilation-blocks", "custom-ventilation-designs", "Custom Ventilation Designs", "Architect-specified patterns produced from bespoke moulds.", "For architectural projects we develop custom vent block moulds so the screen becomes part of the building's identity.", ["Signature facades", "Public buildings", "Architectural screens"], ["Custom mould", "Custom finish"], ["To project specification"], blockSpecs), [{ url: imgCustomVent.url }]),
     ],
