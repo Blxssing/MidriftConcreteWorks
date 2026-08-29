@@ -2,10 +2,8 @@ import cabroVenus from "@/assets/cabro-venus.jpg.asset.json";
 import cabroDubro from "@/assets/cabro-dubro.jpg.asset.json";
 import cabroArrow from "@/assets/cabro-arrow.jpg.asset.json";
 import cabroThara from "@/assets/cabro-thara.jpg.asset.json";
-import cabroFlower from "@/assets/cabro-flower.jpg.asset.json";
 import cabroUni from "@/assets/cabro-uni.jpg.asset.json";
 import cabroMeera from "@/assets/cabro-meera-heera.jpg.asset.json";
-import cabroSmooth from "@/assets/cabro-smooth-coloured.jpg.asset.json";
 import cabroNormal from "@/assets/cabro-normal.jpg.asset.json";
 import cabroCustom from "@/assets/cabro-custom.jpg.asset.json";
 import ballostad15 from "@/assets/ballostad-15.jpg.asset.json";
@@ -28,6 +26,14 @@ import roadKerbsImg from "@/assets/road-kerbs.jpg.asset.json";
 import kenhaMarkersImg from "@/assets/kenha-markers.jpg.asset.json";
 import concreteTilesImg from "@/assets/concrete-tiles.jpg.asset.json";
 import concretePostsImg from "@/assets/concrete-posts.jpg.asset.json";
+import up1 from "@/assets/up-1.jpg.asset.json";
+import up2 from "@/assets/up-2.jpg.asset.json";
+import up3 from "@/assets/up-3.jpg.asset.json";
+import up4 from "@/assets/up-4.jpg.asset.json";
+import up5 from "@/assets/up-5.jpg.asset.json";
+import up6 from "@/assets/up-6.jpg.asset.json";
+import up7 from "@/assets/up-7.jpg.asset.json";
+import up8 from "@/assets/up-8.jpg.asset.json";
 
 export const TBC = "Specification to be confirmed";
 
@@ -190,17 +196,17 @@ export const categories: Category[] = [
     })),
     products: [
       paver("cabro-meera-heera", "Cabro Meera and Heera", "Popular decorative interlock profiles for driveways and estates.", "Meera and Heera profiles combine a strong mechanical interlock with a decorative surface pattern, suited to driveways, estate roads and commercial frontages.", cabroMeera.url),
-      paver("arrow-paver", "Arrow Paver", "Directional arrow profile with tight lateral interlock.", "The arrow profile locks firmly in both directions, making it a dependable choice for areas carrying constant vehicle movement.", cabroArrow.url),
-      paver("smooth-cabro-coloured", "Smooth Cabro Coloured", "Smooth-faced coloured units for a refined finished surface.", "Smooth coloured cabro gives a clean, even face for premium driveways, courtyards and commercial entrances.", cabroSmooth.url),
+      paver("arrow-paver", "Arrow Paver", "Directional arrow profile with tight lateral interlock.", "The arrow profile locks firmly in both directions, making it a dependable choice for areas carrying constant vehicle movement.", up5.url),
+      paver("smooth-cabro-coloured", "Smooth Cabro Coloured", "Smooth-faced coloured units for a refined finished surface.", "Smooth coloured cabro gives a clean, even face for premium driveways, courtyards and commercial entrances.", up6.url),
       paver("dubro-cabro", "Dubro Cabro", "Robust profile for yards and access roads.", "Dubro cabro is produced for load distribution and dimensional consistency across large paved fields.", cabroDubro.url),
       paver("venus-cabro", "Venus Cabro", "Distinct decorative profile for landscaped and public areas.", "Venus cabro carries a recognisable face pattern while retaining full interlocking performance.", cabroVenus.url),
       paver("thara-cabro", "Thara Cabro", "Patterned interlock for estates and walkways.", "Thara cabro suits estate roads, walkways and landscaped areas where pattern and durability both matter.", cabroThara.url),
       paver("cabro-spreader", "Cabro Spreader", "Feature paver for architectural and premium landscaping.", "Cabro Spreader units are used where the paved surface forms part of the architectural finish."),
-      paver("hexagon-cabro", "Hexagon Cabro", "Six-sided units for stable, uniform paved fields.", "The hexagonal geometry spreads load evenly and produces a clean repeating rhythm across large areas."),
-      paver("flower-cabro", "Flower Cabro", "Decorative floral pattern for landscaped surfaces.", "Flower cabro is used for feature paving, courtyards and garden paths where appearance leads the specification.", cabroFlower.url),
+      paver("hexagon-cabro", "Hexagon Cabro", "Six-sided units for stable, uniform paved fields.", "The hexagonal geometry spreads load evenly and produces a clean repeating rhythm across large areas.", up4.url),
+      paver("flower-cabro", "Flower Cabro", "Decorative floral pattern for landscaped surfaces.", "Flower cabro is used for feature paving, courtyards and garden paths where appearance leads the specification.", up8.url),
       paver("uni-large", "Uni Large", "Large-format uni profile for fast laying over wide areas.", "Uni large covers ground quickly while maintaining reliable interlock for vehicle traffic.", cabroUni.url),
-      paver("uni-small", "Uni Small", "Compact uni profile for detailed and pedestrian areas.", "Uni small allows tighter curves, borders and detail work in pedestrian and landscaped spaces."),
-      paver("quad-cabro", "Quad Cabro", "Four-part modular profile for varied laying patterns.", "Quad cabro lets you set out multiple laying patterns from a single unit type."),
+      paver("uni-small", "Uni Small", "Compact uni profile for detailed and pedestrian areas.", "Uni small allows tighter curves, borders and detail work in pedestrian and landscaped spaces.", up7.url),
+      paver("quad-cabro", "Quad Cabro", "Four-part modular profile for varied laying patterns.", "Quad cabro lets you set out multiple laying patterns from a single unit type.", up3.url),
       paver("normal-cabro-blocks", "Normal Cabro Blocks", "The standard workhorse paver for everyday paving works.", "Our standard cabro block is the general-purpose unit for driveways, yards and estate roads.", cabroNormal.url),
       paver("custom-paving-designs", "Custom Paving Designs", "Bespoke shapes, colours and moulds for specific projects.", "Where a project requires a paving unit that is not in our standard range, we develop the mould and run production to the agreed specification.", cabroCustom.url),
     ],
@@ -326,7 +332,12 @@ export const categories: Category[] = [
     intro: "Project-based manufacturing, custom moulds and bulk production runs.",
     description:
       "When a project needs a unit that does not exist in a standard catalogue, Midrift develops the mould, agrees the specification and runs dedicated production to your programme.",
-    photoSlots: photoSlots("Custom Precast Solutions"),
+    image: up1.url,
+    photoSlots: photoSlots("Custom Precast Solutions").map((sl, i) => ({
+      ...sl,
+      image: [up1.url, up2.url][i] as string,
+      note: "Custom precast units produced at the Midrift yard.",
+    })),
     products: [],
   },
 ];

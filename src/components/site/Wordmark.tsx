@@ -17,7 +17,7 @@ export function Wordmark({
   className?: string;
 }) {
   const scale = {
-    sm: "text-[22px] md:text-[26px]",
+    sm: "text-[13.5px] min-[380px]:text-[15px] min-[430px]:text-[18px] sm:text-[22px] md:text-[26px]",
     md: "text-[25px] sm:text-[28px] md:text-[32px]",
     lg: "text-[38px] md:text-5xl",
     xl: "text-[44px] sm:text-6xl md:text-7xl lg:text-[5.75rem]",
