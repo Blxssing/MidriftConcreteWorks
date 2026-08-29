@@ -199,7 +199,7 @@ export function QuoteDialog({
         <div className="mb-4 flex items-center justify-between gap-3">
           <button
             type="button"
-            onClick={onClose}
+            onClick={() => (result ? finish() : onClose())}
             aria-label="Return to the website"
             className="inline-flex min-h-11 items-center gap-2 rounded-full border border-hairline px-4 py-2.5 text-[13px] font-semibold transition-colors hover:border-accent hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
           >
@@ -207,7 +207,7 @@ export function QuoteDialog({
           </button>
           <button
             type="button"
-            onClick={onClose}
+            onClick={() => { setResult(null); onClose(); }}
             aria-label="Close the quote request form"
             className="flex size-11 items-center justify-center rounded-full border border-hairline transition-colors hover:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
           >
