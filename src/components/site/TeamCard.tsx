@@ -20,7 +20,7 @@ export function TeamCard({ member, featured = false }: { member: TeamMember; fea
             alt={`${member.name ?? member.position}, ${member.position} at Midrift Concrete Solutions`}
             loading="lazy"
             decoding="async"
-            className="aspect-4/3 w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03] motion-reduce:transform-none md:h-full"
+            className="aspect-4/5 w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03] motion-reduce:transform-none md:h-full"
           />
         ) : (
           <div className="flex aspect-4/3 w-full flex-col items-center justify-center gap-3 px-6 text-center md:h-full">

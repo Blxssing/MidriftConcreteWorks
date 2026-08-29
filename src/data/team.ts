@@ -1,3 +1,10 @@
+import directorPhoto from "@/assets/team-IMG-20260825-WA0011.jpg.asset.json";
+import managerPhoto from "@/assets/team-IMG-20260827-WA0001.jpg.asset.json";
+import accountantPhoto from "@/assets/team-IMG-20260827-WA0000.jpg.asset.json";
+import procurementPhoto from "@/assets/team-IMG-20260827-WA0005.jpg.asset.json";
+import hrPhoto from "@/assets/team-IMG-20260827-WA0003.jpg.asset.json";
+import marketingPhoto from "@/assets/team-IMG-20260827-WA0002.jpg.asset.json";
+
 /**
  * Team directory. Roles are verified; names and photographs are added only when
  * the company supplies approved details — never fabricated.
