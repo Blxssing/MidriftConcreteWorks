@@ -34,6 +34,15 @@ import up5 from "@/assets/up-5.jpg.asset.json";
 import up6 from "@/assets/up-6.jpg.asset.json";
 import up7 from "@/assets/up-7.jpg.asset.json";
 import up8 from "@/assets/up-8.jpg.asset.json";
+import imgSpreader from "@/assets/spreader.jpg.asset.json";
+import imgHollow from "@/assets/hollow.jpg.asset.json";
+import imgHollowPot from "@/assets/hollowpot.jpg.asset.json";
+import imgSolid from "@/assets/solid.jpg.asset.json";
+import imgKplc from "@/assets/kplc.jpg.asset.json";
+import imgLouvers from "@/assets/louvers.jpg.asset.json";
+import imgCustomVent from "@/assets/customvent.jpg.asset.json";
+import imgSmoothVent from "@/assets/smoothvent.jpg.asset.json";
+import imgGrillVent from "@/assets/grillvent.jpg.asset.json";
 
 export const TBC = "Specification to be confirmed";
 
@@ -201,7 +210,7 @@ export const categories: Category[] = [
       paver("dubro-cabro", "Dubro Cabro", "Robust profile for yards and access roads.", "Dubro cabro is produced for load distribution and dimensional consistency across large paved fields.", cabroDubro.url),
       paver("venus-cabro", "Venus Cabro", "Distinct decorative profile for landscaped and public areas.", "Venus cabro carries a recognisable face pattern while retaining full interlocking performance.", cabroVenus.url),
       paver("thara-cabro", "Thara Cabro", "Patterned interlock for estates and walkways.", "Thara cabro suits estate roads, walkways and landscaped areas where pattern and durability both matter.", cabroThara.url),
-      paver("cabro-spreader", "Cabro Spreader", "Feature paver for architectural and premium landscaping.", "Cabro Spreader units are used where the paved surface forms part of the architectural finish."),
+      paver("cabro-spreader", "Cabro Spreader", "Feature paver for architectural and premium landscaping.", "Cabro Spreader units are used where the paved surface forms part of the architectural finish.", imgSpreader.url),
       paver("hexagon-cabro", "Hexagon Cabro", "Six-sided units for stable, uniform paved fields.", "The hexagonal geometry spreads load evenly and produces a clean repeating rhythm across large areas.", up4.url),
       paver("flower-cabro", "Flower Cabro", "Decorative floral pattern for landscaped surfaces.", "Flower cabro is used for feature paving, courtyards and garden paths where appearance leads the specification.", up8.url),
       paver("uni-large", "Uni Large", "Large-format uni profile for fast laying over wide areas.", "Uni large covers ground quickly while maintaining reliable interlock for vehicle traffic.", cabroUni.url),
@@ -225,9 +234,9 @@ export const categories: Category[] = [
       note: "Precast units from the Midrift yard.",
     })),
     products: [
-      block("hollow-blocks", "Hollow Blocks", "Lighter walling units with cores for services and reduced dead load.", "Hollow blocks reduce wall dead load and allow services and reinforcement to be routed through the cores.", ["External walling", "Internal walling", "Boundary walls"]),
-      block("hollow-pot-blocks", "Hollow Pot Blocks", "Infill units for suspended hollow-pot slabs.", "Hollow pot blocks act as lightweight infill between ribs in suspended slab construction, reducing concrete volume and slab weight.", ["Suspended slabs", "Floor systems", "Roof slabs"]),
-      block("solid-blocks", "Solid Blocks", "Dense units where mass, strength and acoustics matter.", "Solid blocks provide higher mass for load-bearing walls, retaining structures and acoustic separation.", ["Load-bearing walls", "Retaining structures", "Boundary walls"]),
+      block("hollow-blocks", "Hollow Blocks", "Lighter walling units with cores for services and reduced dead load.", "Hollow blocks reduce wall dead load and allow services and reinforcement to be routed through the cores.", ["External walling", "Internal walling", "Boundary walls"], imgHollow.url),
+      block("hollow-pot-blocks", "Hollow Pot Blocks", "Infill units for suspended hollow-pot slabs.", "Hollow pot blocks act as lightweight infill between ribs in suspended slab construction, reducing concrete volume and slab weight.", ["Suspended slabs", "Floor systems", "Roof slabs"], imgHollowPot.url),
+      block("solid-blocks", "Solid Blocks", "Dense units where mass, strength and acoustics matter.", "Solid blocks provide higher mass for load-bearing walls, retaining structures and acoustic separation.", ["Load-bearing walls", "Retaining structures", "Boundary walls"], imgSolid.url),
       block("ballostad-1-5ft", "Ballostad 1.5ft", "Precast balustrade units at 1.5ft height.", "Ballostad units are cast for balcony, terrace and staircase edging at a 1.5ft height.", ["Balconies", "Terraces", "Staircases"], ballostad15.url),
       block("ballostad-2ft", "Ballostad 2ft", "Precast balustrade units at 2ft height.", "A 2ft balustrade height for terraces, walkways and perimeter edging.", ["Terraces", "Walkways", "Perimeter edging"], ballostad2.url),
       block("ballostad-3ft", "Ballostad 3ft", "Precast balustrade units at 3ft height.", "A taller 3ft balustrade for elevated terraces, roof edges and boundary features.", ["Roof edges", "Elevated terraces", "Boundary features"], ballostad3.url),
@@ -235,7 +244,7 @@ export const categories: Category[] = [
       block("concrete-tiles", "Concrete Tiles", "Cast tiles for floors, terraces and external areas.", "Concrete tiles give a hard-wearing finished surface for terraces, corridors and external circulation areas.", ["Terraces", "Corridors", "External floors"], concreteTilesImg.url),
       block("filler-blocks", "Filler Blocks", "Lightweight infill for slab and rib systems.", "Filler blocks occupy the void between slab ribs, reducing dead load and concrete consumption.", ["Suspended slabs", "Rib-and-block floors"], fillerBlocksImg.url),
       block("interlocking-blocks", "Interlocking Blocks", "Dry-stack walling units for faster construction.", "Interlocking blocks key into each other, reducing mortar use and speeding up walling.", ["Walling", "Boundary walls", "Fast-build projects"], interlockingBlocksImg.url),
-      block("kplc-hatari", "KPLC Hatari", "Precast units supplied for utility installations.", "Produced to the sizes required for utility and power installation works.", ["Utility works", "Power installations", "Infrastructure sites"]),
+      block("kplc-hatari", "KPLC Hatari", "Precast units supplied for utility installations.", "Produced to the sizes required for utility and power installation works.", ["Utility works", "Power installations", "Infrastructure sites"], imgKplc.url),
     ],
   },
   {
@@ -262,11 +271,11 @@ export const categories: Category[] = [
       "Ventilation blocks deliver passive airflow and daylight while maintaining privacy and security. Midrift produces a range of patterns and can develop custom moulds for architectural projects.",
     photoSlots: photoSlots("Ventilation Blocks"),
     products: [
-      p("ventilation-blocks", "smooth-ventilation", "Smooth Ventilation", "Clean-faced vent units for tidy exposed screens.", "A smooth face finish for screens that stay exposed in the finished building.", ["Facade screens", "Stairwells", "Boundary walls"], ["Standard grey", "Painted"], ["Multiple sizes"], blockSpecs),
-      p("ventilation-blocks", "grill-ventilation", "Grill Ventilation", "Grill-pattern apertures for strong airflow.", "The grill pattern maximises open area for service yards, car parks and drying areas.", ["Car park ventilation", "Service yards", "Drying areas"], ["Standard grey", "Painted"], ["Multiple sizes"], blockSpecs),
+      withImages(p("ventilation-blocks", "smooth-ventilation", "Smooth Ventilation", "Clean-faced vent units for tidy exposed screens.", "A smooth face finish for screens that stay exposed in the finished building.", ["Facade screens", "Stairwells", "Boundary walls"], ["Standard grey", "Painted"], ["Multiple sizes"], blockSpecs), [{ url: imgSmoothVent.url }]),
+      withImages(p("ventilation-blocks", "grill-ventilation", "Grill Ventilation", "Grill-pattern apertures for strong airflow.", "The grill pattern maximises open area for service yards, car parks and drying areas.", ["Car park ventilation", "Service yards", "Drying areas"], ["Standard grey", "Painted"], ["Multiple sizes"], blockSpecs), [{ url: imgGrillVent.url }]),
       p("ventilation-blocks", "netted-ventilation", "Netted Ventilation", "Fine mesh-style aperture for privacy with airflow.", "A finer aperture that keeps privacy high while still moving air through the wall.", ["Residential", "Hotels & resorts", "Interior screens"], ["Standard grey", "Painted", "Coloured"], ["Multiple sizes"], blockSpecs),
-      p("ventilation-blocks", "louvers", "Louvers", "Angled precast louvers for directed airflow and shading.", "Louver units direct airflow and cut direct sun while screening the opening.", ["Facades", "Plant rooms", "Car parks"], ["Standard grey", "Painted"], ["Multiple sizes"], blockSpecs),
-      p("ventilation-blocks", "custom-ventilation-designs", "Custom Ventilation Designs", "Architect-specified patterns produced from bespoke moulds.", "For architectural projects we develop custom vent block moulds so the screen becomes part of the building's identity.", ["Signature facades", "Public buildings", "Architectural screens"], ["Custom mould", "Custom finish"], ["To project specification"], blockSpecs),
+      withImages(p("ventilation-blocks", "louvers", "Louvers", "Angled precast louvers for directed airflow and shading.", "Louver units direct airflow and cut direct sun while screening the opening.", ["Facades", "Plant rooms", "Car parks"], ["Standard grey", "Painted"], ["Multiple sizes"], blockSpecs), [{ url: imgLouvers.url }]),
+      withImages(p("ventilation-blocks", "custom-ventilation-designs", "Custom Ventilation Designs", "Architect-specified patterns produced from bespoke moulds.", "For architectural projects we develop custom vent block moulds so the screen becomes part of the building's identity.", ["Signature facades", "Public buildings", "Architectural screens"], ["Custom mould", "Custom finish"], ["To project specification"], blockSpecs), [{ url: imgCustomVent.url }]),
     ],
   },
   {
