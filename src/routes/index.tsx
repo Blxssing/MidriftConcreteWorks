@@ -106,6 +106,32 @@ function Home() {
         ]}
       />
 
+      <Section className="py-14 md:py-20">
+        <div className="grid items-center gap-8 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)]">
+          <figure className="media-zoom overflow-hidden rounded-3xl bg-concrete">
+            <img
+              src={bannerImg.url}
+              alt="Midrift Concrete Works banner showing concrete posts, cabro paving blocks, culverts and ventilation blocks"
+              loading="lazy"
+              decoding="async"
+              className="mx-auto max-h-[560px] w-full object-contain"
+            />
+          </figure>
+          <div>
+            <p className="eyebrow">Your construction solutions provider</p>
+            <h2 className="mt-4 display-2">Concrete posts, cabro, blocks, culverts, vents and ready mix.</h2>
+            <p className="mt-5 leading-relaxed text-muted-foreground">
+              Located along the Nakuru–Nairobi highway, adjacent to Shiners Girls High School. Tell us what your site
+              needs and we will quote quantities, lead time and delivery.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <QuoteCTA />
+              <WhatsAppCTA />
+            </div>
+          </div>
+        </div>
+      </Section>
+
       <TextMarquee
         items={[
           "Cabro paving",
@@ -117,6 +143,7 @@ function Home() {
         ]}
         className="bg-concrete"
       />
+
 
       {/* Product categories — asymmetric editorial grid */}
       <Section id="products" className="scroll-mt-28">
