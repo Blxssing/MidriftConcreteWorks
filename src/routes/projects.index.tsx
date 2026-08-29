@@ -17,7 +17,11 @@ export const Route = createFileRoute("/projects/")({
         property: "og:description",
         content: "Case studies of paving, block and civil precast supply by Midrift Concrete Works.",
       },
+      { property: "og:url", content: "https://midriftconcreteworks.com/projects" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://midriftconcreteworks.com/projects" }],
   }),
   component: ProjectsIndex,
 });

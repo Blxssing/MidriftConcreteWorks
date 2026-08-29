@@ -37,7 +37,11 @@ export const Route = createFileRoute("/")({
         content:
           "Precast concrete manufacturing and project supply in Kenya — paving, blocks, ventilation blocks, road and infrastructure products.",
       },
+      { property: "og:url", content: "https://midriftconcreteworks.com/" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://midriftconcreteworks.com/" }],
   }),
   component: Home,
 });

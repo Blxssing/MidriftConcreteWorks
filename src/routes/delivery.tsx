@@ -20,7 +20,11 @@ export const Route = createFileRoute("/delivery")({
         property: "og:description",
         content: "How Midrift loads, trucks and schedules precast concrete deliveries to site.",
       },
+      { property: "og:url", content: "https://midriftconcreteworks.com/delivery" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://midriftconcreteworks.com/delivery" }],
   }),
   component: DeliveryPage,
 });

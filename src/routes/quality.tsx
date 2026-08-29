@@ -17,7 +17,11 @@ export const Route = createFileRoute("/quality")({
         property: "og:description",
         content: "An eight-stage production process built for consistent, repeatable precast concrete units.",
       },
+      { property: "og:url", content: "https://midriftconcreteworks.com/quality" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://midriftconcreteworks.com/quality" }],
   }),
   component: QualityPage,
 });
