@@ -393,10 +393,10 @@ export function QuoteDialog({
               className="mt-8 flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-accent px-8 py-4 text-[13px] font-bold uppercase tracking-[0.12em] text-accent-foreground transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground disabled:opacity-60"
             >
               {sending && <Loader2 className="size-4 animate-spin" aria-hidden="true" />}
-              {sending ? "Sending…" : "Request My Quote"}
+              {sending ? "Sending…" : "Send Quote"}
             </button>
             <p className="mt-3 text-center text-xs text-muted-foreground">
-              We only use these details to prepare your quotation. Nothing is sent until you press send.
+              Pressing “Send Quote” saves your request and opens WhatsApp with your message ready to send.
             </p>
           </form>
         )}
