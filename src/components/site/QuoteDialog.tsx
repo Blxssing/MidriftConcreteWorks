@@ -226,24 +226,30 @@ export function QuoteDialog({
               Continue your conversation with our sales team — your message is already written, just review and press
               send.
             </p>
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-6 flex flex-col gap-3">
               <a
-                href={waPrimary ? waHref : mailHref}
-                {...(waPrimary ? { target: "_blank", rel: "noreferrer" } : {})}
-                onClick={() => track(waPrimary ? "whatsapp_sales_clicked" : "email_sales_clicked", { stage: "success" })}
-                className="wa-btn flex min-h-12 flex-1 items-center justify-center gap-2 rounded-full px-6 py-4 text-[14px] font-bold tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                href={waHref}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => {
+                  track("whatsapp_sales_clicked", { stage: "success" });
+                  finish();
+                }}
+                className="wa-btn flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-4 text-center text-[14px] font-bold tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
               >
-                {waPrimary ? <MessageCircle className="size-5" aria-hidden="true" /> : <Mail className="size-5" aria-hidden="true" />}
-                {waPrimary ? "Continue on WhatsApp" : "Continue by Email"}
+                <MessageCircle className="size-5" aria-hidden="true" />
+                Continue to WhatsApp to send the quotation
               </a>
               <a
-                href={waPrimary ? mailHref : waHref}
-                {...(!waPrimary ? { target: "_blank", rel: "noreferrer" } : {})}
-                onClick={() => track(waPrimary ? "email_sales_clicked" : "whatsapp_sales_clicked", { stage: "success" })}
-                className="flex min-h-12 flex-1 items-center justify-center gap-2 rounded-full border border-hairline px-6 py-4 text-[14px] font-bold tracking-tight transition-colors hover:border-accent hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                href={mailHref}
+                onClick={() => {
+                  track("email_sales_clicked", { stage: "success" });
+                  finish();
+                }}
+                className="flex min-h-12 items-center justify-center gap-2 rounded-full border border-hairline px-6 py-4 text-center text-[14px] font-bold tracking-tight transition-colors hover:border-accent hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
               >
-                {waPrimary ? <Mail className="size-5" aria-hidden="true" /> : <MessageCircle className="size-5" aria-hidden="true" />}
-                {waPrimary ? "Continue by Email" : "Continue on WhatsApp"}
+                <Mail className="size-5" aria-hidden="true" />
+                Continue to Email to send the quotation
               </a>
             </div>
             <div className="mt-4 flex flex-wrap gap-3">
@@ -255,10 +261,10 @@ export function QuoteDialog({
               </a>
               <button
                 type="button"
-                onClick={onClose}
+                onClick={finish}
                 className="inline-flex min-h-11 items-center rounded-full px-5 py-3 text-[13px] font-semibold text-muted-foreground hover:text-foreground"
               >
-                Return to website
+                Return to home page
               </button>
             </div>
           </div>
