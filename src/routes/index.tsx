@@ -3,6 +3,8 @@ import heroImg from "@/assets/hero-yard.jpg";
 import heroImgSm from "@/assets/hero-yard-sm.jpg";
 import manufacturingImg from "@/assets/manufacturing.jpg";
 import logisticsImg from "@/assets/logistics.jpg";
+import bannerImg from "@/assets/banner.jpg.asset.json";
+
 import { categories } from "@/data/products";
 import { solutions } from "@/data/solutions";
 import { projects } from "@/data/projects";
