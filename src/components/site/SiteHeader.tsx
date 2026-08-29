@@ -63,8 +63,9 @@ export function SiteHeader() {
   }, [open, close]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-hairline bg-background/75 backdrop-blur-2xl backdrop-saturate-150">
-      <div className="mx-auto flex h-[68px] max-w-[1400px] items-center justify-between gap-2 px-3 sm:gap-4 sm:px-5 md:h-24 md:px-10">
+    <header className="sticky top-0 z-50 border-b border-hairline bg-background/75 backdrop-blur-2xl backdrop-saturate-150 [padding-top:env(safe-area-inset-top)]">
+      <div className="mx-auto flex h-[68px] max-w-[1400px] items-center justify-between gap-2 px-3 [touch-action:manipulation] [-webkit-tap-highlight-color:transparent] sm:gap-4 sm:px-5 md:h-24 md:px-10">
+
         <Link
           to="/"
           className="flex min-w-0 shrink items-center overflow-hidden"
