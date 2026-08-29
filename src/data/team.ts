@@ -39,7 +39,7 @@ export const teamGroups: { id: TeamDepartment; code: string; label: string; lead
 
 export const team: TeamMember[] = [
   {
-    name: "Joseph Wanjohi",
+    name: "Mr Joseph Wanjohi",
     position: "Director",
     department: "leadership",
     order: 1,
@@ -48,7 +48,7 @@ export const team: TeamMember[] = [
     bio: "Provides strategic leadership and helps guide the overall direction, growth, governance, and performance of Midrift Concrete Works, keeping the company focused on quality, customer satisfaction, operational excellence, and sustainable growth.",
   },
   {
-    name: "Mariam",
+    name: "Mrs Mariam",
     position: "Human Resources",
     department: "management",
     order: 2,
@@ -57,7 +57,7 @@ export const team: TeamMember[] = [
     bio: "Supports the people and organizational side of Midrift Concrete Works by helping coordinate recruitment, employee support, workplace communication, staff development, and human-resource processes.",
   },
   {
-    name: "Patrick",
+    name: "Mr Patrick",
     position: "Manager",
     department: "management",
     order: 3,
@@ -66,7 +66,7 @@ export const team: TeamMember[] = [
     bio: "Coordinates the company's day-to-day activities and works across the team to support efficient operations, effective communication, customer satisfaction, and the consistent execution of company objectives.",
   },
   {
-    name: "Nathan",
+    name: "Mr Nathan",
     position: "Procurement & Operational Quality Officer",
     department: "core",
     order: 4,
@@ -75,7 +75,7 @@ export const team: TeamMember[] = [
     bio: "Coordinates the sourcing of materials, supplies, and other resources the yard needs, and monitors operational activities so that products and production processes meet the company's required standards and specifications.",
   },
   {
-    name: "Jane",
+    name: "Mrs Jane",
     position: "Accountant",
     department: "core",
     order: 5,
