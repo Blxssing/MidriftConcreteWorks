@@ -91,6 +91,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { name: "author", content: "Midrift Concrete Works Ltd" },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "Midrift Concrete Works" },
+      { property: "og:locale", content: "en_KE" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     scripts: [
