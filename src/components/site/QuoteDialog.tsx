@@ -1,5 +1,6 @@
 import { Suspense, lazy, useEffect, useMemo, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
+import { useNavigate } from "@tanstack/react-router";
 import { X, MessageCircle, Mail, MapPin, LocateFixed, Check, Loader2, Phone, ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
 import { categories } from "@/data/products";
@@ -32,6 +33,7 @@ export function QuoteDialog({
   onClose: () => void;
 }) {
   const submit = useServerFn(submitQuoteRequest);
+  const navigate = useNavigate();
   const dialogRef = useRef<HTMLDivElement | null>(null);
   const [sending, setSending] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
@@ -166,6 +168,13 @@ export function QuoteDialog({
     }
   }
 
+  /** Closes the dialog and returns the visitor to the home page. */
+  function finish() {
+    setResult(null);
+    onClose();
+    void navigate({ to: "/" });
+  }
+
   if (!open) return null;
 
   const waHref = result
@@ -176,7 +185,6 @@ export function QuoteDialog({
         result.emailBody.replace(/\r?\n/g, "\r\n"),
       )}`
     : "#";
-  const waPrimary = form.preferredContact !== "email";
 
   return (
     <div className="fixed inset-0 z-[70] flex items-end justify-center bg-foreground/40 p-0 backdrop-blur-sm sm:items-center sm:p-6 print:hidden">
