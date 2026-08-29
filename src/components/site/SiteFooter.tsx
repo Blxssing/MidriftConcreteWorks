@@ -91,12 +91,6 @@ export function SiteFooter() {
               </a>
             </p>
             <p className="mt-1 flex flex-wrap items-baseline gap-2">
-              <span className="text-xs uppercase tracking-[0.12em] text-ink-foreground/60">Sales (alt)</span>
-              <a href={site.phoneAltHref} className="text-lg font-semibold hover:text-accent">
-                {site.phoneAlt}
-              </a>
-            </p>
-            <p className="mt-1 flex flex-wrap items-baseline gap-2">
               <span className="text-xs uppercase tracking-[0.12em] text-ink-foreground/60">WhatsApp</span>
               <a
                 href={whatsappLink()}

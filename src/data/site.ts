@@ -4,12 +4,12 @@ export const site = {
   tagline: "Quality precast concrete. Built for strength. Designed for performance.",
   phone: "0791 502 707",
   phoneHref: "tel:+254791502707",
-  phoneAlt: "0745 240 050",
-  phoneAltHref: "tel:+254745240050",
-  /** Central WhatsApp sales line — every quote handoff goes here. */
-  whatsapp: "254729321496",
-  whatsappDisplay: "0729 321 496",
-  whatsappAlt: "254745240050",
+  phoneAlt: "0791 502 707",
+  phoneAltHref: "tel:+254791502707",
+  /** Central sales line — every call, WhatsApp and quote handoff goes here. */
+  whatsapp: "254791502707",
+  whatsappDisplay: "0791 502 707",
+  whatsappAlt: "254791502707",
   whatsappCatalog: "https://wa.me/c/254745240050",
   email: "midmerchants@gmail.com",
   location: "Old Nairobi Road, Nakuru, Kenya",
