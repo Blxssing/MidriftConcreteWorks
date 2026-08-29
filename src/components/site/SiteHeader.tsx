@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Menu, X, Phone, MessageCircle, Mail, MapPin, Star } from "lucide-react";
+import { Menu, X, Phone, MessageCircle, Mail, MapPin, Star, Home, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { mainNav, site } from "@/data/site";
 import { useQuote } from "./QuoteProvider";
@@ -15,6 +15,17 @@ export function SiteHeader() {
       <div className="mx-auto flex h-[68px] max-w-[1400px] items-center justify-between gap-6 px-5 md:h-24 md:px-10">
         <Link to="/" className="flex shrink-0 items-center" onClick={() => setOpen(false)} aria-label="Midrift Concrete Works — home">
           <Wordmark size="sm" className="whitespace-nowrap" />
+        </Link>
+
+        <Link
+          to="/"
+          onClick={() => setOpen(false)}
+          aria-label="Go to the home page"
+          title="Home"
+          activeProps={{ className: "border-accent text-accent" }}
+          className="flex size-11 shrink-0 items-center justify-center rounded-2xl border border-hairline transition-all duration-300 hover:border-accent hover:text-accent active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+        >
+          <Home className="size-[18px]" aria-hidden="true" />
         </Link>
 
 
@@ -86,20 +97,45 @@ export function SiteHeader() {
       </div>
 
       {open && (
-        <div className="ios-sheet max-h-[calc(100dvh-68px)] overflow-y-auto overscroll-contain border-t border-hairline bg-background/92 backdrop-blur-2xl md:max-h-[calc(100dvh-96px)] 2xl:hidden">
+        <div className="ios-sheet max-h-[calc(100dvh-68px)] overflow-y-auto overscroll-contain border-t border-white/20 bg-background/70 backdrop-blur-3xl backdrop-saturate-150 md:max-h-[calc(100dvh-96px)] 2xl:hidden">
           <nav className="mx-auto flex max-w-[1400px] flex-col px-4 py-3">
-            <div className="ios-glass overflow-hidden rounded-[26px]">
+            <p className="px-2 pb-2 pt-1 text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground">
+              Tap any page below to explore it
+            </p>
+            <div className="ios-glass overflow-hidden rounded-[26px] border border-white/25 bg-background/55 shadow-[0_24px_60px_-30px_rgba(0,0,0,0.55)] backdrop-blur-2xl backdrop-saturate-150">
+              <Link
+                to="/"
+                onClick={() => setOpen(false)}
+                className="ios-row flex items-center justify-between gap-3 border-b border-hairline px-5 py-4 active:bg-foreground/5"
+                activeProps={{ className: "text-accent" }}
+              >
+                <span className="flex items-center gap-3">
+                  <Home className="size-5 text-accent" aria-hidden="true" />
+                  <span>
+                    <span className="block text-[17px] font-semibold tracking-tight">Home</span>
+                    <span className="block text-[12.5px] text-muted-foreground">Back to the main page</span>
+                  </span>
+                </span>
+                <span className="inline-flex items-center gap-1 rounded-full bg-accent/12 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.08em] text-accent">
+                  Go <ChevronRight className="size-3.5" aria-hidden="true" />
+                </span>
+              </Link>
               {mainNav.map((item, i) => (
                 <Link
                   key={item.to}
                   to={item.to}
                   onClick={() => setOpen(false)}
                   style={{ animationDelay: `${40 + i * 35}ms` }}
-                  className="ios-row flex items-center justify-between border-b border-hairline px-5 py-4 text-[17px] font-semibold tracking-tight last:border-b-0 active:bg-foreground/5"
+                  className="ios-row flex items-center justify-between gap-3 border-b border-hairline px-5 py-4 last:border-b-0 active:bg-foreground/5"
                   activeProps={{ className: "text-accent" }}
                 >
-                  {item.label}
-                  <span className="text-muted-foreground">›</span>
+                  <span className="min-w-0">
+                    <span className="block text-[17px] font-semibold tracking-tight">{item.label}</span>
+                    <span className="block text-[12.5px] text-muted-foreground">{item.desc}</span>
+                  </span>
+                  <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-accent/12 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.08em] text-accent">
+                    View <ChevronRight className="size-3.5" aria-hidden="true" />
+                  </span>
                 </Link>
               ))}
             </div>
