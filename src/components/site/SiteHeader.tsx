@@ -1,20 +1,77 @@
 import { Link } from "@tanstack/react-router";
 import { Menu, X, Phone, MessageCircle, Mail, MapPin, Star, Home, ChevronRight } from "lucide-react";
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { mainNav, site } from "@/data/site";
 import { useQuote } from "./QuoteProvider";
 import { Wordmark } from "@/components/site/Wordmark";
 import { SocialIcons } from "@/components/site/SocialIcons";
 
+const MENU_ID = "site-mobile-menu";
+
 export function SiteHeader() {
   const { openQuote } = useQuote();
   const [open, setOpen] = useState(false);
+  const panelRef = useRef<HTMLDivElement | null>(null);
+  const toggleRef = useRef<HTMLButtonElement | null>(null);
+
+  const close = useCallback((focusToggle = true) => {
+    setOpen(false);
+    if (focusToggle) toggleRef.current?.focus();
+  }, []);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        close();
+        return;
+      }
+      if (e.key !== "Tab") return;
+      const panel = panelRef.current;
+      const toggle = toggleRef.current;
+      if (!panel || !toggle) return;
+      const focusables = [
+        toggle,
+        ...Array.from(
+          panel.querySelectorAll<HTMLElement>(
+            'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+          ),
+        ),
+      ].filter((el) => el.offsetParent !== null || el === toggle);
+      if (focusables.length === 0) return;
+      const first = focusables[0]!;
+      const last = focusables[focusables.length - 1]!;
+      const active = document.activeElement as HTMLElement | null;
+      if (e.shiftKey && active === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && active === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    // move focus into the sheet for screen-reader / keyboard users
+    const t = window.setTimeout(() => {
+      panelRef.current?.querySelector<HTMLElement>("a[href], button")?.focus();
+    }, 60);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      window.clearTimeout(t);
+    };
+  }, [open, close]);
 
   return (
     <header className="sticky top-0 z-50 border-b border-hairline bg-background/75 backdrop-blur-2xl backdrop-saturate-150">
-      <div className="mx-auto flex h-[68px] max-w-[1400px] items-center justify-between gap-6 px-5 md:h-24 md:px-10">
-        <Link to="/" className="flex shrink-0 items-center" onClick={() => setOpen(false)} aria-label="Midrift Concrete Works — home">
-          <Wordmark size="sm" className="whitespace-nowrap" />
+      <div className="mx-auto flex h-[68px] max-w-[1400px] items-center justify-between gap-2 px-3 sm:gap-4 sm:px-5 md:h-24 md:px-10">
+        <Link
+          to="/"
+          className="flex min-w-0 shrink items-center overflow-hidden"
+          onClick={() => setOpen(false)}
+          aria-label="Midrift Concrete Works — home"
+        >
+          <Wordmark size="sm" className="truncate whitespace-nowrap" />
         </Link>
 
         <Link
@@ -27,6 +84,7 @@ export function SiteHeader() {
         >
           <Home className="size-[18px]" aria-hidden="true" />
         </Link>
+
 
 
         <nav className="hidden items-center gap-1 2xl:flex">
@@ -80,16 +138,20 @@ export function SiteHeader() {
         </div>
 
         <button
+          ref={toggleRef}
+          type="button"
           aria-label={open ? "Close menu" : "Open menu — browse products, services and contact"}
           aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
-          className="ios-cta flex min-h-11 shrink-0 items-center gap-2 rounded-full bg-accent px-4 py-2.5 text-[13px] font-bold uppercase tracking-[0.08em] text-accent-foreground shadow-[0_10px_30px_-12px_hsl(var(--accent)/0.9)] transition-transform duration-300 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 2xl:hidden"
+          aria-controls={MENU_ID}
+          aria-haspopup="menu"
+          onClick={() => (open ? close(false) : setOpen(true))}
+          className="ios-cta flex min-h-11 shrink-0 items-center gap-1.5 rounded-full bg-accent px-3.5 py-2.5 text-[12px] font-bold uppercase tracking-[0.06em] text-accent-foreground shadow-[0_10px_30px_-12px_hsl(var(--accent)/0.9)] transition-transform duration-300 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 sm:gap-2 sm:px-4 sm:text-[13px] sm:tracking-[0.08em] 2xl:hidden"
         >
-          {open ? <X className="size-5" /> : <Menu className="size-5" />}
+          {open ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
           <span>{open ? "Close" : "Menu"}</span>
           {!open && (
-            <span className="relative flex size-2">
-              <span className="absolute inline-flex size-full animate-ping rounded-full bg-accent-foreground/70" />
+            <span className="relative flex size-2" aria-hidden="true">
+              <span className="absolute inline-flex size-full animate-ping rounded-full bg-accent-foreground/70 motion-reduce:animate-none" />
               <span className="relative inline-flex size-2 rounded-full bg-accent-foreground" />
             </span>
           )}
@@ -97,8 +159,16 @@ export function SiteHeader() {
       </div>
 
       {open && (
-        <div className="ios-sheet max-h-[calc(100dvh-68px)] overflow-y-auto overscroll-contain border-t border-white/20 bg-background/70 backdrop-blur-3xl backdrop-saturate-150 md:max-h-[calc(100dvh-96px)] 2xl:hidden">
+        <div
+          id={MENU_ID}
+          ref={panelRef}
+          role="dialog"
+          aria-modal="false"
+          aria-label="Site menu"
+          className="ios-sheet max-h-[calc(100dvh-68px)] overflow-y-auto overscroll-contain border-t border-white/20 bg-background/70 backdrop-blur-3xl backdrop-saturate-150 md:max-h-[calc(100dvh-96px)] 2xl:hidden"
+        >
           <nav className="mx-auto flex max-w-[1400px] flex-col px-4 py-3">
+
             <p className="px-2 pb-2 pt-1 text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground">
               Tap any page below to explore it
             </p>
@@ -106,7 +176,7 @@ export function SiteHeader() {
               <Link
                 to="/"
                 onClick={() => setOpen(false)}
-                className="ios-row flex items-center justify-between gap-3 border-b border-hairline px-5 py-4 active:bg-foreground/5"
+                className="ios-row flex items-center justify-between gap-3 border-b border-hairline px-5 py-4 active:bg-foreground/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent"
                 activeProps={{ className: "text-accent" }}
               >
                 <span className="flex items-center gap-3">
@@ -126,7 +196,7 @@ export function SiteHeader() {
                   to={item.to}
                   onClick={() => setOpen(false)}
                   style={{ animationDelay: `${40 + i * 35}ms` }}
-                  className="ios-row flex items-center justify-between gap-3 border-b border-hairline px-5 py-4 last:border-b-0 active:bg-foreground/5"
+                  className="ios-row flex items-center justify-between gap-3 border-b border-hairline px-5 py-4 last:border-b-0 active:bg-foreground/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent"
                   activeProps={{ className: "text-accent" }}
                 >
                   <span className="min-w-0">
