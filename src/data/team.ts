@@ -4,6 +4,8 @@ import accountantPhoto from "@/assets/team-IMG-20260827-WA0000.jpg.asset.json";
 import procurementPhoto from "@/assets/team-IMG-20260827-WA0005.jpg.asset.json";
 import hrPhoto from "@/assets/team-IMG-20260827-WA0003.jpg.asset.json";
 import marketingPhoto from "@/assets/team-IMG-20260827-WA0002.jpg.asset.json";
+import salesPhoto from "@/assets/team-sales-caleb.jpg.asset.json";
+import engineerPhoto from "@/assets/team-engineer-john.jpg.asset.json";
 
 /**
  * Team directory. Roles are verified; names and photographs are added only when
@@ -66,10 +68,28 @@ export const team: TeamMember[] = [
     bio: "Coordinates the company's day-to-day activities and works across the team to support efficient operations, effective communication, customer satisfaction, and the consistent execution of company objectives.",
   },
   {
+    name: "Mr Caleb",
+    position: "Sales Manager",
+    department: "management",
+    order: 4,
+    active: true,
+    photo: salesPhoto.url,
+    bio: "Leads the sales function at Midrift Concrete Works — guiding customers from first enquiry to delivery, preparing quotations, managing key accounts, and making sure every order is understood, priced clearly and followed through.",
+  },
+  {
+    name: "Mr John",
+    position: "Engineer",
+    department: "core",
+    order: 5,
+    active: true,
+    photo: engineerPhoto.url,
+    bio: "Provides technical and engineering support across production and site work — advising on product specifications, mix and structural requirements, installation guidance, and the technical standards our precast elements are produced to.",
+  },
+  {
     name: "Mr Nathan",
     position: "Procurement & Operational Quality Officer",
     department: "core",
-    order: 4,
+    order: 6,
     active: true,
     photo: procurementPhoto.url,
     bio: "Coordinates the sourcing of materials, supplies, and other resources the yard needs, and monitors operational activities so that products and production processes meet the company's required standards and specifications.",
@@ -78,16 +98,16 @@ export const team: TeamMember[] = [
     name: "Mrs Jane",
     position: "Accountant",
     department: "core",
-    order: 5,
+    order: 7,
     active: true,
     photo: accountantPhoto.url,
     bio: "Supports the company's financial operations through accounting, financial record management, reporting, invoicing, and financial administration.",
   },
   {
-    name: "Deliverknox",
+    name: "Mr Deliverknox",
     position: "Digital Marketing",
     department: "core",
-    order: 6,
+    order: 8,
     active: true,
     photo: marketingPhoto.url,
     bio: "Helps connect Midrift Concrete Works with customers through digital channels, brand communication, content, social media, website management, and online customer engagement.",
