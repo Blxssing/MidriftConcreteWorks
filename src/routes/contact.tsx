@@ -30,7 +30,6 @@ export const Route = createFileRoute("/contact")({
 
 const details = [
   { icon: Phone, label: "Sales", value: site.phone, href: site.phoneHref },
-  { icon: Phone, label: "Sales (alt)", value: site.phoneAlt, href: site.phoneAltHref },
   { icon: MessageCircle, label: "WhatsApp", value: `${site.whatsappDisplay} — chat with sales`, href: whatsappLink() },
   {
     icon: BookOpen,

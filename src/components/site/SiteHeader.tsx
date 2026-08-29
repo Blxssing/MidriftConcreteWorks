@@ -69,12 +69,19 @@ export function SiteHeader() {
         </div>
 
         <button
-          aria-label={open ? "Close menu" : "Open menu"}
+          aria-label={open ? "Close menu" : "Open menu — browse products, services and contact"}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className="flex size-11 items-center justify-center rounded-2xl border border-hairline transition-transform duration-300 active:scale-90 2xl:hidden"
+          className="ios-cta flex min-h-11 shrink-0 items-center gap-2 rounded-full bg-accent px-4 py-2.5 text-[13px] font-bold uppercase tracking-[0.08em] text-accent-foreground shadow-[0_10px_30px_-12px_hsl(var(--accent)/0.9)] transition-transform duration-300 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 2xl:hidden"
         >
           {open ? <X className="size-5" /> : <Menu className="size-5" />}
+          <span>{open ? "Close" : "Menu"}</span>
+          {!open && (
+            <span className="relative flex size-2">
+              <span className="absolute inline-flex size-full animate-ping rounded-full bg-accent-foreground/70" />
+              <span className="relative inline-flex size-2 rounded-full bg-accent-foreground" />
+            </span>
+          )}
         </button>
       </div>
 

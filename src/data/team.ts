@@ -1,3 +1,10 @@
+import directorPhoto from "@/assets/team-IMG-20260825-WA0011.jpg.asset.json";
+import managerPhoto from "@/assets/team-IMG-20260827-WA0001.jpg.asset.json";
+import accountantPhoto from "@/assets/team-IMG-20260827-WA0000.jpg.asset.json";
+import procurementPhoto from "@/assets/team-IMG-20260827-WA0005.jpg.asset.json";
+import hrPhoto from "@/assets/team-IMG-20260827-WA0003.jpg.asset.json";
+import marketingPhoto from "@/assets/team-IMG-20260827-WA0002.jpg.asset.json";
+
 /**
  * Team directory. Roles are verified; names and photographs are added only when
  * the company supplies approved details — never fabricated.
@@ -37,47 +44,53 @@ export const team: TeamMember[] = [
     department: "leadership",
     order: 1,
     active: true,
+    photo: directorPhoto.url,
     bio: "Provides strategic leadership and helps guide the overall direction, growth, governance, and performance of Midrift Concrete Works, keeping the company focused on quality, customer satisfaction, operational excellence, and sustainable growth.",
+  },
+  {
+    name: "Mariam",
+    position: "Human Resources",
+    department: "management",
+    order: 2,
+    active: true,
+    photo: hrPhoto.url,
+    bio: "Supports the people and organizational side of Midrift Concrete Works by helping coordinate recruitment, employee support, workplace communication, staff development, and human-resource processes.",
   },
   {
     name: "Patrick",
     position: "Manager",
     department: "management",
-    order: 2,
+    order: 3,
     active: true,
+    photo: managerPhoto.url,
     bio: "Coordinates the company's day-to-day activities and works across the team to support efficient operations, effective communication, customer satisfaction, and the consistent execution of company objectives.",
   },
   {
-    name: "Mariam",
-    position: "Human Resources",
+    name: "Nathan",
+    position: "Procurement & Operational Quality Officer",
     department: "core",
-    order: 3,
+    order: 4,
     active: true,
-    bio: "Supports the people and organizational side of Midrift Concrete Works by helping coordinate recruitment, employee support, workplace communication, staff development, and human-resource processes.",
+    photo: procurementPhoto.url,
+    bio: "Coordinates the sourcing of materials, supplies, and other resources the yard needs, and monitors operational activities so that products and production processes meet the company's required standards and specifications.",
   },
   {
     name: "Jane",
     position: "Accountant",
     department: "core",
-    order: 4,
+    order: 5,
     active: true,
+    photo: accountantPhoto.url,
     bio: "Supports the company's financial operations through accounting, financial record management, reporting, invoicing, and financial administration.",
   },
   {
     name: "Deliverknox",
     position: "Digital Marketing",
     department: "core",
-    order: 5,
-    active: true,
-    bio: "Helps connect Midrift Concrete Works with customers through digital channels, brand communication, content, social media, website management, and online customer engagement.",
-  },
-  {
-    name: "Nathan",
-    position: "Procurement & Operational Quality Officer",
-    department: "core",
     order: 6,
     active: true,
-    bio: "Coordinates the sourcing of materials, supplies, and other resources the yard needs, and monitors operational activities so that products and production processes meet the company's required standards and specifications.",
+    photo: marketingPhoto.url,
+    bio: "Helps connect Midrift Concrete Works with customers through digital channels, brand communication, content, social media, website management, and online customer engagement.",
   },
 ];
 

@@ -71,12 +71,6 @@ function ThankYouPage() {
       href: site.phoneHref,
     },
     {
-      icon: Phone,
-      label: `Call ${site.phoneAlt}`,
-      value: "Alternative line",
-      href: site.phoneAltHref,
-    },
-    {
       icon: Mail,
       label: site.email,
       value: "Send drawings, BQs or specifications",
