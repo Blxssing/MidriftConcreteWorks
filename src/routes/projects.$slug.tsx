@@ -8,7 +8,7 @@ export const Route = createFileRoute("/projects/$slug")({
     if (!project) throw notFound();
     return { name: project.name, description: project.description };
   },
-  head: ({ loaderData }) => {
+  head: ({ params, loaderData }) => {
     if (!loaderData) {
       return { meta: [{ title: "Project not found | Midrift" }, { name: "robots", content: "noindex" }] };
     }
@@ -19,7 +19,11 @@ export const Route = createFileRoute("/projects/$slug")({
         { name: "description", content: loaderData.description },
         { property: "og:title", content: title },
         { property: "og:description", content: loaderData.description },
+        { property: "og:url", content: `https://midriftconcreteworks.com/projects/${params.slug}` },
+        { property: "og:type", content: "article" },
+        { name: "twitter:card", content: "summary_large_image" },
       ],
+      links: [{ rel: "canonical", href: `https://midriftconcreteworks.com/projects/${params.slug}` }],
     };
   },
   component: ProjectPage,
