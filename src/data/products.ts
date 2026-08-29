@@ -184,7 +184,7 @@ const block = (slug: string, name: string, summary: string, description: string,
   return image ? withImages(base, [{ url: image }]) : base;
 };
 
-export const categories: Category[] = [
+const rawCategories: Category[] = [
   {
     slug: "t-beam",
     name: "T-Beam",
@@ -365,6 +365,17 @@ export const categories: Category[] = [
     products: [],
   },
 ];
+
+/** Photography is complete, so empty reserved slots are dropped from the UI. */
+const withFilledSlots = <T extends { photoSlots: PhotoSlot[] }>(item: T): T => ({
+  ...item,
+  photoSlots: item.photoSlots.filter((s) => !!s.image),
+});
+
+export const categories: Category[] = rawCategories.map((c) => ({
+  ...withFilledSlots(c),
+  products: c.products.map(withFilledSlots),
+}));
 
 export const allProducts = categories.flatMap((c) => c.products);
 
