@@ -9,17 +9,17 @@ const SITE = "https://midriftconcreteworks.com";
 export const Route = createFileRoute("/team")({
   head: () => ({
     meta: [
-      { title: "Our Team | Midrift Concrete Solutions" },
+      { title: "Our Team | Midrift Concrete Works" },
       {
         name: "description",
         content:
-          "Meet the team behind Midrift Concrete Solutions, supporting our operations, quality control, finance, procurement, marketing, and customer service.",
+          "Meet the team behind Midrift Concrete Works, supporting our operations, quality control, finance, procurement, marketing, and customer service.",
       },
-      { property: "og:title", content: "Our Team | Midrift Concrete Solutions" },
+      { property: "og:title", content: "Our Team | Midrift Concrete Works" },
       {
         property: "og:description",
         content:
-          "The people behind Midrift Concrete Solutions — leadership, management, quality control, finance, procurement and marketing.",
+          "The people behind Midrift Concrete Works — leadership, management, quality control, finance, procurement and marketing.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: `${SITE}/team` },
@@ -39,7 +39,7 @@ function TeamPage() {
       <section className="relative overflow-hidden bg-ink text-ink-foreground">
         <img
           src={manufacturingImg}
-          alt="Midrift Concrete Solutions production yard in Nakuru"
+          alt="Midrift Concrete Works production yard in Nakuru"
           fetchPriority="high"
           decoding="async"
           className="absolute inset-0 size-full object-cover opacity-25"
@@ -72,7 +72,7 @@ function TeamPage() {
           <SectionHead eyebrow="Introduction" title="Built by People Who Care About the Work" />
           <div className="space-y-5 text-base leading-relaxed text-muted-foreground">
             <p>
-              At Midrift Concrete Solutions, our work is driven by a dedicated team committed to quality, efficiency,
+              At Midrift Concrete Works, our work is driven by a dedicated team committed to quality, efficiency,
               reliability, and customer satisfaction. From operations and quality control to finance, procurement,
               human resources, and digital marketing, every role contributes to delivering dependable concrete
               solutions to our customers.

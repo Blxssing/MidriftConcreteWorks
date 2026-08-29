@@ -17,7 +17,7 @@ export function TeamCard({ member, featured = false }: { member: TeamMember; fea
         {member.photo ? (
           <img
             src={member.photo}
-            alt={`${member.name ?? member.position}, ${member.position} at Midrift Concrete Solutions`}
+            alt={`${member.name ?? member.position}, ${member.position} at Midrift Concrete Works`}
             loading="lazy"
             decoding="async"
             className="aspect-4/5 w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03] motion-reduce:transform-none md:h-full"
