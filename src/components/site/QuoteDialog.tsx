@@ -1,5 +1,6 @@
 import { Suspense, lazy, useEffect, useMemo, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
+import { useNavigate } from "@tanstack/react-router";
 import { X, MessageCircle, Mail, MapPin, LocateFixed, Check, Loader2, Phone, ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
 import { categories } from "@/data/products";
@@ -32,6 +33,7 @@ export function QuoteDialog({
   onClose: () => void;
 }) {
   const submit = useServerFn(submitQuoteRequest);
+  const navigate = useNavigate();
   const dialogRef = useRef<HTMLDivElement | null>(null);
   const [sending, setSending] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
@@ -166,6 +168,13 @@ export function QuoteDialog({
     }
   }
 
+  /** Closes the dialog and returns the visitor to the home page. */
+  function finish() {
+    setResult(null);
+    onClose();
+    void navigate({ to: "/" });
+  }
+
   if (!open) return null;
 
   const waHref = result
@@ -176,7 +185,6 @@ export function QuoteDialog({
         result.emailBody.replace(/\r?\n/g, "\r\n"),
       )}`
     : "#";
-  const waPrimary = form.preferredContact !== "email";
 
   return (
     <div className="fixed inset-0 z-[70] flex items-end justify-center bg-foreground/40 p-0 backdrop-blur-sm sm:items-center sm:p-6 print:hidden">
@@ -191,7 +199,7 @@ export function QuoteDialog({
         <div className="mb-4 flex items-center justify-between gap-3">
           <button
             type="button"
-            onClick={onClose}
+            onClick={() => (result ? finish() : onClose())}
             aria-label="Return to the website"
             className="inline-flex min-h-11 items-center gap-2 rounded-full border border-hairline px-4 py-2.5 text-[13px] font-semibold transition-colors hover:border-accent hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
           >
@@ -199,7 +207,7 @@ export function QuoteDialog({
           </button>
           <button
             type="button"
-            onClick={onClose}
+            onClick={() => { setResult(null); onClose(); }}
             aria-label="Close the quote request form"
             className="flex size-11 items-center justify-center rounded-full border border-hairline transition-colors hover:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
           >
@@ -226,24 +234,30 @@ export function QuoteDialog({
               Continue your conversation with our sales team — your message is already written, just review and press
               send.
             </p>
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-6 flex flex-col gap-3">
               <a
-                href={waPrimary ? waHref : mailHref}
-                {...(waPrimary ? { target: "_blank", rel: "noreferrer" } : {})}
-                onClick={() => track(waPrimary ? "whatsapp_sales_clicked" : "email_sales_clicked", { stage: "success" })}
-                className="wa-btn flex min-h-12 flex-1 items-center justify-center gap-2 rounded-full px-6 py-4 text-[14px] font-bold tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                href={waHref}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => {
+                  track("whatsapp_sales_clicked", { stage: "success" });
+                  finish();
+                }}
+                className="wa-btn flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-4 text-center text-[14px] font-bold tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
               >
-                {waPrimary ? <MessageCircle className="size-5" aria-hidden="true" /> : <Mail className="size-5" aria-hidden="true" />}
-                {waPrimary ? "Continue on WhatsApp" : "Continue by Email"}
+                <MessageCircle className="size-5" aria-hidden="true" />
+                Continue to WhatsApp to send the quotation
               </a>
               <a
-                href={waPrimary ? mailHref : waHref}
-                {...(!waPrimary ? { target: "_blank", rel: "noreferrer" } : {})}
-                onClick={() => track(waPrimary ? "email_sales_clicked" : "whatsapp_sales_clicked", { stage: "success" })}
-                className="flex min-h-12 flex-1 items-center justify-center gap-2 rounded-full border border-hairline px-6 py-4 text-[14px] font-bold tracking-tight transition-colors hover:border-accent hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                href={mailHref}
+                onClick={() => {
+                  track("email_sales_clicked", { stage: "success" });
+                  finish();
+                }}
+                className="flex min-h-12 items-center justify-center gap-2 rounded-full border border-hairline px-6 py-4 text-center text-[14px] font-bold tracking-tight transition-colors hover:border-accent hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
               >
-                {waPrimary ? <Mail className="size-5" aria-hidden="true" /> : <MessageCircle className="size-5" aria-hidden="true" />}
-                {waPrimary ? "Continue by Email" : "Continue on WhatsApp"}
+                <Mail className="size-5" aria-hidden="true" />
+                Continue to Email to send the quotation
               </a>
             </div>
             <div className="mt-4 flex flex-wrap gap-3">
@@ -255,10 +269,10 @@ export function QuoteDialog({
               </a>
               <button
                 type="button"
-                onClick={onClose}
+                onClick={finish}
                 className="inline-flex min-h-11 items-center rounded-full px-5 py-3 text-[13px] font-semibold text-muted-foreground hover:text-foreground"
               >
-                Return to website
+                Return to home page
               </button>
             </div>
           </div>
@@ -396,7 +410,7 @@ export function QuoteDialog({
               {sending ? "Sending…" : "Send Quote"}
             </button>
             <p className="mt-3 text-center text-xs text-muted-foreground">
-              Pressing “Send Quote” saves your request and opens WhatsApp with your message ready to send.
+              Pressing “Send Quote” saves your request, then you choose to continue on WhatsApp or by email — your message is written for you.
             </p>
           </form>
         )}

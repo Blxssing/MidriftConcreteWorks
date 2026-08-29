@@ -16,7 +16,11 @@ export const Route = createFileRoute("/bulk-wholesale")({
         property: "og:description",
         content: "Trade supply for contractors, developers, distributors and infrastructure companies.",
       },
+      { property: "og:url", content: "https://midriftconcreteworks.com/bulk-wholesale" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://midriftconcreteworks.com/bulk-wholesale" }],
   }),
   component: BulkPage,
 });

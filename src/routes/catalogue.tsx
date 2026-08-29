@@ -6,7 +6,7 @@ import { useQuote } from "@/components/site/QuoteProvider";
 import { CTABand, PageHero, Section, SectionHead } from "@/components/site/primitives";
 import cabroImg from "@/assets/cabro.jpg";
 
-const SITE = "https://midrift-prime-solutions.lovable.app";
+const SITE = "https://midriftconcreteworks.com";
 
 export const Route = createFileRoute("/catalogue")({
   head: () => {

@@ -16,9 +16,11 @@ export const Route = createFileRoute("/resources")({
         property: "og:description",
         content: "Practical guidance on selecting, ordering and installing precast concrete products.",
       },
+      { property: "og:url", content: "https://midriftconcreteworks.com/resources" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://midriftconcreteworks.com/resources" }],
   }),
   component: ResourcesPage,
 });

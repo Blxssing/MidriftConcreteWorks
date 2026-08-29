@@ -18,7 +18,11 @@ export const Route = createFileRoute("/about")({
         property: "og:description",
         content: "Who we are, what we manufacture and how we work with buyers across Kenya.",
       },
+      { property: "og:url", content: "https://midriftconcreteworks.com/about" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://midriftconcreteworks.com/about" }],
   }),
   component: AboutPage,
 });

@@ -91,6 +91,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { name: "author", content: "Midrift Concrete Works Ltd" },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "Midrift Concrete Works" },
+      { property: "og:locale", content: "en_KE" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     scripts: [
@@ -98,10 +100,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "LocalBusiness",
-          "@id": "https://midrift-prime-solutions.lovable.app/#business",
+          "@graph": [
+            {
+          "@type": "WebSite",
+          "@id": "https://midriftconcreteworks.com/#website",
+          name: "Midrift Concrete Works",
+          url: "https://midriftconcreteworks.com",
+          publisher: { "@id": "https://midriftconcreteworks.com/#business" },
+            },
+            {
+          "@type": ["LocalBusiness", "Manufacturer"],
+          "@id": "https://midriftconcreteworks.com/#business",
           name: "Midrift Concrete Works Ltd",
-          url: "https://midrift-prime-solutions.lovable.app",
+          alternateName: "Midrift Concrete Works",
+          url: "https://midriftconcreteworks.com",
+          sameAs: ["https://vm.tiktok.com/ZS9BPAFdBFgDM-d8aRb/"],
           description:
             "Kenyan manufacturer of precast concrete: cabro paving, concrete blocks, ventilation blocks, kerbs, culverts and custom precast solutions.",
           telephone: "+254791502707",
@@ -127,6 +140,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
               dayOfWeek: ["Saturday"],
               opens: "07:30",
               closes: "13:00",
+            },
+          ],
             },
           ],
         }),

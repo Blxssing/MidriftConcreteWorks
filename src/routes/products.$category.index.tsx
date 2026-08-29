@@ -2,7 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { categories, getCategory } from "@/data/products";
 import { CTABand, PageHero, PhotoSlots, Section } from "@/components/site/primitives";
 
-const SITE = "https://midrift-prime-solutions.lovable.app";
+const SITE = "https://midriftconcreteworks.com";
 
 export const Route = createFileRoute("/products/$category/")({
   loader: ({ params }) => {

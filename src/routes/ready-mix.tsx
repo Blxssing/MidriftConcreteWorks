@@ -3,7 +3,7 @@ import { Section, SectionHead, PageHero, QuoteCTA, WhatsAppCTA, CTABand } from "
 import { site } from "@/data/site";
 import manufacturingImg from "@/assets/manufacturing.jpg";
 
-const SITE = "https://midrift-prime-solutions.lovable.app";
+const SITE = "https://midriftconcreteworks.com";
 
 export const Route = createFileRoute("/ready-mix")({
   head: () => ({

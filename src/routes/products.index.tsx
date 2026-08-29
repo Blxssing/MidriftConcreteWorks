@@ -5,7 +5,7 @@ import { CTABand, PageHero, Section, WhatsAppBanner } from "@/components/site/pr
 import { ProductFinder } from "@/components/site/ProductFinder";
 import cabroImg from "@/assets/cabro.jpg";
 
-const SITE = "https://midrift-prime-solutions.lovable.app";
+const SITE = "https://midriftconcreteworks.com";
 
 type ProductSearch = { q?: string; family?: string; use?: string };
 

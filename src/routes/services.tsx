@@ -3,7 +3,7 @@ import { Truck, Factory, CheckCircle2 } from "lucide-react";
 import { CTABand, PageHero, Section, SectionHead, WhatsAppBanner } from "@/components/site/primitives";
 import manufacturingImg from "@/assets/manufacturing.jpg";
 
-const SITE = "https://midrift-prime-solutions.lovable.app";
+const SITE = "https://midriftconcreteworks.com";
 
 const services = [
   {

@@ -21,9 +21,11 @@ export const Route = createFileRoute("/contact")({
         property: "og:description",
         content: "Send your product, quantity and delivery location for a written quotation.",
       },
+      { property: "og:url", content: "https://midriftconcreteworks.com/contact" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://midriftconcreteworks.com/contact" }],
   }),
   component: ContactPage,
 });
