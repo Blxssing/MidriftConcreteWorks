@@ -142,6 +142,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
               closes: "13:00",
             },
           ],
+            },
+          ],
         }),
       },
     ],
