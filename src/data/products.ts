@@ -43,6 +43,16 @@ import imgLouvers from "@/assets/louvers.jpg.asset.json";
 import imgCustomVent from "@/assets/customvent.jpg.asset.json";
 import imgSmoothVent from "@/assets/smoothvent.jpg.asset.json";
 import imgGrillVent from "@/assets/grillvent.jpg.asset.json";
+import imgNettedVent from "@/assets/netted-vent.jpg.asset.json";
+import imgVent1 from "@/assets/vent-1.jpg.asset.json";
+import imgVent2 from "@/assets/vent-2.jpg.asset.json";
+import imgRoadCulvert from "@/assets/road-culvert.jpg.asset.json";
+import imgShallowDrain from "@/assets/shallow-drain.jpg.asset.json";
+import imgWaffles from "@/assets/waffles.jpg.asset.json";
+import imgWallCoping from "@/assets/wall-coping.jpg.asset.json";
+import imgWindowSills from "@/assets/window-sills.jpg.asset.json";
+import imgPillarCoping from "@/assets/pillar-coping.jpg.asset.json";
+import imgDoubleSinks from "@/assets/double-sinks.jpg.asset.json";
 
 export const TBC = "Specification to be confirmed";
 
@@ -269,11 +279,16 @@ export const categories: Category[] = [
     intro: "Airflow, light and privacy in a single architectural masonry unit.",
     description:
       "Ventilation blocks deliver passive airflow and daylight while maintaining privacy and security. Midrift produces a range of patterns and can develop custom moulds for architectural projects.",
-    photoSlots: photoSlots("Ventilation Blocks"),
+    image: imgVent1.url,
+    photoSlots: photoSlots("Ventilation Blocks", 2).map((sl, i) => ({
+      ...sl,
+      image: [imgVent1.url, imgVent2.url][i] as string,
+      note: "Ventilation block screens installed on site.",
+    })),
     products: [
       withImages(p("ventilation-blocks", "smooth-ventilation", "Smooth Ventilation", "Clean-faced vent units for tidy exposed screens.", "A smooth face finish for screens that stay exposed in the finished building.", ["Facade screens", "Stairwells", "Boundary walls"], ["Standard grey", "Painted"], ["Multiple sizes"], blockSpecs), [{ url: imgSmoothVent.url }]),
       withImages(p("ventilation-blocks", "grill-ventilation", "Grill Ventilation", "Grill-pattern apertures for strong airflow.", "The grill pattern maximises open area for service yards, car parks and drying areas.", ["Car park ventilation", "Service yards", "Drying areas"], ["Standard grey", "Painted"], ["Multiple sizes"], blockSpecs), [{ url: imgGrillVent.url }]),
-      p("ventilation-blocks", "netted-ventilation", "Netted Ventilation", "Fine mesh-style aperture for privacy with airflow.", "A finer aperture that keeps privacy high while still moving air through the wall.", ["Residential", "Hotels & resorts", "Interior screens"], ["Standard grey", "Painted", "Coloured"], ["Multiple sizes"], blockSpecs),
+      withImages(p("ventilation-blocks", "netted-ventilation", "Netted Ventilation", "Fine mesh-style aperture for privacy with airflow.", "A finer aperture that keeps privacy high while still moving air through the wall.", ["Residential", "Hotels & resorts", "Interior screens"], ["Standard grey", "Painted", "Coloured"], ["Multiple sizes"], blockSpecs), [{ url: imgNettedVent.url, note: "Netted ventilation screen wall." }]),
       withImages(p("ventilation-blocks", "louvers", "Louvers", "Angled precast louvers for directed airflow and shading.", "Louver units direct airflow and cut direct sun while screening the opening.", ["Facades", "Plant rooms", "Car parks"], ["Standard grey", "Painted"], ["Multiple sizes"], blockSpecs), [{ url: imgLouvers.url }]),
       withImages(p("ventilation-blocks", "custom-ventilation-designs", "Custom Ventilation Designs", "Architect-specified patterns produced from bespoke moulds.", "For architectural projects we develop custom vent block moulds so the screen becomes part of the building's identity.", ["Signature facades", "Public buildings", "Architectural screens"], ["Custom mould", "Custom finish"], ["To project specification"], blockSpecs), [{ url: imgCustomVent.url }]),
     ],
@@ -307,8 +322,8 @@ export const categories: Category[] = [
           { label: "Culverts — 300mm", note: "300mm culverts", image: culvert300.url, cta: { label: "Request a quote", message: "Hello Midrift, I would like a quote for 300mm culverts." } },
         ],
       },
-      p("road-concrete", "road-culverts", "Road Culverts", "Heavier culvert units for carriageway crossings.", "Road culverts are produced for the loading conditions found beneath carriageways and highway shoulders.", ["Highways", "Carriageway crossings", "Estate roads"], ["Box", "Circular", "Reinforced"], ["To project specification"], civilSpecs),
-      p("road-concrete", "shallow-drain", "Shallow Drain", "Shallow precast drains for controlled surface water flow.", "Shallow drains move surface water away from carriageways, yards and walkways quickly and predictably.", ["Roads", "Industrial yards", "Estates"], ["Open channel", "Covered channel"], ["Multiple sizes"], civilSpecs),
+      withImages(p("road-concrete", "road-culverts", "Road Culverts", "Heavier culvert units for carriageway crossings.", "Road culverts are produced for the loading conditions found beneath carriageways and highway shoulders.", ["Highways", "Carriageway crossings", "Estate roads"], ["Box", "Circular", "Reinforced"], ["To project specification"], civilSpecs), [{ url: imgRoadCulvert.url, note: "Box culvert crossing beneath a road." }]),
+      withImages(p("road-concrete", "shallow-drain", "Shallow Drain", "Shallow precast drains for controlled surface water flow.", "Shallow drains move surface water away from carriageways, yards and walkways quickly and predictably.", ["Roads", "Industrial yards", "Estates"], ["Open channel", "Covered channel"], ["Multiple sizes"], civilSpecs), [{ url: imgShallowDrain.url, note: "Shallow precast channel drain." }]),
       withImages(p("road-concrete", "road-kerbs", "Road Kerbs", "Precast kerbs for carriageway, parking and walkway edging.", "Road kerbs define carriageway, parking bay and walkway edges, containing the paved surface and directing surface water to drainage.", ["Carriageway edging", "Parking bays", "Walkways"], ["Standard", "Half-battered", "To authority specification"], ["Multiple sizes"], civilSpecs), [{ url: roadKerbsImg.url, note: "Precast road kerbs at the Midrift yard." }]),
       withImages(p("road-concrete", "kenha-boundary-markers", "KeNHA Boundary Markers", "Precast boundary markers for road reserve demarcation.", "Boundary markers demarcate road reserves and public works boundaries in line with authority requirements.", ["Road reserves", "Public works", "Highway boundaries"], ["Standard", "To authority specification"], ["To project specification"], civilSpecs), [{ url: kenhaMarkersImg.url, note: "KeNHA boundary markers cast at the Midrift yard." }]),
     ],
@@ -327,11 +342,11 @@ export const categories: Category[] = [
       note: "Precast building components from the Midrift yard.",
     })),
     products: [
-      p("building-infrastructure", "waffles", "Waffles", "Waffle units for ribbed slab construction.", "Waffle moulding units form ribbed slabs that reduce concrete volume while keeping structural depth.", ["Suspended slabs", "Commercial floors", "Institutional buildings"], ["Standard", "To engineer's specification"], ["To project specification"], civilSpecs),
-      withImages(p("building-infrastructure", "double-sink", "Doble Sink", "Precast double sink units for utility areas.", "Cast double sinks for kitchens, laundries, institutions and service areas where durability is essential.", ["Institutions", "Laundries", "Service areas"], ["Standard"], ["Multiple sizes"], civilSpecs), [{ url: doubleSinkImg.url, note: "Precast double sink units." }]),
-      p("building-infrastructure", "wall-coping", "Wall Coping", "Capping units that protect wall tops from water.", "Wall coping sheds water off the top of boundary and parapet walls, extending the life of the masonry below.", ["Boundary walls", "Parapets", "Perimeter walls"], ["Standard", "Coloured"], ["Multiple sizes"], civilSpecs),
-      p("building-infrastructure", "window-seals", "Window Seals", "Precast sills that throw water clear of the wall face.", "Window seals give a clean finished sill line and direct rainwater away from the wall below the opening.", ["Residential", "Commercial buildings", "Institutions"], ["Standard", "Coloured"], ["Multiple sizes"], civilSpecs),
-      p("building-infrastructure", "pillar-coping", "Pillar Coping", "Decorative and protective caps for gate and fence pillars.", "Pillar coping finishes gate and fence pillars while protecting the top surface from water ingress.", ["Gate pillars", "Fence pillars", "Estates"], ["Standard", "Decorative"], ["Multiple sizes"], civilSpecs),
+      withImages(p("building-infrastructure", "waffles", "Waffles", "Waffle units for ribbed slab construction.", "Waffle moulding units form ribbed slabs that reduce concrete volume while keeping structural depth.", ["Suspended slabs", "Commercial floors", "Institutional buildings"], ["Standard", "To engineer's specification"], ["To project specification"], civilSpecs), [{ url: imgWaffles.url, note: "Waffle ribbed slab soffit." }]),
+      withImages(p("building-infrastructure", "double-sink", "Doble Sink", "Precast double sink units for utility areas.", "Cast double sinks for kitchens, laundries, institutions and service areas where durability is essential.", ["Institutions", "Laundries", "Service areas"], ["Standard"], ["Multiple sizes"], civilSpecs), [{ url: doubleSinkImg.url, note: "Precast double sink units." }, { url: imgDoubleSinks.url, note: "Double sink unit ready for delivery." }]),
+      withImages(p("building-infrastructure", "wall-coping", "Wall Coping", "Capping units that protect wall tops from water.", "Wall coping sheds water off the top of boundary and parapet walls, extending the life of the masonry below.", ["Boundary walls", "Parapets", "Perimeter walls"], ["Standard", "Coloured"], ["Multiple sizes"], civilSpecs), [{ url: imgWallCoping.url, note: "Precast wall coping units." }]),
+      withImages(p("building-infrastructure", "window-seals", "Window Seals", "Precast sills that throw water clear of the wall face.", "Window seals give a clean finished sill line and direct rainwater away from the wall below the opening.", ["Residential", "Commercial buildings", "Institutions"], ["Standard", "Coloured"], ["Multiple sizes"], civilSpecs), [{ url: imgWindowSills.url, note: "Precast window sills." }]),
+      withImages(p("building-infrastructure", "pillar-coping", "Pillar Coping", "Decorative and protective caps for gate and fence pillars.", "Pillar coping finishes gate and fence pillars while protecting the top surface from water ingress.", ["Gate pillars", "Fence pillars", "Estates"], ["Standard", "Decorative"], ["Multiple sizes"], civilSpecs), [{ url: imgPillarCoping.url, note: "Pillar coping cap on a gate pillar." }]),
     ],
   },
   {
