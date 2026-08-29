@@ -4,7 +4,7 @@ import { categories } from "@/data/products";
 import { projects } from "@/data/projects";
 import { solutions } from "@/data/solutions";
 
-const BASE_URL = "https://midrift-prime-solutions.lovable.app";
+const BASE_URL = "https://midriftconcreteworks.com";
 
 interface SitemapEntry {
   path: string;

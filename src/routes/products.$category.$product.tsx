@@ -11,7 +11,7 @@ import {
   WhatsAppCTA,
 } from "@/components/site/primitives";
 
-const SITE = "https://midrift-prime-solutions.lovable.app";
+const SITE = "https://midriftconcreteworks.com";
 
 export const Route = createFileRoute("/products/$category/$product")({
   loader: ({ params }) => {

@@ -99,9 +99,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "LocalBusiness",
-          "@id": "https://midrift-prime-solutions.lovable.app/#business",
+          "@id": "https://midriftconcreteworks.com/#business",
           name: "Midrift Concrete Works Ltd",
-          url: "https://midrift-prime-solutions.lovable.app",
+          url: "https://midriftconcreteworks.com",
           description:
             "Kenyan manufacturer of precast concrete: cabro paving, concrete blocks, ventilation blocks, kerbs, culverts and custom precast solutions.",
           telephone: "+254791502707",

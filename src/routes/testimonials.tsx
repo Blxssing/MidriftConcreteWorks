@@ -4,7 +4,7 @@ import { CTABand, PageHero, Section, SectionHead } from "@/components/site/primi
 import { site } from "@/data/site";
 import projectYard from "@/assets/project-yard.jpg";
 
-const SITE = "https://midrift-prime-solutions.lovable.app";
+const SITE = "https://midriftconcreteworks.com";
 
 const proof = [
   {

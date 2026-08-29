@@ -4,7 +4,7 @@ import { TeamCard } from "@/components/site/TeamCard";
 import { membersOf, teamGroups, teamValues } from "@/data/team";
 import manufacturingImg from "@/assets/manufacturing.jpg";
 
-const SITE = "https://midrift-prime-solutions.lovable.app";
+const SITE = "https://midriftconcreteworks.com";
 
 export const Route = createFileRoute("/team")({
   head: () => ({
