@@ -41,6 +41,16 @@ export const site = {
   ],
 } as const;
 
+/** Sales team — the customer picks who receives their quotation on WhatsApp. */
+export const salesTeam = [
+  { name: "Patrick", role: "Manager", phone: "0705 736 512", whatsapp: "254705736512" },
+  { name: "Caleb", role: "Sales Manager", phone: "0791 502 707", whatsapp: "254791502707" },
+  { name: "Nathaniel", role: "Procurement & Quality", phone: "0701 755 069", whatsapp: "254701755069" },
+  { name: "Jane", role: "Accounts", phone: "0715 293 439", whatsapp: "254715293439" },
+  { name: "John", role: "Engineer", phone: "0746 422 136", whatsapp: "254746422136" },
+] as const;
+
+
 /**
  * Official WhatsApp click-to-chat link (https://wa.me/<international number>?text=...).
  * The number is reduced to digits only (no +, spaces, brackets or dashes) and the
