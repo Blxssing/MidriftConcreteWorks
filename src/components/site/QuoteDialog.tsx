@@ -141,9 +141,6 @@ export function QuoteDialog({
     }
 
     setSending(true);
-    // Opened synchronously so mobile browsers don't block it; we set the URL
-    // once the lead is saved and the message is generated.
-    const waTab = form.preferredContact === "email" ? null : window.open("", "_blank");
     try {
       const res = await submit({ data: parsed.data });
       setResult(res);
@@ -154,14 +151,7 @@ export function QuoteDialog({
         has_coordinates: !!coords,
         timeframe: form.timeframe || "unspecified",
       });
-      const url = `https://wa.me/${site.whatsapp.replace(/\D/g, "")}?text=${encodeURIComponent(res.whatsappMessage)}`;
-      if (form.preferredContact !== "email") {
-        track("whatsapp_sales_clicked", { stage: "auto_submit" });
-        if (waTab) waTab.location.href = url;
-        else window.location.href = url;
-      }
     } catch {
-      waTab?.close();
       toast.error("We couldn't submit your request right now. Please try again.");
     } finally {
       setSending(false);
