@@ -4,7 +4,7 @@ import { useNavigate } from "@tanstack/react-router";
 import { X, MessageCircle, Mail, MapPin, LocateFixed, Check, Loader2, Phone, ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
 import { categories } from "@/data/products";
-import { site } from "@/data/site";
+import { site, salesTeam } from "@/data/site";
 import { track } from "@/lib/analytics";
 import { submitQuoteRequest } from "@/lib/quotes.functions";
 import { quoteSchema, timeframes, quantityUnits, mapsLinkFor } from "@/lib/quote-shared";
@@ -141,9 +141,6 @@ export function QuoteDialog({
     }
 
     setSending(true);
-    // Opened synchronously so mobile browsers don't block it; we set the URL
-    // once the lead is saved and the message is generated.
-    const waTab = form.preferredContact === "email" ? null : window.open("", "_blank");
     try {
       const res = await submit({ data: parsed.data });
       setResult(res);
@@ -154,14 +151,7 @@ export function QuoteDialog({
         has_coordinates: !!coords,
         timeframe: form.timeframe || "unspecified",
       });
-      const url = `https://wa.me/${site.whatsapp.replace(/\D/g, "")}?text=${encodeURIComponent(res.whatsappMessage)}`;
-      if (form.preferredContact !== "email") {
-        track("whatsapp_sales_clicked", { stage: "auto_submit" });
-        if (waTab) waTab.location.href = url;
-        else window.location.href = url;
-      }
     } catch {
-      waTab?.close();
       toast.error("We couldn't submit your request right now. Please try again.");
     } finally {
       setSending(false);
@@ -177,9 +167,8 @@ export function QuoteDialog({
 
   if (!open) return null;
 
-  const waHref = result
-    ? `https://wa.me/${site.whatsapp.replace(/\D/g, "")}?text=${encodeURIComponent(result.whatsappMessage)}`
-    : "#";
+  const waHrefFor = (number: string) =>
+    result ? `https://wa.me/${number.replace(/\D/g, "")}?text=${encodeURIComponent(result.whatsappMessage)}` : "#";
   const mailHref = result
     ? `mailto:${site.email}?subject=${encodeURIComponent(result.emailSubject)}&body=${encodeURIComponent(
         result.emailBody.replace(/\r?\n/g, "\r\n"),
@@ -230,24 +219,32 @@ export function QuoteDialog({
             <p className="mt-4 rounded-2xl border border-hairline bg-background px-4 py-3 font-mono text-sm">
               Reference: <strong>{result.reference}</strong>
             </p>
-            <p className="mt-5 text-sm text-muted-foreground">
-              Continue your conversation with our sales team — your message is already written, just review and press
-              send.
+            <p className="mt-5 text-sm font-semibold">
+              Choose the salesperson you'd like to send your quotation to:
             </p>
-            <div className="mt-6 flex flex-col gap-3">
-              <a
-                href={waHref}
-                target="_blank"
-                rel="noreferrer"
-                onClick={() => {
-                  track("whatsapp_sales_clicked", { stage: "success" });
-                  finish();
-                }}
-                className="wa-btn flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-4 text-center text-[14px] font-bold tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-              >
-                <MessageCircle className="size-5" aria-hidden="true" />
-                Continue to WhatsApp to send the quotation
-              </a>
+            <div className="mt-4 grid gap-2.5">
+              {salesTeam.map((rep) => (
+                <a
+                  key={rep.whatsapp}
+                  href={waHrefFor(rep.whatsapp)}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => {
+                    track("whatsapp_sales_clicked", { stage: "success", rep: rep.name });
+                    finish();
+                  }}
+                  className="wa-btn flex min-h-12 items-center justify-between gap-3 rounded-full px-5 py-3.5 text-left text-[14px] font-bold tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                >
+                  <span className="flex items-center gap-2">
+                    <MessageCircle className="size-5 shrink-0" aria-hidden="true" />
+                    {rep.name}
+                    <span className="text-[12px] font-medium opacity-80">· {rep.role}</span>
+                  </span>
+                  <span className="text-[12px] font-semibold opacity-90">{rep.phone}</span>
+                </a>
+              ))}
+            </div>
+            <div className="mt-3 flex flex-col gap-3">
               <a
                 href={mailHref}
                 onClick={() => {
@@ -410,7 +407,7 @@ export function QuoteDialog({
               {sending ? "Sending…" : "Send Quote"}
             </button>
             <p className="mt-3 text-center text-xs text-muted-foreground">
-              Pressing “Send Quote” saves your request, then you choose to continue on WhatsApp or by email — your message is written for you.
+              Pressing “Send Quote” saves your request, then you choose which salesperson to send it to on WhatsApp — or continue by email.
             </p>
           </form>
         )}

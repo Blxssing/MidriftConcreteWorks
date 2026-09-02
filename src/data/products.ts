@@ -6,9 +6,11 @@ import cabroUni from "@/assets/cabro-uni.jpg.asset.json";
 import cabroMeera from "@/assets/cabro-meera-heera.jpg.asset.json";
 import cabroNormal from "@/assets/cabro-normal.jpg.asset.json";
 import cabroCustom from "@/assets/cabro-custom.jpg.asset.json";
-import ballostad15 from "@/assets/ballostad-15.jpg.asset.json";
-import ballostad2 from "@/assets/ballostad-2.jpg.asset.json";
-import ballostad3 from "@/assets/ballostad-3.jpg.asset.json";
+import ballostad15 from "@/assets/balustrade-1-5ft.jpg.asset.json";
+import ballostad2 from "@/assets/balustrade-2ft.jpg.asset.json";
+import ballostad3 from "@/assets/balustrade-3ft.jpg.asset.json";
+import blocksSlot1 from "@/assets/blocks-slot-1.jpg.asset.json";
+import blocksSlot2 from "@/assets/blocks-slot-2.jpg.asset.json";
 import culvert600 from "@/assets/culvert-600.jpg.asset.json";
 import culvert900 from "@/assets/culvert-900.jpg.asset.json";
 import culvert300 from "@/assets/culvert-300.jpg.asset.json";
@@ -237,10 +239,10 @@ const rawCategories: Category[] = [
     intro: "Masonry and precast units produced to consistent dimension for faster, cleaner building.",
     description:
       "Our concrete block range covers structural, infill and partition walling plus supporting precast items for residential, commercial and institutional buildings. Consistent dimensions reduce mortar wastage and speed up work on site.",
-    image: ballostad15.url,
+    image: blocksSlot1.url,
     photoSlots: photoSlots("Concrete Blocks").map((sl, i) => ({
       ...sl,
-      image: [ballostad15.url, ballostad2.url][i] as string,
+      image: [blocksSlot1.url, blocksSlot2.url][i] as string,
       note: "Precast units from the Midrift yard.",
     })),
     products: [
