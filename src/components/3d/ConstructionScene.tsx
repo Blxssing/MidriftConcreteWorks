@@ -87,8 +87,6 @@ function Wall({ progress, reducedMotion, mobile }: Props) {
       mesh.rotation.z = u.spin * 0.3 * (1 - local);
       const s = 0.86 + 0.14 * local;
       mesh.scale.setScalar(s);
-      const mat = mesh.material as THREE.MeshStandardMaterial;
-      mat.opacity = local;
     }
 
     // subtle camera move as the structure completes
