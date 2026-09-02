@@ -44,7 +44,7 @@ export const site = {
 /** Sales team — the customer picks who receives their quotation on WhatsApp. */
 export const salesTeam = [
   { name: "Patrick", role: "Manager", phone: "0705 736 512", whatsapp: "254705736512" },
-  { name: "Caleb", role: "Sales Manager", phone: "0791 502 707", whatsapp: "254791502707" },
+  { name: "Sales Office", role: "Main office line", phone: "0745 240 050", whatsapp: "254745240050" },
   { name: "Nathaniel", role: "Procurement & Quality", phone: "0701 755 069", whatsapp: "254701755069" },
   { name: "Jane", role: "Accounts", phone: "0715 293 439", whatsapp: "254715293439" },
   { name: "John", role: "Engineer", phone: "0746 422 136", whatsapp: "254746422136" },

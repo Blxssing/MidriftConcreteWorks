@@ -476,3 +476,97 @@
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   box-shadow: 0 24px 50px -30px color-mix(in oklab, var(--wa) 70%, transparent);
 }
+
+/* ============================================================
+   LIQUID GLASS — Apple-style refractive surfaces
+   Layered bezel + specular rim + tint + travelling sheen.
+   ============================================================ */
+
+@utility liquid-glass {
+  position: relative;
+  isolation: isolate;
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in oklab, #fff 26%, transparent) 0%,
+      color-mix(in oklab, #fff 6%, transparent) 42%,
+      color-mix(in oklab, var(--accent-raw) 7%, transparent) 100%
+    ),
+    color-mix(in oklab, var(--card) 62%, transparent);
+  backdrop-filter: blur(26px) saturate(190%) brightness(1.04);
+  -webkit-backdrop-filter: blur(26px) saturate(190%) brightness(1.04);
+  border: 1px solid color-mix(in oklab, #fff 32%, transparent);
+  box-shadow:
+    /* bezel: inner curved surface catching light */
+    0 1px 0 0 color-mix(in oklab, #fff 62%, transparent) inset,
+    0 -1px 0 0 color-mix(in oklab, var(--ink) 12%, transparent) inset,
+    0 0 22px -6px color-mix(in oklab, #fff 40%, transparent) inset,
+    /* lens drop */
+    0 26px 60px -30px color-mix(in oklab, var(--ink) 70%, transparent);
+}
+
+.dark .liquid-glass {
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in oklab, #fff 12%, transparent) 0%,
+      color-mix(in oklab, #fff 3%, transparent) 45%,
+      color-mix(in oklab, var(--accent-raw) 9%, transparent) 100%
+    ),
+    color-mix(in oklab, var(--card) 58%, transparent);
+  border-color: color-mix(in oklab, #fff 16%, transparent);
+}
+
+/* Slow specular highlight sweeping across the glass */
+@keyframes liquid-sheen-move {
+  0% {
+    transform: translate3d(-120%, 0, 0) rotate(8deg);
+  }
+  55%,
+  100% {
+    transform: translate3d(220%, 0, 0) rotate(8deg);
+  }
+}
+
+@utility liquid-sheen {
+  &::after {
+    content: "";
+    position: absolute;
+    inset: -40% -10%;
+    pointer-events: none;
+    z-index: -1;
+    background: linear-gradient(
+      100deg,
+      transparent 0%,
+      color-mix(in oklab, #fff 40%, transparent) 46%,
+      color-mix(in oklab, #fff 8%, transparent) 58%,
+      transparent 100%
+    );
+    width: 38%;
+    animation: liquid-sheen-move 9s cubic-bezier(0.4, 0, 0.2, 1) 1.2s infinite;
+    opacity: 0.75;
+  }
+}
+
+/* Pill-shaped liquid glass button */
+@utility liquid-btn {
+  border-radius: 9999px;
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.3s ease;
+  &:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.06) saturate(1.05);
+  }
+  &:active {
+    transform: scale(0.96);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .liquid-sheen::after {
+    animation: none;
+    opacity: 0.35;
+  }
+}

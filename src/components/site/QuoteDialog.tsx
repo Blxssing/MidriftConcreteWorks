@@ -1,11 +1,12 @@
 import { Suspense, lazy, useEffect, useMemo, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { useNavigate } from "@tanstack/react-router";
-import { X, MessageCircle, Mail, MapPin, LocateFixed, Check, Loader2, Phone, ArrowLeft } from "lucide-react";
+import { X, MessageCircle, Mail, MapPin, LocateFixed, Check, Loader2, Phone, ArrowLeft, FileDown } from "lucide-react";
 import { toast } from "sonner";
 import { categories } from "@/data/products";
 import { site, salesTeam } from "@/data/site";
 import { track } from "@/lib/analytics";
+import { downloadQuotationPdf, quotationFileName } from "@/lib/quote-pdf";
 import { submitQuoteRequest } from "@/lib/quotes.functions";
 import { quoteSchema, timeframes, quantityUnits, mapsLinkFor } from "@/lib/quote-shared";
 import type { ContactMethod, QuoteInput } from "@/lib/quote-shared";
@@ -40,6 +41,7 @@ export function QuoteDialog({
   const [showMap, setShowMap] = useState(false);
   const [coords, setCoords] = useState<{ lat: number; lng: number } | undefined>(undefined);
   const [notSureQty, setNotSureQty] = useState(false);
+  const [pdfSaved, setPdfSaved] = useState(false);
   const [result, setResult] = useState<
     { reference: string; whatsappMessage: string; emailSubject: string; emailBody: string } | null
   >(null);
@@ -151,6 +153,9 @@ export function QuoteDialog({
         has_coordinates: !!coords,
         timeframe: form.timeframe || "unspecified",
       });
+      // Generate the branded quotation PDF straight away so the customer can
+      // attach it to the WhatsApp or email message they are about to send.
+      void savePdf(res.reference);
     } catch {
       toast.error("We couldn't submit your request right now. Please try again.");
     } finally {
@@ -158,22 +163,57 @@ export function QuoteDialog({
     }
   }
 
+  /** Builds and downloads the quotation PDF for a saved reference. */
+  async function savePdf(reference: string) {
+    try {
+      await downloadQuotationPdf({
+        reference,
+        fullName: form.fullName,
+        phone: form.phone,
+        ...(form.email ? { email: form.email } : {}),
+        product: form.product,
+        ...(notSureQty
+          ? {}
+          : form.quantity
+            ? { quantityLabel: `${form.quantity} ${form.unit}` }
+            : {}),
+        locationText: form.locationText,
+        ...(mapsLinkFor(coords?.lat ?? null, coords?.lng ?? null, form.locationText)
+          ? { mapsLink: mapsLinkFor(coords?.lat ?? null, coords?.lng ?? null, form.locationText)! }
+          : {}),
+        ...(form.timeframe ? { timeframe: form.timeframe } : {}),
+        ...(form.notes ? { notes: form.notes } : {}),
+      });
+      setPdfSaved(true);
+      toast.success("Quotation PDF downloaded ✓");
+    } catch {
+      toast.error("Couldn't create the PDF. You can still send your request.");
+    }
+  }
+
   /** Closes the dialog and returns the visitor to the home page. */
   function finish() {
     setResult(null);
+    setPdfSaved(false);
     onClose();
     void navigate({ to: "/" });
   }
 
   if (!open) return null;
 
+  const pdfNote = result
+    ? `\n\nA PDF copy of this request (${quotationFileName(result.reference)}) has been downloaded on my device — I will attach it here.`
+    : "";
   const waHrefFor = (number: string) =>
-    result ? `https://wa.me/${number.replace(/\D/g, "")}?text=${encodeURIComponent(result.whatsappMessage)}` : "#";
+    result
+      ? `https://wa.me/${number.replace(/\D/g, "")}?text=${encodeURIComponent(result.whatsappMessage + pdfNote)}`
+      : "#";
   const mailHref = result
     ? `mailto:${site.email}?subject=${encodeURIComponent(result.emailSubject)}&body=${encodeURIComponent(
-        result.emailBody.replace(/\r?\n/g, "\r\n"),
+        (result.emailBody + pdfNote).replace(/\r?\n/g, "\r\n"),
       )}`
     : "#";
+
 
   return (
     <div className="fixed inset-0 z-[70] flex items-end justify-center bg-foreground/40 p-0 backdrop-blur-sm sm:items-center sm:p-6 print:hidden">
@@ -183,7 +223,7 @@ export function QuoteDialog({
         aria-modal="true"
         aria-labelledby="quote-dialog-title"
         data-cta-zone="quote-dialog"
-        className="ios-glass relative max-h-[92dvh] w-full max-w-2xl overflow-y-auto overscroll-contain rounded-t-[28px] bg-card p-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] shadow-2xl sm:max-h-[88dvh] sm:rounded-[28px] sm:p-6 md:p-9"
+        className="liquid-glass liquid-sheen relative max-h-[92dvh] w-full max-w-2xl overflow-y-auto overscroll-contain rounded-t-[28px] bg-card p-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] shadow-2xl sm:max-h-[88dvh] sm:rounded-[28px] sm:p-6 md:p-9"
       >
         <div className="mb-4 flex items-center justify-between gap-3">
           <button
@@ -218,6 +258,17 @@ export function QuoteDialog({
             </p>
             <p className="mt-4 rounded-2xl border border-hairline bg-background px-4 py-3 font-mono text-sm">
               Reference: <strong>{result.reference}</strong>
+            </p>
+            <button
+              type="button"
+              onClick={() => result && void savePdf(result.reference)}
+              className="liquid-glass liquid-btn mt-5 flex min-h-12 w-full items-center justify-center gap-2 px-6 py-4 text-[14px] font-bold tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            >
+              <FileDown className="size-5" aria-hidden="true" />
+              {pdfSaved ? "Download the quotation PDF again" : "Download your quotation PDF"}
+            </button>
+            <p className="mt-2 text-xs text-muted-foreground">
+              Attach the downloaded PDF to your WhatsApp or email message so our team has every detail in writing.
             </p>
             <p className="mt-5 text-sm font-semibold">
               Choose the salesperson you'd like to send your quotation to:
