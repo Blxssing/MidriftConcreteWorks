@@ -20,7 +20,7 @@ export function LiquidGlass({
   sheen?: boolean;
   children?: ReactNode;
 } & Record<string, unknown>) {
-  const Tag = (as ?? "div") as ElementType;
+  const Tag = (as ?? "div") as React.ComponentType<Record<string, unknown>>;
   return (
     <Tag className={`liquid-glass ${sheen ? "liquid-sheen" : ""} ${className}`} {...rest}>
       {children}
