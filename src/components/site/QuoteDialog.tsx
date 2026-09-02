@@ -4,7 +4,7 @@ import { useNavigate } from "@tanstack/react-router";
 import { X, MessageCircle, Mail, MapPin, LocateFixed, Check, Loader2, Phone, ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
 import { categories } from "@/data/products";
-import { site } from "@/data/site";
+import { site, salesTeam } from "@/data/site";
 import { track } from "@/lib/analytics";
 import { submitQuoteRequest } from "@/lib/quotes.functions";
 import { quoteSchema, timeframes, quantityUnits, mapsLinkFor } from "@/lib/quote-shared";
