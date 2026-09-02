@@ -1,4 +1,5 @@
 import type { ElementType, ReactNode } from "react";
+import type * as React from "react";
 
 /**
  * Liquid Glass surface — an Apple-style glass panel with backdrop refraction,
