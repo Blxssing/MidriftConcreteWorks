@@ -407,7 +407,7 @@ export function QuoteDialog({
               {sending ? "Sending…" : "Send Quote"}
             </button>
             <p className="mt-3 text-center text-xs text-muted-foreground">
-              Pressing “Send Quote” saves your request, then you choose to continue on WhatsApp or by email — your message is written for you.
+              Pressing “Send Quote” saves your request, then you choose which salesperson to send it to on WhatsApp — or continue by email.
             </p>
           </form>
         )}
