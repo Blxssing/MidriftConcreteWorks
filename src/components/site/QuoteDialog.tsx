@@ -167,9 +167,8 @@ export function QuoteDialog({
 
   if (!open) return null;
 
-  const waHref = result
-    ? `https://wa.me/${site.whatsapp.replace(/\D/g, "")}?text=${encodeURIComponent(result.whatsappMessage)}`
-    : "#";
+  const waHrefFor = (number: string) =>
+    result ? `https://wa.me/${number.replace(/\D/g, "")}?text=${encodeURIComponent(result.whatsappMessage)}` : "#";
   const mailHref = result
     ? `mailto:${site.email}?subject=${encodeURIComponent(result.emailSubject)}&body=${encodeURIComponent(
         result.emailBody.replace(/\r?\n/g, "\r\n"),
