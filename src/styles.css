@@ -596,3 +596,88 @@
     opacity: 0.35;
   }
 }
+
+/* ── 3D / motion system ─────────────────────────────────────────────── */
+
+/* Atmospheric gradient wash that sits behind the hero 3D forms. */
+.scene-atmosphere {
+  background:
+    radial-gradient(60rem 40rem at 78% 18%, color-mix(in oklab, var(--accent-raw) 22%, transparent), transparent 68%),
+    radial-gradient(48rem 36rem at 12% 82%, color-mix(in oklab, var(--concrete) 26%, transparent), transparent 70%);
+  animation: scene-drift 38s ease-in-out infinite alternate;
+}
+
+.scene-atmosphere-dark {
+  background:
+    radial-gradient(52rem 34rem at 70% 20%, color-mix(in oklab, var(--accent-raw) 16%, transparent), transparent 70%),
+    radial-gradient(46rem 34rem at 20% 88%, color-mix(in oklab, var(--concrete-dark) 55%, transparent), transparent 72%);
+  animation: scene-drift 46s ease-in-out infinite alternate;
+}
+
+@keyframes scene-drift {
+  from { transform: translate3d(-1.5%, -1%, 0) scale(1.02); }
+  to   { transform: translate3d(1.5%, 1.5%, 0) scale(1.06); }
+}
+
+/* Pointer-driven card tilt (variables set by TiltCard). */
+.tilt-card {
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  --tilt-mx: 0;
+  --tilt-my: 0;
+  perspective: 1100px;
+}
+
+.tilt-card > * {
+  transform: rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+  transform-style: preserve-3d;
+  transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 500ms ease;
+}
+
+.tilt-card:hover > * {
+  box-shadow:
+    calc(var(--tilt-mx) * -14px) 22px 48px -26px color-mix(in oklab, var(--ink) 80%, transparent);
+}
+
+.tilt-media {
+  transform: translate3d(calc(var(--tilt-mx) * -7px), calc(var(--tilt-my) * -7px), 0) scale(1.06);
+  transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1), opacity 600ms ease;
+}
+
+.tilt-content {
+  transform: translate3d(calc(var(--tilt-mx) * 5px), calc(var(--tilt-my) * 4px), 0);
+  transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Desktop-only cursor companion. */
+.site-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 90;
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  pointer-events: none;
+  opacity: 0;
+  border: 1.5px solid color-mix(in oklab, var(--accent-raw) 85%, transparent);
+  background: color-mix(in oklab, var(--accent-raw) 12%, transparent);
+  transition: width 260ms ease, height 260ms ease, opacity 260ms ease, background-color 260ms ease;
+}
+
+.site-cursor[data-on="true"] { opacity: 1; }
+.site-cursor[data-state="link"] { width: 40px; height: 40px; background: color-mix(in oklab, var(--accent-raw) 20%, transparent); }
+.site-cursor[data-state="media"] { width: 56px; height: 56px; background: color-mix(in oklab, var(--accent-raw) 10%, transparent); }
+
+@media (pointer: coarse) {
+  .site-cursor { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene-atmosphere,
+  .scene-atmosphere-dark { animation: none; }
+  .tilt-card > *,
+  .tilt-media,
+  .tilt-content { transform: none !important; transition: none; }
+  .site-cursor { display: none; }
+}

@@ -17,6 +17,7 @@ import { ContactDock } from "@/components/site/ContactDock";
 import { WhatsAppFab } from "@/components/site/WhatsAppFab";
 import { QuoteProvider } from "@/components/site/QuoteProvider";
 import { Toaster } from "@/components/ui/sonner";
+import { CustomCursor } from "@/components/motion/CustomCursor";
 import { initAnalytics, trackPageView } from "@/lib/analytics";
 
 function NotFoundComponent() {
@@ -203,6 +204,7 @@ function RootComponent() {
           <SiteFooter />
           <div className="h-24 print:hidden" aria-hidden />
         </div>
+        <CustomCursor />
         <ContactDock />
         <WhatsAppFab />
         <Toaster position="top-right" />

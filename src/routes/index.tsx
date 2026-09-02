@@ -9,6 +9,11 @@ import { categories } from "@/data/products";
 import { solutions } from "@/data/solutions";
 import { projects } from "@/data/projects";
 import { Reveal } from "@/components/site/Reveal";
+import { HeroSceneLayer } from "@/components/3d/HeroSceneLayer";
+import { ConstructionSequence } from "@/components/3d/ConstructionSequence";
+import { MagneticButton } from "@/components/motion/MagneticButton";
+import { Parallax } from "@/components/motion/Parallax";
+import { TiltCard } from "@/components/motion/TiltCard";
 import { SectionNav } from "@/components/site/SectionNav";
 import { KineticText } from "@/components/site/KineticText";
 import { ImageMarquee, TextMarquee } from "@/components/site/Marquee";
@@ -71,6 +76,7 @@ function Home() {
           className="absolute inset-0 -z-10 size-full scale-105 object-cover opacity-40 [animation:none] md:animate-[marquee-x_0s]"
         />
         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink via-ink/75 to-ink/25" />
+        <HeroSceneLayer />
         <Container className="flex min-h-[86vh] flex-col justify-end py-24 md:py-32">
           <Reveal>
             <p className="eyebrow text-accent">Precast concrete manufacturer · Kenya</p>
@@ -92,8 +98,12 @@ function Home() {
               products for builders, contractors, developers, distributors and infrastructure projects.
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
-              <QuoteCTA />
-              <WhatsAppCTA dark />
+              <MagneticButton>
+                <QuoteCTA />
+              </MagneticButton>
+              <MagneticButton>
+                <WhatsAppCTA dark />
+              </MagneticButton>
             </div>
           </Reveal>
         </Container>
@@ -168,6 +178,7 @@ function Home() {
         <div className="mt-14 grid gap-4 md:grid-cols-6">
           {categories.map((c, i) => (
             <Reveal key={c.slug} delay={i * 90} className={i < 2 ? "md:col-span-3" : "md:col-span-2"}>
+              <TiltCard className="h-full">
               <Link
                 to="/products/$category"
                 params={{ category: c.slug }}
@@ -179,11 +190,11 @@ function Home() {
                     alt={c.name}
                     loading="lazy"
             decoding="async"
-                    className="absolute inset-0 size-full object-cover opacity-45 transition-all duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105 group-hover:opacity-30"
+                    className="tilt-media absolute inset-0 size-full object-cover opacity-45 transition-all duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:opacity-30"
                   />
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent" />
-                <div className="relative">
+                <div className="tilt-content relative">
                   <span className="font-mono text-xs text-accent">{c.code}</span>
                   <h3 className="mt-3 font-display text-2xl leading-tight tracking-tight">{c.name}</h3>
                   <p className="mt-3 max-w-sm text-sm text-ink-foreground/70">{c.intro}</p>
@@ -192,6 +203,7 @@ function Home() {
                   </span>
                 </div>
               </Link>
+              </TiltCard>
             </Reveal>
           ))}
         </div>
@@ -228,17 +240,19 @@ function Home() {
 
       </Section>
 
+      <ConstructionSequence />
+
       {/* Manufacturing split */}
       <section id="quality" className="grid scroll-mt-28 gap-4 px-4 py-4 lg:grid-cols-2">
-        <figure className="media-zoom rounded-3xl">
+        <Parallax className="rounded-3xl" distance={20}>
           <img
             src={manufacturingImg}
             alt="Precast concrete production inside the Midrift factory"
             loading="lazy"
             decoding="async"
-            className="h-full min-h-[380px] w-full rounded-3xl object-cover"
+            className="h-full min-h-[380px] w-full scale-[1.06] rounded-3xl object-cover"
           />
-        </figure>
+        </Parallax>
         <div className="flex items-center rounded-3xl bg-concrete px-6 py-20 md:px-14 md:py-24">
           <Reveal className="max-w-lg">
             <p className="eyebrow">Quality & manufacturing</p>
@@ -339,13 +353,15 @@ function Home() {
             </div>
           </div>
         </div>
-        <img
-          src={logisticsImg}
-          alt="Truck loaded with pallets of concrete blocks leaving the yard"
-          loading="lazy"
+        <Parallax className="min-h-[360px] rounded-2xl" distance={22}>
+          <img
+            src={logisticsImg}
+            alt="Truck loaded with pallets of concrete blocks leaving the yard"
+            loading="lazy"
             decoding="async"
-          className="h-full min-h-[360px] w-full rounded-2xl object-cover"
-        />
+            className="h-full min-h-[360px] w-full scale-[1.06] rounded-2xl object-cover"
+          />
+        </Parallax>
       </section>
 
       <CTABand />
