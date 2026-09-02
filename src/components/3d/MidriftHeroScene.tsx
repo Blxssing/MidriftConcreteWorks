@@ -45,15 +45,15 @@ function HeroForms({ reducedMotion, mobile, pointer }: Opts) {
   const scale = Math.min(Math.max(viewport.width / 12, 0.62), 1.15);
 
   return (
-    <group ref={root} scale={scale} position={[0, -0.4, 0]}>
+    <group ref={root} scale={scale} position={[2.2, -0.5, 0]}>
       <group ref={drift}>
         {/* stacked slabs — the visual anchor */}
-        <ConcreteBlock position={[1.6, -0.9, 0]} size={[2.6, 0.24, 1.7]} tone={0.18} rotation={[0, -0.32, 0]} />
-        <ConcreteBlock position={[1.68, -0.62, 0.05]} size={[2.4, 0.22, 1.55]} tone={0.3} rotation={[0, -0.26, 0]} />
+        <ConcreteBlock position={[1.6, -0.9, 0]} size={[2.6, 0.24, 1.7]} tone={0.42} rotation={[0, -0.32, 0]} />
+        <ConcreteBlock position={[1.68, -0.62, 0.05]} size={[2.4, 0.22, 1.55]} tone={0.5} rotation={[0, -0.26, 0]} />
         <ConcreteBlock
           position={[1.55, -0.36, -0.02]}
           size={[2.2, 0.2, 1.4]}
-          tone={0.12}
+          tone={0.36}
           rotation={[0, -0.36, 0.01]}
         />
 
@@ -61,18 +61,18 @@ function HeroForms({ reducedMotion, mobile, pointer }: Opts) {
         <ConcreteBlock
           position={[-2.1, 0.55, 0.4]}
           size={[1.1, 0.28, 1.1]}
-          tone={0.24}
+          tone={0.46}
           rotation={[0.12, 0.5, -0.08]}
         />
 
         {!mobile && (
           <>
-            <HollowBlock position={[-1.6, -0.75, -0.8]} rotation={[0, 0.42, 0]} tone={0.4} />
-            <Kerb position={[2.3, 0.9, -1.2]} rotation={[0.05, -0.5, 0.06]} tone={0.28} />
+            <HollowBlock position={[-1.6, -0.75, -0.8]} rotation={[0, 0.42, 0]} tone={0.58} />
+            <Kerb position={[2.3, 0.9, -1.2]} rotation={[0.05, -0.5, 0.06]} tone={0.48} />
             <ConcreteBlock
               position={[-2.9, -0.2, -1.6]}
               size={[0.9, 0.9, 0.9]}
-              tone={0.35}
+              tone={0.55}
               rotation={[0.3, 0.7, 0.2]}
             />
           </>

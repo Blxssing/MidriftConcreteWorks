@@ -18,7 +18,7 @@ export function HeroSceneLayer() {
     <div
       ref={ref}
       aria-hidden="true"
-      className="pointer-events-none absolute inset-0 -z-10 opacity-0 transition-opacity duration-1000 data-[on=true]:opacity-100"
+      className="pointer-events-none absolute inset-0 -z-10 opacity-0 transition-opacity duration-1000 data-[on=true]:opacity-70"
       data-on={enabled}
     >
       {/* atmospheric gradient wash behind the 3D forms */}

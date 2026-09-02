@@ -8,11 +8,11 @@ import { scenePalette } from "./palette";
 export function SceneLighting({ shadows = true }: { shadows?: boolean }) {
   return (
     <>
-      <ambientLight intensity={0.55} color={scenePalette.concrete} />
+      <ambientLight intensity={0.4} color={scenePalette.concrete} />
       <hemisphereLight args={[scenePalette.concrete, scenePalette.inkDeep, 0.45]} />
       <directionalLight
         position={[6, 9, 5]}
-        intensity={1.35}
+        intensity={0.95}
         color="#fff6e6"
         castShadow={shadows}
         shadow-mapSize-width={1024}
