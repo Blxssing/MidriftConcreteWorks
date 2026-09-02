@@ -41,9 +41,10 @@ function Wall({ progress, reducedMotion, mobile }: Props) {
 
   const geometry = useMemo(() => new THREE.BoxGeometry(BW * 0.96, BH * 0.9, BD), []);
   const materials = useMemo(
-    () => [0.14, 0.24, 0.34, 0.44].map((t) => concreteMaterial(t, 0.93)),
+    () => [0.14, 0.24, 0.34, 0.44].map((t) => concreteMaterial(t, 0.93)) as THREE.MeshStandardMaterial[],
     [],
   );
+  const matAt = (i: number) => materials[i] ?? materials[0]!;
 
   const units = useMemo<Unit[]>(() => {
     const list: Unit[] = [];
@@ -112,13 +113,13 @@ function Wall({ progress, reducedMotion, mobile }: Props) {
             if (m) meshes.current[i] = m;
           }}
           geometry={geometry}
-          material={materials[u.tone]}
+          material={matAt(u.tone)}
           castShadow={!mobile}
           receiveShadow={!mobile}
         />
       ))}
       {/* ground slab the wall sits on */}
-      <mesh position={[0, -(rows * BH) / 2 - BH / 2 - 0.12, 0]} receiveShadow material={materials[1]}>
+      <mesh position={[0, -(rows * BH) / 2 - BH / 2 - 0.12, 0]} receiveShadow material={matAt(1)}>
         <boxGeometry args={[cols * BW + 1.6, 0.22, 2.4]} />
       </mesh>
       <ContactShadows
