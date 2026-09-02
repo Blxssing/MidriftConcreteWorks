@@ -4,6 +4,7 @@ import { MessageCircle, Mail, Phone, MapPin, Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { whatsappLink, emailLink, site } from "@/data/site";
 import { useQuote } from "./QuoteProvider";
+import { Parallax } from "@/components/motion/Parallax";
 
 export function Container({ children, className }: { children: ReactNode; className?: string }) {
   return <div className={cn("mx-auto w-full max-w-[1400px] px-5 md:px-10", className)}>{children}</div>;
