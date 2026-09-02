@@ -151,6 +151,9 @@ export function QuoteDialog({
         has_coordinates: !!coords,
         timeframe: form.timeframe || "unspecified",
       });
+      // Generate the branded quotation PDF straight away so the customer can
+      // attach it to the WhatsApp or email message they are about to send.
+      void savePdf(res.reference);
     } catch {
       toast.error("We couldn't submit your request right now. Please try again.");
     } finally {
@@ -158,22 +161,57 @@ export function QuoteDialog({
     }
   }
 
+  /** Builds and downloads the quotation PDF for a saved reference. */
+  async function savePdf(reference: string) {
+    try {
+      await downloadQuotationPdf({
+        reference,
+        fullName: form.fullName,
+        phone: form.phone,
+        ...(form.email ? { email: form.email } : {}),
+        product: form.product,
+        ...(notSureQty
+          ? {}
+          : form.quantity
+            ? { quantityLabel: `${form.quantity} ${form.unit}` }
+            : {}),
+        locationText: form.locationText,
+        ...(mapsLinkFor(coords?.lat ?? null, coords?.lng ?? null, form.locationText)
+          ? { mapsLink: mapsLinkFor(coords?.lat ?? null, coords?.lng ?? null, form.locationText)! }
+          : {}),
+        ...(form.timeframe ? { timeframe: form.timeframe } : {}),
+        ...(form.notes ? { notes: form.notes } : {}),
+      });
+      setPdfSaved(true);
+      toast.success("Quotation PDF downloaded ✓");
+    } catch {
+      toast.error("Couldn't create the PDF. You can still send your request.");
+    }
+  }
+
   /** Closes the dialog and returns the visitor to the home page. */
   function finish() {
     setResult(null);
+    setPdfSaved(false);
     onClose();
     void navigate({ to: "/" });
   }
 
   if (!open) return null;
 
+  const pdfNote = result
+    ? `\n\nA PDF copy of this request (${quotationFileName(result.reference)}) has been downloaded on my device — I will attach it here.`
+    : "";
   const waHrefFor = (number: string) =>
-    result ? `https://wa.me/${number.replace(/\D/g, "")}?text=${encodeURIComponent(result.whatsappMessage)}` : "#";
+    result
+      ? `https://wa.me/${number.replace(/\D/g, "")}?text=${encodeURIComponent(result.whatsappMessage + pdfNote)}`
+      : "#";
   const mailHref = result
     ? `mailto:${site.email}?subject=${encodeURIComponent(result.emailSubject)}&body=${encodeURIComponent(
-        result.emailBody.replace(/\r?\n/g, "\r\n"),
+        (result.emailBody + pdfNote).replace(/\r?\n/g, "\r\n"),
       )}`
     : "#";
+
 
   return (
     <div className="fixed inset-0 z-[70] flex items-end justify-center bg-foreground/40 p-0 backdrop-blur-sm sm:items-center sm:p-6 print:hidden">
