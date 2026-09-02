@@ -219,24 +219,32 @@ export function QuoteDialog({
             <p className="mt-4 rounded-2xl border border-hairline bg-background px-4 py-3 font-mono text-sm">
               Reference: <strong>{result.reference}</strong>
             </p>
-            <p className="mt-5 text-sm text-muted-foreground">
-              Continue your conversation with our sales team — your message is already written, just review and press
-              send.
+            <p className="mt-5 text-sm font-semibold">
+              Choose the salesperson you'd like to send your quotation to:
             </p>
-            <div className="mt-6 flex flex-col gap-3">
-              <a
-                href={waHref}
-                target="_blank"
-                rel="noreferrer"
-                onClick={() => {
-                  track("whatsapp_sales_clicked", { stage: "success" });
-                  finish();
-                }}
-                className="wa-btn flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-4 text-center text-[14px] font-bold tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-              >
-                <MessageCircle className="size-5" aria-hidden="true" />
-                Continue to WhatsApp to send the quotation
-              </a>
+            <div className="mt-4 grid gap-2.5">
+              {salesTeam.map((rep) => (
+                <a
+                  key={rep.whatsapp}
+                  href={waHrefFor(rep.whatsapp)}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => {
+                    track("whatsapp_sales_clicked", { stage: "success", rep: rep.name });
+                    finish();
+                  }}
+                  className="wa-btn flex min-h-12 items-center justify-between gap-3 rounded-full px-5 py-3.5 text-left text-[14px] font-bold tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                >
+                  <span className="flex items-center gap-2">
+                    <MessageCircle className="size-5 shrink-0" aria-hidden="true" />
+                    {rep.name}
+                    <span className="text-[12px] font-medium opacity-80">· {rep.role}</span>
+                  </span>
+                  <span className="text-[12px] font-semibold opacity-90">{rep.phone}</span>
+                </a>
+              ))}
+            </div>
+            <div className="mt-3 flex flex-col gap-3">
               <a
                 href={mailHref}
                 onClick={() => {
