@@ -55,9 +55,12 @@ Notes: ${form.notes}`;
       return;
     }
     setSent(true);
-    toast.success("Quote request ready — continue on WhatsApp to send it to our sales team.");
-    window.open(whatsappLink(message), "_blank", "noopener");
+    toast.success("Almost done — choose the salesperson who should receive your quote.");
+    requestAnimationFrame(() => {
+      document.getElementById("rep-picker")?.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
   }
+
 
   return (
     <form onSubmit={onSubmit} className="soft-card border border-hairline bg-card p-6 md:p-10">
