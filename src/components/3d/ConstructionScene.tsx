@@ -90,7 +90,7 @@ function Wall({ progress, reducedMotion, mobile }: Props) {
     }
 
     // subtle camera move as the structure completes
-    const targetZ = 9.6 - p * 1.7;
+    const targetZ = 11.2 - p * 1.4;
     const targetY = 1.6 - p * 1.1;
     camera.position.z += (targetZ - camera.position.z) * (1 - Math.exp(-4 * dt));
     camera.position.y += (targetY - camera.position.y) * (1 - Math.exp(-4 * dt));
@@ -103,7 +103,7 @@ function Wall({ progress, reducedMotion, mobile }: Props) {
   });
 
   return (
-    <group ref={group} position={[mobile ? 0 : 3.2, mobile ? -1.4 : 0.1, 0]}>
+    <group ref={group} scale={mobile ? 0.5 : 0.6} position={[mobile ? 0 : 3.4, mobile ? -1.8 : -0.2, -1.5]}>
       {units.map((u, i) => (
         <mesh
           key={i}
