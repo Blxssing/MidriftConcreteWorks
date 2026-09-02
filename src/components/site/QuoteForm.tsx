@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { toast } from "sonner";
+import { MessageCircle, Phone } from "lucide-react";
 import { allProducts } from "@/data/products";
-import { whatsappLink } from "@/data/site";
+import { salesReps, repTelLink, repWhatsappLink } from "@/data/sales";
+
 
 const projectTypes = [
   "Residential / home build",
