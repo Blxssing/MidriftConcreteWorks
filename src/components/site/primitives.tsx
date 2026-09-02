@@ -66,13 +66,15 @@ export function PageHero({
   return (
     <section className="relative overflow-hidden bg-ink text-ink-foreground">
       {image && (
-        <img
-          src={image}
-          alt={imageAlt ?? title}
-          loading="lazy"
+        <Parallax className="absolute inset-0" distance={16}>
+          <img
+            src={image}
+            alt={imageAlt ?? title}
+            loading="lazy"
             decoding="async"
-          className="absolute inset-0 size-full object-cover opacity-25"
-        />
+            className="size-full scale-[1.08] object-cover opacity-25"
+          />
+        </Parallax>
       )}
       <Container className="relative py-20 md:py-32">
         <p className="eyebrow text-accent">{eyebrow}</p>
