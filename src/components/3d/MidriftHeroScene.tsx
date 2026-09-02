@@ -45,7 +45,7 @@ function HeroForms({ reducedMotion, mobile, pointer }: Opts) {
   const scale = Math.min(Math.max(viewport.width / 12, 0.62), 1.15);
 
   return (
-    <group ref={root} scale={scale} position={[viewport.width < 7 ? 1.9 : 2.2, viewport.width < 7 ? -4.2 : -0.5, 0]}>
+    <group ref={root} scale={scale} position={[mobile ? 1.6 : 2.2, mobile ? -4.4 : -0.5, 0]}>
       <group ref={drift}>
         {/* stacked slabs — the visual anchor */}
         <ConcreteBlock position={[1.6, -0.9, 0]} size={[2.6, 0.24, 1.7]} tone={0.42} rotation={[0, -0.32, 0]} />
