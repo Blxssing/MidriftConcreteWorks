@@ -485,21 +485,27 @@
 @utility liquid-glass {
   position: relative;
   isolation: isolate;
+  /* Text on glass inherits the page foreground for maximum legibility */
+  color: var(--foreground);
+  /* Opaque-enough tint: 84% card keeps text readable over busy backgrounds
+     (images, the grid pattern) while still reading as glass. */
   background:
     linear-gradient(
       135deg,
-      color-mix(in oklab, #fff 26%, transparent) 0%,
-      color-mix(in oklab, #fff 6%, transparent) 42%,
-      color-mix(in oklab, var(--accent-raw) 7%, transparent) 100%
+      color-mix(in oklab, #fff 22%, transparent) 0%,
+      color-mix(in oklab, #fff 5%, transparent) 42%,
+      color-mix(in oklab, var(--accent-raw) 6%, transparent) 100%
     ),
-    color-mix(in oklab, var(--card) 62%, transparent);
-  backdrop-filter: blur(26px) saturate(190%) brightness(1.04);
-  -webkit-backdrop-filter: blur(26px) saturate(190%) brightness(1.04);
-  border: 1px solid color-mix(in oklab, #fff 32%, transparent);
+    color-mix(in oklab, var(--card) 84%, transparent);
+  backdrop-filter: blur(26px) saturate(160%);
+  -webkit-backdrop-filter: blur(26px) saturate(160%);
+  /* Border anchored to foreground (not pure white) so the edge stays visible
+     against bright imagery in light mode too. */
+  border: 1px solid color-mix(in oklab, var(--foreground) 18%, transparent);
   box-shadow:
     /* bezel: inner curved surface catching light */
     0 1px 0 0 color-mix(in oklab, #fff 62%, transparent) inset,
-    0 -1px 0 0 color-mix(in oklab, var(--ink) 12%, transparent) inset,
+    0 -1px 0 0 color-mix(in oklab, var(--ink) 14%, transparent) inset,
     0 0 22px -6px color-mix(in oklab, #fff 40%, transparent) inset,
     /* lens drop */
     0 26px 60px -30px color-mix(in oklab, var(--ink) 70%, transparent);
@@ -509,12 +515,32 @@
   background:
     linear-gradient(
       135deg,
-      color-mix(in oklab, #fff 12%, transparent) 0%,
+      color-mix(in oklab, #fff 10%, transparent) 0%,
       color-mix(in oklab, #fff 3%, transparent) 45%,
-      color-mix(in oklab, var(--accent-raw) 9%, transparent) 100%
+      color-mix(in oklab, var(--accent-raw) 8%, transparent) 100%
     ),
-    color-mix(in oklab, var(--card) 58%, transparent);
-  border-color: color-mix(in oklab, #fff 16%, transparent);
+    color-mix(in oklab, var(--card) 82%, transparent);
+  border-color: color-mix(in oklab, #fff 24%, transparent);
+}
+
+/* Secondary text inside glass panels keeps AA contrast (was often tinted too low) */
+.liquid-glass :is(.text-muted-foreground, [data-muted]) {
+  color: color-mix(in oklab, var(--foreground) 78%, transparent);
+}
+
+/* Visible keyboard/touch focus for interactive glass elements, both modes */
+.liquid-glass:focus-visible,
+.liquid-glass :focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+@supports not selector(:focus-visible) {
+  .liquid-glass:focus,
+  .liquid-glass :focus {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
 }
 
 /* Slow specular highlight sweeping across the glass */
