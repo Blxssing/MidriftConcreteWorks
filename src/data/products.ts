@@ -1,5 +1,16 @@
 import cabroImg from "@/assets/cabro.jpg";
 import blocksImg from "@/assets/blocks.jpg";
+import blocksAAsset from "@/assets/blocks-a.jpg.asset.json";
+import blocksBAsset from "@/assets/blocks-b.jpg.asset.json";
+import bal15Asset from "@/assets/balustrade-15ft.jpg.asset.json";
+import bal2Asset from "@/assets/balustrade-2ft.jpg.asset.json";
+import bal3Asset from "@/assets/balustrade-3ft.jpg.asset.json";
+
+const blocksAImg = blocksAAsset.url;
+const blocksBImg = blocksBAsset.url;
+const bal15Img = bal15Asset.url;
+const bal2Img = bal2Asset.url;
+const bal3Img = bal3Asset.url;
 import ventImg from "@/assets/vent.jpg";
 import infraImg from "@/assets/infrastructure.jpg";
 import manufacturingImg from "@/assets/manufacturing.jpg";
@@ -104,10 +115,10 @@ export const categories: Category[] = [
     intro: "Masonry units produced to consistent dimension for faster, cleaner walling.",
     description:
       "Our concrete block range covers structural, infill and partition walling for residential, commercial and institutional buildings. Consistent dimensions reduce mortar wastage and speed up masonry on site.",
-    image: blocksImg,
+    image: blocksAImg,
     products: [
-      p("concrete-blocks", "hollow-blocks", "Hollow Blocks", "Lighter walling units with cores for services and reduced dead load.", "Hollow blocks reduce wall dead load and allow services and reinforcement to be routed through the cores.", blocksImg, ["External walling", "Internal walling", "Boundary walls"], ["Standard", "Reinforced core"], ["Multiple nominal sizes"], blockSpecs),
-      p("concrete-blocks", "solid-blocks", "Solid Blocks", "Dense units where mass, strength and acoustics matter.", "Solid blocks provide higher mass for load-bearing walls, retaining structures and acoustic separation.", blocksImg, ["Load-bearing walls", "Retaining structures", "Boundary walls"], ["Standard", "High-density"], ["Multiple nominal sizes"], blockSpecs),
+      p("concrete-blocks", "hollow-blocks", "Hollow Blocks", "Lighter walling units with cores for services and reduced dead load.", "Hollow blocks reduce wall dead load and allow services and reinforcement to be routed through the cores.", blocksAImg, ["External walling", "Internal walling", "Boundary walls"], ["Standard", "Reinforced core"], ["Multiple nominal sizes"], blockSpecs),
+      p("concrete-blocks", "solid-blocks", "Solid Blocks", "Dense units where mass, strength and acoustics matter.", "Solid blocks provide higher mass for load-bearing walls, retaining structures and acoustic separation.", blocksBImg, ["Load-bearing walls", "Retaining structures", "Boundary walls"], ["Standard", "High-density"], ["Multiple nominal sizes"], blockSpecs),
       p("concrete-blocks", "partition-blocks", "Partition Blocks", "Slim units for fast internal subdivision.", "Partition blocks give a lighter, thinner section for internal subdivision, reducing structural load and speeding up fit-out.", blocksImg, ["Internal partitions", "Office fit-out", "Institutional buildings"], ["Standard"], ["Multiple thicknesses"], blockSpecs),
       p("concrete-blocks", "structural-blocks", "Structural Blocks", "Engineered walling units for load-bearing applications.", "Structural blocks are produced for projects where the walling contributes to load transfer, with strength targets agreed at order stage.", blocksImg, ["Load-bearing walls", "Multi-storey walling", "Industrial buildings"], ["Standard", "To engineer's specification"], ["To project specification"], blockSpecs),
       p("concrete-blocks", "decorative-blocks", "Decorative Blocks", "Face-quality units for exposed masonry.", "Decorative blocks are produced with a controlled face finish for walls that remain exposed in the finished building.", blocksImg, ["Feature walls", "Boundary walls", "Facades"], ["Textured", "Split-face", "Coloured"], ["Multiple sizes"], blockSpecs),
@@ -158,6 +169,20 @@ export const categories: Category[] = [
       p("custom-precast", "bulk-production", "Bulk Production Runs", "Dedicated capacity for high-volume requirements.", "Large orders are planned as scheduled production runs so quantities arrive in line with your construction programme.", manufacturingImg, ["Large developments", "Infrastructure programmes", "Distributor stock"], ["Scheduled batches"], ["To order"], paveSpecs),
       p("custom-precast", "contractor-supply", "Contractor Supply Packages", "Consolidated supply across multiple product lines.", "Contractors can consolidate paving, blocks, kerbs and drainage into one supply agreement with coordinated deliveries.", manufacturingImg, ["Main contractors", "Subcontractors", "Civil packages"], ["Multi-product package"], ["To order"], paveSpecs),
       p("custom-precast", "mould-development", "Custom Mould & Design Development", "New mould development for signature products.", "Our team develops new moulds where a project or distributor requires a distinct product profile.", manufacturingImg, ["Architectural projects", "Product development", "Branded ranges"], ["New mould"], ["To project specification"], paveSpecs),
+    ],
+  },
+  {
+    slug: "balustrades",
+    name: "Balustrades",
+    code: "06",
+    intro: "Turned precast balusters for balconies, terraces, staircases and boundary walls.",
+    description:
+      "Midrift casts balustrade columns in standard 1.5ft, 2ft and 3ft heights, with matching bases and handrail sections. Units are produced from high-strength mixes for outdoor durability and can be supplied grey or finished to your colour.",
+    image: bal2Img,
+    products: [
+      p("balustrades", "balustrade-1-5ft", "Balustrade 1.5ft", "Low-height balusters for terraces, planters and short parapets.", "The 1.5ft baluster suits low parapets, terrace edges and planter walls where an open, decorative rail is required without full height.", bal15Img, ["Terraces", "Planters", "Low parapets"], ["Standard grey", "Painted finish"], ["1.5ft height"], blockSpecs),
+      p("balustrades", "balustrade-2ft", "Balustrade 2ft", "The standard balcony and staircase baluster height.", "Our most requested balustrade height, used for balconies, verandas and staircases with matching base and handrail sections.", bal2Img, ["Balconies", "Verandas", "Staircases"], ["Standard grey", "Painted finish"], ["2ft height"], blockSpecs),
+      p("balustrades", "balustrade-3ft", "Balustrade 3ft", "Full-height balusters for grand frontages and boundary rails.", "The 3ft baluster gives a taller, more imposing rail line for entrances, grand staircases and boundary walls.", bal3Img, ["Entrances", "Grand staircases", "Boundary rails"], ["Standard grey", "Painted finish"], ["3ft height"], blockSpecs),
     ],
   },
 ];
