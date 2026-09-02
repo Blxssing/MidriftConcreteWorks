@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import type { ThreeElements } from "@react-three/fiber";
 import * as THREE from "three";
 import { RoundedBox } from "@react-three/drei";
 import { scenePalette } from "./palette";
@@ -39,7 +40,7 @@ type BlockProps = {
   roughness?: number;
   radius?: number;
   accent?: boolean;
-} & Omit<JSX.IntrinsicElements["group"], "args">;
+} & Omit<ThreeElements["group"], "args" | "ref">;
 
 /** A single bevelled precast unit with matte concrete surfacing. */
 export function ConcreteBlock({
@@ -65,7 +66,7 @@ export function ConcreteBlock({
 export function HollowBlock({
   tone = 0.35,
   ...group
-}: { tone?: number } & Omit<JSX.IntrinsicElements["group"], "args">) {
+}: { tone?: number } & Omit<ThreeElements["group"], "args" | "ref">) {
   const material = useMemo(() => concreteMaterial(tone, 0.94), [tone]);
   const w = 1.6;
   const h = 0.7;
@@ -91,7 +92,7 @@ export function HollowBlock({
 }
 
 /** Road kerb profile — a chamfered rectangular section. */
-export function Kerb({ tone = 0.3, ...group }: { tone?: number } & Omit<JSX.IntrinsicElements["group"], "args">) {
+export function Kerb({ tone = 0.3, ...group }: { tone?: number } & Omit<ThreeElements["group"], "args" | "ref">) {
   const material = useMemo(() => concreteMaterial(tone, 0.92), [tone]);
   return (
     <group {...group}>
