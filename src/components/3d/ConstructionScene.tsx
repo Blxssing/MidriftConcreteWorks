@@ -103,7 +103,7 @@ function Wall({ progress, reducedMotion, mobile }: Props) {
   });
 
   return (
-    <group ref={group} position={[0, 0.1, 0]}>
+    <group ref={group} position={[mobile ? 0 : 3.2, mobile ? -1.4 : 0.1, 0]}>
       {units.map((u, i) => (
         <mesh
           key={i}
