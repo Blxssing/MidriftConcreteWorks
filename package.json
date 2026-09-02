@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "build:dev": "next build",
+    "build": "next build --webpack",
+    "build:dev": "next build --webpack",
     "start": "next start"
   },
   "dependencies": {
