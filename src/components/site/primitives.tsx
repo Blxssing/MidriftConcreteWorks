@@ -289,15 +289,27 @@ export function Gallery({ images, alt }: { images: string[]; alt: string }) {
           key={src + i}
           className={cn("hover-lift overflow-hidden rounded-2xl bg-concrete", i === 0 && "sm:col-span-2")}
         >
-          <div className="media-zoom">
-            <img
-              src={src}
-              alt={`${alt} — image ${i + 1}`}
-              loading="lazy"
-            decoding="async"
-              className={cn("w-full object-cover", i === 0 ? "aspect-16/9" : "aspect-4/3")}
-            />
-          </div>
+          {i === 0 ? (
+            <Parallax className="aspect-16/9 w-full" distance={14}>
+              <img
+                src={src}
+                alt={`${alt} — image ${i + 1}`}
+                loading="lazy"
+                decoding="async"
+                className="size-full scale-[1.06] object-cover"
+              />
+            </Parallax>
+          ) : (
+            <div className="media-zoom">
+              <img
+                src={src}
+                alt={`${alt} — image ${i + 1}`}
+                loading="lazy"
+                decoding="async"
+                className="aspect-4/3 w-full object-cover"
+              />
+            </div>
+          )}
           <figcaption className="flex flex-wrap items-center gap-3 border-t border-hairline bg-background px-5 py-4">
             <QuoteCTA label="Request a Quote" product={alt} />
             <WhatsAppCTA product={alt} />
