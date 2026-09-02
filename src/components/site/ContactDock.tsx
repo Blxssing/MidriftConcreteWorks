@@ -22,7 +22,7 @@ export function ContactDock() {
     <div className="pointer-events-none fixed inset-x-0 bottom-4 z-40 flex justify-center px-3 print:hidden">
       <div
         data-cta-zone="floating-dock"
-        className="ios-glass pointer-events-auto flex items-center gap-0.5 rounded-[26px] p-1.5"
+        className="liquid-glass pointer-events-auto flex items-center gap-0.5 rounded-[26px] p-1.5"
       >
         {[
           { label: "WhatsApp", title: "Talk to sales on WhatsApp", icon: MessageCircle },

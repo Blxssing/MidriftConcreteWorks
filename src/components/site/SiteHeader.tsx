@@ -173,7 +173,7 @@ export function SiteHeader() {
             <p className="px-2 pb-2 pt-1 text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground">
               Tap any page below to explore it
             </p>
-            <div className="ios-glass overflow-hidden rounded-[26px] border border-white/25 bg-background/55 shadow-[0_24px_60px_-30px_rgba(0,0,0,0.55)] backdrop-blur-2xl backdrop-saturate-150">
+            <div className="liquid-glass liquid-sheen overflow-hidden rounded-[26px] border border-white/25 bg-background/55 shadow-[0_24px_60px_-30px_rgba(0,0,0,0.55)] backdrop-blur-2xl backdrop-saturate-150">
               <Link
                 to="/"
                 onClick={() => setOpen(false)}
