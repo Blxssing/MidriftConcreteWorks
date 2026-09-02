@@ -141,11 +141,48 @@ Notes: ${form.notes}`;
         Send quote request
       </button>
       {sent && (
-        <p className="mt-4 text-sm text-muted-foreground">
-          Your request opens in WhatsApp so our sales team receives it instantly. Prefer email? Send the same details to
-          our sales address below.
-        </p>
+        <div id="rep-picker" className="mt-8 rounded-2xl border border-hairline bg-background p-5 md:p-6">
+          <p className="eyebrow">Final step</p>
+          <h3 className="mt-2 font-display text-lg font-bold uppercase tracking-tight">
+            Choose who should receive your quote
+          </h3>
+          <p className="mt-2 text-sm text-muted-foreground">
+            Pick a member of our sales team — your details are pre-filled, just press send on WhatsApp or call directly.
+          </p>
+          <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+            {salesReps.map((rep) => (
+              <li
+                key={rep.phone}
+                className="flex items-center justify-between gap-3 rounded-xl border border-hairline bg-card px-4 py-3"
+              >
+                <div>
+                  <p className="text-sm font-semibold">{rep.name}</p>
+                  <p className="text-xs text-muted-foreground">{rep.phone}</p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <a
+                    href={repWhatsappLink(rep, message)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Send quote to ${rep.name} on WhatsApp`}
+                    className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-accent text-accent-foreground transition-opacity hover:opacity-90"
+                  >
+                    <MessageCircle className="h-4 w-4" aria-hidden />
+                  </a>
+                  <a
+                    href={repTelLink(rep)}
+                    aria-label={`Call ${rep.name}`}
+                    className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-hairline transition-colors hover:bg-muted"
+                  >
+                    <Phone className="h-4 w-4" aria-hidden />
+                  </a>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
+
     </form>
   );
 }
