@@ -72,6 +72,6 @@ export function ContactDock() {
           <span className="hidden sm:inline">Get a Quote</span>
         </button>
       </div>
-    </div>
+    </nav>
   );
 }
