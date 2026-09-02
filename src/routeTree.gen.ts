@@ -12,10 +12,17 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as BulkWholesaleRouteImport } from './routes/bulk-wholesale'
+import { Route as CatalogueRouteImport } from './routes/catalogue'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as DeliveryRouteImport } from './routes/delivery'
 import { Route as QualityRouteImport } from './routes/quality'
+import { Route as ReadyMixRouteImport } from './routes/ready-mix'
 import { Route as ResourcesRouteImport } from './routes/resources'
+import { Route as ServicesRouteImport } from './routes/services'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as TeamRouteImport } from './routes/team'
+import { Route as TestimonialsRouteImport } from './routes/testimonials'
+import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as ProductsIndexRouteImport } from './routes/products.index'
 import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
 import { Route as ProjectsSlugRouteImport } from './routes/projects.$slug'
@@ -39,6 +46,11 @@ const BulkWholesaleRoute = BulkWholesaleRouteImport.update({
   path: '/bulk-wholesale',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CatalogueRoute = CatalogueRouteImport.update({
+  id: '/catalogue',
+  path: '/catalogue',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
@@ -54,9 +66,39 @@ const QualityRoute = QualityRouteImport.update({
   path: '/quality',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ReadyMixRoute = ReadyMixRouteImport.update({
+  id: '/ready-mix',
+  path: '/ready-mix',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResourcesRoute = ResourcesRouteImport.update({
   id: '/resources',
   path: '/resources',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TeamRoute = TeamRouteImport.update({
+  id: '/team',
+  path: '/team',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TestimonialsRoute = TestimonialsRouteImport.update({
+  id: '/testimonials',
+  path: '/testimonials',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ThankYouRoute = ThankYouRouteImport.update({
+  id: '/thank-you',
+  path: '/thank-you',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProductsIndexRoute = ProductsIndexRouteImport.update({
@@ -99,10 +141,17 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/bulk-wholesale': typeof BulkWholesaleRoute
+  '/catalogue': typeof CatalogueRoute
   '/contact': typeof ContactRoute
   '/delivery': typeof DeliveryRoute
   '/quality': typeof QualityRoute
+  '/ready-mix': typeof ReadyMixRoute
   '/resources': typeof ResourcesRoute
+  '/services': typeof ServicesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/team': typeof TeamRoute
+  '/testimonials': typeof TestimonialsRoute
+  '/thank-you': typeof ThankYouRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/products/': typeof ProductsIndexRoute
@@ -115,10 +164,17 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/bulk-wholesale': typeof BulkWholesaleRoute
+  '/catalogue': typeof CatalogueRoute
   '/contact': typeof ContactRoute
   '/delivery': typeof DeliveryRoute
   '/quality': typeof QualityRoute
+  '/ready-mix': typeof ReadyMixRoute
   '/resources': typeof ResourcesRoute
+  '/services': typeof ServicesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/team': typeof TeamRoute
+  '/testimonials': typeof TestimonialsRoute
+  '/thank-you': typeof ThankYouRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/products': typeof ProductsIndexRoute
@@ -132,10 +188,17 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/bulk-wholesale': typeof BulkWholesaleRoute
+  '/catalogue': typeof CatalogueRoute
   '/contact': typeof ContactRoute
   '/delivery': typeof DeliveryRoute
   '/quality': typeof QualityRoute
+  '/ready-mix': typeof ReadyMixRoute
   '/resources': typeof ResourcesRoute
+  '/services': typeof ServicesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/team': typeof TeamRoute
+  '/testimonials': typeof TestimonialsRoute
+  '/thank-you': typeof ThankYouRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/products/': typeof ProductsIndexRoute
@@ -150,10 +213,17 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/bulk-wholesale'
+    | '/catalogue'
     | '/contact'
     | '/delivery'
     | '/quality'
+    | '/ready-mix'
     | '/resources'
+    | '/services'
+    | '/sitemap.xml'
+    | '/team'
+    | '/testimonials'
+    | '/thank-you'
     | '/projects/$slug'
     | '/solutions/$slug'
     | '/products/'
@@ -166,10 +236,17 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/bulk-wholesale'
+    | '/catalogue'
     | '/contact'
     | '/delivery'
     | '/quality'
+    | '/ready-mix'
     | '/resources'
+    | '/services'
+    | '/sitemap.xml'
+    | '/team'
+    | '/testimonials'
+    | '/thank-you'
     | '/projects/$slug'
     | '/solutions/$slug'
     | '/products'
@@ -182,10 +259,17 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/bulk-wholesale'
+    | '/catalogue'
     | '/contact'
     | '/delivery'
     | '/quality'
+    | '/ready-mix'
     | '/resources'
+    | '/services'
+    | '/sitemap.xml'
+    | '/team'
+    | '/testimonials'
+    | '/thank-you'
     | '/projects/$slug'
     | '/solutions/$slug'
     | '/products/'
@@ -199,10 +283,17 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   BulkWholesaleRoute: typeof BulkWholesaleRoute
+  CatalogueRoute: typeof CatalogueRoute
   ContactRoute: typeof ContactRoute
   DeliveryRoute: typeof DeliveryRoute
   QualityRoute: typeof QualityRoute
+  ReadyMixRoute: typeof ReadyMixRoute
   ResourcesRoute: typeof ResourcesRoute
+  ServicesRoute: typeof ServicesRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  TeamRoute: typeof TeamRoute
+  TestimonialsRoute: typeof TestimonialsRoute
+  ThankYouRoute: typeof ThankYouRoute
   ProjectsSlugRoute: typeof ProjectsSlugRoute
   SolutionsSlugRoute: typeof SolutionsSlugRoute
   ProductsIndexRoute: typeof ProductsIndexRoute
@@ -235,6 +326,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BulkWholesaleRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/catalogue': {
+      id: '/catalogue'
+      path: '/catalogue'
+      fullPath: '/catalogue'
+      preLoaderRoute: typeof CatalogueRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contact': {
       id: '/contact'
       path: '/contact'
@@ -256,11 +354,53 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof QualityRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ready-mix': {
+      id: '/ready-mix'
+      path: '/ready-mix'
+      fullPath: '/ready-mix'
+      preLoaderRoute: typeof ReadyMixRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/resources': {
       id: '/resources'
       path: '/resources'
       fullPath: '/resources'
       preLoaderRoute: typeof ResourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/team': {
+      id: '/team'
+      path: '/team'
+      fullPath: '/team'
+      preLoaderRoute: typeof TeamRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/testimonials': {
+      id: '/testimonials'
+      path: '/testimonials'
+      fullPath: '/testimonials'
+      preLoaderRoute: typeof TestimonialsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/thank-you': {
+      id: '/thank-you'
+      path: '/thank-you'
+      fullPath: '/thank-you'
+      preLoaderRoute: typeof ThankYouRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/products/': {
@@ -319,10 +459,17 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   BulkWholesaleRoute: BulkWholesaleRoute,
+  CatalogueRoute: CatalogueRoute,
   ContactRoute: ContactRoute,
   DeliveryRoute: DeliveryRoute,
   QualityRoute: QualityRoute,
+  ReadyMixRoute: ReadyMixRoute,
   ResourcesRoute: ResourcesRoute,
+  ServicesRoute: ServicesRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
+  TeamRoute: TeamRoute,
+  TestimonialsRoute: TestimonialsRoute,
+  ThankYouRoute: ThankYouRoute,
   ProjectsSlugRoute: ProjectsSlugRoute,
   SolutionsSlugRoute: SolutionsSlugRoute,
   ProductsIndexRoute: ProductsIndexRoute,

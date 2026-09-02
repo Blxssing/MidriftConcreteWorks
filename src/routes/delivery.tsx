@@ -2,22 +2,29 @@ import { createFileRoute } from "@tanstack/react-router";
 import { CTABand, PageHero, Section, SectionHead } from "@/components/site/primitives";
 import logisticsImg from "@/assets/logistics.jpg";
 import { site } from "@/data/site";
+import { useQuote } from "@/components/site/QuoteProvider";
+import { Mail, MessageCircle, Music2, Phone } from "lucide-react";
+import { DeliveryMap } from "@/components/site/DeliveryMap";
 
 export const Route = createFileRoute("/delivery")({
   head: () => ({
     meta: [
-      { title: "Delivery & Logistics | Midrift Concrete Solutions" },
+      { title: "Delivery & Logistics | Midrift Concrete Works" },
       {
         name: "description",
         content:
           "Project-site delivery, bulk deliveries, trucking, loading and delivery scheduling for precast concrete orders.",
       },
-      { property: "og:title", content: "Delivery & Logistics | Midrift Concrete Solutions" },
+      { property: "og:title", content: "Delivery & Logistics | Midrift Concrete Works" },
       {
         property: "og:description",
         content: "How Midrift loads, trucks and schedules precast concrete deliveries to site.",
       },
+      { property: "og:url", content: "https://midriftconcreteworks.com/delivery" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://midriftconcreteworks.com/delivery" }],
   }),
   component: DeliveryPage,
 });
@@ -32,6 +39,7 @@ const process = [
 ];
 
 function DeliveryPage() {
+  const { openQuote } = useQuote();
   return (
     <>
       <PageHero
@@ -74,6 +82,17 @@ function DeliveryPage() {
         </div>
       </Section>
 
+      <Section className="pt-0">
+        <SectionHead
+          eyebrow="Service map"
+          title="Where we deliver, confirmed."
+          lead="The highlighted areas are confirmed delivery zones. Anywhere else, share your site location and we will confirm cost and lead time."
+        />
+        <div className="mt-10">
+          <DeliveryMap />
+        </div>
+      </Section>
+
       <Section dark>
         <SectionHead eyebrow="Delivery process" title="Six steps, agreed in advance." />
         <div className="mt-14 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
@@ -87,7 +106,64 @@ function DeliveryPage() {
         </div>
       </Section>
 
+      <Section>
+        <SectionHead
+          eyebrow="Talk to logistics"
+          title="Fastest ways to book a delivery"
+          lead="Message, call or email our delivery desk directly — we confirm scheduling and transport cost the same day."
+        />
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <button
+            type="button"
+            onClick={() => openQuote({})}
+            aria-label="WhatsApp us to arrange delivery — opens the quote request form"
+            className="hover-lift flex items-center gap-3 rounded-2xl bg-[var(--wa)] p-5 text-left text-[var(--wa-foreground)] shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+          >
+            <MessageCircle className="size-6 shrink-0" />
+            <span>
+              <span className="block text-base font-semibold">WhatsApp us</span>
+              <span className="block text-sm opacity-90">{site.whatsappDisplay}</span>
+            </span>
+          </button>
+          <a
+            href={site.phoneHref}
+            className="hover-lift flex items-center gap-3 rounded-2xl bg-ink p-5 text-ink-foreground shadow-lg"
+          >
+            <Phone className="size-6 shrink-0" />
+            <span>
+              <span className="block text-base font-semibold">Call delivery desk</span>
+              <span className="block text-sm opacity-80">{site.phone}</span>
+            </span>
+          </a>
+          <button
+            type="button"
+            onClick={() => openQuote({})}
+            aria-label="Email logistics — opens the quote request form"
+            className="hover-lift flex items-center gap-3 rounded-2xl border border-hairline bg-card p-5 text-left shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+          >
+            <Mail className="size-6 shrink-0 text-accent" />
+            <span>
+              <span className="block text-base font-semibold">Email logistics</span>
+              <span className="block text-sm text-muted-foreground">{site.email}</span>
+            </span>
+          </button>
+          <a
+            href={site.socials[0].href}
+            target="_blank"
+            rel="noopener"
+            className="hover-lift flex items-center gap-3 rounded-2xl border border-hairline bg-card p-5 shadow-sm"
+          >
+            <Music2 className="size-6 shrink-0 text-accent" />
+            <span>
+              <span className="block text-base font-semibold">See deliveries on TikTok</span>
+              <span className="block text-sm text-muted-foreground">@midriftconcreteworks</span>
+            </span>
+          </a>
+        </div>
+      </Section>
+
       <CTABand title="Confirm delivery to your site." lead="Share your location and required date and we will confirm scheduling and cost." />
+
     </>
   );
 }

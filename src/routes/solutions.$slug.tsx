@@ -9,18 +9,22 @@ export const Route = createFileRoute("/solutions/$slug")({
     if (!solution) throw notFound();
     return { name: solution.name, headline: solution.headline };
   },
-  head: ({ loaderData }) => {
+  head: ({ params, loaderData }) => {
     if (!loaderData) {
       return { meta: [{ title: "Solution not found | Midrift" }, { name: "robots", content: "noindex" }] };
     }
-    const title = `${loaderData.name} | Midrift Concrete Solutions`;
+    const title = `${loaderData.name} | Midrift Concrete Works`;
     return {
       meta: [
         { title },
         { name: "description", content: loaderData.headline },
         { property: "og:title", content: title },
         { property: "og:description", content: loaderData.headline },
+        { property: "og:url", content: `https://midriftconcreteworks.com/solutions/${params.slug}` },
+        { property: "og:type", content: "website" },
+        { name: "twitter:card", content: "summary_large_image" },
       ],
+      links: [{ rel: "canonical", href: `https://midriftconcreteworks.com/solutions/${params.slug}` }],
     };
   },
   component: SolutionPage,

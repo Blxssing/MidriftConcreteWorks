@@ -7,18 +7,22 @@ import { site } from "@/data/site";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About Midrift Concrete Solutions Ltd" },
+      { title: "About Midrift Concrete Works Ltd" },
       {
         name: "description",
         content:
-          "Midrift Concrete Solutions Ltd is a Kenyan precast concrete manufacturer supplying paving, blocks, ventilation blocks and civil precast products.",
+          "Midrift Concrete Works Ltd is a Kenyan precast concrete manufacturer supplying paving, blocks, ventilation blocks and civil precast products.",
       },
-      { property: "og:title", content: "About Midrift Concrete Solutions Ltd" },
+      { property: "og:title", content: "About Midrift Concrete Works Ltd" },
       {
         property: "og:description",
         content: "Who we are, what we manufacture and how we work with buyers across Kenya.",
       },
+      { property: "og:url", content: "https://midriftconcreteworks.com/about" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://midriftconcreteworks.com/about" }],
   }),
   component: AboutPage,
 });
@@ -35,7 +39,7 @@ function AboutPage() {
     <>
       <PageHero
         eyebrow="About"
-        title="Midrift Concrete Solutions Ltd"
+        title="Midrift Concrete Works Ltd"
         lead="A Kenyan precast concrete manufacturer supplying products, technical guidance and project supply to the people who build."
         image={heroImg}
         imageAlt="Midrift production yard"
@@ -46,7 +50,7 @@ function AboutPage() {
           <div>
             <SectionHead eyebrow="Who we are" title="Manufacturer first." />
             <p className="mt-6 leading-relaxed text-muted-foreground">
-              Midrift Concrete Solutions Ltd manufactures precast concrete products — interlocking cabro and paving,
+              Midrift Concrete Works Ltd manufactures precast concrete products — interlocking cabro and paving,
               concrete blocks, ventilation blocks, road and drainage units, and custom precast elements — from our yard
               in {site.location}.
             </p>
@@ -63,6 +67,7 @@ function AboutPage() {
             src={manufacturingImg}
             alt="Inside the Midrift production facility"
             loading="lazy"
+            decoding="async"
             className="aspect-4/3 w-full rounded-2xl object-cover"
           />
         </div>

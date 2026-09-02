@@ -8,7 +8,7 @@ export const Route = createFileRoute("/projects/$slug")({
     if (!project) throw notFound();
     return { name: project.name, description: project.description };
   },
-  head: ({ loaderData }) => {
+  head: ({ params, loaderData }) => {
     if (!loaderData) {
       return { meta: [{ title: "Project not found | Midrift" }, { name: "robots", content: "noindex" }] };
     }
@@ -19,7 +19,11 @@ export const Route = createFileRoute("/projects/$slug")({
         { name: "description", content: loaderData.description },
         { property: "og:title", content: title },
         { property: "og:description", content: loaderData.description },
+        { property: "og:url", content: `https://midriftconcreteworks.com/projects/${params.slug}` },
+        { property: "og:type", content: "article" },
+        { name: "twitter:card", content: "summary_large_image" },
       ],
+      links: [{ rel: "canonical", href: `https://midriftconcreteworks.com/projects/${params.slug}` }],
     };
   },
   component: ProjectPage,
@@ -72,7 +76,8 @@ function ProjectPage() {
           <div className="mt-8 grid gap-8 md:grid-cols-3">
             {others.map((o) => (
               <Link key={o.slug} to="/projects/$slug" params={{ slug: o.slug }} className="group">
-                <img src={o.image} alt={o.name} loading="lazy" className="aspect-4/3 w-full rounded-2xl object-cover" />
+                <img src={o.image} alt={o.name} loading="lazy"
+            decoding="async" className="aspect-4/3 w-full rounded-2xl object-cover" />
                 <h3 className="mt-4 font-display text-base font-bold uppercase tracking-tight group-hover:text-accent">
                   {o.name}
                 </h3>

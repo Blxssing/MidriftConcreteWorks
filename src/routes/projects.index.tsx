@@ -1,23 +1,27 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { projects } from "@/data/projects";
 import { CTABand, PageHero, Section } from "@/components/site/primitives";
-import projectYard from "@/assets/project-yard.jpg";
+import heroAsset from "@/assets/project-IMG-20260828-WA0003.jpg.asset.json";
 
 export const Route = createFileRoute("/projects/")({
   head: () => ({
     meta: [
-      { title: "Projects | Midrift Concrete Solutions" },
+      { title: "Projects | Midrift Concrete Works" },
       {
         name: "description",
         content:
           "Precast concrete supplied to commercial, residential, institutional and infrastructure projects across Kenya.",
       },
-      { property: "og:title", content: "Projects | Midrift Concrete Solutions" },
+      { property: "og:title", content: "Projects | Midrift Concrete Works" },
       {
         property: "og:description",
-        content: "Case studies of paving, block and civil precast supply by Midrift Concrete Solutions.",
+        content: "Case studies of paving, block and civil precast supply by Midrift Concrete Works.",
       },
+      { property: "og:url", content: "https://midriftconcreteworks.com/projects" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://midriftconcreteworks.com/projects" }],
   }),
   component: ProjectsIndex,
 });
@@ -29,8 +33,8 @@ function ProjectsIndex() {
         eyebrow="Projects"
         title="Supply in the field"
         lead="A selection of works Midrift has supplied. Quantities and completion details are published only where the client has confirmed them."
-        image={projectYard}
-        imageAlt="Completed paved commercial yard"
+        image={heroAsset.url}
+        imageAlt="Completed cabro driveway at a residential home in Nakuru"
       />
 
       <Section>
@@ -42,6 +46,7 @@ function ProjectsIndex() {
                   src={p.image}
                   alt={p.name}
                   loading="lazy"
+            decoding="async"
                   className="aspect-16/9 w-full rounded-2xl object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </div>

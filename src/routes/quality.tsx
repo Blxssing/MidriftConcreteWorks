@@ -6,18 +6,22 @@ import blocksImg from "@/assets/blocks.jpg";
 export const Route = createFileRoute("/quality")({
   head: () => ({
     meta: [
-      { title: "Quality & Manufacturing | Midrift Concrete Solutions" },
+      { title: "Quality & Manufacturing | Midrift Concrete Works" },
       {
         name: "description",
         content:
           "How Midrift manufactures precast concrete: raw materials, mixing, moulding, compaction, curing, quality control, storage and dispatch.",
       },
-      { property: "og:title", content: "Quality & Manufacturing | Midrift Concrete Solutions" },
+      { property: "og:title", content: "Quality & Manufacturing | Midrift Concrete Works" },
       {
         property: "og:description",
         content: "An eight-stage production process built for consistent, repeatable precast concrete units.",
       },
+      { property: "og:url", content: "https://midriftconcreteworks.com/quality" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://midriftconcreteworks.com/quality" }],
   }),
   component: QualityPage,
 });
@@ -86,6 +90,7 @@ function QualityPage() {
           src={blocksImg}
           alt="Finished concrete blocks stacked in the yard"
           loading="lazy"
+            decoding="async"
           className="h-full min-h-[360px] w-full rounded-2xl object-cover"
         />
       </section>

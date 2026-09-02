@@ -1,26 +1,74 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { MousePointerClick } from "lucide-react";
 import { categories } from "@/data/products";
-import { CTABand, PageHero, Section } from "@/components/site/primitives";
+import { CTABand, PageHero, Section, WhatsAppBanner } from "@/components/site/primitives";
+import { ProductFinder } from "@/components/site/ProductFinder";
 import cabroImg from "@/assets/cabro.jpg";
 
+const SITE = "https://midriftconcreteworks.com";
+
+type ProductSearch = { q?: string; family?: string; use?: string };
+
 export const Route = createFileRoute("/products/")({
-  head: () => ({
-    meta: [
-      { title: "Precast Concrete Products | Midrift Concrete Solutions" },
-      {
-        name: "description",
-        content:
-          "Cabro and paving, concrete blocks, ventilation blocks, road and infrastructure precast, and custom precast solutions manufactured in Kenya.",
-      },
-      { property: "og:title", content: "Precast Concrete Products | Midrift" },
-      {
-        property: "og:description",
-        content: "Explore Midrift's full precast concrete product range for builders, contractors and distributors.",
-      },
-    ],
-  }),
+  validateSearch: (search: Record<string, unknown>): ProductSearch => {
+    const str = (v: unknown) => (typeof v === "string" && v.trim() ? v.trim() : undefined);
+    const out: ProductSearch = {};
+    const q = str(search["q"]);
+    const family = str(search["family"]);
+    const use = str(search["use"]);
+    if (q) out.q = q;
+    if (family) out.family = family;
+    if (use) out.use = use;
+    return out;
+  },
+  head: ({ match }) => {
+    const search = (match?.search ?? {}) as ProductSearch;
+    const familyName = categories.find((c) => c.slug === search.family)?.name;
+    const parts = [familyName, search.use ? `for ${search.use.toLowerCase()}` : null].filter(Boolean);
+    const title = parts.length
+      ? `${parts.join(" ")} — Precast Concrete | Midrift Concrete Works`
+      : "Precast Concrete Products | Midrift Concrete Works";
+    const description = parts.length
+      ? `Browse Midrift Concrete Works ${(familyName ?? "precast concrete").toLowerCase()} ${
+          search.use ? `suited to ${search.use.toLowerCase()}` : ""
+        } — manufactured in Kenya and quoted to your project specification.`.replace(/\s+/g, " ").trim()
+      : "Cabro and paving, concrete blocks, ventilation blocks, road and infrastructure precast, and custom precast solutions manufactured in Kenya.";
+    const query = new URLSearchParams();
+    if (search.family) query.set("family", search.family);
+    if (search.use) query.set("use", search.use);
+    const canonical = `${SITE}/products${query.toString() ? `?${query.toString()}` : ""}`;
+
+    return {
+      meta: [
+        { title },
+        { name: "description", content: description },
+        { property: "og:title", content: title },
+        { property: "og:description", content: description },
+        { property: "og:url", content: canonical },
+        ...(search.q ? [{ name: "robots", content: "noindex,follow" }] : []),
+      ],
+      links: [{ rel: "canonical", href: canonical }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            name: title,
+            itemListElement: categories.map((c, i) => ({
+              "@type": "ListItem",
+              position: i + 1,
+              name: c.name,
+              url: `${SITE}/products/${c.slug}`,
+            })),
+          }),
+        },
+      ],
+    };
+  },
   component: ProductsIndex,
 });
+
 
 function ProductsIndex() {
   return (
@@ -33,6 +81,12 @@ function ProductsIndex() {
         imageAlt="Interlocking cabro paving"
       />
 
+      <Section className="pb-0">
+        <WhatsAppBanner message="Hello Midrift Concrete Works, I am browsing your product catalogue and would like prices." />
+        <div className="mt-10" />
+        <ProductFinder />
+      </Section>
+
       {categories.map((c) => (
         <Section key={c.slug} className="border-b border-hairline">
           <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr]">
@@ -43,16 +97,24 @@ function ProductsIndex() {
               <Link
                 to="/products/$category"
                 params={{ category: c.slug }}
-                className="mt-8 inline-block text-[12px] font-bold uppercase tracking-[0.12em] text-accent hover:underline"
+                className="ios-cta mt-8 flex w-full items-center justify-center gap-3 rounded-[26px] bg-accent px-8 py-6 text-center text-[17px] font-bold tracking-tight text-accent-foreground sm:w-auto sm:px-12"
               >
-                Open {c.name} →
+                <MousePointerClick className="size-6" />
+                Click here to explore {c.name}
               </Link>
-              <img
-                src={c.image}
-                alt={c.name}
-                loading="lazy"
-                className="mt-10 aspect-16/9 w-full rounded-2xl object-cover"
-              />
+              {c.image ? (
+                <img
+                  src={c.image}
+                  alt={c.name}
+                  loading="lazy"
+            decoding="async"
+                  className="mt-10 aspect-16/9 w-full rounded-2xl object-cover"
+                />
+              ) : (
+                <div className="mt-10 flex aspect-16/9 w-full items-center justify-center rounded-2xl border border-dashed border-hairline bg-concrete text-sm text-muted-foreground">
+                  Image space reserved for {c.name}
+                </div>
+              )}
             </div>
             <ul className="divide-y divide-hairline border-y border-hairline">
               {c.products.map((p) => (

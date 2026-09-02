@@ -5,20 +5,22 @@ import manufacturing from "@/assets/manufacturing.jpg";
 export const Route = createFileRoute("/resources")({
   head: () => ({
     meta: [
-      { title: "Resources & Guides | Midrift Concrete Solutions" },
+      { title: "Resources & Guides | Midrift Concrete Works" },
       {
         name: "description",
         content:
           "Installation guidance, product selection notes and ordering guides for precast paving, blocks and civil concrete products in Kenya.",
       },
-      { property: "og:title", content: "Resources & Guides | Midrift Concrete Solutions" },
+      { property: "og:title", content: "Resources & Guides | Midrift Concrete Works" },
       {
         property: "og:description",
         content: "Practical guidance on selecting, ordering and installing precast concrete products.",
       },
+      { property: "og:url", content: "https://midriftconcreteworks.com/resources" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://midriftconcreteworks.com/resources" }],
   }),
   component: ResourcesPage,
 });

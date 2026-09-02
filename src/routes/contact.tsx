@@ -1,35 +1,45 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { MessageCircle, Phone, Mail, MapPin, Clock } from "lucide-react";
-import { site, whatsappLink } from "@/data/site";
+import { MessageCircle, Phone, Mail, MapPin, Clock, BookOpen } from "lucide-react";
+import { site, whatsappLink, emailLink } from "@/data/site";
+import { SocialIcons } from "@/components/site/SocialIcons";
 import { PageHero, Section } from "@/components/site/primitives";
 import { QuoteForm } from "@/components/site/QuoteForm";
+import { LocationMap } from "@/components/site/LocationMap";
 import yard from "@/assets/project-yard.jpg";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact & Quotes | Midrift Concrete Solutions" },
+      { title: "Contact & Quotes | Midrift Concrete Works" },
       {
         name: "description",
         content:
           "Request a written quotation for precast concrete products. Call, email or WhatsApp the Midrift sales team in Nakuru, Kenya.",
       },
-      { property: "og:title", content: "Contact & Quotes | Midrift Concrete Solutions" },
+      { property: "og:title", content: "Contact & Quotes | Midrift Concrete Works" },
       {
         property: "og:description",
         content: "Send your product, quantity and delivery location for a written quotation.",
       },
+      { property: "og:url", content: "https://midriftconcreteworks.com/contact" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://midriftconcreteworks.com/contact" }],
   }),
   component: ContactPage,
 });
 
 const details = [
-  { icon: Phone, label: "Phone", value: site.phone, href: site.phoneHref },
-  { icon: Mail, label: "Email", value: site.email, href: `mailto:${site.email}` },
-  { icon: MessageCircle, label: "WhatsApp", value: "Chat with sales", href: whatsappLink() },
+  { icon: Phone, label: "Sales", value: site.phone, href: site.phoneHref },
+  { icon: MessageCircle, label: "WhatsApp", value: `${site.whatsappDisplay} — chat with sales`, href: whatsappLink() },
+  {
+    icon: BookOpen,
+    label: "WhatsApp Catalogue",
+    value: "Browse the full product catalogue",
+    href: site.whatsappCatalog,
+  },
+  { icon: Mail, label: "Email", value: site.email, href: emailLink() },
   { icon: MapPin, label: "Location", value: site.location },
   { icon: Clock, label: "Hours", value: site.hours },
 ];
@@ -79,9 +89,16 @@ function ContactPage() {
                 );
               })}
             </ul>
+
+            <p className="eyebrow mt-10">Follow Midrift</p>
+            <SocialIcons className="mt-4" />
           </div>
 
           <QuoteForm />
+        </div>
+
+        <div className="mt-14">
+          <LocationMap />
         </div>
       </Section>
     </>

@@ -1,11 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import heroImg from "@/assets/hero-yard.jpg";
+import heroImgSm from "@/assets/hero-yard-sm.jpg";
 import manufacturingImg from "@/assets/manufacturing.jpg";
 import logisticsImg from "@/assets/logistics.jpg";
+import bannerImg from "@/assets/banner.jpg.asset.json";
+
 import { categories } from "@/data/products";
 import { solutions } from "@/data/solutions";
 import { projects } from "@/data/projects";
 import { Reveal } from "@/components/site/Reveal";
+import { SectionNav } from "@/components/site/SectionNav";
 import { KineticText } from "@/components/site/KineticText";
 import { ImageMarquee, TextMarquee } from "@/components/site/Marquee";
 import {
@@ -21,19 +25,23 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Midrift Concrete Solutions Ltd | Precast Concrete Manufacturer, Kenya" },
+      { title: "Midrift Concrete Works Ltd | Precast Concrete Manufacturer, Kenya" },
       {
         name: "description",
         content:
           "Quality precast concrete built for strength. Cabro paving, concrete blocks, ventilation blocks, road kerbs and custom precast manufacturing with bulk supply and site delivery.",
       },
-      { property: "og:title", content: "Midrift Concrete Solutions Ltd | Precast Concrete Manufacturer" },
+      { property: "og:title", content: "Midrift Concrete Works Ltd | Precast Concrete Manufacturer" },
       {
         property: "og:description",
         content:
           "Precast concrete manufacturing and project supply in Kenya — paving, blocks, ventilation blocks, road and infrastructure products.",
       },
+      { property: "og:url", content: "https://midriftconcreteworks.com/" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://midriftconcreteworks.com/" }],
   }),
   component: Home,
 });
@@ -53,9 +61,13 @@ function Home() {
       <section className="relative isolate overflow-hidden bg-ink text-ink-foreground">
         <img
           src={heroImg}
+          srcSet={`${heroImgSm} 900w, ${heroImg} 1400w`}
+          sizes="100vw"
           alt="Pallets of precast concrete paving blocks in the Midrift production yard"
-          width={1920}
-          height={1088}
+          width={1400}
+          height={792}
+          fetchPriority="high"
+          decoding="async"
           className="absolute inset-0 -z-10 size-full scale-105 object-cover opacity-40 [animation:none] md:animate-[marquee-x_0s]"
         />
         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink via-ink/75 to-ink/25" />
@@ -76,7 +88,7 @@ function Home() {
           />
           <Reveal delay={520}>
             <p className="mt-8 max-w-xl text-base leading-relaxed text-ink-foreground/75 md:text-lg">
-              Midrift Concrete Solutions manufactures and supplies paving, blocks, ventilation blocks and civil precast
+              Midrift Concrete Works manufactures and supplies paving, blocks, ventilation blocks and civil precast
               products for builders, contractors, developers, distributors and infrastructure projects.
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
@@ -86,6 +98,43 @@ function Home() {
           </Reveal>
         </Container>
       </section>
+
+      <SectionNav
+        items={[
+          { id: "products", label: "Products" },
+          { id: "capabilities", label: "What we do" },
+          { id: "quality", label: "Quality" },
+          { id: "serve", label: "Who we serve" },
+          { id: "projects", label: "Projects" },
+          { id: "bulk", label: "Bulk & delivery" },
+        ]}
+      />
+
+      <Section className="py-14 md:py-20">
+        <div className="grid items-center gap-8 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)]">
+          <figure className="media-zoom overflow-hidden rounded-3xl bg-concrete">
+            <img
+              src={bannerImg.url}
+              alt="Midrift Concrete Works banner showing concrete posts, cabro paving blocks, culverts and ventilation blocks"
+              loading="lazy"
+              decoding="async"
+              className="mx-auto max-h-[560px] w-full object-contain"
+            />
+          </figure>
+          <div>
+            <p className="eyebrow">Your construction solutions provider</p>
+            <h2 className="mt-4 display-2">Concrete posts, cabro, blocks, culverts, vents and ready mix.</h2>
+            <p className="mt-5 leading-relaxed text-muted-foreground">
+              Located along the Nakuru–Nairobi highway, adjacent to Shiners Girls High School. Tell us what your site
+              needs and we will quote quantities, lead time and delivery.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <QuoteCTA />
+              <WhatsAppCTA />
+            </div>
+          </div>
+        </div>
+      </Section>
 
       <TextMarquee
         items={[
@@ -99,17 +148,18 @@ function Home() {
         className="bg-concrete"
       />
 
+
       {/* Product categories — asymmetric editorial grid */}
-      <Section>
+      <Section id="products" className="scroll-mt-28">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHead
             eyebrow="Product range"
-            title="Five product families. One manufacturer."
+            title="Eight product families. One manufacturer."
             lead="Every unit is produced in our own yard, so quality, quantity and delivery stay under one roof."
           />
           <Link
             to="/products"
-            className="text-[12px] font-bold uppercase tracking-[0.12em] text-accent hover:underline"
+            className="text-[12px] font-bold uppercase tracking-[0.12em] underline-offset-4 hover:underline"
           >
             View all products →
           </Link>
@@ -123,12 +173,15 @@ function Home() {
                 params={{ category: c.slug }}
                 className="hover-lift group relative flex h-full min-h-[340px] flex-col justify-end overflow-hidden rounded-3xl bg-ink p-8 text-ink-foreground"
               >
-                <img
-                  src={c.image}
-                  alt={c.name}
-                  loading="lazy"
-                  className="absolute inset-0 size-full object-cover opacity-45 transition-all duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105 group-hover:opacity-30"
-                />
+                {c.image && (
+                  <img
+                    src={c.image}
+                    alt={c.name}
+                    loading="lazy"
+            decoding="async"
+                    className="absolute inset-0 size-full object-cover opacity-45 transition-all duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105 group-hover:opacity-30"
+                  />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent" />
                 <div className="relative">
                   <span className="font-mono text-xs text-accent">{c.code}</span>
@@ -149,13 +202,13 @@ function Home() {
           { src: heroImg, alt: "Precast paving stacked in the Midrift yard" },
           { src: manufacturingImg, alt: "Concrete production line" },
           { src: logisticsImg, alt: "Loaded delivery truck leaving the yard" },
-          ...categories.slice(0, 3).map((c) => ({ src: c.image, alt: c.name })),
+          ...categories.filter((c) => !!c.image).slice(0, 3).map((c) => ({ src: c.image as string, alt: c.name })),
         ]}
       />
 
 
       {/* Capability strip */}
-      <Section dark>
+      <Section id="capabilities" dark className="scroll-mt-28">
         <SectionHead
           eyebrow="What Midrift does"
           title="Products, manufacturing and supply — end to end."
@@ -176,12 +229,13 @@ function Home() {
       </Section>
 
       {/* Manufacturing split */}
-      <section className="grid gap-4 px-4 py-4 lg:grid-cols-2">
+      <section id="quality" className="grid scroll-mt-28 gap-4 px-4 py-4 lg:grid-cols-2">
         <figure className="media-zoom rounded-3xl">
           <img
             src={manufacturingImg}
             alt="Precast concrete production inside the Midrift factory"
             loading="lazy"
+            decoding="async"
             className="h-full min-h-[380px] w-full rounded-3xl object-cover"
           />
         </figure>
@@ -204,7 +258,7 @@ function Home() {
       </section>
 
       {/* Who we serve */}
-      <Section>
+      <Section id="serve" className="scroll-mt-28">
         <SectionHead
           eyebrow="Who we serve"
           title="Built for the people who build."
@@ -230,10 +284,10 @@ function Home() {
 
 
       {/* Projects */}
-      <Section className="bg-concrete">
+      <Section id="projects" className="scroll-mt-28 bg-concrete">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHead eyebrow="Projects" title="Supplied, delivered, in service." />
-          <Link to="/projects" className="text-[12px] font-bold uppercase tracking-[0.12em] text-accent hover:underline">
+          <Link to="/projects" className="text-[12px] font-bold uppercase tracking-[0.12em] underline-offset-4 hover:underline">
             All projects →
           </Link>
         </div>
@@ -245,6 +299,7 @@ function Home() {
                   src={p.image}
                   alt={p.name}
                   loading="lazy"
+            decoding="async"
                   className="aspect-4/3 w-full rounded-2xl object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
@@ -259,7 +314,7 @@ function Home() {
       </Section>
 
       {/* Bulk + delivery */}
-      <section className="grid lg:grid-cols-2">
+      <section id="bulk" className="grid scroll-mt-28 lg:grid-cols-2">
         <div className="flex items-center bg-ink px-5 py-20 text-ink-foreground md:px-16 md:py-24">
           <div className="max-w-lg">
             <p className="eyebrow text-accent">Bulk & wholesale</p>
@@ -271,7 +326,7 @@ function Home() {
             <div className="mt-8 flex flex-wrap gap-6">
               <Link
                 to="/bulk-wholesale"
-                className="text-[12px] font-bold uppercase tracking-[0.12em] text-accent hover:underline"
+                className="text-[12px] font-bold uppercase tracking-[0.12em] underline-offset-4 hover:underline"
               >
                 Bulk & wholesale →
               </Link>
@@ -288,6 +343,7 @@ function Home() {
           src={logisticsImg}
           alt="Truck loaded with pallets of concrete blocks leaving the yard"
           loading="lazy"
+            decoding="async"
           className="h-full min-h-[360px] w-full rounded-2xl object-cover"
         />
       </section>

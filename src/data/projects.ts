@@ -1,8 +1,11 @@
-import projectYard from "@/assets/project-yard.jpg";
-import cabroImg from "@/assets/cabro.jpg";
-import blocksImg from "@/assets/blocks.jpg";
-import infraImg from "@/assets/infrastructure.jpg";
-import ventImg from "@/assets/vent.jpg";
+import a0 from "@/assets/project-IMG-20260828-WA0000.jpg.asset.json";
+import a1 from "@/assets/project-IMG-20260828-WA0001.jpg.asset.json";
+import a2 from "@/assets/project-IMG-20260828-WA0002.jpg.asset.json";
+import a3 from "@/assets/project-IMG-20260828-WA0003.jpg.asset.json";
+import a4 from "@/assets/project-IMG-20260828-WA0004.jpg.asset.json";
+import a5 from "@/assets/project-IMG-20260828-WA0005.jpg.asset.json";
+import a6 from "@/assets/project-IMG-20260828-WA0006.jpg.asset.json";
+import a7 from "@/assets/project-IMG-20260828-WA0007.jpg.asset.json";
 
 export type Project = {
   slug: string;
@@ -20,86 +23,103 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: "commercial-parking-yard",
-    name: "Commercial Parking Yard",
+    slug: "residential-home-driveway-paving",
+    name: "Residential Home Driveway & Compound Paving",
     location: "Nakuru County",
-    type: "Commercial development",
+    type: "Private residence",
     quantity: "Quantity available on request",
-    application: "Parking and vehicle circulation paving",
+    application: "Driveway, compound apron and entrance paving",
     description:
-      "Supply of interlocking cabro and edge kerbs for a commercial parking yard, with deliveries phased to match the paving contractor's laying rate.",
-    image: projectYard,
-    gallery: [projectYard, cabroImg],
+      "Charcoal-toned wave (fan) interlocking cabro laid across the driveway and compound of a completed family home, finished against precast dwarf kerbs and a paved entrance step run. The darker blocks were selected to hide tyre marking on the vehicle route while the lighter cabro defines the walkway and parking edge.",
+    image: a3.url,
+    gallery: [a3.url, a7.url, a4.url],
     productsSupplied: [
-      { label: "Interlocking cabro", category: "cabro-paving" },
-      { label: "Road kerbs", category: "road-infrastructure" },
+      { label: "Wave / fan interlocking cabro", category: "cabro" },
+      { label: "Dwarf kerbs and edge restraints", category: "road-concrete" },
     ],
-    completion: "Completion details to be confirmed",
+    completion: "Completed — client confirmed",
   },
   {
-    slug: "residential-estate-external-works",
-    name: "Residential Estate External Works",
-    location: "Rift Valley region",
-    type: "Residential estate",
-    quantity: "Quantity available on request",
-    application: "Estate roads, driveways and walkways",
-    description:
-      "Paving supply across an estate's external works package, holding profile and colour consistency across successive delivery phases.",
-    image: cabroImg,
-    gallery: [cabroImg, projectYard],
-    productsSupplied: [
-      { label: "Uni-pavers", category: "cabro-paving" },
-      { label: "Decorative paving", category: "cabro-paving" },
-    ],
-    completion: "Completion details to be confirmed",
-  },
-  {
-    slug: "institutional-walling-package",
-    name: "Institutional Walling Package",
+    slug: "estate-paving-phased-delivery",
+    name: "Estate Paving — Phased Site Delivery",
     location: "Nakuru County",
-    type: "Institutional building",
-    quantity: "Quantity available on request",
-    application: "Structural and partition walling",
+    type: "Residential development",
+    quantity: "Delivered in scheduled truck loads",
+    application: "Compound paving and hardstanding",
     description:
-      "Block supply for an institutional building programme, delivered in scheduled batches to keep masonry gangs continuously supplied.",
-    image: blocksImg,
-    gallery: [blocksImg],
+      "Cabro offloaded straight from the delivery truck to the laying gang, with two-tone wave pavers set out as the bed advances. Deliveries were phased to the crew's laying rate so blocks, kerbs and screed sand were on site without clogging the working area.",
+    image: a1.url,
+    gallery: [a1.url, a4.url],
     productsSupplied: [
-      { label: "Hollow blocks", category: "concrete-blocks" },
-      { label: "Partition blocks", category: "concrete-blocks" },
+      { label: "Wave interlocking cabro (two tones)", category: "cabro" },
+      { label: "Kerbs", category: "road-concrete" },
     ],
-    completion: "Completion details to be confirmed",
+    completion: "Supply completed",
   },
   {
-    slug: "road-drainage-supply",
-    name: "Road Drainage Supply",
+    slug: "roadside-walkway-paving",
+    name: "Roadside Pedestrian Walkway",
     location: "Rift Valley region",
-    type: "Infrastructure / civil works",
+    type: "Public / infrastructure works",
     quantity: "Quantity available on request",
-    application: "Surface water drainage and edge restraint",
+    application: "Pedestrian walkway with concrete edge restraint",
     description:
-      "Supply of kerbs and precast drainage channels for a road improvement package, produced in dedicated runs to the civil specification.",
-    image: infraImg,
-    gallery: [infraImg],
+      "Rectangular pavers laid in a 45° herringbone bond along a busy trading-centre road, bounded by cast edge beams. Herringbone was specified because it locks under foot and light vehicle loading far better than stretcher bond on a long linear walkway.",
+    image: a5.url,
+    gallery: [a5.url],
     productsSupplied: [
-      { label: "Road kerbs", category: "road-infrastructure" },
-      { label: "Drainage channels", category: "road-infrastructure" },
+      { label: "Rectangular paving blocks", category: "cabro" },
+      { label: "Edge kerbs", category: "road-concrete" },
     ],
-    completion: "Completion details to be confirmed",
+    completion: "Completed",
   },
   {
-    slug: "hospitality-screen-walls",
-    name: "Hospitality Screen Walls",
-    location: "Kenya",
-    type: "Hospitality development",
+    slug: "hexagonal-paving-yard",
+    name: "Hexagonal Paving — Courtyard Hardstanding",
+    location: "Nakuru County",
+    type: "Commercial / institutional",
     quantity: "Quantity available on request",
-    application: "Ventilated architectural screen walls",
+    application: "Courtyard and service yard surfacing",
     description:
-      "Ventilation block supply for architectural screen walls providing airflow, daylight and privacy across service and circulation areas.",
-    image: ventImg,
-    gallery: [ventImg],
-    productsSupplied: [{ label: "Ventilation blocks", category: "ventilation-blocks" }],
-    completion: "Completion details to be confirmed",
+      "Hexagonal precast pavers laid tight across a service courtyard. The six-sided unit interlocks on every face, which keeps the surface stable under turning wheel loads and makes small repairs simple — single units lift and reset without disturbing the field.",
+    image: a2.url,
+    gallery: [a2.url],
+    productsSupplied: [{ label: "Hexagonal paving blocks", category: "cabro" }],
+    completion: "Completed",
+  },
+  {
+    slug: "tbeam-suspended-slab",
+    name: "T-Beam & Filler Block Suspended Slab",
+    location: "Nakuru County",
+    type: "Residential structure",
+    quantity: "Beams and filler blocks to slab schedule",
+    application: "Suspended floor / tank cover slab",
+    description:
+      "Precast T-beams set at design centres with filler blocks infilled between them to form a suspended slab over a lined underground tank. The system removes most of the formwork and props a conventional in-situ slab needs, so the deck is loaded out and topped within a day of the beams arriving.",
+    image: a6.url,
+    gallery: [a6.url],
+    productsSupplied: [
+      { label: "Precast T-beams", category: "t-beam" },
+      { label: "Filler blocks", category: "concrete-blocks" },
+    ],
+    completion: "Completed",
+  },
+  {
+    slug: "borehole-site-perimeter-fencing",
+    name: "Solar Borehole Site — Precast Perimeter Fencing",
+    location: "Rift Valley region",
+    type: "Water / infrastructure project",
+    quantity: "Posts and struts to fence line",
+    application: "Perimeter security fencing and equipment enclosure",
+    description:
+      "Precast concrete fence posts, corner posts and angled struts supplied for the security fence around a solar-powered borehole, pump house and elevated tank base. Concrete posts were chosen over timber for termite and fire resistance on an exposed rural site with no maintenance crew nearby.",
+    image: a0.url,
+    gallery: [a0.url],
+    productsSupplied: [
+      { label: "Concrete fence posts and struts", category: "custom-precast" },
+      { label: "Concrete blocks", category: "concrete-blocks" },
+    ],
+    completion: "Completed",
   },
 ];
 

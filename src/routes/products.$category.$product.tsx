@@ -1,26 +1,96 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { getCategory, getProduct, relatedProducts } from "@/data/products";
-import { site, whatsappLink } from "@/data/site";
-import { Container, Gallery, Section, SpecTable, QuoteCTA } from "@/components/site/primitives";
-import { MessageCircle } from "lucide-react";
+import { site } from "@/data/site";
+import {
+  Container,
+  Gallery,
+  PhotoSlots,
+  Section,
+  SpecTable,
+  QuoteCTA,
+  WhatsAppCTA,
+} from "@/components/site/primitives";
+
+const SITE = "https://midriftconcreteworks.com";
 
 export const Route = createFileRoute("/products/$category/$product")({
   loader: ({ params }) => {
     const product = getProduct(params.category, params.product);
     if (!product) throw notFound();
-    return { name: product.name, summary: product.summary };
+    const category = getCategory(params.category)!;
+    return {
+      name: product.name,
+      summary: product.summary,
+      description: product.description,
+      image: product.image ?? product.photoSlots.find((s) => s.image)?.image,
+      categoryName: category.name,
+      categorySlug: category.slug,
+      slug: product.slug,
+      faqs: product.faqs,
+    };
   },
   head: ({ loaderData }) => {
     if (!loaderData) {
       return { meta: [{ title: "Product not found | Midrift" }, { name: "robots", content: "noindex" }] };
     }
-    const title = `${loaderData.name} | Midrift Concrete Solutions`;
+    const title = `${loaderData.name} — ${loaderData.categoryName} | Midrift Concrete Works`;
+    const description = `${loaderData.summary} ${loaderData.name} manufactured in Kenya by Midrift Concrete Works — request a quote for sizes, variants and delivery.`;
+    const url = `${SITE}/products/${loaderData.categorySlug}/${loaderData.slug}`;
     return {
       meta: [
         { title },
-        { name: "description", content: loaderData.summary },
+        { name: "description", content: description },
         { property: "og:title", content: title },
-        { property: "og:description", content: loaderData.summary },
+        { property: "og:description", content: description },
+        { property: "og:url", content: url },
+        { property: "og:type", content: "product" },
+        ...(loaderData.image
+          ? [
+              { property: "og:image", content: loaderData.image },
+              { name: "twitter:image", content: loaderData.image },
+            ]
+          : []),
+      ],
+      links: [{ rel: "canonical", href: url }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "Product",
+                name: loaderData.name,
+                description: loaderData.description,
+                category: loaderData.categoryName,
+                url,
+                ...(loaderData.image ? { image: loaderData.image } : {}),
+                brand: { "@type": "Brand", name: "Midrift Concrete Works" },
+                manufacturer: { "@type": "Organization", name: "Midrift Concrete Works Ltd" },
+              },
+              {
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                  { "@type": "ListItem", position: 1, name: "Products", item: `${SITE}/products` },
+                  { "@type": "ListItem", position: 2, name: loaderData.categoryName, item: `${SITE}/products/${loaderData.categorySlug}` },
+                  { "@type": "ListItem", position: 3, name: loaderData.name, item: url },
+                ],
+              },
+              ...(loaderData.faqs?.length
+                ? [
+                    {
+                      "@type": "FAQPage",
+                      mainEntity: loaderData.faqs.map((f: { q: string; a: string }) => ({
+                        "@type": "Question",
+                        name: f.q,
+                        acceptedAnswer: { "@type": "Answer", text: f.a },
+                      })),
+                    },
+                  ]
+                : []),
+            ],
+          }),
+        },
       ],
     };
   },
@@ -32,7 +102,6 @@ function ProductPage() {
   const product = getProduct(params.category, params.product)!;
   const category = getCategory(params.category)!;
   const related = relatedProducts(product);
-  const waMessage = `Hello Midrift, I would like a quote for ${product.name}.`;
 
   return (
     <>
@@ -57,21 +126,20 @@ function ProductPage() {
             <p className="mt-5 leading-relaxed text-muted-foreground">{product.description}</p>
 
             <div className="mt-9 flex flex-wrap gap-3">
-              <QuoteCTA label="Request a quote" />
-              <a
-                href={whatsappLink(waMessage)}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 border border-foreground px-8 py-4 text-[12px] font-bold uppercase tracking-[0.12em] transition-colors hover:bg-foreground hover:text-background rounded-full"
-              >
-                <MessageCircle className="size-4" /> WhatsApp Sales
-              </a>
+              <QuoteCTA label="Request a quote" product={product.name} />
+              <WhatsAppCTA product={product.name} />
             </div>
             <p className="mt-4 text-sm text-muted-foreground">
               Or call <a href={site.phoneHref} className="font-semibold text-accent">{site.phone}</a>
             </p>
           </div>
-          <Gallery images={product.gallery} alt={product.name} />
+          <div>
+            {product.gallery.length > 0 ? (
+              <Gallery images={product.gallery} alt={product.name} />
+            ) : (
+              <PhotoSlots slots={product.photoSlots} title={`${product.name} — photos`} />
+            )}
+          </div>
         </div>
       </Section>
 
@@ -152,7 +220,12 @@ function ProductPage() {
                 params={{ category: category.slug, product: r.slug }}
                 className="group bg-background p-6 transition-colors hover:bg-concrete"
               >
-                <img src={r.image} alt={r.name} loading="lazy" className="aspect-4/3 w-full rounded-2xl object-cover" />
+                {r.image ? (
+                  <img src={r.image} alt={r.name} loading="lazy"
+            decoding="async" className="aspect-4/3 w-full rounded-2xl object-cover" />
+                ) : (
+                  <div className="flex aspect-4/3 w-full items-center justify-center rounded-2xl border border-dashed border-hairline bg-concrete text-xs text-muted-foreground">Photo space reserved</div>
+                )}
                 <h3 className="mt-5 font-display text-base font-bold uppercase tracking-tight group-hover:text-accent">
                   {r.name}
                 </h3>
