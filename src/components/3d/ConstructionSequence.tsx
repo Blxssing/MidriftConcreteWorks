@@ -64,7 +64,7 @@ export function ConstructionSequence() {
   return (
     <section ref={sectionRef} className="relative bg-ink text-ink-foreground" id="build">
       <div className="relative h-[260vh] md:h-[300vh]">
-        <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden">
+        <div className="sticky top-0 flex h-dvh flex-col justify-center overflow-hidden">
           <div aria-hidden="true" className="absolute inset-0 opacity-75">
             <div className="scene-atmosphere-dark absolute inset-0" />
             {enabled && (
