@@ -41,7 +41,7 @@ export const teamGroups: { id: TeamDepartment; code: string; label: string; lead
 
 export const team: TeamMember[] = [
   {
-    name: "Mr Joseph Wanjohi",
+    name: "Dr Joseph Wanjohi",
     position: "Director",
     department: "leadership",
     order: 1,
@@ -86,8 +86,8 @@ export const team: TeamMember[] = [
     bio: "Provides technical and engineering support across production and site work — advising on product specifications, mix and structural requirements, installation guidance, and the technical standards our precast elements are produced to.",
   },
   {
-    name: "Mr Nathan",
-    position: "Procurement & Operational Quality Officer",
+    name: "Mr Nathaniel",
+    position: "Procurement and Quality Control Manager",
     department: "core",
     order: 6,
     active: true,
