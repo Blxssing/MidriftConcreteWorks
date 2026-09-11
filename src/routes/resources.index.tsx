@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { CTABand, PageHero, Section, SectionHead } from "@/components/site/primitives";
 import manufacturing from "@/assets/manufacturing.jpg";
 
-export const Route = createFileRoute("/resources")({
+export const Route = createFileRoute("/resources/")({
   head: () => ({
     meta: [
       { title: "Resources & Guides | Midrift Concrete Works" },
@@ -97,6 +97,12 @@ function ResourcesPage() {
             className="inline-flex items-center rounded-full border border-foreground px-8 py-4 text-[12px] font-bold uppercase tracking-[0.12em] transition-colors hover:bg-foreground hover:text-background"
           >
             Delivery information
+          </Link>
+          <Link
+            to="/resources/midrift-digital-transformation"
+            className="inline-flex items-center rounded-full border border-hairline px-8 py-4 text-[12px] font-bold uppercase tracking-[0.12em] transition-colors hover:border-accent hover:text-accent"
+          >
+            Digital transformation case study
           </Link>
         </div>
       </Section>

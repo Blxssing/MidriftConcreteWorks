@@ -31,6 +31,7 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/about", changefreq: "yearly", priority: "0.6" },
           { path: "/team", changefreq: "monthly", priority: "0.6" },
           { path: "/resources", changefreq: "monthly", priority: "0.5" },
+          { path: "/resources/midrift-digital-transformation", changefreq: "yearly", priority: "0.4" },
           { path: "/contact", changefreq: "monthly", priority: "0.8" },
         ];
 

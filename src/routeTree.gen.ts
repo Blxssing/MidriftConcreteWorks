@@ -17,7 +17,6 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as DeliveryRouteImport } from './routes/delivery'
 import { Route as QualityRouteImport } from './routes/quality'
 import { Route as ReadyMixRouteImport } from './routes/ready-mix'
-import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TeamRouteImport } from './routes/team'
@@ -26,6 +25,8 @@ import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as ProductsIndexRouteImport } from './routes/products.index'
 import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
 import { Route as ProjectsSlugRouteImport } from './routes/projects.$slug'
+import { Route as ResourcesIndexRouteImport } from './routes/resources.index'
+import { Route as ResourcesMidriftDigitalTransformationRouteImport } from './routes/resources.midrift-digital-transformation'
 import { Route as SolutionsIndexRouteImport } from './routes/solutions.index'
 import { Route as SolutionsSlugRouteImport } from './routes/solutions.$slug'
 import { Route as ProductsCategoryIndexRouteImport } from './routes/products.$category.index'
@@ -71,11 +72,6 @@ const ReadyMixRoute = ReadyMixRouteImport.update({
   path: '/ready-mix',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ResourcesRoute = ResourcesRouteImport.update({
-  id: '/resources',
-  path: '/resources',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
@@ -116,6 +112,17 @@ const ProjectsSlugRoute = ProjectsSlugRouteImport.update({
   path: '/projects/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResourcesIndexRoute = ResourcesIndexRouteImport.update({
+  id: '/resources/',
+  path: '/resources/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResourcesMidriftDigitalTransformationRoute =
+  ResourcesMidriftDigitalTransformationRouteImport.update({
+    id: '/resources/midrift-digital-transformation',
+    path: '/resources/midrift-digital-transformation',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const SolutionsIndexRoute = SolutionsIndexRouteImport.update({
   id: '/solutions/',
   path: '/solutions/',
@@ -146,16 +153,17 @@ export interface FileRoutesByFullPath {
   '/delivery': typeof DeliveryRoute
   '/quality': typeof QualityRoute
   '/ready-mix': typeof ReadyMixRoute
-  '/resources': typeof ResourcesRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/team': typeof TeamRoute
   '/testimonials': typeof TestimonialsRoute
   '/thank-you': typeof ThankYouRoute
   '/projects/$slug': typeof ProjectsSlugRoute
+  '/resources/midrift-digital-transformation': typeof ResourcesMidriftDigitalTransformationRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/products/': typeof ProductsIndexRoute
   '/projects/': typeof ProjectsIndexRoute
+  '/resources/': typeof ResourcesIndexRoute
   '/solutions/': typeof SolutionsIndexRoute
   '/products/$category/$product': typeof ProductsCategoryProductRoute
   '/products/$category/': typeof ProductsCategoryIndexRoute
@@ -169,16 +177,17 @@ export interface FileRoutesByTo {
   '/delivery': typeof DeliveryRoute
   '/quality': typeof QualityRoute
   '/ready-mix': typeof ReadyMixRoute
-  '/resources': typeof ResourcesRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/team': typeof TeamRoute
   '/testimonials': typeof TestimonialsRoute
   '/thank-you': typeof ThankYouRoute
   '/projects/$slug': typeof ProjectsSlugRoute
+  '/resources/midrift-digital-transformation': typeof ResourcesMidriftDigitalTransformationRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/products': typeof ProductsIndexRoute
   '/projects': typeof ProjectsIndexRoute
+  '/resources': typeof ResourcesIndexRoute
   '/solutions': typeof SolutionsIndexRoute
   '/products/$category/$product': typeof ProductsCategoryProductRoute
   '/products/$category': typeof ProductsCategoryIndexRoute
@@ -193,16 +202,17 @@ export interface FileRoutesById {
   '/delivery': typeof DeliveryRoute
   '/quality': typeof QualityRoute
   '/ready-mix': typeof ReadyMixRoute
-  '/resources': typeof ResourcesRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/team': typeof TeamRoute
   '/testimonials': typeof TestimonialsRoute
   '/thank-you': typeof ThankYouRoute
   '/projects/$slug': typeof ProjectsSlugRoute
+  '/resources/midrift-digital-transformation': typeof ResourcesMidriftDigitalTransformationRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/products/': typeof ProductsIndexRoute
   '/projects/': typeof ProjectsIndexRoute
+  '/resources/': typeof ResourcesIndexRoute
   '/solutions/': typeof SolutionsIndexRoute
   '/products/$category/$product': typeof ProductsCategoryProductRoute
   '/products/$category/': typeof ProductsCategoryIndexRoute
@@ -218,16 +228,17 @@ export interface FileRouteTypes {
     | '/delivery'
     | '/quality'
     | '/ready-mix'
-    | '/resources'
     | '/services'
     | '/sitemap.xml'
     | '/team'
     | '/testimonials'
     | '/thank-you'
     | '/projects/$slug'
+    | '/resources/midrift-digital-transformation'
     | '/solutions/$slug'
     | '/products/'
     | '/projects/'
+    | '/resources/'
     | '/solutions/'
     | '/products/$category/$product'
     | '/products/$category/'
@@ -241,16 +252,17 @@ export interface FileRouteTypes {
     | '/delivery'
     | '/quality'
     | '/ready-mix'
-    | '/resources'
     | '/services'
     | '/sitemap.xml'
     | '/team'
     | '/testimonials'
     | '/thank-you'
     | '/projects/$slug'
+    | '/resources/midrift-digital-transformation'
     | '/solutions/$slug'
     | '/products'
     | '/projects'
+    | '/resources'
     | '/solutions'
     | '/products/$category/$product'
     | '/products/$category'
@@ -264,16 +276,17 @@ export interface FileRouteTypes {
     | '/delivery'
     | '/quality'
     | '/ready-mix'
-    | '/resources'
     | '/services'
     | '/sitemap.xml'
     | '/team'
     | '/testimonials'
     | '/thank-you'
     | '/projects/$slug'
+    | '/resources/midrift-digital-transformation'
     | '/solutions/$slug'
     | '/products/'
     | '/projects/'
+    | '/resources/'
     | '/solutions/'
     | '/products/$category/$product'
     | '/products/$category/'
@@ -288,16 +301,17 @@ export interface RootRouteChildren {
   DeliveryRoute: typeof DeliveryRoute
   QualityRoute: typeof QualityRoute
   ReadyMixRoute: typeof ReadyMixRoute
-  ResourcesRoute: typeof ResourcesRoute
   ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TeamRoute: typeof TeamRoute
   TestimonialsRoute: typeof TestimonialsRoute
   ThankYouRoute: typeof ThankYouRoute
   ProjectsSlugRoute: typeof ProjectsSlugRoute
+  ResourcesMidriftDigitalTransformationRoute: typeof ResourcesMidriftDigitalTransformationRoute
   SolutionsSlugRoute: typeof SolutionsSlugRoute
   ProductsIndexRoute: typeof ProductsIndexRoute
   ProjectsIndexRoute: typeof ProjectsIndexRoute
+  ResourcesIndexRoute: typeof ResourcesIndexRoute
   SolutionsIndexRoute: typeof SolutionsIndexRoute
   ProductsCategoryProductRoute: typeof ProductsCategoryProductRoute
   ProductsCategoryIndexRoute: typeof ProductsCategoryIndexRoute
@@ -361,13 +375,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReadyMixRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/resources': {
-      id: '/resources'
-      path: '/resources'
-      fullPath: '/resources'
-      preLoaderRoute: typeof ResourcesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/services': {
       id: '/services'
       path: '/services'
@@ -424,6 +431,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/resources/': {
+      id: '/resources/'
+      path: '/resources'
+      fullPath: '/resources/'
+      preLoaderRoute: typeof ResourcesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resources/midrift-digital-transformation': {
+      id: '/resources/midrift-digital-transformation'
+      path: '/resources/midrift-digital-transformation'
+      fullPath: '/resources/midrift-digital-transformation'
+      preLoaderRoute: typeof ResourcesMidriftDigitalTransformationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/solutions/': {
       id: '/solutions/'
       path: '/solutions'
@@ -464,16 +485,18 @@ const rootRouteChildren: RootRouteChildren = {
   DeliveryRoute: DeliveryRoute,
   QualityRoute: QualityRoute,
   ReadyMixRoute: ReadyMixRoute,
-  ResourcesRoute: ResourcesRoute,
   ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TeamRoute: TeamRoute,
   TestimonialsRoute: TestimonialsRoute,
   ThankYouRoute: ThankYouRoute,
   ProjectsSlugRoute: ProjectsSlugRoute,
+  ResourcesMidriftDigitalTransformationRoute:
+    ResourcesMidriftDigitalTransformationRoute,
   SolutionsSlugRoute: SolutionsSlugRoute,
   ProductsIndexRoute: ProductsIndexRoute,
   ProjectsIndexRoute: ProjectsIndexRoute,
+  ResourcesIndexRoute: ResourcesIndexRoute,
   SolutionsIndexRoute: SolutionsIndexRoute,
   ProductsCategoryProductRoute: ProductsCategoryProductRoute,
   ProductsCategoryIndexRoute: ProductsCategoryIndexRoute,

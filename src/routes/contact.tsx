@@ -6,6 +6,7 @@ import { PageHero, Section } from "@/components/site/primitives";
 import { QuoteForm } from "@/components/site/QuoteForm";
 import { LocationMap } from "@/components/site/LocationMap";
 import yard from "@/assets/project-yard.jpg";
+import { AgencyCreditStrip } from "@/components/site/AgencyCredit";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -101,6 +102,13 @@ function ContactPage() {
           <LocationMap />
         </div>
       </Section>
+
+      <AgencyCreditStrip
+        placement="contact"
+        text="Website & digital experience by Enterprise Tech"
+        cta="Explore Enterprise Tech →"
+        className="pt-0"
+      />
     </>
   );
 }
