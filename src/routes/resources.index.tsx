@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { CTABand, PageHero, Section, SectionHead } from "@/components/site/primitives";
 import manufacturing from "@/assets/manufacturing.jpg";
 
-export const Route = createFileRoute("/resources")({
+export const Route = createFileRoute("/resources/")({
   head: () => ({
     meta: [
       { title: "Resources & Guides | Midrift Concrete Works" },
