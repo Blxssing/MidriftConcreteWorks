@@ -98,6 +98,12 @@ function ResourcesPage() {
           >
             Delivery information
           </Link>
+          <Link
+            to="/resources/midrift-digital-transformation"
+            className="inline-flex items-center rounded-full border border-hairline px-8 py-4 text-[12px] font-bold uppercase tracking-[0.12em] transition-colors hover:border-accent hover:text-accent"
+          >
+            Digital transformation case study
+          </Link>
         </div>
       </Section>
 
