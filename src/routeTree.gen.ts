@@ -26,6 +26,7 @@ import { Route as ProductsIndexRouteImport } from './routes/products.index'
 import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
 import { Route as ProjectsSlugRouteImport } from './routes/projects.$slug'
 import { Route as ResourcesIndexRouteImport } from './routes/resources.index'
+import { Route as ResourcesMidriftDigitalTransformationRouteImport } from './routes/resources.midrift-digital-transformation'
 import { Route as SolutionsIndexRouteImport } from './routes/solutions.index'
 import { Route as SolutionsSlugRouteImport } from './routes/solutions.$slug'
 import { Route as ProductsCategoryIndexRouteImport } from './routes/products.$category.index'
@@ -116,6 +117,12 @@ const ResourcesIndexRoute = ResourcesIndexRouteImport.update({
   path: '/resources/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResourcesMidriftDigitalTransformationRoute =
+  ResourcesMidriftDigitalTransformationRouteImport.update({
+    id: '/resources/midrift-digital-transformation',
+    path: '/resources/midrift-digital-transformation',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const SolutionsIndexRoute = SolutionsIndexRouteImport.update({
   id: '/solutions/',
   path: '/solutions/',
@@ -152,6 +159,7 @@ export interface FileRoutesByFullPath {
   '/testimonials': typeof TestimonialsRoute
   '/thank-you': typeof ThankYouRoute
   '/projects/$slug': typeof ProjectsSlugRoute
+  '/resources/midrift-digital-transformation': typeof ResourcesMidriftDigitalTransformationRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/products/': typeof ProductsIndexRoute
   '/projects/': typeof ProjectsIndexRoute
@@ -175,6 +183,7 @@ export interface FileRoutesByTo {
   '/testimonials': typeof TestimonialsRoute
   '/thank-you': typeof ThankYouRoute
   '/projects/$slug': typeof ProjectsSlugRoute
+  '/resources/midrift-digital-transformation': typeof ResourcesMidriftDigitalTransformationRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/products': typeof ProductsIndexRoute
   '/projects': typeof ProjectsIndexRoute
@@ -199,6 +208,7 @@ export interface FileRoutesById {
   '/testimonials': typeof TestimonialsRoute
   '/thank-you': typeof ThankYouRoute
   '/projects/$slug': typeof ProjectsSlugRoute
+  '/resources/midrift-digital-transformation': typeof ResourcesMidriftDigitalTransformationRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/products/': typeof ProductsIndexRoute
   '/projects/': typeof ProjectsIndexRoute
@@ -224,6 +234,7 @@ export interface FileRouteTypes {
     | '/testimonials'
     | '/thank-you'
     | '/projects/$slug'
+    | '/resources/midrift-digital-transformation'
     | '/solutions/$slug'
     | '/products/'
     | '/projects/'
@@ -247,6 +258,7 @@ export interface FileRouteTypes {
     | '/testimonials'
     | '/thank-you'
     | '/projects/$slug'
+    | '/resources/midrift-digital-transformation'
     | '/solutions/$slug'
     | '/products'
     | '/projects'
@@ -270,6 +282,7 @@ export interface FileRouteTypes {
     | '/testimonials'
     | '/thank-you'
     | '/projects/$slug'
+    | '/resources/midrift-digital-transformation'
     | '/solutions/$slug'
     | '/products/'
     | '/projects/'
@@ -294,6 +307,7 @@ export interface RootRouteChildren {
   TestimonialsRoute: typeof TestimonialsRoute
   ThankYouRoute: typeof ThankYouRoute
   ProjectsSlugRoute: typeof ProjectsSlugRoute
+  ResourcesMidriftDigitalTransformationRoute: typeof ResourcesMidriftDigitalTransformationRoute
   SolutionsSlugRoute: typeof SolutionsSlugRoute
   ProductsIndexRoute: typeof ProductsIndexRoute
   ProjectsIndexRoute: typeof ProjectsIndexRoute
@@ -424,6 +438,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResourcesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/resources/midrift-digital-transformation': {
+      id: '/resources/midrift-digital-transformation'
+      path: '/resources/midrift-digital-transformation'
+      fullPath: '/resources/midrift-digital-transformation'
+      preLoaderRoute: typeof ResourcesMidriftDigitalTransformationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/solutions/': {
       id: '/solutions/'
       path: '/solutions'
@@ -470,6 +491,8 @@ const rootRouteChildren: RootRouteChildren = {
   TestimonialsRoute: TestimonialsRoute,
   ThankYouRoute: ThankYouRoute,
   ProjectsSlugRoute: ProjectsSlugRoute,
+  ResourcesMidriftDigitalTransformationRoute:
+    ResourcesMidriftDigitalTransformationRoute,
   SolutionsSlugRoute: SolutionsSlugRoute,
   ProductsIndexRoute: ProductsIndexRoute,
   ProjectsIndexRoute: ProjectsIndexRoute,

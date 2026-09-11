@@ -6,6 +6,7 @@ import { Wordmark } from "@/components/site/Wordmark";
 import { SocialIcons } from "@/components/site/SocialIcons";
 import { categories } from "@/data/products";
 import { solutions } from "@/data/solutions";
+import { AgencyAttributionLine, AgencyPartnerBlock } from "@/components/site/AgencyCredit";
 
 /** Ordered to match the main navigation so the site reads the same everywhere. */
 const company = [
@@ -153,9 +154,14 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <p className="mt-12 text-xs text-ink-foreground/70">
-          © {new Date().getFullYear()} {site.name}. All rights reserved.
-        </p>
+        <AgencyPartnerBlock className="mt-14" />
+
+        <div className="mt-10 flex flex-col gap-2 border-t border-hairline-invert pt-8 md:flex-row md:items-center md:justify-between">
+          <p className="text-xs text-ink-foreground/70">
+            © {new Date().getFullYear()} {site.name}. All rights reserved.
+          </p>
+          <AgencyAttributionLine />
+        </div>
       </div>
     </footer>
   );
