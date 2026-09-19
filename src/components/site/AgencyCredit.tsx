@@ -173,7 +173,7 @@ export function AgencyCTA() {
 }
 
 /** Small developer signature below the mobile menu's primary actions. */
-export function AgencyMenuSignature({ onNavigate }: { onNavigate?: () => void }) {
+export function AgencyMenuSignature() {
   return (
     <div className="border-t border-hairline pt-4">
       <AgencyLink

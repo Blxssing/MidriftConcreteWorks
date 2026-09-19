@@ -269,7 +269,7 @@ export function SiteHeader() {
                 </a>
               </div>
               <SocialIcons className="justify-center pt-1" />
-              <AgencyMenuSignature onNavigate={() => setOpen(false)} />
+              <AgencyMenuSignature />
             </div>
           </nav>
         </div>
