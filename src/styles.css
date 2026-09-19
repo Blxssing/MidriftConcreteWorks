@@ -694,3 +694,149 @@ textarea:focus-visible {
   .tilt-content { transform: none !important; transition: none; }
   .site-cursor { display: none; }
 }
+
+/* ── Enterprise Tech developer signature ───────────────────────────── */
+@keyframes agency-float {
+  0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.88; }
+  50% { transform: translate3d(2px, -3px, 0); opacity: 1; }
+}
+
+@utility agency-float {
+  animation: agency-float 4.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.agency-signature,
+.agency-menu-signature,
+.agency-cta-button {
+  transition:
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 320ms ease,
+    border-color 320ms ease,
+    box-shadow 320ms ease,
+    color 320ms ease;
+}
+
+.agency-signature .agency-icon,
+.agency-menu-signature .agency-icon,
+.agency-signature .agency-name,
+.agency-menu-signature .agency-name,
+.agency-arrow,
+.agency-inline-arrow {
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1), opacity 320ms ease, color 320ms ease, filter 320ms ease;
+}
+
+.agency-signature .agency-name,
+.agency-menu-signature .agency-name {
+  position: relative;
+}
+
+.agency-signature .agency-name::after,
+.agency-menu-signature .agency-name::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 1px;
+  background: var(--accent-raw);
+  transform: scaleX(0.18);
+  transform-origin: left;
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.agency-signature:hover,
+.agency-signature:focus-visible {
+  transform: translateY(-2px);
+  background: color-mix(in oklab, var(--ink-foreground) 5%, transparent);
+  border-color: var(--hairline-invert);
+  box-shadow: 0 18px 34px -28px color-mix(in oklab, var(--accent-raw) 65%, transparent);
+}
+
+.agency-signature:hover .agency-icon,
+.agency-signature:focus-visible .agency-icon,
+.agency-menu-signature:hover .agency-icon,
+.agency-menu-signature:focus-visible .agency-icon {
+  transform: translate3d(2px, -2px, 0) rotate(2deg);
+  opacity: 1;
+  filter: drop-shadow(0 0 7px color-mix(in oklab, var(--accent-raw) 58%, transparent));
+}
+
+.agency-signature:hover .agency-name,
+.agency-signature:focus-visible .agency-name,
+.agency-menu-signature:hover .agency-name,
+.agency-menu-signature:focus-visible .agency-name {
+  transform: translateY(-1px);
+  color: var(--accent-raw);
+}
+
+.agency-signature:hover .agency-name::after,
+.agency-signature:focus-visible .agency-name::after,
+.agency-menu-signature:hover .agency-name::after,
+.agency-menu-signature:focus-visible .agency-name::after {
+  transform: scaleX(1);
+}
+
+.agency-signature:hover .agency-arrow,
+.agency-signature:focus-visible .agency-arrow,
+.agency-menu-signature:hover .agency-arrow,
+.agency-menu-signature:focus-visible .agency-arrow,
+.agency-cta-button:hover .agency-arrow,
+.agency-cta-button:focus-visible .agency-arrow,
+.agency-signature:hover .agency-inline-arrow,
+.agency-signature:focus-visible .agency-inline-arrow {
+  transform: translate3d(3px, -2px, 0);
+}
+
+.agency-menu-signature:hover,
+.agency-menu-signature:focus-visible {
+  background: color-mix(in oklab, var(--accent-raw) 9%, var(--card));
+}
+
+.agency-cta-surface {
+  background:
+    linear-gradient(120deg, color-mix(in oklab, var(--accent-raw) 10%, transparent), transparent 42%),
+    color-mix(in oklab, var(--card) 94%, transparent);
+  box-shadow: 0 24px 52px -40px color-mix(in oklab, var(--ink) 65%, transparent);
+}
+
+.agency-cta-surface::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(110deg, transparent 20%, color-mix(in oklab, var(--accent-glow) 10%, transparent) 50%, transparent 80%);
+  background-size: 220% 100%;
+  animation: wordmark-sheen 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.agency-cta-button:hover,
+.agency-cta-button:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--accent-raw);
+  box-shadow: 0 15px 28px -18px color-mix(in oklab, var(--accent-raw) 80%, transparent);
+  color: var(--accent-glow);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .agency-float,
+  .agency-cta-surface::after {
+    animation: none;
+  }
+
+  .agency-signature:hover .agency-icon,
+  .agency-signature:focus-visible .agency-icon,
+  .agency-menu-signature:hover .agency-icon,
+  .agency-menu-signature:focus-visible .agency-icon,
+  .agency-signature:hover .agency-name,
+  .agency-signature:focus-visible .agency-name,
+  .agency-menu-signature:hover .agency-name,
+  .agency-menu-signature:focus-visible .agency-name,
+  .agency-signature:hover .agency-arrow,
+  .agency-signature:focus-visible .agency-arrow,
+  .agency-menu-signature:hover .agency-arrow,
+  .agency-menu-signature:focus-visible .agency-arrow,
+  .agency-cta-button:hover .agency-arrow,
+  .agency-cta-button:focus-visible .agency-arrow {
+    transform: none;
+  }
+}

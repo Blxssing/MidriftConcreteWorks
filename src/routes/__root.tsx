@@ -18,6 +18,7 @@ import { WhatsAppFab } from "@/components/site/WhatsAppFab";
 import { QuoteProvider } from "@/components/site/QuoteProvider";
 import { Toaster } from "@/components/ui/sonner";
 import { CustomCursor } from "@/components/motion/CustomCursor";
+import { AgencyCTA } from "@/components/site/AgencyCredit";
 import { initAnalytics, trackPageView } from "@/lib/analytics";
 
 function NotFoundComponent() {
@@ -202,6 +203,7 @@ function RootComponent() {
             {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
             <Outlet />
           </main>
+          <AgencyCTA />
           <SiteFooter />
           <div className="h-24 print:hidden" aria-hidden />
         </div>

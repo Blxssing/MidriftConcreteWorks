@@ -5,6 +5,7 @@ import { mainNav, site } from "@/data/site";
 import { useQuote } from "./QuoteProvider";
 import { Wordmark } from "@/components/site/Wordmark";
 import { SocialIcons } from "@/components/site/SocialIcons";
+import { AgencyMenuSignature } from "@/components/site/AgencyCredit";
 
 const MENU_ID = "site-mobile-menu";
 
@@ -268,6 +269,7 @@ export function SiteHeader() {
                 </a>
               </div>
               <SocialIcons className="justify-center pt-1" />
+              <AgencyMenuSignature />
             </div>
           </nav>
         </div>

@@ -25,7 +25,6 @@ import {
   SectionHead,
   WhatsAppCTA,
 } from "@/components/site/primitives";
-import { AgencyCreditStrip } from "@/components/site/AgencyCredit";
 
 
 export const Route = createFileRoute("/")({
@@ -367,7 +366,6 @@ function Home() {
 
       <CTABand />
 
-      <AgencyCreditStrip placement="homepage" />
     </>
   );
 }
