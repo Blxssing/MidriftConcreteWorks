@@ -12,12 +12,12 @@ export const Route = createFileRoute("/auth")({
       { title: "Sign In | Midrift Concrete Works" },
       {
         name: "description",
-        content: "Sign in to Midrift Concrete Works with your Google account.",
+        content: "Sign in to Midrift Concrete Works with your Google or Apple account.",
       },
       { property: "og:title", content: "Sign In | Midrift Concrete Works" },
       {
         property: "og:description",
-        content: "Sign in to Midrift Concrete Works with your Google account.",
+        content: "Sign in to Midrift Concrete Works with your Google or Apple account.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -50,6 +50,14 @@ function GoogleMark() {
   );
 }
 
+function AppleMark() {
+  return (
+    <svg viewBox="0 0 24 24" className="size-5" aria-hidden="true" fill="currentColor">
+      <path d="M17.05 20.28c-.98.95-2.05.86-3.08.41-1.09-.47-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.41C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.53 4.08ZM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25Z" />
+    </svg>
+  );
+}
+
 function AuthPage() {
   const [session, setSession] = useState<{ email?: string } | null>(null);
   const [ready, setReady] = useState(false);
@@ -68,18 +76,18 @@ function AuthPage() {
     return () => sub.subscription.unsubscribe();
   }, []);
 
-  const signInWithGoogle = async () => {
+  const signInWith = async (provider: "google" | "apple") => {
     setError(null);
     setBusy(true);
-    const result = await lovable.auth.signInWithOAuth("google", {
+    const result = await lovable.auth.signInWithOAuth(provider, {
       redirect_uri: window.location.origin,
     });
     if (result.error) {
-      setError("Google sign-in didn't complete. Please try again.");
+      setError(`${provider === "apple" ? "Apple" : "Google"} sign-in didn't complete. Please try again.`);
       setBusy(false);
       return;
     }
-    if (result.redirected) return; // browser is heading to Google
+    if (result.redirected) return; // browser is heading to the provider
     setBusy(false);
   };
 
@@ -112,16 +120,25 @@ function AuthPage() {
         ) : (
           <div className="mt-10 w-full max-w-md rounded-3xl border border-white/15 bg-white/5 p-8 backdrop-blur-xl">
             <p className="text-sm leading-relaxed text-ink-foreground/70">
-              Use your Google account to continue. Fast and secure — we never see your password.
+              Use your Google or Apple account to continue. Fast and secure — we never see your password.
             </p>
             <button
               type="button"
-              onClick={signInWithGoogle}
+              onClick={() => signInWith("google")}
               disabled={busy}
               className="ios-cta mt-6 inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-full bg-white px-6 py-3.5 text-[15px] font-semibold text-foreground shadow-[0_10px_30px_-12px_rgba(0,0,0,0.6)] transition-transform duration-200 hover:-translate-y-0.5 active:scale-95 disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
             >
               <GoogleMark />
               {busy ? "Connecting…" : "Continue with Google"}
+            </button>
+            <button
+              type="button"
+              onClick={() => signInWith("apple")}
+              disabled={busy}
+              className="ios-cta mt-3 inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-full border border-white/25 bg-black px-6 py-3.5 text-[15px] font-semibold text-white shadow-[0_10px_30px_-12px_rgba(0,0,0,0.6)] transition-transform duration-200 hover:-translate-y-0.5 active:scale-95 disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+            >
+              <AppleMark />
+              {busy ? "Connecting…" : "Continue with Apple"}
             </button>
             {error && (
               <p role="alert" className="mt-4 text-sm text-red-300">
