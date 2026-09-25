@@ -12,12 +12,12 @@ export const Route = createFileRoute("/auth")({
       { title: "Sign In | Midrift Concrete Works" },
       {
         name: "description",
-        content: "Sign in to Midrift Concrete Works with your Google or Apple account.",
+        content: "Sign in to Midrift Concrete Works with your Google, Apple or Microsoft account.",
       },
       { property: "og:title", content: "Sign In | Midrift Concrete Works" },
       {
         property: "og:description",
-        content: "Sign in to Midrift Concrete Works with your Google or Apple account.",
+        content: "Sign in to Midrift Concrete Works with your Google, Apple or Microsoft account.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
