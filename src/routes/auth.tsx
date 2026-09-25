@@ -87,14 +87,15 @@ function AuthPage() {
     return () => sub.subscription.unsubscribe();
   }, []);
 
-  const signInWith = async (provider: "google" | "apple") => {
+  const signInWith = async (provider: "google" | "apple" | "microsoft") => {
     setError(null);
     setBusy(true);
     const result = await lovable.auth.signInWithOAuth(provider, {
       redirect_uri: window.location.origin,
     });
     if (result.error) {
-      setError(`${provider === "apple" ? "Apple" : "Google"} sign-in didn't complete. Please try again.`);
+      const label = provider === "apple" ? "Apple" : provider === "microsoft" ? "Microsoft" : "Google";
+      setError(`${label} sign-in didn't complete. Please try again.`);
       setBusy(false);
       return;
     }
