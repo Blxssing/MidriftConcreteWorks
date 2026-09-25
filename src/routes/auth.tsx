@@ -12,12 +12,12 @@ export const Route = createFileRoute("/auth")({
       { title: "Sign In | Midrift Concrete Works" },
       {
         name: "description",
-        content: "Sign in to Midrift Concrete Works with your Google or Apple account.",
+        content: "Sign in to Midrift Concrete Works with your Google, Apple or Microsoft account.",
       },
       { property: "og:title", content: "Sign In | Midrift Concrete Works" },
       {
         property: "og:description",
-        content: "Sign in to Midrift Concrete Works with your Google or Apple account.",
+        content: "Sign in to Midrift Concrete Works with your Google, Apple or Microsoft account.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -58,6 +58,17 @@ function AppleMark() {
   );
 }
 
+function MicrosoftMark() {
+  return (
+    <svg viewBox="0 0 24 24" className="size-5" aria-hidden="true">
+      <path fill="#F25022" d="M1 1h10.5v10.5H1z" />
+      <path fill="#7FBA00" d="M12.5 1H23v10.5H12.5z" />
+      <path fill="#00A4EF" d="M1 12.5h10.5V23H1z" />
+      <path fill="#FFB900" d="M12.5 12.5H23V23H12.5z" />
+    </svg>
+  );
+}
+
 function AuthPage() {
   const [session, setSession] = useState<{ email?: string } | null>(null);
   const [ready, setReady] = useState(false);
@@ -76,14 +87,15 @@ function AuthPage() {
     return () => sub.subscription.unsubscribe();
   }, []);
 
-  const signInWith = async (provider: "google" | "apple") => {
+  const signInWith = async (provider: "google" | "apple" | "microsoft") => {
     setError(null);
     setBusy(true);
     const result = await lovable.auth.signInWithOAuth(provider, {
       redirect_uri: window.location.origin,
     });
     if (result.error) {
-      setError(`${provider === "apple" ? "Apple" : "Google"} sign-in didn't complete. Please try again.`);
+      const label = provider === "apple" ? "Apple" : provider === "microsoft" ? "Microsoft" : "Google";
+      setError(`${label} sign-in didn't complete. Please try again.`);
       setBusy(false);
       return;
     }
@@ -120,7 +132,7 @@ function AuthPage() {
         ) : (
           <div className="mt-10 w-full max-w-md rounded-3xl border border-white/15 bg-white/5 p-8 backdrop-blur-xl">
             <p className="text-sm leading-relaxed text-ink-foreground/70">
-              Use your Google or Apple account to continue. Fast and secure — we never see your password.
+              Use your Google, Apple or Microsoft account to continue. Fast and secure — we never see your password.
             </p>
             <button
               type="button"
@@ -139,6 +151,15 @@ function AuthPage() {
             >
               <AppleMark />
               {busy ? "Connecting…" : "Continue with Apple"}
+            </button>
+            <button
+              type="button"
+              onClick={() => signInWith("microsoft")}
+              disabled={busy}
+              className="ios-cta mt-3 inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-full border border-white/25 bg-white/10 px-6 py-3.5 text-[15px] font-semibold text-white shadow-[0_10px_30px_-12px_rgba(0,0,0,0.6)] transition-transform duration-200 hover:-translate-y-0.5 active:scale-95 disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+            >
+              <MicrosoftMark />
+              {busy ? "Connecting…" : "Continue with Microsoft"}
             </button>
             {error && (
               <p role="alert" className="mt-4 text-sm text-red-300">
