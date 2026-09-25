@@ -58,6 +58,17 @@ function AppleMark() {
   );
 }
 
+function MicrosoftMark() {
+  return (
+    <svg viewBox="0 0 24 24" className="size-5" aria-hidden="true">
+      <path fill="#F25022" d="M1 1h10.5v10.5H1z" />
+      <path fill="#7FBA00" d="M12.5 1H23v10.5H12.5z" />
+      <path fill="#00A4EF" d="M1 12.5h10.5V23H1z" />
+      <path fill="#FFB900" d="M12.5 12.5H23V23H12.5z" />
+    </svg>
+  );
+}
+
 function AuthPage() {
   const [session, setSession] = useState<{ email?: string } | null>(null);
   const [ready, setReady] = useState(false);
