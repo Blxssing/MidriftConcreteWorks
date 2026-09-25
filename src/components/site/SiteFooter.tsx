@@ -156,10 +156,16 @@ export function SiteFooter() {
 
         <AgencyAttribution className="mt-14" />
 
-        <div className="mt-8 border-t border-hairline-invert pt-8">
+        <div className="mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-hairline-invert pt-8">
           <p className="text-xs text-ink-foreground/70">
             © {new Date().getFullYear()} {site.name}. All rights reserved.
           </p>
+          <Link
+            to="/auth"
+            className="text-xs text-ink-foreground/50 transition-colors hover:text-accent"
+          >
+            Sign in
+          </Link>
         </div>
       </div>
     </footer>
