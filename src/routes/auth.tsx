@@ -120,16 +120,25 @@ function AuthPage() {
         ) : (
           <div className="mt-10 w-full max-w-md rounded-3xl border border-white/15 bg-white/5 p-8 backdrop-blur-xl">
             <p className="text-sm leading-relaxed text-ink-foreground/70">
-              Use your Google account to continue. Fast and secure — we never see your password.
+              Use your Google or Apple account to continue. Fast and secure — we never see your password.
             </p>
             <button
               type="button"
-              onClick={signInWithGoogle}
+              onClick={() => signInWith("google")}
               disabled={busy}
               className="ios-cta mt-6 inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-full bg-white px-6 py-3.5 text-[15px] font-semibold text-foreground shadow-[0_10px_30px_-12px_rgba(0,0,0,0.6)] transition-transform duration-200 hover:-translate-y-0.5 active:scale-95 disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
             >
               <GoogleMark />
               {busy ? "Connecting…" : "Continue with Google"}
+            </button>
+            <button
+              type="button"
+              onClick={() => signInWith("apple")}
+              disabled={busy}
+              className="ios-cta mt-3 inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-full border border-white/25 bg-black px-6 py-3.5 text-[15px] font-semibold text-white shadow-[0_10px_30px_-12px_rgba(0,0,0,0.6)] transition-transform duration-200 hover:-translate-y-0.5 active:scale-95 disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+            >
+              <AppleMark />
+              {busy ? "Connecting…" : "Continue with Apple"}
             </button>
             {error && (
               <p role="alert" className="mt-4 text-sm text-red-300">
