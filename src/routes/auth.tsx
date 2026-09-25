@@ -63,7 +63,7 @@ function AuthPage() {
       .finally(() => setReady(true));
     const { data: sub } = supabase.auth.onAuthStateChange((_event, s) => {
       setSession(s?.user?.email ? { email: s.user.email } : null);
-setReady(true);
+      setReady(true);
     });
     return () => sub.subscription.unsubscribe();
   }, []);
