@@ -85,6 +85,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "google-site-verification", content: "kJZNULEKA6PSDogzKfFqHSofclwQWM5GiaMcKJstdBk" },
+      { name: "google-site-verification", content: "fd9l1WkFHBMUkJjBJ1OOnb4L7YKc8Mnbg9cfKvdhEi0" },
       { title: "Midrift Concrete Works Ltd | Precast Concrete Kenya" },
       {
         name: "description",

@@ -123,7 +123,7 @@ Notes: ${form.notes || "—"}`;
       location: form.location || "unspecified",
       has_email: !!form.email,
     });
-    toast.success("Quote request sent — here's what happens next.");
+    toast.info("WhatsApp is opening — tap Send there to complete your request.");
     window.open(whatsappLink(message), "_blank", "noopener");
     void navigate({
       to: "/thank-you",
@@ -283,7 +283,7 @@ Notes: ${form.notes || "—"}`;
         type="submit"
         className="mt-8 w-full rounded-full bg-accent px-8 py-4 text-[12px] font-bold uppercase tracking-[0.12em] text-accent-foreground transition-opacity hover:opacity-90 sm:w-auto"
       >
-        Send quote request
+        Continue to WhatsApp to send
       </button>
 
       <div className="mt-8 border-t border-hairline pt-6">
