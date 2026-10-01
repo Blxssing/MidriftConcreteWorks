@@ -1,4 +1,5 @@
 import cabroVenus from "@/assets/cabro-venus.jpg.asset.json";
+import cabroHero from "@/assets/cabro-hero.jpg.asset.json";
 import cabroDubro from "@/assets/cabro-dubro.jpg.asset.json";
 import cabroArrow from "@/assets/cabro-arrow.jpg.asset.json";
 import cabroThara from "@/assets/cabro-thara.jpg.asset.json";
