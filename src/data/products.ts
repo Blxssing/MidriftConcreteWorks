@@ -1,4 +1,5 @@
 import cabroVenus from "@/assets/cabro-venus.jpg.asset.json";
+import cabroHero from "@/assets/cabro-hero.jpg.asset.json";
 import cabroDubro from "@/assets/cabro-dubro.jpg.asset.json";
 import cabroArrow from "@/assets/cabro-arrow.jpg.asset.json";
 import cabroThara from "@/assets/cabro-thara.jpg.asset.json";
@@ -209,7 +210,7 @@ const rawCategories: Category[] = [
     intro: "Interlocking cabro engineered for traffic, drainage and long service life.",
     description:
       "Midrift manufactures interlocking cabro for driveways, parking yards, walkways, estates, industrial hardstands and commercial developments. Every batch is produced under controlled mixing and compaction for consistent dimension and strength.",
-    image: cabroVenus.url,
+    image: cabroHero.url,
     photoSlots: photoSlots("Cabro").map((s, i) => ({
       ...s,
       image: [cabroArrow.url, cabroUni.url][i] as string,
