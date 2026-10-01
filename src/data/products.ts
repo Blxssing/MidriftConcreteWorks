@@ -210,7 +210,7 @@ const rawCategories: Category[] = [
     intro: "Interlocking cabro engineered for traffic, drainage and long service life.",
     description:
       "Midrift manufactures interlocking cabro for driveways, parking yards, walkways, estates, industrial hardstands and commercial developments. Every batch is produced under controlled mixing and compaction for consistent dimension and strength.",
-    image: cabroVenus.url,
+    image: cabroHero.url,
     photoSlots: photoSlots("Cabro").map((s, i) => ({
       ...s,
       image: [cabroArrow.url, cabroUni.url][i] as string,
