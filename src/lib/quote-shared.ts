@@ -167,6 +167,20 @@ export function buildWhatsAppMessage(r: QuoteRecord) {
   return ["Hello Midrift Concrete Works 👋", "", "I'd like to request a quotation.", "", ...quoteLines(r), "", "Thank you."].join("\n");
 }
 
+/**
+ * Visitor-facing status. Only "submitted" (Forms API accepted with 2xx)
+ * may claim the request reached the sales inbox in Reatech360.
+ */
+export function quoteReceiptMessage(syncStatus: string) {
+  if (syncStatus === "submitted") {
+    return "Your quotation request has been saved and delivered to our sales team's inbox.";
+  }
+  if (syncStatus === "skipped_no_email") {
+    return "Your quotation request has been saved on our website. As no email was provided, please also send it to a salesperson below so they can follow up quickly.";
+  }
+  return "Your quotation request has been saved on our website, but we couldn't confirm delivery to our sales inbox yet. Our team will still see it — to be safe, please also send it to a salesperson below.";
+}
+
 export function buildEmailSubject(r: QuoteRecord) {
   return `Quotation Request — ${r.reference}`;
 }
