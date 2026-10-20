@@ -21,8 +21,11 @@ export const Route = createFileRoute("/products/$category/")({
     if (!loaderData) {
       return { meta: [{ title: "Product category not found | Midrift" }, { name: "robots", content: "noindex" }] };
     }
-    const title = `${loaderData.name} — Precast Concrete Kenya | Midrift Concrete Works`;
-    const description = `${loaderData.intro} Manufactured in Kenya by Midrift Concrete Works and quoted to your project specification.`;
+    const override = SNIPPETS[loaderData.slug];
+    const title = override?.title ?? `${loaderData.name} — Precast Concrete Kenya | Midrift Concrete Works`;
+    const description =
+      override?.description ??
+      `${loaderData.intro} Manufactured in Kenya by Midrift Concrete Works and quoted to your project specification.`;
     const url = `${SITE}/products/${loaderData.slug}`;
     return {
       meta: [

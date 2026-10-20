@@ -45,6 +45,8 @@ export const Route = createFileRoute("/")({
       { property: "og:url", content: "https://midriftconcreteworks.com/" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:image", content: "https://midriftconcreteworks.com/og-home.jpg" },
+      { name: "twitter:image", content: "https://midriftconcreteworks.com/og-home.jpg" },
     ],
     links: [{ rel: "canonical", href: "https://midriftconcreteworks.com/" }],
   }),
