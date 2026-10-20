@@ -18,6 +18,7 @@ import {
   siteAccessOptions,
   offloadingOptions,
   TOKEN_MAX_AGE_MS,
+  quoteReceiptMessage,
 } from "@/lib/quote-shared";
 import type { ContactMethod, QuoteInput } from "@/lib/quote-shared";
 
@@ -332,8 +333,8 @@ export function QuoteDialog({
             <h2 id="quote-dialog-title" className="mt-5 font-display text-2xl tracking-tight">
               Request Received ✓
             </h2>
-            <p className="mt-3 text-sm text-muted-foreground">
-              Thank you. Your quotation request has been saved and our sales team can see it.
+            <p className="mt-3 text-sm text-muted-foreground" role="status">
+              Thank you. {quoteReceiptMessage(result.syncStatus)}
             </p>
             <p className="mt-4 rounded-2xl border border-hairline bg-background px-4 py-3 font-mono text-sm">
               Reference: <strong>{result.reference}</strong>
