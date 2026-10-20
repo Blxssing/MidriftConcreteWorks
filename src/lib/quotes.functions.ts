@@ -12,7 +12,8 @@ export const submitQuoteRequest = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     const diagnosticId = crypto.randomUUID();
     let stage = "configuration";
-    const databaseFailure = (code?: string) => {
+    let savedReceipt: { ok: true; reference: string; syncStatus: string; whatsappMessage: string; emailSubject: string; emailBody: string } | undefined;
+    const databaseFailure = (code?: string): never => {
       // Only fixed stage labels and database codes; never messages, rows or input.
       console.error("[quote] persistence_failure", { diagnosticId, stage, code: code && /^[A-Z0-9]{5}$/.test(code) ? code : "unknown" });
       throw new Error("save_failed");
@@ -119,8 +120,8 @@ export const submitQuoteRequest = createServerFn({ method: "POST" })
     }
 
     if (!row) databaseFailure();
-    if (!row) throw new Error("save_failed");
     stage = "saved";
+    savedReceipt = { ok: true, reference: row.reference, syncStatus: row.reatech_sync_status, whatsappMessage: "", emailSubject: `Quotation Request — ${row.reference}`, emailBody: `Saved quotation request: ${row.reference}` };
 
     const record: QuoteRecord = {
       reference: row.reference,
@@ -159,6 +160,10 @@ export const submitQuoteRequest = createServerFn({ method: "POST" })
     }
     return result;
     } catch {
+      if (savedReceipt) {
+        console.warn("[quote] post_save_receipt_failure", { diagnosticId, reference: savedReceipt.reference });
+        return savedReceipt;
+      }
       console.error("[quote] submission_failure", { diagnosticId, stage });
       return { ok: false as const, code: "save_failed", message: "We couldn't confirm your request was saved. Your details are kept — please retry or contact our team.", diagnosticId };
     }
