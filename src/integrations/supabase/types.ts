@@ -14,22 +14,79 @@ export type Database = {
   }
   public: {
     Tables: {
-      quote_requests: {
+      integration_events: {
         Row: {
           created_at: string
+          detail: string | null
+          http_status: number | null
+          id: string
+          operation: string
+          outcome: string
+          provider: string
+          quote_request_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          detail?: string | null
+          http_status?: number | null
+          id?: string
+          operation: string
+          outcome: string
+          provider: string
+          quote_request_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          detail?: string | null
+          http_status?: number | null
+          id?: string
+          operation?: string
+          outcome?: string
+          provider?: string
+          quote_request_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "integration_events_quote_request_id_fkey"
+            columns: ["quote_request_id"]
+            isOneToOne: false
+            referencedRelation: "quote_requests"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      quote_requests: {
+        Row: {
+          attribution: Json
+          company: string | null
+          consent_at: string | null
+          consent_contact: boolean
+          consent_marketing: boolean
+          created_at: string
+          crm_lead_status: Database["public"]["Enums"]["crm_lead_status"]
+          delivery_mode: string | null
           email: string | null
           full_name: string
           id: string
+          idempotency_key: string | null
           location_lat: number | null
           location_lng: number | null
           location_text: string
           maps_link: string | null
           notes: string | null
+          offloading_needed: string | null
           phone: string
           preferred_contact: Database["public"]["Enums"]["contact_method"]
+          pricing_status: string
           product: string
           quantity: string | null
+          reatech_attempts: number
+          reatech_last_attempt_at: string | null
+          reatech_last_error: string | null
+          reatech_submission_ref: string | null
+          reatech_sync_status: Database["public"]["Enums"]["reatech_sync_status"]
           reference: string
+          site_access: string | null
           source_page: string | null
           status: Database["public"]["Enums"]["quote_status"]
           timeframe: string | null
@@ -37,20 +94,36 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          attribution?: Json
+          company?: string | null
+          consent_at?: string | null
+          consent_contact?: boolean
+          consent_marketing?: boolean
           created_at?: string
+          crm_lead_status?: Database["public"]["Enums"]["crm_lead_status"]
+          delivery_mode?: string | null
           email?: string | null
           full_name: string
           id?: string
+          idempotency_key?: string | null
           location_lat?: number | null
           location_lng?: number | null
           location_text: string
           maps_link?: string | null
           notes?: string | null
+          offloading_needed?: string | null
           phone: string
           preferred_contact?: Database["public"]["Enums"]["contact_method"]
+          pricing_status?: string
           product: string
           quantity?: string | null
+          reatech_attempts?: number
+          reatech_last_attempt_at?: string | null
+          reatech_last_error?: string | null
+          reatech_submission_ref?: string | null
+          reatech_sync_status?: Database["public"]["Enums"]["reatech_sync_status"]
           reference?: string
+          site_access?: string | null
           source_page?: string | null
           status?: Database["public"]["Enums"]["quote_status"]
           timeframe?: string | null
@@ -58,20 +131,36 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          attribution?: Json
+          company?: string | null
+          consent_at?: string | null
+          consent_contact?: boolean
+          consent_marketing?: boolean
           created_at?: string
+          crm_lead_status?: Database["public"]["Enums"]["crm_lead_status"]
+          delivery_mode?: string | null
           email?: string | null
           full_name?: string
           id?: string
+          idempotency_key?: string | null
           location_lat?: number | null
           location_lng?: number | null
           location_text?: string
           maps_link?: string | null
           notes?: string | null
+          offloading_needed?: string | null
           phone?: string
           preferred_contact?: Database["public"]["Enums"]["contact_method"]
+          pricing_status?: string
           product?: string
           quantity?: string | null
+          reatech_attempts?: number
+          reatech_last_attempt_at?: string | null
+          reatech_last_error?: string | null
+          reatech_submission_ref?: string | null
+          reatech_sync_status?: Database["public"]["Enums"]["reatech_sync_status"]
           reference?: string
+          site_access?: string | null
           source_page?: string | null
           status?: Database["public"]["Enums"]["quote_status"]
           timeframe?: string | null
@@ -115,8 +204,9 @@ export type Database = {
       }
     }
     Enums: {
-      app_role: "admin" | "moderator" | "user"
+      app_role: "admin" | "moderator" | "user" | "sales" | "operations"
       contact_method: "whatsapp" | "phone" | "email"
+      crm_lead_status: "unconfirmed" | "confirmed"
       quote_status:
         | "new"
         | "contacted"
@@ -124,6 +214,12 @@ export type Database = {
         | "follow_up"
         | "won"
         | "lost"
+      reatech_sync_status:
+        | "pending"
+        | "skipped_no_email"
+        | "not_configured"
+        | "submitted"
+        | "failed"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -251,8 +347,9 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      app_role: ["admin", "moderator", "user"],
+      app_role: ["admin", "moderator", "user", "sales", "operations"],
       contact_method: ["whatsapp", "phone", "email"],
+      crm_lead_status: ["unconfirmed", "confirmed"],
       quote_status: [
         "new",
         "contacted",
@@ -260,6 +357,13 @@ export const Constants = {
         "follow_up",
         "won",
         "lost",
+      ],
+      reatech_sync_status: [
+        "pending",
+        "skipped_no_email",
+        "not_configured",
+        "submitted",
+        "failed",
       ],
     },
   },
