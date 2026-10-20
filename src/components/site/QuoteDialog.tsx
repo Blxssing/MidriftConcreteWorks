@@ -8,8 +8,20 @@ import { site, salesTeam } from "@/data/site";
 import { track } from "@/lib/analytics";
 import { downloadQuotationPdf, quotationFileName } from "@/lib/quote-pdf";
 import { submitQuoteRequest } from "@/lib/quotes.functions";
-import { quoteSchema, timeframes, quantityUnits, mapsLinkFor } from "@/lib/quote-shared";
+import { getReatechFormToken } from "@/lib/reatech/contact.functions";
+import { captureFirstTouch, getAttribution } from "@/lib/attribution";
+import {
+  quoteSchema,
+  timeframes,
+  quantityUnits,
+  mapsLinkFor,
+  siteAccessOptions,
+  offloadingOptions,
+  TOKEN_MAX_AGE_MS,
+} from "@/lib/quote-shared";
 import type { ContactMethod, QuoteInput } from "@/lib/quote-shared";
+
+const DRAFT_KEY = "midrift:quote-draft";
 
 const LocationPicker = lazy(() => import("./LocationPicker"));
 
@@ -34,38 +46,81 @@ export function QuoteDialog({
   onClose: () => void;
 }) {
   const submit = useServerFn(submitQuoteRequest);
+  const fetchToken = useServerFn(getReatechFormToken);
   const navigate = useNavigate();
   const dialogRef = useRef<HTMLDivElement | null>(null);
+  const idemKeyRef = useRef<string | null>(null);
+  const tokenRef = useRef<{ token: string; issuedAt: number } | null>(null);
   const [sending, setSending] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
   const [showMap, setShowMap] = useState(false);
   const [coords, setCoords] = useState<{ lat: number; lng: number } | undefined>(undefined);
   const [notSureQty, setNotSureQty] = useState(false);
   const [pdfSaved, setPdfSaved] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [result, setResult] = useState<
-    { reference: string; whatsappMessage: string; emailSubject: string; emailBody: string } | null
+    { reference: string; syncStatus: string; whatsappMessage: string; emailSubject: string; emailBody: string } | null
   >(null);
   const [form, setForm] = useState({
     fullName: "",
+    company: "",
     phone: "",
     email: "",
     preferredContact: "whatsapp" as ContactMethod,
     product: product ?? "",
     quantity: "",
     unit: "pieces",
+    deliveryMode: "delivery" as "delivery" | "collection",
+    siteAccess: "",
+    offloading: "",
     locationText: "",
     timeframe: "",
     notes: "",
     website: "",
   });
+  const [consentContact, setConsentContact] = useState(false);
+  const [consentMarketing, setConsentMarketing] = useState(false);
+
+  useEffect(() => {
+    captureFirstTouch();
+  }, []);
 
   useEffect(() => {
     if (open) {
-      setForm((f) => ({ ...f, product: product ?? f.product }));
+      // Restore an unsent draft (survives refresh / lost connection).
+      let draft: Partial<typeof form> & { idem?: string } = {};
+      try {
+        draft = JSON.parse(localStorage.getItem(DRAFT_KEY) ?? "{}");
+      } catch {
+        /* ignore */
+      }
+      const { idem, ...draftFields } = draft;
+      idemKeyRef.current = idem ?? crypto.randomUUID();
+      setForm((f) => ({ ...f, ...draftFields, product: product ?? draftFields.product ?? f.product, website: "" }));
+      setSubmitError(null);
+      tokenRef.current = null;
+      void fetchToken()
+        .then((t) => {
+          if (t.status === "ok") tokenRef.current = { token: t.token, issuedAt: t.issuedAt };
+        })
+        .catch(() => {
+          /* token is optional — the lead is still saved */
+        });
       track("quote_form_opened", { source_page: sourcePage ?? "unknown", product: product ?? "none" });
       setTimeout(() => dialogRef.current?.querySelector<HTMLElement>("input,select,button")?.focus(), 60);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open, product, sourcePage]);
+
+  useEffect(() => {
+    if (!open || result) return;
+    try {
+      const { website: _w, ...rest } = form;
+      localStorage.setItem(DRAFT_KEY, JSON.stringify({ ...rest, idem: idemKeyRef.current }));
+    } catch {
+      /* ignore */
+    }
+  }, [form, open, result]);
 
   useEffect(() => {
     if (!open) return;
@@ -113,8 +168,12 @@ export function QuoteDialog({
     e.preventDefault();
     if (sending) return;
 
+    const tok = tokenRef.current;
+    const tokenFresh = tok && Date.now() - tok.issuedAt < TOKEN_MAX_AGE_MS;
     const payload: QuoteInput = {
+      ...(idemKeyRef.current ? { idempotencyKey: idemKeyRef.current } : {}),
       fullName: form.fullName,
+      company: form.company,
       phone: form.phone,
       email: form.email,
       preferredContact: form.preferredContact,
@@ -122,11 +181,18 @@ export function QuoteDialog({
       quantity: notSureQty ? "" : form.quantity,
       unit: form.unit,
       notSureQuantity: notSureQty,
+      deliveryMode: form.deliveryMode,
+      siteAccess: form.siteAccess as QuoteInput["siteAccess"],
+      offloading: form.offloading as QuoteInput["offloading"],
       locationText: form.locationText,
       ...(coords ? { lat: coords.lat, lng: coords.lng } : {}),
       timeframe: form.timeframe,
       notes: form.notes,
       sourcePage: sourcePage ?? "unknown",
+      attribution: getAttribution({ page: sourcePage ?? window.location.pathname, product: form.product, cta: "quote_dialog" }),
+      consentContact: consentContact as true,
+      consentMarketing,
+      ...(tok && tokenFresh ? { formToken: tok.token, tokenIssuedAt: tok.issuedAt } : {}),
       website: form.website,
     };
 
@@ -143,20 +209,27 @@ export function QuoteDialog({
     }
 
     setSending(true);
+    setSubmitError(null);
     try {
-      const res = await submit({ data: parsed.data });
+      const res = await submit({ data: payload });
       setResult(res);
+      try {
+        localStorage.removeItem(DRAFT_KEY);
+      } catch {
+        /* ignore */
+      }
       track("quote_form_submitted", {
         source_page: sourcePage ?? "unknown",
         product: form.product,
         contact_method: form.preferredContact,
         has_coordinates: !!coords,
+        delivery_mode: form.deliveryMode,
         timeframe: form.timeframe || "unspecified",
       });
-      // Generate the branded quotation PDF straight away so the customer can
-      // attach it to the WhatsApp or email message they are about to send.
       void savePdf(res.reference);
     } catch {
+      // Draft + idempotency key are kept, so retrying never creates a duplicate.
+      setSubmitError("We couldn't send your request. Your details are kept — tap Send Quote to try again, or contact us on WhatsApp.");
       toast.error("We couldn't submit your request right now. Please try again.");
     } finally {
       setSending(false);
@@ -254,10 +327,13 @@ export function QuoteDialog({
               Request Received ✓
             </h2>
             <p className="mt-3 text-sm text-muted-foreground">
-              Thank you. Your quotation request has been successfully received.
+              Thank you. Your quotation request has been saved and our sales team can see it.
             </p>
             <p className="mt-4 rounded-2xl border border-hairline bg-background px-4 py-3 font-mono text-sm">
               Reference: <strong>{result.reference}</strong>
+            </p>
+            <p className="mt-2 text-xs text-muted-foreground">
+              Price: quotation required — our team will confirm pricing, availability and delivery in writing.
             </p>
             <button
               type="button"
@@ -352,6 +428,10 @@ export function QuoteDialog({
                 {errors.email && <p className="mt-1.5 text-xs font-medium text-destructive">{errors.email}</p>}
               </div>
               <div>
+                <label className={labelCls} htmlFor="qd-company">Company (optional)</label>
+                <input id="qd-company" className={field} value={form.company} onChange={set("company")} autoComplete="organization" />
+              </div>
+              <div>
                 <label className={labelCls} htmlFor="qd-contact">Preferred contact method</label>
                 <select id="qd-contact" className={field} value={form.preferredContact} onChange={set("preferredContact")}>
                   <option value="whatsapp">WhatsApp</option>
@@ -388,8 +468,43 @@ export function QuoteDialog({
                 {errors.quantity && <p className="mt-1.5 text-xs font-medium text-destructive">{errors.quantity}</p>}
               </div>
 
+              <fieldset className="sm:col-span-2">
+                <legend className={labelCls}>Delivery or collection</legend>
+                <div className="grid gap-2 sm:grid-cols-2">
+                  {(["delivery", "collection"] as const).map((m) => (
+                    <label key={m} className={`flex min-h-11 cursor-pointer items-center gap-2 rounded-2xl border px-4 py-3 text-sm ${form.deliveryMode === m ? "border-accent" : "border-input"}`}>
+                      <input type="radio" name="qd-mode" value={m} checked={form.deliveryMode === m} onChange={set("deliveryMode")} className="size-4" />
+                      {m === "delivery" ? "Deliver to my site" : "I'll collect from the yard"}
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+
+              {form.deliveryMode === "delivery" && (
+                <>
+                  <div>
+                    <label className={labelCls} htmlFor="qd-access">Vehicle / site access</label>
+                    <select id="qd-access" className={field} value={form.siteAccess} onChange={set("siteAccess")}>
+                      <option value="">Select access</option>
+                      {siteAccessOptions.map((o) => (
+                        <option key={o} value={o}>{o}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label className={labelCls} htmlFor="qd-offload">Offloading help needed?</label>
+                    <select id="qd-offload" className={field} value={form.offloading} onChange={set("offloading")}>
+                      <option value="">Select</option>
+                      {offloadingOptions.map((o) => (
+                        <option key={o} value={o}>{o}</option>
+                      ))}
+                    </select>
+                  </div>
+                </>
+              )}
+
               <div className="sm:col-span-2">
-                <label className={labelCls} htmlFor="qd-loc">Where should we deliver / where is your project? *</label>
+                <label className={labelCls} htmlFor="qd-loc">{form.deliveryMode === "delivery" ? "Where should we deliver / where is your project? *" : "Where is your project? *"}</label>
                 <input id="qd-loc" className={`${field} ${errors.locationText ? errCls : ""}`} placeholder="Town, estate or site name" value={form.locationText} onChange={set("locationText")} aria-invalid={!!errors.locationText} />
                 {errors.locationText && <p className="mt-1.5 text-xs font-medium text-destructive">{errors.locationText}</p>}
                 <div className="mt-3 flex flex-wrap gap-2">
@@ -438,6 +553,27 @@ export function QuoteDialog({
                 {errors.notes && <p className="mt-1.5 text-xs font-medium text-destructive">{errors.notes}</p>}
               </div>
 
+              <div className="sm:col-span-2 space-y-3 rounded-2xl border border-hairline p-4">
+                <label className="flex items-start gap-3 text-sm">
+                  <input
+                    type="checkbox"
+                    className="mt-0.5 size-4 shrink-0"
+                    checked={consentContact}
+                    onChange={(e) => { setConsentContact(e.target.checked); setErrors((p) => ({ ...p, consentContact: undefined })); }}
+                    aria-invalid={!!errors.consentContact}
+                    aria-describedby={errors.consentContact ? "qd-consent-err" : undefined}
+                  />
+                  <span>
+                    I agree that Midrift Concrete Works may store these details and contact me about this quotation request. *
+                  </span>
+                </label>
+                {errors.consentContact && <p id="qd-consent-err" className="text-xs font-medium text-destructive">{errors.consentContact}</p>}
+                <label className="flex items-start gap-3 text-sm text-muted-foreground">
+                  <input type="checkbox" className="mt-0.5 size-4 shrink-0" checked={consentMarketing} onChange={(e) => setConsentMarketing(e.target.checked)} />
+                  <span>Optional: send me occasional product updates and offers.</span>
+                </label>
+              </div>
+
               <input
                 type="text"
                 tabIndex={-1}
@@ -448,6 +584,12 @@ export function QuoteDialog({
                 onChange={set("website")}
               />
             </div>
+
+            {submitError && (
+              <p role="alert" className="mt-6 rounded-2xl border border-destructive/40 bg-destructive/10 px-4 py-3 text-sm text-destructive">
+                {submitError}
+              </p>
+            )}
 
             <button
               type="submit"
