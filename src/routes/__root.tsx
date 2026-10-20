@@ -95,6 +95,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { name: "author", content: "Midrift Concrete Works Ltd" },
       { property: "og:type", content: "website" },
+      { property: "og:title", content: "Midrift Concrete Works Ltd | Precast Concrete Kenya" },
+      {
+        property: "og:description",
+        content: "Precast concrete made in Nakuru: cabro, blocks, ventilation blocks, kerbs, culverts and custom units.",
+      },
       { property: "og:site_name", content: "Midrift Concrete Works" },
       { property: "og:locale", content: "en_KE" },
       { name: "twitter:card", content: "summary_large_image" },
