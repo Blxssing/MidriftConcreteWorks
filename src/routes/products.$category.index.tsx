@@ -4,6 +4,15 @@ import { CTABand, PageHero, PhotoSlots, Section } from "@/components/site/primit
 
 const SITE = "https://midriftconcreteworks.com";
 
+/** Search-snippet overrides built only from facts already in the product data. */
+const SNIPPETS: Record<string, { title: string; description: string }> = {
+  "concrete-blocks": {
+    title: "Concrete Blocks in Nakuru — Hollow, Solid & Interlocking | Midrift",
+    description:
+      "Hollow, solid, interlocking and hollow pot concrete blocks made in Nakuru, plus balustrades, posts and tiles. Consistent sizes, bulk supply and site delivery.",
+  },
+};
+
 export const Route = createFileRoute("/products/$category/")({
   loader: ({ params }) => {
     const category = getCategory(params.category);
