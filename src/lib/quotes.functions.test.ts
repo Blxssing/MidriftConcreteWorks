@@ -16,8 +16,8 @@ vi.mock("@/integrations/supabase/client.server", () => ({ supabaseAdmin: {
     mocks.tables(table);
     const chain: Record<string, unknown> = {};
     for (const method of ["select", "eq", "gte", "limit", "maybeSingle", "single"]) chain[method] = () => chain;
-    chain.insert = (value: unknown) => { mocks.insert(value); return chain; };
-    chain.then = (resolve: (value: unknown) => unknown) => Promise.resolve(mocks.responses.shift()).then(resolve);
+    chain["insert"] = (value: unknown) => { mocks.insert(value); return chain; };
+    chain["then"] = (resolve: (value: unknown) => unknown) => Promise.resolve(mocks.responses.shift()).then(resolve);
     return chain;
   },
 } }));
