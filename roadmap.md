@@ -1,6 +1,7 @@
 # Roadmap — Reatech360 integration
 
-- [ ] Urgent quote failure: inspect production evidence, isolate save/sync/client errors, add offline regression tests; no submissions or publishing
+- [x] Urgent quote failure: inspected live logs/schema/read-only save window; protected saved receipts, isolated analytics, added safe stage/code diagnostics; 25 offline tests pass; preview build OK; no submissions or publishing
+- [ ] BLOCKED (production diagnosis): 12:17 calls have HTTP 200 but no error payload/log and no saved quote; need sanitized browser RPC error or new stage/code diagnostic after approved publication; no live retest authorized
 
 - [x] Correct workspace-specific API address, secure durable rate limiting, and regression tests
 - [x] Audit official contact/content endpoints and report redacted response structures in src/lib/reatech/AUDIT.md
