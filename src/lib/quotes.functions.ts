@@ -119,7 +119,7 @@ export const submitQuoteRequest = createServerFn({ method: "POST" })
       }
     }
 
-    if (!row) databaseFailure();
+    if (!row) return databaseFailure();
     stage = "saved";
     savedReceipt = { ok: true, reference: row.reference, syncStatus: row.reatech_sync_status, whatsappMessage: "", emailSubject: `Quotation Request — ${row.reference}`, emailBody: `Saved quotation request: ${row.reference}` };
 
