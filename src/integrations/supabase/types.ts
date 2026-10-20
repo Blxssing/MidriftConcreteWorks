@@ -169,6 +169,21 @@ export type Database = {
         }
         Relationships: []
       }
+      reatech_api_throttle: {
+        Row: {
+          next_allowed_at: string
+          scope: string
+        }
+        Insert: {
+          next_allowed_at?: string
+          scope: string
+        }
+        Update: {
+          next_allowed_at?: string
+          scope?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
@@ -195,6 +210,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      claim_reatech_request: { Args: never; Returns: boolean }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
