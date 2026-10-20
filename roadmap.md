@@ -1,5 +1,7 @@
 # Roadmap — Reatech360 integration
 
+- [ ] Urgent quote failure: inspect production evidence, isolate save/sync/client errors, add offline regression tests; no submissions or publishing
+
 - [x] Correct workspace-specific API address, secure durable rate limiting, and regression tests
 - [x] Audit official contact/content endpoints and report redacted response structures in src/lib/reatech/AUDIT.md
 - [x] Verify 18 tests, quote dialog opening, and current application build; not published
