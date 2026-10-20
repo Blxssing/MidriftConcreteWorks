@@ -19,7 +19,7 @@ describe("quote rules", () => {
     expect(checkTokenTiming(1_000_000, 1_003_000)).toBe("ok");
   });
   it("rejects a token older than 1 hour", () => {
-    expect(checkTokenTiming(0, 60 * 60 * 1000 + 1)).toBe("expired");
+    expect(checkTokenTiming(1_000, 1_000 + 60 * 60 * 1000 + 1)).toBe("expired");
   });
   it("phone-only enquiries are not sent to Reatech", () => {
     expect(isReatechEligible("")).toBe(false);
