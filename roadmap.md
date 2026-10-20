@@ -1,5 +1,7 @@
 # Roadmap — Reatech360 integration
 
+- [ ] Investigate supported CRM Customers integration and native Forms automation; preserve existing flows, run offline regressions, document vendor blockers; no live writes or publication
+
 - [x] Urgent quote failure: inspected live logs/schema/read-only save window; protected saved receipts, isolated analytics, added safe stage/code diagnostics; 26 offline tests pass; preview build OK; dialog opens with RPC blocked; no submissions or publishing
 - [ ] BLOCKED (production diagnosis): 12:17 calls have HTTP 200 but no error payload/log and no saved quote; need sanitized browser RPC error or new stage/code diagnostic after approved publication; no live retest authorized
 
