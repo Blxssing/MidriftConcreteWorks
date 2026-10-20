@@ -1,12 +1,15 @@
 # Roadmap — Reatech360 integration
 
+- [x] Investigated CRM Customers integration and native Forms automation; supplied docs/public sources/connections provide no supported contract; 26 offline tests pass; documentation in src/lib/reatech/CRM_READINESS.md; no live writes or publication
+- [ ] BLOCKED (Reatech Customers): vendor must document/enable Forms→Customers automation or official customer search/upsert API, permissions, match/idempotency rules and customer-ID confirmation
+
 - [x] Urgent quote failure: inspected live logs/schema/read-only save window; protected saved receipts, isolated analytics, added safe stage/code diagnostics; 26 offline tests pass; preview build OK; dialog opens with RPC blocked; no submissions or publishing
 - [ ] BLOCKED (production diagnosis): 12:17 calls have HTTP 200 but no error payload/log and no saved quote; need sanitized browser RPC error or new stage/code diagnostic after approved publication; no live retest authorized
 
 - [x] Correct workspace-specific API address, secure durable rate limiting, and regression tests
 - [x] Audit official contact/content endpoints and report redacted response structures in src/lib/reatech/AUDIT.md
 - [x] Verify 18 tests, quote dialog opening, and current application build; not published
-- [ ] BLOCKED (Reatech): workspace-specific endpoint access returns HTTP 403; token/contact retest needs access resolved
+- [x] Earlier workspace HTTP 403 superseded by subsequent historical token HTTP 200/contact HTTP 201 tests; no retest in this review
 - [ ] BLOCKED (Reatech): official newsletter endpoint paths and subscription payload documentation
 
 - [x] Shared quote flow (QuoteDialog + /contact) with delivery/vehicle/consent/attribution fields
