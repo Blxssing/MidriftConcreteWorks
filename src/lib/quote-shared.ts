@@ -104,7 +104,9 @@ export const quoteSchema = z.object({
   notes: z.union([z.string().trim().max(1000, "Please keep details under 1000 characters"), z.literal("")]).optional(),
   sourcePage: z.string().trim().max(120).optional(),
   attribution: attributionSchema.optional(),
-  consentContact: z.literal(true, { message: "Please agree so our team can contact you about this request" }),
+  consentContact: z.literal(true, {
+    errorMap: () => ({ message: "Please agree so our team can contact you about this request" }),
+  }),
   consentMarketing: z.boolean().optional(),
   /** Reatech form token issued when the form opened (never the API key). */
   formToken: z.string().max(2000).optional(),
