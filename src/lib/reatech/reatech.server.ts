@@ -6,7 +6,7 @@
  * Never log request bodies (they contain PII) or the API key.
  */
 const DEFAULT_BASE = "https://enterprise-technologies.reatech360.com/api/web";
-const DEFAULT_WORKSPACE = "REA000582";
+const DEFAULT_WORKSPACE = "REA000595";
 const TIMEOUT_MS = 10_000;
 
 export type ReatechError = { ok: false; code: "not_configured" | "http_error" | "network_error" | "bad_response"; status?: number; message: string };
@@ -45,11 +45,8 @@ async function call(path: string, init: RequestInit): Promise<{ ok: true; status
       body = null;
     }
     if (!res.ok) {
-      const msg =
-        body && typeof body === "object" && "message" in body && typeof (body as { message: unknown }).message === "string"
-          ? String((body as { message: string }).message).slice(0, 200)
-          : `HTTP ${res.status}`;
-      return { ok: false, code: "http_error", status: res.status, message: msg };
+      // Never propagate provider text: it could echo authentication headers.
+      return { ok: false, code: "http_error", status: res.status, message: `HTTP ${res.status}` };
     }
     return { ok: true, status: res.status, body };
   } catch (e) {
@@ -67,12 +64,12 @@ function pickToken(body: unknown): string | undefined {
   return candidates.find((c): c is string => typeof c === "string" && c.length > 0);
 }
 
-export async function fetchContactToken(): Promise<{ ok: true; token: string; issuedAt: number } | ReatechError> {
+export async function fetchContactToken(): Promise<{ ok: true; status: number; token: string; issuedAt: number } | ReatechError> {
   const res = await call("/contact/token", { method: "GET" });
   if (!res.ok) return res;
   const token = pickToken(res.body);
   if (!token) return { ok: false, code: "bad_response", status: res.status, message: "Token not found in response" };
-  return { ok: true, token, issuedAt: Date.now() };
+  return { ok: true, status: res.status, token, issuedAt: Date.now() };
 }
 
 export type ContactPayload = {

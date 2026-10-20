@@ -7,6 +7,7 @@
 - [x] Staff area /admin/leads (admin, sales, operations) + manual retry
 - [x] No fake pricing — "quotation required"; rules documented in src/lib/pricing.ts
 - [x] Tests + build
-- [ ] BLOCKED (user): add REATECH_API_KEY in Project Settings → Secrets
+- [x] REATECH_API_KEY configured as a server-only secret
+- [x] Update Reatech workspace to REA000595; live token GET returned 200 and controlled contact POST returned 201; CRM creation unverified; not published
 - [ ] BLOCKED (user): name the first admin account for one-time bootstrap
 - [ ] BLOCKED (Reatech): CRM lead/quote/stock/invoice/payment/order API docs
