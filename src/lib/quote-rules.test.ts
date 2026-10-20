@@ -33,7 +33,9 @@ describe("quote rules", () => {
     expect(quoteSchema.safeParse(base).success).toBe(true);
   });
   it("contact consent is required", () => {
-    expect(quoteSchema.safeParse({ ...base, consentContact: false }).success).toBe(false);
+    const r = quoteSchema.safeParse({ ...base, consentContact: false });
+    expect(r.success).toBe(false);
+    expect(r.error?.issues[0]?.message).toBe("Please agree so our team can contact you about this request");
   });
   it("honeypot must be empty", () => {
     expect(quoteSchema.safeParse({ ...base, website: "x" }).success).toBe(false);
