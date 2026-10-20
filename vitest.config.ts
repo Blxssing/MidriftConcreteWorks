@@ -5,5 +5,5 @@ import { fileURLToPath } from "node:url";
 // transform replacing it with a deployed server-function transport stub.
 export default defineConfig({
   resolve: { alias: { "@": fileURLToPath(new URL("./src", import.meta.url)) } },
-  test: { include: ["src/lib/quotes.functions.test.ts"], restoreMocks: true },
+  test: { include: ["src/**/*.test.ts"], restoreMocks: true },
 });
