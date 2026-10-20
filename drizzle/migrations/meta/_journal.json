@@ -8,6 +8,13 @@
       "when": 1788010408143,
       "tag": "0000_restrict_quote_request_inserts",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1792486086989,
+      "tag": "0001_add_staff_roles",
+      "breakpoints": true
     }
   ]
 }
