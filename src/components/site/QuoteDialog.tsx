@@ -25,7 +25,7 @@ const DRAFT_KEY = "midrift:quote-draft";
 
 const LocationPicker = lazy(() => import("./LocationPicker"));
 
-type Errors = Partial<Record<keyof QuoteInput, string>>;
+type Errors = Partial<Record<keyof QuoteInput, string | undefined>>;
 
 const field =
   "w-full rounded-2xl border border-input bg-background px-4 py-3 text-[15px] outline-none transition-colors focus:border-accent focus-visible:ring-2 focus-visible:ring-accent";
