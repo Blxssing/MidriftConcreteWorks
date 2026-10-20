@@ -3,7 +3,7 @@ import { MessageCircle, Phone, Mail, MapPin, Clock, BookOpen } from "lucide-reac
 import { site, whatsappLink, emailLink } from "@/data/site";
 import { SocialIcons } from "@/components/site/SocialIcons";
 import { PageHero, Section } from "@/components/site/primitives";
-import { QuoteForm } from "@/components/site/QuoteForm";
+import { QuoteLauncher } from "@/components/site/QuoteLauncher";
 import { LocationMap } from "@/components/site/LocationMap";
 import yard from "@/assets/project-yard.jpg";
 
@@ -94,7 +94,7 @@ function ContactPage() {
             <SocialIcons className="mt-4" />
           </div>
 
-          <QuoteForm />
+          <QuoteLauncher />
         </div>
 
         <div className="mt-14">
