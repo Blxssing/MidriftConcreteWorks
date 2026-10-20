@@ -5,16 +5,20 @@
  *
  * Never log request bodies (they contain PII) or the API key.
  */
-const DEFAULT_BASE = "https://enterprise-technologies.reatech360.com/api/web";
+import { claimReatechRequest } from "./rate-limit.server";
+import { z } from "zod";
+
+const DEFAULT_BASE = "https://midrift-concrete-works-2.reatech360.com/api/web";
 const DEFAULT_WORKSPACE = "REA000595";
 const TIMEOUT_MS = 10_000;
 
-export type ReatechError = { ok: false; code: "not_configured" | "http_error" | "network_error" | "bad_response"; status?: number; message: string };
+export type ReatechError = { ok: false; code: "not_configured" | "rate_limited" | "invalid_payload" | "http_error" | "network_error" | "bad_response"; status?: number; message: string };
 
 function config() {
   const apiKey = process.env["REATECH_API_KEY"];
-  const workspace = process.env["REATECH_WORKSPACE_ID"] || DEFAULT_WORKSPACE;
-  const base = (process.env["REATECH_API_BASE_URL"] || DEFAULT_BASE).replace(/\/$/, "");
+  // Pin verified destination: stale overrides must not redirect credentials.
+  const workspace = DEFAULT_WORKSPACE;
+  const base = DEFAULT_BASE;
   return { apiKey, workspace, base };
 }
 
@@ -25,12 +29,14 @@ export function isReatechConfigured() {
 async function call(path: string, init: RequestInit): Promise<{ ok: true; status: number; body: unknown } | ReatechError> {
   const { apiKey, workspace, base } = config();
   if (!apiKey) return { ok: false, code: "not_configured", message: "Reatech API key is not configured" };
+  if (!await claimReatechRequest()) return { ok: false, code: "rate_limited", message: "Reatech request capacity unavailable; retry later" };
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
   try {
     const res = await fetch(`${base}${path}`, {
       ...init,
       signal: controller.signal,
+      redirect: "error",
       headers: {
         Accept: "application/json",
         ...(init.body ? { "Content-Type": "application/json" } : {}),
@@ -85,6 +91,9 @@ export type ContactPayload = {
 };
 
 export async function postContact(payload: ContactPayload): Promise<{ ok: true; status: number; submissionRef?: string } | ReatechError> {
+  if (!payload.name.trim() || !z.string().email().safeParse(payload.email).success || !payload.message.trim() || payload.website !== "" || !payload.form_token.trim()) {
+    return { ok: false, code: "invalid_payload", message: "Contact requires a name, email, message, empty honeypot and form token" };
+  }
   const res = await call("/contact", { method: "POST", body: JSON.stringify(payload) });
   if (!res.ok) return res;
   // Response shape is not documented; keep any id it returns as an opaque ref.
