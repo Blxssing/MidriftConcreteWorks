@@ -15,6 +15,13 @@
       "when": 1792486086989,
       "tag": "0001_add_staff_roles",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1792486109168,
+      "tag": "0002_reatech_sync_and_integration_events",
+      "breakpoints": true
     }
   ]
 }
