@@ -40,3 +40,13 @@ No endpoint succeeded. Token response was a JSON error object with string fields
 - Contact-page quotation dialog opened normally; no browser runtime errors. No new quote/contact data was submitted during this audit. Full save/retry flow was not rerun; existing quote persistence was not modified.
 - Required route metadata gaps were filled without visual changes.
 - Nothing published or deployed.
+
+## Later CRM-readiness review — 20 October 2026
+
+See `CRM_READINESS.md` for the documentation-only investigation, vendor request,
+and approval gates. Later historical token/contact tests returned 200/201 and the
+user confirmed MID-QR-2026-0018 in Forms; the 403 results above are the earlier
+audit, not a current access diagnosis. No supported customer search/create or
+Forms-to-Customers automation contract was accessible. No live requests or
+application changes were made during the CRM-readiness review; 26 offline tests
+passed. CRM Customers creation remains blocked and unconfirmed.
