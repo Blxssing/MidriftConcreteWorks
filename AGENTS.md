@@ -10,7 +10,8 @@
 <!-- LOVABLE:END -->
 
 ## Architecture rules
-- Reatech360 calls live only in `src/lib/reatech/*.server.ts` and use only documented Web Studio endpoints (GET /contact/token, POST /contact); keys stay server-side.
+- Reatech360 calls live only in `src/lib/reatech/*.server.ts`, pin the verified workspace destination, refuse redirects, and use only documented Web Studio endpoints; keys stay server-side to prevent accidental credential forwarding.
+- Every application Reatech request claims durable database capacity with atomic one-second spacing and fails closed, so parallel worker instances respect the per-key rate limit without in-memory counters.
 - Quote leads are saved to `quote_requests` before any external sync; sync outcome is tracked separately from CRM-lead confirmation so a later CRM adapter can be added without changing the form.
 - Staff permissions come from `user_roles` (admin, sales, operations) checked inside server functions; operations views never select customer contact columns.
 - All quote entry points open the single shared `QuoteDialog` flow.

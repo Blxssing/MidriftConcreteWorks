@@ -45,6 +45,8 @@ export const Route = createFileRoute("/products/")({
         { property: "og:title", content: title },
         { property: "og:description", content: description },
         { property: "og:url", content: canonical },
+        { property: "og:type", content: "website" },
+        { name: "twitter:card", content: "summary_large_image" },
         ...(search.q ? [{ name: "robots", content: "noindex,follow" }] : []),
       ],
       links: [{ rel: "canonical", href: canonical }],
