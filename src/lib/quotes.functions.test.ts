@@ -24,6 +24,7 @@ vi.mock("@/integrations/supabase/client.server", () => ({ supabaseAdmin: {
 vi.mock("./reatech/sync.server", () => ({ syncQuoteToReatech: mocks.sync }));
 
 import { submitQuoteRequest } from "./quotes.functions";
+import * as quoteShared from "./quote-shared";
 
 const input = {
   fullName: "Offline unit test", phone: "000 000 0000", email: "integration-test@example.com",
@@ -52,6 +53,12 @@ describe("local quote save is the success boundary (fully offline)", () => {
     mocks.responses.push({ count: 0 }, { data: null }, { data: saved });
     mocks.sync.mockResolvedValueOnce("failed");
     expect(await submitQuoteRequest({ data: input })).toMatchObject({ ok: true, reference: "MID-QR-TEST", syncStatus: "failed" });
+  });
+  it("keeps the saved reference if optional draft formatting throws", async () => {
+    mocks.responses.push({ count: 0 }, { data: null }, { data: saved });
+    vi.spyOn(quoteShared, "buildWhatsAppMessage").mockImplementationOnce(() => { throw new Error("formatter failure"); });
+    expect(await submitQuoteRequest({ data: input })).toMatchObject({ ok: true, reference: "MID-QR-TEST" });
+    expect(mocks.insert).toHaveBeenCalledTimes(1);
   });
   it("retains phone-only quotes locally without any external sync", async () => {
     mocks.responses.push({ count: 0 }, { data: null }, { data: { ...saved, reatech_sync_status: "skipped_no_email" } });
