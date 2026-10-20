@@ -15,3 +15,5 @@
 - Quote leads are saved to `quote_requests` before any external sync; sync outcome is tracked separately from CRM-lead confirmation so a later CRM adapter can be added without changing the form.
 - Staff permissions come from `user_roles` (admin, sales, operations) checked inside server functions; operations views never select customer contact columns.
 - All quote entry points open the single shared `QuoteDialog` flow.
+- Offline regressions use `vitest.config.ts` without Start's RPC transform and mock persistence/Reatech, because transformed handlers become deployed RPC stubs; no test may submit to a live service.
+- Quote failures log only correlation IDs, fixed stages and sanitized database codes; optional sync and client analytics must not invalidate a saved receipt, so diagnostics never expose customer data.

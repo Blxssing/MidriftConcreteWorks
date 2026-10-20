@@ -10,6 +10,15 @@ import type { QuoteInput, QuoteRecord } from "./quote-shared";
 export const submitQuoteRequest = createServerFn({ method: "POST" })
   .inputValidator((data: QuoteInput) => quoteSchema.parse(data))
   .handler(async ({ data }) => {
+    const diagnosticId = crypto.randomUUID();
+    let stage = "configuration";
+    let savedReceipt: { ok: true; reference: string; syncStatus: string; whatsappMessage: string; emailSubject: string; emailBody: string } | undefined;
+    const databaseFailure = (code?: string): never => {
+      // Only fixed stage labels and database codes; never messages, rows or input.
+      console.error("[quote] persistence_failure", { diagnosticId, stage, code: code && /^[A-Z0-9]{5}$/.test(code) ? code : "unknown" });
+      throw new Error("save_failed");
+    };
+    try {
     if (data.website) throw new Error("Invalid submission");
 
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
@@ -24,25 +33,32 @@ export const submitQuoteRequest = createServerFn({ method: "POST" })
     let row: { id: string; reference: string; reatech_sync_status: string } | null = null;
 
     if (data.idempotencyKey) {
-      const { data: byKey } = await supabaseAdmin
+      stage = "idempotency_lookup";
+      const { data: byKey, error } = await supabaseAdmin
         .from("quote_requests")
         .select("id, reference, reatech_sync_status")
         .eq("idempotency_key", data.idempotencyKey)
         .maybeSingle();
+      if (error) databaseFailure(error.code);
       row = byKey;
     }
 
     if (!row) {
       const since = new Date(Date.now() - 15 * 60 * 1000).toISOString();
-      const { count } = await supabaseAdmin
+      stage = "rate_limit_lookup";
+      const { count, error: countError } = await supabaseAdmin
         .from("quote_requests")
         .select("id", { count: "exact", head: true })
         .eq("phone", data.phone)
         .gte("created_at", since);
-      if ((count ?? 0) >= 5) throw new Error("Too many requests. Please contact us directly.");
+      if (countError) databaseFailure(countError.code);
+      if ((count ?? 0) >= 5) {
+        return { ok: false as const, code: "rate_limited", message: "Too many requests. Please contact us directly.", diagnosticId };
+      }
 
       const dupSince = new Date(Date.now() - 3 * 60 * 1000).toISOString();
-      const { data: existing } = await supabaseAdmin
+      stage = "duplicate_lookup";
+      const { data: existing, error: duplicateError } = await supabaseAdmin
         .from("quote_requests")
         .select("id, reference, reatech_sync_status")
         .eq("phone", data.phone)
@@ -51,10 +67,12 @@ export const submitQuoteRequest = createServerFn({ method: "POST" })
         .gte("created_at", dupSince)
         .limit(1)
         .maybeSingle();
+      if (duplicateError) databaseFailure(duplicateError.code);
       row = existing;
     }
 
     if (!row) {
+      stage = "insert";
       const { data: inserted, error } = await supabaseAdmin
         .from("quote_requests")
         .insert({
@@ -95,22 +113,15 @@ export const submitQuoteRequest = createServerFn({ method: "POST" })
             .maybeSingle();
           row = again;
         }
-        if (!row) throw new Error("Could not save your request");
+        if (!row) databaseFailure(error?.code);
       } else {
         row = inserted;
       }
     }
 
-    // Lead is saved. Reatech failures never affect the customer's result.
-    let syncStatus = row.reatech_sync_status;
-    if (syncStatus !== "submitted") {
-      try {
-        const { syncQuoteToReatech } = await import("./reatech/sync.server");
-        syncStatus = await syncQuoteToReatech(row.id, { formToken: data.formToken, tokenIssuedAt: data.tokenIssuedAt });
-      } catch {
-        console.warn("[reatech] sync threw for a saved quote");
-      }
-    }
+    if (!row) return databaseFailure();
+    stage = "saved";
+    savedReceipt = { ok: true, reference: row.reference, syncStatus: row.reatech_sync_status, whatsappMessage: "", emailSubject: `Quotation Request — ${row.reference}`, emailBody: `Saved quotation request: ${row.reference}` };
 
     const record: QuoteRecord = {
       reference: row.reference,
@@ -129,11 +140,31 @@ export const submitQuoteRequest = createServerFn({ method: "POST" })
       ...(data.notes ? { notes: data.notes } : {}),
     };
 
-    return {
+    const result = {
+      ok: true as const,
       reference: row.reference,
-      syncStatus,
+      syncStatus: row.reatech_sync_status,
       whatsappMessage: buildWhatsAppMessage(record),
       emailSubject: buildEmailSubject(record),
       emailBody: buildEmailBody(record),
     };
+    // Build the visitor's receipt before optional external sync. Provider,
+    // import, update and event-log errors cannot invalidate this saved receipt.
+    if (result.syncStatus !== "submitted" && result.syncStatus !== "skipped_no_email") {
+      try {
+        const { syncQuoteToReatech } = await import("./reatech/sync.server");
+        result.syncStatus = await syncQuoteToReatech(row.id, { formToken: data.formToken, tokenIssuedAt: data.tokenIssuedAt });
+      } catch {
+        console.warn("[quote] post_save_sync_failure", { diagnosticId, reference: row.reference });
+      }
+    }
+    return result;
+    } catch {
+      if (savedReceipt) {
+        console.warn("[quote] post_save_receipt_failure", { diagnosticId, reference: savedReceipt.reference });
+        return savedReceipt;
+      }
+      console.error("[quote] submission_failure", { diagnosticId, stage });
+      return { ok: false as const, code: "save_failed", message: "We couldn't confirm your request was saved. Your details are kept — please retry or contact our team.", diagnosticId };
+    }
   });

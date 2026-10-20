@@ -212,20 +212,26 @@ export function QuoteDialog({
     setSubmitError(null);
     try {
       const res = await submit({ data: payload });
+      if (!res.ok) {
+        setSubmitError(`${res.message} Support reference: ${res.diagnosticId}`);
+        toast.error(res.message);
+        return;
+      }
       setResult(res);
       try {
         localStorage.removeItem(DRAFT_KEY);
       } catch {
         /* ignore */
       }
-      track("quote_form_submitted", {
+      // Optional analytics must not put a saved quote into the failure path.
+      try { track("quote_form_submitted", {
         source_page: sourcePage ?? "unknown",
         product: form.product,
         contact_method: form.preferredContact,
         has_coordinates: !!coords,
         delivery_mode: form.deliveryMode,
         timeframe: form.timeframe || "unspecified",
-      });
+      }); } catch { /* receipt remains successful if an analytics provider fails */ }
       void savePdf(res.reference);
     } catch {
       // Draft + idempotency key are kept, so retrying never creates a duplicate.
