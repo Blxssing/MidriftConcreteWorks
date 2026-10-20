@@ -1,5 +1,9 @@
 # Roadmap — Reatech360 integration
 
+- [ ] Correct workspace-specific API address, secure rate limiting, and regression tests
+- [ ] Audit official contact/content endpoints and report redacted response structures; newsletter paths require documentation
+- [ ] Verify tests and current application build; do not publish
+
 - [x] Shared quote flow (QuoteDialog + /contact) with delivery/vehicle/consent/attribution fields
 - [x] Phone-only leads saved, Reatech sync marked skipped (no email)
 - [x] Server-only Reatech client (token GET + contact POST, timing rules, no PII logs)
