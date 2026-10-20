@@ -32,6 +32,7 @@ export const Route = createFileRoute("/products/$category/")({
         { property: "og:description", content: description },
         { property: "og:url", content: url },
         { property: "og:type", content: "website" },
+        { name: "twitter:card", content: "summary_large_image" },
         ...(loaderData.image
           ? [
               { property: "og:image", content: loaderData.image },

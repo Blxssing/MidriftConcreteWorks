@@ -21,6 +21,9 @@ describe("quote rules", () => {
   it("rejects a token older than 1 hour", () => {
     expect(checkTokenTiming(1_000, 1_000 + 60 * 60 * 1000 + 1)).toBe("expired");
   });
+  it("accepts a token exactly one hour old", () => {
+    expect(checkTokenTiming(1_000, 1_000 + 60 * 60 * 1000)).toBe("ok");
+  });
   it("phone-only enquiries are not sent to Reatech", () => {
     expect(isReatechEligible("")).toBe(false);
     expect(isReatechEligible(null)).toBe(false);

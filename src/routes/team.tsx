@@ -22,6 +22,7 @@ export const Route = createFileRoute("/team")({
           "The people behind Midrift Concrete Works — leadership, management, quality control, finance, procurement and marketing.",
       },
       { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { property: "og:url", content: `${SITE}/team` },
     ],
     links: [{ rel: "canonical", href: `${SITE}/team` }],
